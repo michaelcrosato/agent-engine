@@ -42,6 +42,15 @@ export const describeTool = defineTool({
           ...schemaTable(kind.schema),
         ].join('\n'),
       };
+    const kinds = engine.content.kindList().filter((k) => engine.content.entry(k, a.thing));
+    if (kinds.length)
+      throw new EngineError({
+        code: 'DESCRIBE_UNKNOWN',
+        what: `"${a.thing}" is a ${kinds.map((k) => k.name).join(' and a ')} id, not a component or kind`,
+        fix: kinds.some((k) => k.name === 'prefab')
+          ? `Resolved prefab: npm run tool -- describe prefab:${a.thing}`
+          : `Its schema: npm run tool -- describe ${kinds[0]!.name}`,
+      });
     throw new EngineError({
       code: 'DESCRIBE_UNKNOWN',
       what: `Nothing named "${a.thing}"`,

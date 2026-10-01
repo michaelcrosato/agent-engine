@@ -8,6 +8,7 @@ import { CameraSystem } from './CameraSystem.ts';
 import { Label } from './Label.ts';
 import { LabelSystem } from './LabelSystem.ts';
 import { Light } from './Light.ts';
+import { LightSignalSystem } from './LightSignalSystem.ts';
 import { LightSystem } from './LightSystem.ts';
 import { LookKind } from './Look.ts';
 import { PostStackKind } from './PostStack.ts';
@@ -25,7 +26,15 @@ export const RenderPlugin = definePlugin({
   name: 'render',
   doc: 'Renders Model, Light, and CameraRig components with the room look (browser only).',
   components: [Model, Light, CameraRig, Label],
-  systems: [TransformHistorySystem, RenderSyncSystem, LightSystem, LabelSystem, CameraSystem, RenderSystem],
+  systems: [
+    TransformHistorySystem,
+    LightSignalSystem,
+    RenderSyncSystem,
+    LightSystem,
+    LabelSystem,
+    CameraSystem,
+    RenderSystem,
+  ],
   contentKinds: [PuppetKind, LookKind, PostStackKind, TextureKind],
   setup(engine) {
     if (engine.mode !== 'browser' || !engine.host) return;

@@ -136,8 +136,8 @@ Procedural texture recipe: ordered ops (bricks, noise, planks, ...) → albedo, 
 
 ```
 doc        string = ""
-size       integer = 256 [-9007199254740991..9007199254740991] — Pixels per side (power of two). 32-64 for pixel-art looks
-seed       integer = 1 [-9007199254740991..9007199254740991]
+size       integer = 256 — Pixels per side (power of two). 32-64 for pixel-art looks
+seed       integer = 1
 roughness  number = 0.8 [0..1] — Base roughness before layers
 normal     number = 2 [0..16] — Normal-map strength from height (0 = none)
 layers     any[] — Ops applied in order: { "op": "bricks", ... }

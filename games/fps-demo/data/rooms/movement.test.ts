@@ -36,6 +36,23 @@ describe('movement course', () => {
     expect(t.pos('player').y).toBeCloseTo(4, 0);
   });
 
+  test('the "floaty" tuning preset roughly doubles jump height', async () => {
+    const peak = async (tuning: string[]) => {
+      const t = await playtest('fps-demo', 'movement', { tuning });
+      t.engine.physics.teleport(t.player, new Vector3(5, 0.05, 19));
+      t.wait(0.3);
+      const ground = t.pos('player').y;
+      t.press('jump');
+      let top = ground;
+      for (let i = 0; i < 90; i++) top = Math.max(top, t.tick().pos('player').y);
+      return top - ground;
+    };
+    const normal = await peak([]);
+    const floaty = await peak(['floaty']);
+    expect(normal).toBeCloseTo(7.2 ** 2 / (2 * 22), 0);
+    expect(floaty / normal).toBeGreaterThan(1.8);
+  });
+
   test('the ramp leads onto the 1 m block', async () => {
     const t = await playtest('fps-demo', 'movement');
     t.engine.physics.teleport(t.player, new Vector3(11, 0.05, 19.5));

@@ -4,7 +4,8 @@ import { z } from 'zod';
 import { defineTool } from '../lib/defineTool.ts';
 import { ROOT } from '../lib/outPath.ts';
 
-function docFiles(dir = join(ROOT, 'docs'), prefix = ''): string[] {
+/** Repo-relative markdown files the docs tool reads: AGENTS.md and everything under docs/. */
+function docFiles(dir = join(ROOT, 'docs'), prefix = 'docs/'): string[] {
   if (!existsSync(dir)) return [];
   return readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
     d.isDirectory()
@@ -25,18 +26,18 @@ export const docsTool = defineTool({
   }),
   positional: ['query'],
   async run(a) {
-    const files = docFiles();
+    const files = ['AGENTS.md', ...docFiles()];
     if (!a.query) return { ok: true, summary: readFileSync(join(ROOT, 'docs', 'README.md'), 'utf8') };
     const exact = files.find((f) => f === `${a.query}.md` || f.endsWith(`/${a.query}.md`));
-    if (exact) return { ok: true, summary: readFileSync(join(ROOT, 'docs', exact), 'utf8') };
+    if (exact) return { ok: true, summary: readFileSync(join(ROOT, exact), 'utf8') };
     const q = a.query.toLowerCase();
     const hits: string[] = [];
     for (const f of files) {
-      readFileSync(join(ROOT, 'docs', f), 'utf8')
+      readFileSync(join(ROOT, f), 'utf8')
         .split('\n')
         .forEach((line, i) => {
           if (hits.length < 30 && line.toLowerCase().includes(q))
-            hits.push(`docs/${f}:${i + 1}  ${line.trim().slice(0, 160)}`);
+            hits.push(`${f}:${i + 1}  ${line.trim().slice(0, 160)}`);
         });
     }
     return {

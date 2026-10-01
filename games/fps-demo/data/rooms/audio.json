@@ -235,7 +235,8 @@
     {
       "prefab": "ambient-hum",
       "name": "hum",
-      "pos": [29, 1, 3]
+      "pos": [29, 1, 3],
+      "tags": ["power"]
     },
     {
       "prefab": "sign",
@@ -289,11 +290,46 @@
     },
     {
       "prefab": "lamp",
-      "pos": [10, 5, 6]
+      "pos": [10, 5, 6],
+      "name": "lamp-1",
+      "tags": ["power"]
     },
     {
       "prefab": "lamp",
-      "pos": [22, 5, 6]
+      "pos": [22, 5, 6],
+      "name": "lamp-2",
+      "tags": ["power"]
+    },
+    {
+      "prefab": "button",
+      "name": "power-switch",
+      "pos": [29.92, 1.1, 6.5],
+      "rot": 90,
+      "with": {
+        "Interactable": {
+          "prompt": "Power",
+          "onUse": [
+            {
+              "target": "#power",
+              "action": "toggle",
+              "sound": "button",
+              "message": "Power toggled: the machine and the lamps share the tag \"power\""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-power",
+      "pos": [29.85, 2.1, 6.5],
+      "rot": 90,
+      "with": {
+        "Label": {
+          "text": "power",
+          "size": 0.24
+        }
+      }
     },
     {
       "prefab": "exit",

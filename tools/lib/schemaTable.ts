@@ -30,9 +30,12 @@ export function schemaTable(schema: z.ZodType): string[] {
   const js = z.toJSONSchema(schema, { io: 'input', unrepresentable: 'any' }) as JsonSchema;
   const props = js.properties ?? {};
   const width = Math.max(4, ...Object.keys(props).map((k) => k.length));
+  const bound = (v: number | undefined) =>
+    v === undefined || Math.abs(v) >= Number.MAX_SAFE_INTEGER ? undefined : v;
   return Object.entries(props).map(([name, p]) => {
-    const range =
-      p.minimum !== undefined || p.maximum !== undefined ? ` [${p.minimum ?? ''}..${p.maximum ?? ''}]` : '';
+    const lo = bound(p.minimum);
+    const hi = bound(p.maximum);
+    const range = lo !== undefined || hi !== undefined ? ` [${lo ?? ''}..${hi ?? ''}]` : '';
     const def = p.default !== undefined ? ` = ${JSON.stringify(p.default)}` : '';
     const unit = p.unit ? ` ${p.unit}` : '';
     const doc = p.description ? ` — ${p.description}` : '';

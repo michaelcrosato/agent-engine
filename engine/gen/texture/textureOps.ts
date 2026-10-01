@@ -13,7 +13,7 @@ import { spots } from './ops/spots.ts';
 import { stripes } from './ops/stripes.ts';
 import { tiles } from './ops/tiles.ts';
 
-/** Every texture op, by name. Add new ops here (npm run new -- texture-op <name>). */
+/** Every texture op, by name. To add one, write ops/<name>.ts with defineTextureOp and list it here. */
 export const textureOps = {
   fill,
   noise,

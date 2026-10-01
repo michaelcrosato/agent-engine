@@ -1,0 +1,6 @@
+{
+  "doc": "Moon-ish movement: low gravity, higher jumps, more air control. Try it: ?tuning=floaty",
+  "prefabs": {
+    "player": { "FpsController": { "gravity": 11, "jumpSpeed": 7.5, "airAccel": 30 } }
+  }
+}

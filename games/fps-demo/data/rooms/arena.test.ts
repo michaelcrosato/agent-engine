@@ -45,6 +45,14 @@ describe('arena', () => {
     t.capture('cleared');
   });
 
+  test('the "hard" tuning preset toughens wave robots through their parent prefab', async () => {
+    const normal = await playtest('fps-demo', 'arena');
+    const hard = await playtest('fps-demo', 'arena', { tuning: ['hard'] });
+    const maxHp = (t: NodePlaytest) => t.get(t.engine.spawn('arena-grunt', { pos: [5, 0, 5] }), Health).max;
+    expect(maxHp(normal)).toBe(60);
+    expect(maxHp(hard)).toBe(100);
+  });
+
   test('robots hunt down and hurt a player who does not fight back', async () => {
     const t = await playtest('fps-demo', 'arena');
     expect(t.walkTo('arena-start')).toBe(true);

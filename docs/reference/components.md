@@ -12,7 +12,7 @@ volume    number = 1 [0..4]
 interval  number = 0 [0..] s — 0 = loop forever; >0 = replay every interval
 jitter    number = 0.3 [0..1] — Random interval variation (fraction)
 on        boolean = true
-voice     integer = 0 [-9007199254740991..9007199254740991] — State: playing loop voice id (0 = none)
+voice     integer = 0 — State: playing loop voice id (0 = none)
 next      number = 0 — State: sim time of the next periodic play
 ```
 
@@ -37,12 +37,12 @@ Owned weapons, current selection, magazine counts, cooldown and reload state.
 
 ```
 weapons    string[] = [] — Weapon prefab ids owned
-current    integer = -1 [-9007199254740991..9007199254740991] — Index into weapons (-1 = none)
+current    integer = -1 — Index into weapons (-1 = none)
 mags       object = {} — State: rounds loaded per weapon
 cooldown   number = 0 — State: seconds until the next shot
 reloading  number = 0 — State: seconds of reload left
 switching  number = 0 — State: seconds of weapon raise left
-shots      integer = 0 [-9007199254740991..9007199254740991] — State: total shots fired
+shots      integer = 0 — State: total shots fired
 ```
 
 ## Body
@@ -91,7 +91,7 @@ gravity       number = 20 m/s²
 alertSound    sound id = "alert"
 attackSound   sound id = ""
 state         "idle"|"chase"|"attack" = "idle" — State
-target        integer = -1 [-9007199254740991..9007199254740991] — State: entity being hunted
+target        integer = -1 — State: entity being hunted
 lastSeen      n | [x,y,z] = 0 — State: where the target was last seen
 lastSeenAt    number = -999 — State
 cooldown      number = 0 — State: seconds until the next attack
@@ -109,7 +109,7 @@ offset    n | [x,y,z] = [0,1.6,0] m — Eye position relative to the entity orig
 pitch     number = 0 [-89..89] deg — State: look up/down
 distance  number = 4 [0..] m — Third person: distance behind the eye
 fov       number = 75 [20..120] deg
-priority  integer = 0 [-9007199254740991..9007199254740991] — Highest priority rig drives the camera
+priority  integer = 0 — Highest priority rig drives the camera
 ```
 
 ## CharacterBody
@@ -133,9 +133,9 @@ grounded    boolean = false — Output: standing on ground after the last move
 Counts signals; fires onReach at the goal (e.g. "kill 3 enemies opens the door").
 
 ```
-goal     integer = 3 [1..9007199254740991]
+goal     integer = 3 [1..]
 onReach  object[] = []
-count    integer = 0 [-9007199254740991..9007199254740991] — State
+count    integer = 0 — State
 done     boolean = false — State: onReach already ran
 ```
 
@@ -242,7 +242,7 @@ onUse     object[] = []
 once      boolean = false
 cooldown  number = 0.5 [0..] s
 sound     sound id = "button"
-uses      integer = 0 [-9007199254740991..9007199254740991] — State
+uses      integer = 0 — State
 lastUse   number = -999 — State
 ```
 
@@ -253,7 +253,7 @@ Looks for Interactables along the view ray; "use" action activates the focused o
 ```
 action  string = "use" — Input action that uses the focused Interactable
 reach   number = 3 [0.5..] m
-focus   integer = -1 [-9007199254740991..9007199254740991] — State: focused Interactable entity (-1 = none)
+focus   integer = -1 — State: focused Interactable entity (-1 = none)
 prompt  string = "" — State: prompt text of the focus
 ```
 
@@ -333,10 +333,10 @@ wait      number = 1 [0..] s — Pause at each point
 mode      "pingpong"|"loop"|"once" = "pingpong"
 ease      "linear"|"smooth"|"sine"|"in"|"out"|"step"|"back" = "smooth"
 active    boolean = true — Moving now
-at        integer = 0 [-9007199254740991..9007199254740991] — State: index of the last point reached
-to        integer = -1 [-9007199254740991..9007199254740991] — State: index being moved toward (-1 = not moving)
-dir       integer = 1 [-9007199254740991..9007199254740991] — State: pingpong direction through points (+1 / -1)
-goal      integer = -1 [-9007199254740991..9007199254740991] — State: stop on reaching this index (-1 = follow mode)
+at        integer = 0 — State: index of the last point reached
+to        integer = -1 — State: index being moved toward (-1 = not moving)
+dir       integer = 1 — State: pingpong direction through points (+1 / -1)
+goal      integer = -1 — State: stop on reaching this index (-1 = follow mode)
 t         number = 0 — State: progress along the current segment 0..1
 waitLeft  number = 0 — State: seconds left to wait
 origin    n | [x,y,z] = 0 — State: spawn position (captured on first tick)
@@ -371,9 +371,9 @@ splashRadius  number = 0 [0..] m — 0 = no splash
 splashDamage  number = 0 [0..]
 impulse       number = 6 [0..] — Knockback at the splash center
 lifetime      number = 5 [0.05..] s
-bounces       integer = 0 [0..9007199254740991] — Bounce off surfaces this many times before exploding
+bounces       integer = 0 [0..] — Bounce off surfaces this many times before exploding
 hitEffect     effect id = "" — Effect at impact (or explosion)
-owner         integer = -1 [-9007199254740991..9007199254740991] — State: who fired it (not hit by its own shot)
+owner         integer = -1 — State: who fired it (not hit by its own shot)
 age           number = 0 — State: seconds alive
 velocity      n | [x,y,z] = 0 — State: current velocity
 started       boolean = false — State: initial velocity set
@@ -405,14 +405,14 @@ Spawns prefabs (enemy waves, item drops) on signal or timer, with caps.
 
 ```
 prefab    prefab id = ""
-count     integer = 1 [1..9007199254740991] — Spawned per trigger
+count     integer = 1 [1..] — Spawned per trigger
 interval  number = 0 [0..] s — 0 = only on "spawn" signals
 active    boolean = true — Interval spawning on ("start"/"stop" signals)
-max       integer = 8 [1..9007199254740991] — Max alive from this spawner
-total     integer = 0 [0..9007199254740991] — Lifetime cap (0 = unlimited)
+max       integer = 8 [1..] — Max alive from this spawner
+total     integer = 0 [0..] — Lifetime cap (0 = unlimited)
 radius    number = 0 [0..] m — Random horizontal offset
 effect    effect id = "" — Effect at each spawn
-spawned   integer = 0 [-9007199254740991..9007199254740991] — State: total spawned
+spawned   integer = 0 — State: total spawned
 alive     number[] = [] — State: living spawned entities
 next      number = 0 — State: sim time of the next interval spawn
 ```
@@ -430,12 +430,12 @@ id    string = "default" — Spawn id used by room exits: { "room": "hub", "spaw
 Knock-down target that scores points and resets (needs Health with destroyOnDeath false).
 
 ```
-points     integer = 10 [-9007199254740991..9007199254740991]
+points     integer = 10
 resetTime  number = 2.5 [0..] s — 0 = stays down
 onHit      object[] = []
 down       boolean = false — State
 downAt     number = 0 — State
-hits       integer = 0 [-9007199254740991..9007199254740991] — State: times knocked down
+hits       integer = 0 — State: times knocked down
 ```
 
 ## Timer
@@ -471,8 +471,8 @@ filter   string = "player" — "player", "any", or a tag the entering entity mus
 onEnter  object[] = [] — Signals/messages when a matching entity enters
 onExit   object[] = [] — Signals/messages when it leaves
 once     boolean = false — Only fire the first time
-fired    integer = 0 [-9007199254740991..9007199254740991] — State: times onEnter ran
-inside   integer = 0 [-9007199254740991..9007199254740991] — State: matching entities inside now
+fired    integer = 0 — State: times onEnter ran
+inside   integer = 0 — State: matching entities inside now
 ```
 
 ## Weapon
@@ -490,10 +490,10 @@ range         number = 120 [0.5..] m
 rate          number = 3 [0.1..] shots/s
 automatic     boolean = false — Keeps firing while held
 ammo          string = "bullets" — Inventory ammo type ("" = unlimited)
-ammoPerShot   integer = 1 [0..9007199254740991]
-magazine      integer = 12 [0..9007199254740991] — 0 = fires straight from reserve (no reloads)
+ammoPerShot   integer = 1 [0..]
+magazine      integer = 12 [0..] — 0 = fires straight from reserve (no reloads)
 reloadTime    number = 1.2 [0..] s
-startAmmo     integer = 36 [0..9007199254740991] — Reserve ammo granted when first picked up
+startAmmo     integer = 36 [0..] — Reserve ammo granted when first picked up
 projectile    prefab id = "" — Projectile mode: prefab spawned per shot
 impulse       number = 4 [0..] — Push on physics props per hit
 kick          number = 1.2 [0..] deg — Aim kick upward per shot
