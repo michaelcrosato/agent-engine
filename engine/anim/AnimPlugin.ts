@@ -1,5 +1,6 @@
 import { definePlugin } from '../core/definePlugin.ts';
 import { Animator } from './Animator.ts';
+import { AnimatorSignalSystem } from './AnimatorSignalSystem.ts';
 import { AnimatorSystem } from './AnimatorSystem.ts';
 import { ClipKind } from './Clip.ts';
 import { Motion } from './Motion.ts';
@@ -12,6 +13,6 @@ export const AnimPlugin = definePlugin({
   name: 'anim',
   doc: 'Animator (clips on puppets), Mover (platforms/doors), Motion (spin/bob).',
   components: [Animator, Mover, Motion],
-  systems: [MoverSystem, MotionSystem, AnimatorSystem],
+  systems: [MoverSystem, MotionSystem, AnimatorSignalSystem, AnimatorSystem],
   contentKinds: [ClipKind],
 });

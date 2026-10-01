@@ -3,18 +3,16 @@ import { defineSystem } from '../../core/defineSystem.ts';
 import { Transform } from '../../core/Transform.ts';
 import { spawnEffect } from '../../fx/spawnEffect.ts';
 import { applyDamage } from '../health/applyDamage.ts';
-import { Died } from '../health/healthEvents.ts';
-import { Explosive } from './Explosive.ts';
 import { explode } from './explode.ts';
 import { Projectile } from './Projectile.ts';
 
 const FORWARD = new Vector3(0, 0, -1);
 const step = new Vector3();
 
-/** Moves projectiles by ray-stepping, resolves hits and splash, and detonates Explosives on death. */
+/** Moves projectiles by ray-stepping and resolves hits and splash damage. */
 export const ProjectileSystem = defineSystem({
   name: 'ProjectileSystem',
-  doc: 'Flies Projectile entities; impacts deal damage/splash; Explosive entities explode on death.',
+  doc: 'Flies Projectile entities; impacts deal damage and optional splash.',
   phase: 'update',
   run(ctx) {
     const w = ctx.world;
@@ -61,20 +59,6 @@ export const ProjectileSystem = defineSystem({
       }
       t.pos.add(step);
       if (dist > 1e-6) t.rot.setFromUnitVectors(FORWARD, step.normalize());
-    }
-    for (const d of ctx.events.read(Died)) {
-      const x = w.get(d.entity, Explosive);
-      const t = w.get(d.entity, Transform);
-      if (!x || !t) continue;
-      const center = t.pos.clone();
-      center.y += 0.5;
-      explode(ctx, center, {
-        radius: x.radius,
-        damage: x.damage,
-        impulse: x.impulse,
-        effect: x.effect,
-        ...(d.from !== undefined ? { from: d.from } : {}),
-      });
     }
   },
 });

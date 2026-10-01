@@ -14,6 +14,12 @@ export const SignalSpecSchema = z
     value: z.number().default(0),
     delay: z.number().min(0).default(0).meta({ description: 'Seconds to wait before sending' }),
     message: z.string().default('').meta({ description: 'Text to show on the HUD' }),
+    sound: z.string().default('').meta({ description: 'Sound to play at the sender', ref: 'sound' }),
+    music: z
+      .string()
+      .default('')
+      .meta({ description: 'Switch the music to this song ("none" = silence)', ref: 'music' }),
+    look: z.string().default('').meta({ description: 'Switch the room look (visual style)', ref: 'look' }),
   })
   .strict();
 

@@ -1,7 +1,7 @@
 {
   "doc": "Elevator platform: rises 4 m and returns, pausing at each end. Override Mover.points to change the path.",
   "components": {
-    "Body": { "type": "kinematic", "size": [3, 0.4, 3] },
+    "Body": { "type": "kinematic", "size": [2, 0.4, 2] },
     "Model": { "puppet": "platform" },
     "Mover": { "points": [[0, 0, 0], [0, 4, 0]], "speed": 2, "wait": 1.5, "mode": "pingpong" }
   }

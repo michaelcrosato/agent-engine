@@ -25,7 +25,7 @@ export const ViewmodelKey = defineService<ViewmodelState>(
   'First-person weapon model state (browser only).',
 );
 
-const REST = new Vector3(0.2, -0.21, -0.56);
+const REST = new Vector3(0.24, -0.27, -0.58);
 const e = new Euler();
 const q = new Quaternion();
 

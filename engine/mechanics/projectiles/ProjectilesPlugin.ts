@@ -1,5 +1,6 @@
 import { definePlugin } from '../../core/definePlugin.ts';
 import { Explosive } from './Explosive.ts';
+import { ExplosiveSystem } from './ExplosiveSystem.ts';
 import { Exploded } from './explode.ts';
 import { Projectile } from './Projectile.ts';
 import { ProjectileSystem } from './ProjectileSystem.ts';
@@ -9,7 +10,7 @@ export const ProjectilesPlugin = definePlugin({
   name: 'projectiles',
   doc: 'Projectile flight and impacts, explode(ctx, pos, opts), Explosive barrels.',
   components: [Projectile, Explosive],
-  systems: [ProjectileSystem],
+  systems: [ProjectileSystem, ExplosiveSystem],
   events: [Exploded],
   requires: ['health'],
 });

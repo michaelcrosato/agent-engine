@@ -1,6 +1,7 @@
 import { definePlugin } from '../core/definePlugin.ts';
 import { Counter } from './Counter.ts';
 import { LogicSystem } from './LogicSystem.ts';
+import { LookChanged } from './LookChanged.ts';
 import { Message } from './Message.ts';
 import { RoomExit } from './RoomExit.ts';
 import { Signal } from './Signal.ts';
@@ -15,7 +16,7 @@ export const LogicPlugin = definePlugin({
   doc: 'Signals, Trigger volumes, Counter, Timer, RoomExit, and on-screen Messages.',
   components: [Trigger, Counter, Timer, RoomExit],
   systems: [LogicSystem, TriggerSystem],
-  events: [Signal, Message],
+  events: [Signal, Message, LookChanged],
   setup(engine) {
     engine.provide(SignalQueueKey, new SignalQueue());
   },

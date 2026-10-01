@@ -68,7 +68,11 @@ export const FpsControllerSystem = defineSystem({
         exclude: e,
       });
       const carrier = ground ? w.get(ground.entity, Mover) : undefined;
-      if (carrier && cb.grounded) delta.add(carrier.delta);
+      if (carrier && cb.grounded) {
+        delta.x += carrier.delta.x;
+        delta.z += carrier.delta.z;
+        if (v.y <= 0) delta.y = carrier.delta.y;
+      }
       const before = t.pos.clone();
       const res = ctx.physics.moveCharacter(e, delta);
       if (v.y > 0 && res.moved.y < delta.y * 0.5) v.y = 0;

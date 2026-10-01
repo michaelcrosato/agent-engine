@@ -1,0 +1,16 @@
+{
+  "doc": "Bouncy 0.8 m ball (dynamic sphere).",
+  "tags": ["prop"],
+  "components": {
+    "Body": {
+      "type": "dynamic",
+      "shape": "sphere",
+      "size": 0.8,
+      "mass": 8,
+      "restitution": 0.75,
+      "friction": 0.4,
+      "layer": "prop"
+    },
+    "Model": { "parts": [{ "shape": "sphere", "size": 0.8, "material": "accent", "segments": 24 }] }
+  }
+}

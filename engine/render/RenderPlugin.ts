@@ -5,6 +5,8 @@ import { Model } from '../model/Model.ts';
 import { PuppetKind } from '../model/Puppet.ts';
 import { CameraRig } from './CameraRig.ts';
 import { CameraSystem } from './CameraSystem.ts';
+import { Label } from './Label.ts';
+import { LabelSystem } from './LabelSystem.ts';
 import { Light } from './Light.ts';
 import { LightSystem } from './LightSystem.ts';
 import { LookKind } from './Look.ts';
@@ -22,8 +24,8 @@ import { TransformHistoryKey, TransformHistorySystem } from './TransformHistory.
 export const RenderPlugin = definePlugin({
   name: 'render',
   doc: 'Renders Model, Light, and CameraRig components with the room look (browser only).',
-  components: [Model, Light, CameraRig],
-  systems: [TransformHistorySystem, RenderSyncSystem, LightSystem, CameraSystem, RenderSystem],
+  components: [Model, Light, CameraRig, Label],
+  systems: [TransformHistorySystem, RenderSyncSystem, LightSystem, LabelSystem, CameraSystem, RenderSystem],
   contentKinds: [PuppetKind, LookKind, PostStackKind, TextureKind],
   setup(engine) {
     if (engine.mode !== 'browser' || !engine.host) return;

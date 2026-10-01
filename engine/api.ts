@@ -40,6 +40,7 @@ export { Reloaded, WeaponChanged, WeaponFired } from './kits/fps/weaponEvents.ts
 export { RoomLoaded } from './level/levelEvents.ts';
 export { SpawnPoint } from './level/SpawnPoint.ts';
 export { Counter } from './logic/Counter.ts';
+export { LookChanged } from './logic/LookChanged.ts';
 export { Message } from './logic/Message.ts';
 export { RoomExit } from './logic/RoomExit.ts';
 export { Signal } from './logic/Signal.ts';
@@ -77,6 +78,7 @@ export { CharacterBody } from './physics/CharacterBody.ts';
 // Common events
 export { Contact, TriggerEntered, TriggerExited } from './physics/physicsEvents.ts';
 export { CameraRig } from './render/CameraRig.ts';
+export { Label } from './render/Label.ts';
 export { Light } from './render/Light.ts';
 export { viewRay } from './render/viewRay.ts';
 export { field } from './schema/field.ts';

@@ -1,0 +1,8 @@
+{
+  "doc": "Kinematic hazard-striped beam that sweeps back and forth, shoving props (physics room).",
+  "components": {
+    "Body": { "type": "kinematic", "size": [4, 1, 1] },
+    "Model": { "parts": [{ "shape": "box", "size": [4, 1, 1], "material": "hazard" }] },
+    "Mover": { "points": [[0, 0, 0], [0, 0, -9]], "speed": 2.5, "wait": 1 }
+  }
+}

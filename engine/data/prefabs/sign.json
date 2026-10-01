@@ -1,0 +1,4 @@
+{
+  "doc": "Floating text sign. Set Label.text (and offset/size) in the placement.",
+  "components": { "Label": { "text": "Sign", "offset": [0, 0, 0] } }
+}
