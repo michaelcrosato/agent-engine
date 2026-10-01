@@ -114,6 +114,9 @@ export class Engine {
     this.phases = { input: [], update: [], physics: [], late: [], frame: [] };
     for (const p of plugins) for (const s of p.systems) this.phases[s.phase].push(s);
     for (const list of Object.values(this.phases)) list.sort((a, b) => a.order - b.order);
+    // Event readers start here, before setup and the first room load: tick 1 sees those events,
+    // and a system never misses events that earlier phases emitted before its first run.
+    for (const list of Object.values(this.phases)) for (const s of list) this.ctxFor(s);
   }
 
   static async create(opts: EngineOptions): Promise<Engine> {

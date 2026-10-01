@@ -429,6 +429,11 @@
           "type": "number",
           "minimum": 0
         },
+        "aggressive": {
+          "default": false,
+          "description": "Always knows where the player is (wave enemies)",
+          "type": "boolean"
+        },
         "gravity": {
           "default": 20,
           "unit": "m/s²",
@@ -749,6 +754,24 @@
               "message": {
                 "default": "",
                 "description": "Text to show on the HUD",
+                "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
                 "type": "string"
               }
             },
@@ -1157,6 +1180,24 @@
                 "default": "",
                 "description": "Text to show on the HUD",
                 "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
+                "type": "string"
               }
             },
             "additionalProperties": false
@@ -1223,6 +1264,24 @@
               "message": {
                 "default": "",
                 "description": "Text to show on the HUD",
+                "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
                 "type": "string"
               }
             },
@@ -1330,6 +1389,84 @@
           "additionalProperties": {
             "type": "number"
           }
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Label": {
+      "description": "3D text sign: an unlit panel, readable from both sides, optionally facing the camera.",
+      "type": "object",
+      "properties": {
+        "text": {
+          "default": "Label",
+          "description": "Use \\n for multiple lines",
+          "type": "string"
+        },
+        "size": {
+          "default": 0.4,
+          "description": "Line height",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.05
+        },
+        "color": {
+          "default": "#ffffff",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "background": {
+          "default": "#141a22",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "opacity": {
+          "default": 0.8,
+          "description": "Background opacity (0 = text only)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "offset": {
+          "widget": "vec3",
+          "unit": "m",
+          "default": [
+            0,
+            2.6,
+            0
+          ],
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "billboard": {
+          "default": false,
+          "description": "Always face the camera",
+          "type": "boolean"
         },
         "$schema": {
           "type": "string",
@@ -2344,6 +2481,24 @@
                 "default": "",
                 "description": "Text to show on the HUD",
                 "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
+                "type": "string"
               }
             },
             "additionalProperties": false
@@ -2421,6 +2576,24 @@
               "message": {
                 "default": "",
                 "description": "Text to show on the HUD",
+                "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
                 "type": "string"
               }
             },
@@ -2588,6 +2761,24 @@
                 "default": "",
                 "description": "Text to show on the HUD",
                 "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
+                "type": "string"
               }
             },
             "additionalProperties": false
@@ -2624,6 +2815,24 @@
               "message": {
                 "default": "",
                 "description": "Text to show on the HUD",
+                "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
                 "type": "string"
               }
             },

@@ -249,7 +249,8 @@
         "type": "string"
       },
       "additionalProperties": {
-        "type": "string"
+        "type": "string",
+        "ref": "clip"
       }
     },
     "$schema": {

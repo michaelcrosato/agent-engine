@@ -24,6 +24,7 @@ export const Brain = defineComponent({
     tracer: field.ref('effect', 'tracer-enemy', { doc: 'Ranged hitscan visual' }),
     aimError: field.number(3, { min: 0, unit: 'deg' }),
     eye: field.number(1.5, { min: 0, unit: 'm', doc: 'Eye height above origin' }),
+    aggressive: field.bool(false, { doc: 'Always knows where the player is (wave enemies)' }),
     gravity: field.number(20, { unit: 'm/s²' }),
     alertSound: field.ref('sound', 'alert'),
     attackSound: field.ref('sound', ''),

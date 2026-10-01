@@ -1,12 +1,4 @@
-import {
-  CanvasTexture,
-  DoubleSide,
-  Mesh,
-  MeshBasicMaterial,
-  PlaneGeometry,
-  SRGBColorSpace,
-  Vector3,
-} from 'three';
+import { CanvasTexture, Mesh, MeshBasicMaterial, PlaneGeometry, SRGBColorSpace, Vector3 } from 'three';
 import { defineService } from '../core/defineService.ts';
 import { defineSystem } from '../core/defineSystem.ts';
 import { Transform } from '../core/Transform.ts';
@@ -40,7 +32,7 @@ function makeMesh(l: ReturnType<typeof Label.create>): Mesh {
   g.fillStyle = l.color;
   g.textBaseline = 'middle';
   g.textAlign = 'center';
-  lines.forEach((s, i) => g.fillText(s, canvas.width / 2, px * 0.25 + px * 1.25 * (i + 0.5)));
+  for (const [i, s] of lines.entries()) g.fillText(s, canvas.width / 2, px * 0.25 + px * 1.25 * (i + 0.5));
   const tex = new CanvasTexture(canvas);
   tex.colorSpace = SRGBColorSpace;
   const scale = l.size / (px * 1.25);
@@ -48,11 +40,16 @@ function makeMesh(l: ReturnType<typeof Label.create>): Mesh {
     map: tex,
     color: '#d8d8d8',
     transparent: true,
-    side: DoubleSide,
     depthWrite: false,
     toneMapped: false,
   });
-  return new Mesh(new PlaneGeometry(canvas.width * scale, canvas.height * scale), mat);
+  // Two single-sided panels back to back: the text reads correctly from either side.
+  const geo = new PlaneGeometry(canvas.width * scale, canvas.height * scale);
+  const front = new Mesh(geo, mat);
+  const back = new Mesh(geo, mat);
+  back.rotation.y = Math.PI;
+  front.add(back);
+  return front;
 }
 
 /** Draws Label components as text panels (browser only). */

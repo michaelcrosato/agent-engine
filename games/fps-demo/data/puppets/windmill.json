@@ -1,0 +1,70 @@
+{
+  "doc": "Windmill: lathe tower, a hub, and four blades on a hidden joint that spins via a looping keyframe clip. The joint sits at the model root so its Z axis faces the viewer.",
+  "parts": [
+    {
+      "id": "tower",
+      "shape": "lathe",
+      "size": [1.2, 3, 1.2],
+      "profile": [[0.6, 0], [0.45, 1.5], [0.3, 3]],
+      "material": "wood",
+      "segments": 12
+    },
+    {
+      "id": "hub",
+      "shape": "cylinder",
+      "size": [0.3, 0.3, 0.3],
+      "pos": [0, 2.9, -0.4],
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "material": "dark"
+    },
+    {
+      "id": "blades",
+      "shape": "box",
+      "size": [0.1, 0.1, 0.05],
+      "pos": [0, 2.9, -0.6],
+      "pivot": "center",
+      "hidden": true
+    },
+    {
+      "id": "b1",
+      "parent": "blades",
+      "shape": "box",
+      "size": [0.25, 1.4, 0.04],
+      "pos": [0, 0.1, 0],
+      "pivot": "bottom",
+      "material": "white"
+    },
+    {
+      "id": "b2",
+      "parent": "blades",
+      "shape": "box",
+      "size": [0.25, 1.4, 0.04],
+      "pos": [0, -0.1, 0],
+      "rot": [0, 0, 180],
+      "pivot": "bottom",
+      "material": "white"
+    },
+    {
+      "id": "b3",
+      "parent": "blades",
+      "shape": "box",
+      "size": [0.25, 1.4, 0.04],
+      "pos": [0.1, 0, 0],
+      "rot": [0, 0, -90],
+      "pivot": "bottom",
+      "material": "white"
+    },
+    {
+      "id": "b4",
+      "parent": "blades",
+      "shape": "box",
+      "size": [0.25, 1.4, 0.04],
+      "pos": [-0.1, 0, 0],
+      "rot": [0, 0, 90],
+      "pivot": "bottom",
+      "material": "white"
+    }
+  ],
+  "clips": { "idle": "windmill-spin", "walk": "windmill-spin", "attack": "windmill-spin" }
+}

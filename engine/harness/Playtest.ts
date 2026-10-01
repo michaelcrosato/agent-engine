@@ -130,6 +130,24 @@ export class Playtest {
     return out;
   }
 
+  /** Sets one component field by names (god mode, scenario setup): set('player', 'Health', 'invulnerable', true). */
+  set(name: string | Entity, component: string, fieldName: string, value: unknown): this {
+    const data = this.engine.world.need(
+      this.entity(name),
+      this.engine.component(component),
+      'playtest.set',
+    ) as Record<string, unknown>;
+    if (!(fieldName in data)) {
+      throw new EngineError({
+        code: 'PLAYTEST_FIELD_UNKNOWN',
+        what: `${component} has no field "${fieldName}"`,
+        fix: `See its fields: npm run tool -- describe ${component}`,
+      });
+    }
+    data[fieldName] = value;
+    return this;
+  }
+
   /** Sends a signal to an entity name or "#tag" (like a trigger would), then ticks once. */
   signal(target: string, action: string, value = 0): this {
     const w = this.engine.world;
@@ -159,7 +177,8 @@ export class Playtest {
 
   /**
    * Walks the player to a target by following a grid path (or a straight line), steering with
-   * look input and holding the forward action. Jumps when stuck. Returns whether it arrived.
+   * look input and holding the forward action. Jumps when stuck. Returns whether it arrived;
+   * walking into a room exit counts as arriving (the walk stops when the room changes).
    */
   walkTo(target: string | Entity | Vector3, opts: { timeout?: number; radius?: number } = {}): boolean {
     const radius = opts.radius ?? 0.7;
@@ -172,8 +191,14 @@ export class Playtest {
     const end = this.seconds + (opts.timeout ?? 20);
     let lastPos = t().pos.clone();
     let stuckSince = this.seconds;
+    const room = this.engine.roomId;
+    const loads = this.events('RoomLoaded').length;
     for (const wp of route) {
       while (Math.hypot(wp.x - t().pos.x, wp.z - t().pos.z) > (wp === goal ? radius : radius * 1.2)) {
+        if (this.engine.roomId !== room || this.events('RoomLoaded').length > loads) {
+          this.input.release(this.actions.forward);
+          return true;
+        }
         if (this.seconds > end) {
           this.input.release(this.actions.forward);
           return false;

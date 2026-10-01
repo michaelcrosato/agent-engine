@@ -76,6 +76,9 @@
         "Inventory": {
           "$ref": "components.schema.json#/$defs/Inventory"
         },
+        "Label": {
+          "$ref": "components.schema.json#/$defs/Label"
+        },
         "Light": {
           "$ref": "components.schema.json#/$defs/Light"
         },

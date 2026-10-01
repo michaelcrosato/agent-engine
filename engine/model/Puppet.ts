@@ -7,7 +7,7 @@ export const PuppetSchema = z
     doc: z.string().default(''),
     parts: z.array(PartSchema).min(1).meta({ description: 'Primitive parts; parents must come first' }),
     clips: z
-      .record(z.string(), z.string())
+      .record(z.string(), z.string().meta({ ref: 'clip' }))
       .default({})
       .meta({ description: 'Animation role → clip id, e.g. { "idle": "grunt-idle", "walk": "grunt-walk" }' }),
   })

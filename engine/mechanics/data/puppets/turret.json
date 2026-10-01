@@ -1,8 +1,19 @@
 {
-  "doc": "Ceiling/floor turret: base and twin barrels (rotates with its Transform).",
+  "doc": "Turret: base, head and twin barrels. Roles: idle sweeps the head, attack kicks the barrels.",
   "parts": [
-    { "id": "base", "shape": "cylinder", "size": [0.9, 0.5, 0.9], "material": "metal" },
-    { "id": "head", "shape": "sphere", "size": [0.7, 0.6, 0.7], "pos": [0, 0.45, 0], "material": "gun" },
+    {
+      "id": "base",
+      "shape": "cylinder",
+      "size": [0.9, 0.5, 0.9],
+      "material": "metal"
+    },
+    {
+      "id": "head",
+      "shape": "sphere",
+      "size": [0.7, 0.6, 0.7],
+      "pos": [0, 0.45, 0],
+      "material": "gun"
+    },
     {
       "id": "eye",
       "parent": "head",
@@ -32,5 +43,10 @@
       "pivot": "center",
       "material": "steel"
     }
-  ]
+  ],
+  "clips": {
+    "idle": "turret-scan",
+    "walk": "turret-scan",
+    "attack": "turret-fire"
+  }
 }

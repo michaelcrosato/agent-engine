@@ -1,10 +1,12 @@
 import { describe, expect, test } from 'vitest';
 import { ScriptedInput } from '../input/ScriptedInput.ts';
 import { LevelPlugin } from '../level/LevelPlugin.ts';
+import { RoomLoaded } from '../level/levelEvents.ts';
 import { readContentFiles } from '../node/readContentFiles.ts';
 import { Body } from '../physics/Body.ts';
 import { CharacterBody } from '../physics/CharacterBody.ts';
 import { PhysicsPlugin } from '../physics/PhysicsPlugin.ts';
+import { defineEvent } from './defineEvent.ts';
 import { defineGame } from './defineGame.ts';
 import { definePlugin } from './definePlugin.ts';
 import { defineSystem } from './defineSystem.ts';
@@ -110,5 +112,35 @@ describe('engine spine', () => {
     expect(err!.code).toBe('JSON_SYNTAX');
     expect(err!.where.line).toBe(1);
     expect(err!.fix).toContain('Remove the comma');
+  });
+});
+
+describe('event readers', () => {
+  test('a system sees events emitted before its first run (room load, earlier phases of tick 1)', async () => {
+    const Ping = defineEvent<{ n: number }>('TestPing', 'Emitted once on tick 1 by the physics phase.');
+    const seen: string[] = [];
+    const pinger = defineSystem({
+      name: 'TestPingerSystem',
+      doc: 'Emits a ping on tick 1.',
+      phase: 'physics',
+      run(ctx) {
+        if (ctx.time.tick === 1) ctx.events.emit(Ping, { n: 1 });
+      },
+    });
+    const reader = defineSystem({
+      name: 'TestReaderSystem',
+      doc: 'Records what it reads.',
+      phase: 'late',
+      run(ctx) {
+        for (const r of ctx.events.read(RoomLoaded)) seen.push(`tick ${ctx.time.tick}: room ${r.room}`);
+        for (const p of ctx.events.read(Ping)) seen.push(`tick ${ctx.time.tick}: ping ${p.n}`);
+      },
+    });
+    const plugin = definePlugin({ name: 'readers', doc: 'test', systems: [pinger, reader] });
+    const engine = await Engine.create({ game: { ...game, plugins: [...game.plugins, plugin] }, files });
+    engine.loadRoom('box');
+    engine.tick();
+    engine.tick();
+    expect(seen).toEqual(['tick 1: room box', 'tick 1: ping 1']);
   });
 });

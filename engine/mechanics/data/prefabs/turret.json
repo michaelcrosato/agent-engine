@@ -1,5 +1,5 @@
 {
-  "doc": "Stationary turret: 360° awareness, rapid weak shots (5 dmg). 80 hp.",
+  "doc": "Stationary turret: 360° awareness, quick weak shots (4 dmg). 80 hp.",
   "tags": ["enemy"],
   "components": {
     "Body": { "type": "static", "shape": "cylinder", "size": [0.9, 1, 0.9] },

@@ -1,0 +1,584 @@
+{
+  "doc": "Looks gallery: swatches of every named material and buttons that switch the room's look (sky, fog, lights, palette, post-processing).",
+  "look": "default",
+  "music": "",
+  "grid": {
+    "cell": 2,
+    "wallHeight": 5,
+    "legend": {},
+    "rows": [
+      "################",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#......P.......#",
+      "################"
+    ]
+  },
+  "entities": [
+    {
+      "prefab": "swatch",
+      "name": "swatch-floor",
+      "cell": [2, 2],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "floor"
+            }
+          ]
+        },
+        "Label": {
+          "text": "floor"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-wall",
+      "cell": [4, 2],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "wall"
+            }
+          ]
+        },
+        "Label": {
+          "text": "wall"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-concrete",
+      "cell": [6, 2],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "concrete"
+            }
+          ]
+        },
+        "Label": {
+          "text": "concrete"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-metal",
+      "cell": [8, 2],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "metal"
+            }
+          ]
+        },
+        "Label": {
+          "text": "metal"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-steel",
+      "cell": [10, 2],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "steel"
+            }
+          ]
+        },
+        "Label": {
+          "text": "steel"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-wood",
+      "cell": [12, 2],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "wood"
+            }
+          ]
+        },
+        "Label": {
+          "text": "wood"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-crate",
+      "cell": [2, 4],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "crate"
+            }
+          ]
+        },
+        "Label": {
+          "text": "crate"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-bricks",
+      "cell": [4, 4],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "bricks"
+            }
+          ]
+        },
+        "Label": {
+          "text": "bricks"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-rock",
+      "cell": [6, 4],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "rock"
+            }
+          ]
+        },
+        "Label": {
+          "text": "rock"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-dirt",
+      "cell": [8, 4],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "dirt"
+            }
+          ]
+        },
+        "Label": {
+          "text": "dirt"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-grate",
+      "cell": [10, 4],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "grate"
+            }
+          ]
+        },
+        "Label": {
+          "text": "grate"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-hazard",
+      "cell": [12, 4],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "hazard"
+            }
+          ]
+        },
+        "Label": {
+          "text": "hazard"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-lava",
+      "cell": [2, 6],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "lava"
+            }
+          ]
+        },
+        "Label": {
+          "text": "lava"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-glow",
+      "cell": [4, 6],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "glow"
+            }
+          ]
+        },
+        "Label": {
+          "text": "glow"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-glass",
+      "cell": [6, 6],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "glass"
+            }
+          ]
+        },
+        "Label": {
+          "text": "glass"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-accent",
+      "cell": [8, 6],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "accent"
+            }
+          ]
+        },
+        "Label": {
+          "text": "accent"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-red",
+      "cell": [10, 6],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "red"
+            }
+          ]
+        },
+        "Label": {
+          "text": "red"
+        }
+      }
+    },
+    {
+      "prefab": "swatch",
+      "name": "swatch-blue",
+      "cell": [12, 6],
+      "with": {
+        "Model": {
+          "parts": [
+            {
+              "shape": "box",
+              "size": 1.6,
+              "material": "blue"
+            }
+          ]
+        },
+        "Label": {
+          "text": "blue"
+        }
+      }
+    },
+    {
+      "prefab": "button",
+      "name": "look-default",
+      "pos": [5, 1.1, 19.93],
+      "with": {
+        "Interactable": {
+          "prompt": "Look: default",
+          "onUse": [
+            {
+              "look": "default",
+              "message": "Look switched to default"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-default",
+      "pos": [5, 2.1, 19.85],
+      "rot": 180,
+      "with": {
+        "Label": {
+          "text": "default",
+          "size": 0.24
+        }
+      }
+    },
+    {
+      "prefab": "button",
+      "name": "look-night",
+      "pos": [9, 1.1, 19.93],
+      "with": {
+        "Interactable": {
+          "prompt": "Look: night",
+          "onUse": [
+            {
+              "look": "night",
+              "message": "Look switched to night"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-night",
+      "pos": [9, 2.1, 19.85],
+      "rot": 180,
+      "with": {
+        "Label": {
+          "text": "night",
+          "size": 0.24
+        }
+      }
+    },
+    {
+      "prefab": "button",
+      "name": "look-neon",
+      "pos": [13, 1.1, 19.93],
+      "with": {
+        "Interactable": {
+          "prompt": "Look: neon",
+          "onUse": [
+            {
+              "look": "neon",
+              "message": "Look switched to neon"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-neon",
+      "pos": [13, 2.1, 19.85],
+      "rot": 180,
+      "with": {
+        "Label": {
+          "text": "neon",
+          "size": 0.24
+        }
+      }
+    },
+    {
+      "prefab": "button",
+      "name": "look-retro",
+      "pos": [17, 1.1, 19.93],
+      "with": {
+        "Interactable": {
+          "prompt": "Look: retro",
+          "onUse": [
+            {
+              "look": "retro",
+              "message": "Look switched to retro"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-retro",
+      "pos": [17, 2.1, 19.85],
+      "rot": 180,
+      "with": {
+        "Label": {
+          "text": "retro",
+          "size": 0.24
+        }
+      }
+    },
+    {
+      "prefab": "button",
+      "name": "look-dusk",
+      "pos": [21, 1.1, 19.93],
+      "with": {
+        "Interactable": {
+          "prompt": "Look: dusk",
+          "onUse": [
+            {
+              "look": "dusk",
+              "message": "Look switched to dusk"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-dusk",
+      "pos": [21, 2.1, 19.85],
+      "rot": 180,
+      "with": {
+        "Label": {
+          "text": "dusk",
+          "size": 0.24
+        }
+      }
+    },
+    {
+      "prefab": "button",
+      "name": "look-industrial",
+      "pos": [25, 1.1, 19.93],
+      "with": {
+        "Interactable": {
+          "prompt": "Look: industrial",
+          "onUse": [
+            {
+              "look": "industrial",
+              "message": "Look switched to industrial"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-industrial",
+      "pos": [25, 2.1, 19.85],
+      "rot": 180,
+      "with": {
+        "Label": {
+          "text": "industrial",
+          "size": 0.24
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-gallery",
+      "pos": [15, 3.4, 1.2],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "Every surface is a named material from the active look.\nPress a button behind you to switch looks.",
+          "size": 0.3
+        }
+      }
+    },
+    {
+      "prefab": "grunt",
+      "name": "statue",
+      "pos": [27, 0, 10],
+      "rot": -90,
+      "with": {
+        "Brain": {
+          "sight": 0,
+          "hearing": 0
+        },
+        "Health": {
+          "invulnerable": true
+        }
+      }
+    },
+    {
+      "prefab": "lamp",
+      "pos": [10, 5, 9]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [20, 5, 9]
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-hub",
+      "cell": [14, 9],
+      "with": {
+        "RoomExit": {
+          "room": "hub",
+          "spawn": "from-looks"
+        },
+        "Label": {
+          "text": "Back to hub"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "doc": "Arena wave grunt: hunts the player and counts toward the 'kills' counter when it dies.",
+  "extends": "grunt",
+  "components": {
+    "Brain": { "aggressive": true },
+    "Health": { "onDeath": [{ "target": "kills", "action": "add" }] }
+  }
+}

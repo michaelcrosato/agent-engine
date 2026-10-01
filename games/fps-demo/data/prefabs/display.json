@@ -1,0 +1,9 @@
+{
+  "doc": "Gallery exhibit: a puppet playing a clip, with a name label. Override Model.puppet, Animator.play and Label.text. Tagged \"display\" so one signal can address every exhibit.",
+  "tags": ["display"],
+  "components": {
+    "Model": { "puppet": "critter" },
+    "Animator": { "play": "idle" },
+    "Label": { "text": "puppet", "size": 0.3, "offset": [0, 2.4, 0] }
+  }
+}

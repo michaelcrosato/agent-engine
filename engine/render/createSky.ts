@@ -21,8 +21,8 @@ void main() {
   vec3 c = h > 0.0 ? mix(horizon, top, pow(h, 0.6)) : mix(horizon, bottom, pow(-h, 0.4));
   if (stars > 0.0 && h > 0.0) {
     vec3 cell = floor(vDir * 180.0);
-    float s = step(1.0 - 0.004 * stars, hash(cell));
-    c += vec3(s) * smoothstep(0.0, 0.3, h) * 2.0;
+    float s = step(1.0 - 0.0015 * stars, hash(cell));
+    c += vec3(s) * smoothstep(0.05, 0.4, h) * 0.9;
   }
   gl_FragColor = vec4(c, 1.0);
   #include <tonemapping_fragment>

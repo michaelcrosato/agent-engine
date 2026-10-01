@@ -1,0 +1,297 @@
+{
+  "doc": "Arena: a trigger starts timed waves from four spawners; ten kills (counted by a Counter) win a reward. Enemies path around pillars on the grid.",
+  "look": "night",
+  "music": "eerie",
+  "grid": {
+    "cell": 2,
+    "wallHeight": 6,
+    "legend": {},
+    "rows": [
+      "##################",
+      "#................#",
+      "#................#",
+      "#...##......##...#",
+      "#...##......##...#",
+      "#................#",
+      "#................#",
+      "#.......88.......#",
+      "#.......88.......#",
+      "#................#",
+      "#................#",
+      "#...##......##...#",
+      "#...##......##...#",
+      "#................#",
+      "#................#",
+      "#######....#######",
+      "#.......P........#",
+      "##################"
+    ]
+  },
+  "entities": [
+    {
+      "prefab": "spawner",
+      "name": "spawner-nw",
+      "cell": [2, 2],
+      "tags": ["arena-spawner"],
+      "with": {
+        "Spawner": {
+          "prefab": "arena-grunt",
+          "total": 3,
+          "max": 2
+        }
+      }
+    },
+    {
+      "prefab": "spawner",
+      "name": "spawner-ne",
+      "cell": [15, 2],
+      "tags": ["arena-spawner"],
+      "with": {
+        "Spawner": {
+          "prefab": "arena-gunner",
+          "total": 2,
+          "max": 2
+        }
+      }
+    },
+    {
+      "prefab": "spawner",
+      "name": "spawner-sw",
+      "cell": [2, 13],
+      "tags": ["arena-spawner"],
+      "with": {
+        "Spawner": {
+          "prefab": "arena-caster",
+          "total": 2,
+          "max": 2
+        }
+      }
+    },
+    {
+      "prefab": "spawner",
+      "name": "spawner-se",
+      "cell": [15, 13],
+      "tags": ["arena-spawner"],
+      "with": {
+        "Spawner": {
+          "prefab": "arena-grunt",
+          "total": 3,
+          "max": 2
+        }
+      }
+    },
+    {
+      "prefab": "trigger",
+      "name": "arena-start",
+      "cell": [8, 14],
+      "with": {
+        "Body": {
+          "size": [6, 3, 2]
+        },
+        "Trigger": {
+          "once": true,
+          "onEnter": [
+            {
+              "message": "Wave incoming! Destroy 10 robots.",
+              "music": "tense",
+              "target": "waves",
+              "action": "start"
+            },
+            {
+              "target": "#arena-spawner",
+              "action": "spawn"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "waves",
+      "prefab": "light",
+      "pos": [18, 8, 18],
+      "with": {
+        "Light": {
+          "intensity": 0
+        },
+        "Timer": {
+          "seconds": 5,
+          "repeat": true,
+          "onFire": [
+            {
+              "target": "#arena-spawner",
+              "action": "spawn"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "kills",
+      "prefab": "light",
+      "pos": [18, 8, 18],
+      "with": {
+        "Light": {
+          "intensity": 0
+        },
+        "Counter": {
+          "goal": 10,
+          "onReach": [
+            {
+              "message": "Arena cleared! A reward appeared in the center.",
+              "music": "calm",
+              "sound": "pickup",
+              "target": "waves",
+              "action": "stop"
+            },
+            {
+              "target": "reward",
+              "action": "spawn"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "reward",
+      "prefab": "spawner",
+      "pos": [18, 0, 21],
+      "with": {
+        "Spawner": {
+          "prefab": "pickup-launcher",
+          "max": 1,
+          "total": 1,
+          "effect": "spawn-in"
+        }
+      }
+    },
+    {
+      "prefab": "turret",
+      "name": "tower-turret",
+      "cell": [8, 7],
+      "with": {
+        "Brain": {
+          "sight": 16,
+          "attackRange": 16
+        }
+      }
+    },
+    {
+      "prefab": "health-small",
+      "name": "hp-1",
+      "cell": [4, 7],
+      "with": {
+        "Pickup": {
+          "respawn": 20
+        }
+      }
+    },
+    {
+      "prefab": "health-small",
+      "name": "hp-2",
+      "cell": [13, 10],
+      "with": {
+        "Pickup": {
+          "respawn": 20
+        }
+      }
+    },
+    {
+      "prefab": "armor",
+      "name": "armor-1",
+      "cell": [8, 13],
+      "with": {
+        "Pickup": {
+          "respawn": 30
+        }
+      }
+    },
+    {
+      "prefab": "ammo-bullets",
+      "name": "ammo-1",
+      "cell": [1, 9],
+      "with": {
+        "Pickup": {
+          "respawn": 15
+        }
+      }
+    },
+    {
+      "prefab": "ammo-bullets",
+      "name": "ammo-2",
+      "cell": [16, 9],
+      "with": {
+        "Pickup": {
+          "respawn": 15
+        }
+      }
+    },
+    {
+      "prefab": "ammo-shells",
+      "name": "ammo-3",
+      "cell": [9, 5],
+      "with": {
+        "Pickup": {
+          "respawn": 15
+        }
+      }
+    },
+    {
+      "prefab": "pickup-rifle",
+      "name": "lobby-rifle",
+      "cell": [5, 16]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [10, 6, 10]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [26, 6, 10]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [10, 6, 26]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [26, 6, 26]
+    },
+    {
+      "prefab": "light",
+      "pos": [18, 5.5, 16],
+      "with": {
+        "Light": {
+          "color": "#ff6a4a",
+          "intensity": 50,
+          "range": 16,
+          "pulse": 0.5
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-arena",
+      "pos": [18, 3.4, 30.8],
+      "with": {
+        "Label": {
+          "text": "ARENA\nStep forward to start the waves",
+          "size": 0.32
+        }
+      }
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-hub",
+      "cell": [15, 16],
+      "with": {
+        "RoomExit": {
+          "room": "hub",
+          "spawn": "from-arena"
+        },
+        "Label": {
+          "text": "Back to hub"
+        }
+      }
+    }
+  ]
+}

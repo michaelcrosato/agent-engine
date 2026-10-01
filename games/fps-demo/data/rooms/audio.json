@@ -1,0 +1,313 @@
+{
+  "doc": "Audio: every sound is synthesized from data. Step on pads to hear patches, walk into zones to switch procedural songs, listen to looping and periodic emitters.",
+  "look": "neon",
+  "music": "calm",
+  "grid": {
+    "cell": 2,
+    "wallHeight": 5,
+    "legend": {
+      "c": {
+        "material": "blue"
+      },
+      "t": {
+        "material": "red"
+      },
+      "e": {
+        "material": "green"
+      }
+    },
+    "rows": [
+      "################",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#cccc.tttt.eeee#",
+      "#cccc.tttt.eeee#",
+      "#cccc.tttt.eeee#",
+      "#......P.......#",
+      "################"
+    ]
+  },
+  "entities": [
+    {
+      "prefab": "sound-pad",
+      "name": "pad-explosion",
+      "cell": [2, 3],
+      "with": {
+        "Trigger": {
+          "onEnter": [
+            {
+              "sound": "explosion"
+            }
+          ]
+        },
+        "Label": {
+          "text": "explosion"
+        }
+      }
+    },
+    {
+      "prefab": "sound-pad",
+      "name": "pad-pickup",
+      "cell": [4, 3],
+      "with": {
+        "Trigger": {
+          "onEnter": [
+            {
+              "sound": "pickup"
+            }
+          ]
+        },
+        "Label": {
+          "text": "pickup"
+        }
+      }
+    },
+    {
+      "prefab": "sound-pad",
+      "name": "pad-alert",
+      "cell": [6, 3],
+      "with": {
+        "Trigger": {
+          "onEnter": [
+            {
+              "sound": "alert"
+            }
+          ]
+        },
+        "Label": {
+          "text": "alert"
+        }
+      }
+    },
+    {
+      "prefab": "sound-pad",
+      "name": "pad-door-open",
+      "cell": [8, 3],
+      "with": {
+        "Trigger": {
+          "onEnter": [
+            {
+              "sound": "door-open"
+            }
+          ]
+        },
+        "Label": {
+          "text": "door-open"
+        }
+      }
+    },
+    {
+      "prefab": "sound-pad",
+      "name": "pad-spawn",
+      "cell": [10, 3],
+      "with": {
+        "Trigger": {
+          "onEnter": [
+            {
+              "sound": "spawn"
+            }
+          ]
+        },
+        "Label": {
+          "text": "spawn"
+        }
+      }
+    },
+    {
+      "prefab": "sound-pad",
+      "name": "pad-enemy-shot",
+      "cell": [12, 3],
+      "with": {
+        "Trigger": {
+          "onEnter": [
+            {
+              "sound": "enemy-shot"
+            }
+          ]
+        },
+        "Label": {
+          "text": "enemy-shot"
+        }
+      }
+    },
+    {
+      "prefab": "trigger",
+      "name": "zone-calm",
+      "pos": [6, 0, 14],
+      "with": {
+        "Body": {
+          "size": [8, 3, 6]
+        },
+        "Trigger": {
+          "onEnter": [
+            {
+              "music": "calm",
+              "message": "Music: calm (C major, 92 bpm, plucks)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-calm",
+      "pos": [6, 2.4, 13.2],
+      "with": {
+        "Label": {
+          "text": "CALM\nC major, 92 bpm, plucks",
+          "size": 0.28
+        }
+      }
+    },
+    {
+      "prefab": "trigger",
+      "name": "zone-tense",
+      "pos": [16, 0, 14],
+      "with": {
+        "Body": {
+          "size": [8, 3, 6]
+        },
+        "Trigger": {
+          "onEnter": [
+            {
+              "music": "tense",
+              "message": "Music: tense (D minor, 128 bpm, drums)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-tense",
+      "pos": [16, 2.4, 13.2],
+      "with": {
+        "Label": {
+          "text": "TENSE\nD minor, 128 bpm, drums",
+          "size": 0.28
+        }
+      }
+    },
+    {
+      "prefab": "trigger",
+      "name": "zone-eerie",
+      "pos": [26, 0, 14],
+      "with": {
+        "Body": {
+          "size": [8, 3, 6]
+        },
+        "Trigger": {
+          "onEnter": [
+            {
+              "music": "eerie",
+              "message": "Music: eerie (E phrygian, 70 bpm, bells)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-eerie",
+      "pos": [26, 2.4, 13.2],
+      "with": {
+        "Label": {
+          "text": "EERIE\nE phrygian, 70 bpm, bells",
+          "size": 0.28
+        }
+      }
+    },
+    {
+      "prefab": "crate-static",
+      "name": "machine-1",
+      "pos": [29, 0, 3]
+    },
+    {
+      "prefab": "crate-static",
+      "name": "machine-2",
+      "pos": [29, 1, 3],
+      "rot": 20
+    },
+    {
+      "prefab": "ambient-hum",
+      "name": "hum",
+      "pos": [29, 1, 3]
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-hum",
+      "pos": [29, 2.8, 4.2],
+      "with": {
+        "Label": {
+          "text": "machine hum (loop)",
+          "size": 0.25
+        }
+      }
+    },
+    {
+      "name": "drip",
+      "prefab": "light",
+      "pos": [3, 3, 3],
+      "with": {
+        "Light": {
+          "intensity": 8,
+          "color": "#6ab8ff",
+          "range": 6
+        },
+        "AmbientSound": {
+          "sound": "drip",
+          "interval": 1.6,
+          "jitter": 0.5
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-drip",
+      "pos": [3, 2.4, 4.2],
+      "with": {
+        "Label": {
+          "text": "dripping (interval)",
+          "size": 0.25
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-pads",
+      "pos": [15, 3.2, 8.4],
+      "with": {
+        "Label": {
+          "text": "Step on a pad to hear its synthesized sound",
+          "size": 0.3
+        }
+      }
+    },
+    {
+      "prefab": "lamp",
+      "pos": [10, 5, 6]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [22, 5, 6]
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-hub",
+      "cell": [14, 10],
+      "with": {
+        "RoomExit": {
+          "room": "hub",
+          "spawn": "from-audio"
+        },
+        "Label": {
+          "text": "Back to hub"
+        }
+      }
+    }
+  ]
+}

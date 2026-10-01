@@ -1,0 +1,269 @@
+{
+  "doc": "Puppet gallery: procedural models built from primitive parts, each playing animation clips. Console buttons send one \"play:<role>\" signal to every exhibit tagged \"display\".",
+  "look": "default",
+  "music": "calm",
+  "grid": {
+    "cell": 2,
+    "wallHeight": 7,
+    "legend": {
+      "o": {
+        "floor": 1,
+        "material": "concrete",
+        "doc": "exhibit plinth (1 m)"
+      },
+      "C": {
+        "wall": 1,
+        "wallMaterial": "metal",
+        "doc": "control console"
+      }
+    },
+    "rows": [
+      "#################",
+      "#...............#",
+      "#...o...o...o...#",
+      "#...............#",
+      "#...............#",
+      "#...o...o...o...#",
+      "#...............#",
+      "#...............#",
+      "#......CCC......#",
+      "#...............#",
+      "#.......P.......#",
+      "#################"
+    ]
+  },
+  "entities": [
+    {
+      "prefab": "display",
+      "name": "show-grunt",
+      "cell": [4, 2],
+      "rot": 180,
+      "with": {
+        "Model": {
+          "puppet": "grunt"
+        },
+        "Animator": {
+          "play": "idle"
+        },
+        "Label": {
+          "text": "grunt\nmelee robot",
+          "offset": [0, 2.4, 0]
+        }
+      }
+    },
+    {
+      "prefab": "display",
+      "name": "show-gunner",
+      "cell": [8, 2],
+      "rot": 180,
+      "with": {
+        "Model": {
+          "puppet": "gunner"
+        },
+        "Animator": {
+          "play": "idle"
+        },
+        "Label": {
+          "text": "gunner\nranged robot",
+          "offset": [0, 2.5, 0]
+        }
+      }
+    },
+    {
+      "prefab": "display",
+      "name": "show-turret",
+      "cell": [12, 2],
+      "rot": 180,
+      "with": {
+        "Model": {
+          "puppet": "turret"
+        },
+        "Animator": {
+          "play": "idle"
+        },
+        "Label": {
+          "text": "turret\nhead + barrels",
+          "offset": [0, 1.7, 0]
+        }
+      }
+    },
+    {
+      "prefab": "display",
+      "name": "show-critter",
+      "cell": [4, 5],
+      "rot": 180,
+      "with": {
+        "Model": {
+          "puppet": "critter"
+        },
+        "Animator": {
+          "play": "idle"
+        },
+        "Label": {
+          "text": "critter\ntwo-joint legs",
+          "offset": [0, 1.9, 0]
+        }
+      }
+    },
+    {
+      "prefab": "display",
+      "name": "show-windmill",
+      "cell": [8, 5],
+      "rot": 180,
+      "with": {
+        "Model": {
+          "puppet": "windmill"
+        },
+        "Animator": {
+          "play": "idle"
+        },
+        "Label": {
+          "text": "windmill\nkeyframed spin",
+          "offset": [0, 4.9, 0]
+        }
+      }
+    },
+    {
+      "prefab": "display",
+      "name": "show-jelly",
+      "cell": [12, 5],
+      "rot": 180,
+      "with": {
+        "Model": {
+          "puppet": "jelly"
+        },
+        "Animator": {
+          "play": "idle"
+        },
+        "Label": {
+          "text": "jelly\nsquash and stretch",
+          "offset": [0, 2.9, 0]
+        }
+      }
+    },
+    {
+      "prefab": "button",
+      "name": "anim-idle",
+      "pos": [15, 0.2, 18.07],
+      "rot": 180,
+      "with": {
+        "Interactable": {
+          "prompt": "Play \"idle\"",
+          "onUse": [
+            {
+              "target": "#display",
+              "action": "play:idle",
+              "message": "Every exhibit plays its \"idle\" role"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-idle",
+      "pos": [15, 1.3, 18.3],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "idle",
+          "size": 0.24
+        }
+      }
+    },
+    {
+      "prefab": "button",
+      "name": "anim-walk",
+      "pos": [17, 0.2, 18.07],
+      "rot": 180,
+      "with": {
+        "Interactable": {
+          "prompt": "Play \"walk\"",
+          "onUse": [
+            {
+              "target": "#display",
+              "action": "play:walk",
+              "message": "Every exhibit plays its \"walk\" role"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-walk",
+      "pos": [17, 1.3, 18.3],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "walk",
+          "size": 0.24
+        }
+      }
+    },
+    {
+      "prefab": "button",
+      "name": "anim-attack",
+      "pos": [19, 0.2, 18.07],
+      "rot": 180,
+      "with": {
+        "Interactable": {
+          "prompt": "Play \"attack\"",
+          "onUse": [
+            {
+              "target": "#display",
+              "action": "play:attack",
+              "message": "Every exhibit plays its \"attack\" role"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-attack",
+      "pos": [19, 1.3, 18.3],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "attack",
+          "size": 0.24
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-gallery",
+      "pos": [17, 5.2, 1.2],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "Every model here is a tree of primitive parts (data/puppets).\nClips (data/clips) add keyframe or sine offsets to the parts.",
+          "size": 0.3
+        }
+      }
+    },
+    {
+      "prefab": "lamp",
+      "pos": [11, 7, 8]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [23, 7, 8]
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-hub",
+      "cell": [15, 10],
+      "with": {
+        "RoomExit": {
+          "room": "hub",
+          "spawn": "from-puppets"
+        },
+        "Label": {
+          "text": "Back to hub"
+        }
+      }
+    }
+  ]
+}

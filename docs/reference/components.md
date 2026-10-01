@@ -86,6 +86,7 @@ projectile    prefab id = "" — Ranged: projectile prefab (empty = hitscan)
 tracer        effect id = "tracer-enemy" — Ranged hitscan visual
 aimError      number = 3 [0..] deg
 eye           number = 1.5 [0..] m — Eye height above origin
+aggressive    boolean = false — Always knows where the player is (wave enemies)
 gravity       number = 20 m/s²
 alertSound    sound id = "alert"
 attackSound   sound id = ""
@@ -264,6 +265,20 @@ Keys, ammo (by type), and items carried by the player (or any picker).
 keys   string[] = [] — Key names, e.g. "red"
 ammo   object = {} — Ammo type → rounds in reserve
 items  object = {} — Item id → count
+```
+
+## Label
+
+3D text sign: an unlit panel, readable from both sides, optionally facing the camera.
+
+```
+text        string = "Label" — Use \n for multiple lines
+size        number = 0.4 [0.05..] m — Line height
+color       string = "#ffffff"
+background  string = "#141a22"
+opacity     number = 0.8 [0..1] — Background opacity (0 = text only)
+offset      n | [x,y,z] = [0,2.6,0] m
+billboard   boolean = false — Always face the camera
 ```
 
 ## Light

@@ -61,6 +61,12 @@ export const AiSystem = defineSystem({
       b.cooldown = Math.max(0, b.cooldown - dt);
       const target = nearestPlayer(ctx, t.pos);
       const sees = target !== undefined && perceive(ctx, e, target, b);
+      if (!sees && b.aggressive && target !== undefined) {
+        b.target = target;
+        b.lastSeen.copy(w.get(target, Transform)!.pos);
+        b.lastSeenAt = ctx.time.elapsed;
+        if (b.state === 'idle') b.state = 'chase';
+      }
       if (sees) {
         if (b.state === 'idle' && b.alertSound) ctx.audio.play(b.alertSound, { at: t.pos });
         b.target = target;

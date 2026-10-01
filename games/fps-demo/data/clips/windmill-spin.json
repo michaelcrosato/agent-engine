@@ -1,0 +1,5 @@
+{
+  "doc": "Blades turn one full revolution every 2 seconds (linear keys, looping).",
+  "duration": 2,
+  "tracks": [{ "part": "blades", "prop": "rot.z", "keys": [[0, 0], [2, 360]], "ease": "linear" }]
+}

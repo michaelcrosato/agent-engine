@@ -14,7 +14,8 @@ export const playTool = defineTool({
   summary: 'Run a room headlessly with scripted input steps; report events, player state, and a capture.',
   usage:
     'npm run play -- <game>/<room> [--seconds 3] [--steps \'[{"walkTo":"exit"}]\'] [--script file.json] [--capture end]\n' +
-    '  steps: wait, hold+seconds, press, look:[dx,dy], lookAt, walkTo(+timeout), untilEvent, signal:[target,action], teleport, capture\n' +
+    '  steps: wait, hold+seconds, press, look:[dx,dy], lookAt, walkTo(+timeout), untilEvent, signal:[target,action],\n' +
+    '         teleport, set:[entity,Component,field,value], capture\n' +
     '  e.g. npm run play -- fps-demo/range --steps \'[{"lookAt":"target-1"},{"press":"fire"},{"wait":0.5}]\'',
   args: z.object({
     target: z.string().meta({ description: 'game/room' }),

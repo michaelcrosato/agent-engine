@@ -19,6 +19,7 @@ export const StepSchema = z.union([
   z.object({ signal: z.tuple([z.string(), z.string()]) }).strict(),
   z.object({ teleport: z.tuple([z.number(), z.number(), z.number()]) }).strict(),
   z.object({ capture: z.string() }).strict(),
+  z.object({ set: z.tuple([z.string(), z.string(), z.string(), z.unknown()]) }).strict(),
 ]);
 
 export const StepsSchema = z.array(StepSchema);
@@ -67,6 +68,9 @@ export function runSteps(
       t.engine.physics.teleport(t.player, new Vector3(...s.teleport));
       t.tick();
       did = `teleport ${s.teleport.join(',')}`;
+    } else if ('set' in s) {
+      t.set(s.set[0], s.set[1], s.set[2], s.set[3]);
+      did = `set ${s.set[0]} ${s.set[1]}.${s.set[2]} = ${JSON.stringify(s.set[3])}`;
     } else if ('capture' in s) {
       did = `capture ${capture ? capture(s.capture) : s.capture}`;
     }

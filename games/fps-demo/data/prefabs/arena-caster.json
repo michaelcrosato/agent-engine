@@ -1,0 +1,8 @@
+{
+  "doc": "Arena wave caster: hunts the player and counts toward the 'kills' counter when it dies.",
+  "extends": "caster",
+  "components": {
+    "Brain": { "aggressive": true },
+    "Health": { "onDeath": [{ "target": "kills", "action": "add" }] }
+  }
+}
