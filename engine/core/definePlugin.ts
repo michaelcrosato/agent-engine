@@ -1,5 +1,5 @@
 import type { ContentKind } from '../content/defineContentKind.ts';
-import type { RoomData } from '../level/Room.ts';
+import type { Room } from '../level/Room.ts';
 import type { ComponentType } from './defineComponent.ts';
 import type { EventType } from './defineEvent.ts';
 import type { SystemDef } from './defineSystem.ts';
@@ -24,9 +24,9 @@ export type PluginDef = {
   /** Runs once when the engine is created (create services, subscribe to events). */
   readonly setup?: (engine: Engine) => void | Promise<void>;
   /** Runs after the world is cleared and before a room's entities spawn. */
-  readonly roomLoad?: (engine: Engine, room: RoomData) => void;
+  readonly roomLoad?: (engine: Engine, room: Room) => void;
   /** Runs after all of a room's entities have spawned. */
-  readonly roomReady?: (engine: Engine, room: RoomData) => void;
+  readonly roomReady?: (engine: Engine, room: Room) => void;
   /** Runs before a room unloads. */
   readonly roomUnload?: (engine: Engine) => void;
 };
@@ -41,8 +41,8 @@ export function definePlugin(def: {
   requires?: readonly string[];
   data?: string;
   setup?: (engine: Engine) => void | Promise<void>;
-  roomLoad?: (engine: Engine, room: RoomData) => void;
-  roomReady?: (engine: Engine, room: RoomData) => void;
+  roomLoad?: (engine: Engine, room: Room) => void;
+  roomReady?: (engine: Engine, room: Room) => void;
   roomUnload?: (engine: Engine) => void;
 }): PluginDef {
   return {

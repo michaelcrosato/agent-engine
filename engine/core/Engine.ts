@@ -7,7 +7,7 @@ import { InputState } from '../input/InputState.ts';
 import { ScriptedInput } from '../input/ScriptedInput.ts';
 import type { BuiltGrid } from '../level/buildGrid.ts';
 import { type LoadRoomOptions, loadRoom } from '../level/loadRoom.ts';
-import { type RoomData, RoomKind } from '../level/Room.ts';
+import { type Room, RoomKind } from '../level/Room.ts';
 import type { Physics } from '../physics/Physics.ts';
 import { PrefabKind } from '../prefab/Prefab.ts';
 import { type SpawnOptions, spawnPrefab } from '../prefab/spawnPrefab.ts';
@@ -79,7 +79,7 @@ export class Engine {
   /** Errors from systems disabled under `onSystemError: 'disable'`. */
   readonly systemErrors: EngineError[] = [];
   roomId = '';
-  room: RoomData | undefined;
+  room: Room | undefined;
   /** The current room's built grid map, if it has one (cells, blocks, glyph placements). */
   grid: BuiltGrid | undefined;
   activeTuning: string[] = [];

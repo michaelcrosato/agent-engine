@@ -1,6 +1,6 @@
 import { type BufferGeometry, Euler, Group, MathUtils, Mesh, type Object3D } from 'three';
 import { EngineError } from '../core/EngineError.ts';
-import { type PartData, PartSchema } from '../model/Part.ts';
+import { type Part, PartSchema } from '../model/Part.ts';
 import { partGeometry, v3 } from './geometry/partGeometry.ts';
 import { worldBoxGeometry } from './geometry/worldBoxGeometry.ts';
 import type { MaterialLibrary } from './MaterialLibrary.ts';
@@ -19,7 +19,7 @@ export type PuppetInstance = {
 
 const geometryCache = new Map<string, { geometry: BufferGeometry; scale: [number, number, number] }>();
 
-function cachedGeometry(p: PartData) {
+function cachedGeometry(p: Part) {
   const key = JSON.stringify([p.shape, p.size, p.segments, p.profile, p.points, p.thickness]);
   let g = geometryCache.get(key);
   if (!g) geometryCache.set(key, (g = partGeometry(p)));

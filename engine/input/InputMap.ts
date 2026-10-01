@@ -35,7 +35,7 @@ export const InputMapSchema = z
   })
   .strict();
 
-export type InputMapData = z.output<typeof InputMapSchema>;
+export type InputMap = z.output<typeof InputMapSchema>;
 
 export const InputMapKind = defineContentKind({
   name: 'input',

@@ -1,6 +1,6 @@
 import { EngineError } from '../core/EngineError.ts';
 import { didYouMean } from '../core/suggest.ts';
-import { defaultLegend, type GridData, type TileData } from './Grid.ts';
+import { defaultLegend, type Grid, type TileData } from './Grid.ts';
 
 /** A merged box of level geometry. `pos` is the bottom-center; `size` is full extents. */
 export type BlockSpec = {
@@ -72,7 +72,7 @@ function mergeRects(cells: GridCell[][], key: (c: GridCell) => string) {
 }
 
 /** Turns a grid text-map into merged level boxes and glyph prefab placements. */
-export function buildGrid(grid: GridData, file?: string): BuiltGrid {
+export function buildGrid(grid: Grid, file?: string): BuiltGrid {
   const legend = { ...defaultLegend(), ...grid.legend };
   const cols = Math.max(...grid.rows.map((r) => r.length));
   const cells: GridCell[][] = grid.rows.map((line, row) =>

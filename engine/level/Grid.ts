@@ -39,7 +39,7 @@ export const GridSchema = z
   })
   .strict();
 
-export type GridData = z.output<typeof GridSchema>;
+export type Grid = z.output<typeof GridSchema>;
 
 /**
  * Built-in glyphs. Rooms extend or override these in `grid.legend`.

@@ -2,13 +2,13 @@ import type { ContentStore } from '../content/ContentStore.ts';
 import { EngineError } from '../core/EngineError.ts';
 import { deepMerge } from '../prefab/deepMerge.ts';
 import { validate } from '../schema/validate.ts';
-import { type LookData, LookKind, LookSchema } from './Look.ts';
+import { type Look, LookKind, LookSchema } from './Look.ts';
 
 /**
  * A look with its `extends` chain applied: raw JSON merges parent → child (materials merge
  * per name and field), then defaults fill the rest.
  */
-export function resolveLook(content: ContentStore, id: string): LookData {
+export function resolveLook(content: ContentStore, id: string): Look {
   const chain: string[] = [];
   let cur = id;
   while (cur) {

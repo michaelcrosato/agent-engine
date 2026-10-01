@@ -1,7 +1,8 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import type { ContentFile } from '../content/ContentStore.ts';
-import { gamePacks } from '../core/defineGame.ts';
+import { defineGame, gamePacks } from '../core/defineGame.ts';
+import type { PluginDef } from '../core/definePlugin.ts';
 import { Engine } from '../core/Engine.ts';
 import { type BotActions, Playtest } from '../harness/Playtest.ts';
 import type { SnapshotOpts } from '../harness/snapshot.ts';
@@ -17,6 +18,8 @@ export type PlaytestOptions = {
   actions?: Partial<BotActions>;
   /** Spawn point id in the room. */
   spawn?: string;
+  /** Extra plugins appended to the game's list (test a mechanic before registering it). */
+  plugins?: PluginDef[];
 };
 
 /** A Playtest that can also write captures to out/captures/<game>/<room>/<label>.json. */
@@ -46,7 +49,9 @@ export async function playtest(
   room?: string,
   opts: PlaytestOptions = {},
 ): Promise<NodePlaytest> {
-  const def = await loadGame(game);
+  const loaded = await loadGame(game);
+  const extra = (opts.plugins ?? []).filter((p) => !loaded.plugins.includes(p));
+  const def = extra.length ? defineGame({ ...loaded, plugins: [...loaded.plugins, ...extra] }) : loaded;
   const input = new ScriptedInput();
   const files = readContentFiles(gamePacks(def));
   for (const f of opts.files ?? []) {

@@ -12,7 +12,7 @@ import {
   TorusGeometry,
   Vector2,
 } from 'three';
-import type { PartData } from '../../model/Part.ts';
+import type { Part } from '../../model/Part.ts';
 import { wedgeGeometry } from './wedgeGeometry.ts';
 
 type V3 = [number, number, number];
@@ -26,7 +26,7 @@ export function v3(v: number | readonly number[]): V3 {
  * Geometry for a part, centered on its own bounding box. Returns the geometry plus a scale
  * to apply to the mesh (spheres and tori stretch to the requested size).
  */
-export function partGeometry(p: PartData): { geometry: BufferGeometry; scale: V3 } {
+export function partGeometry(p: Part): { geometry: BufferGeometry; scale: V3 } {
   const [sx, sy, sz] = v3(p.size);
   const seg = p.segments;
   switch (p.shape) {

@@ -52,4 +52,4 @@ export const PartSchema = z
   })
   .strict();
 
-export type PartData = z.output<typeof PartSchema>;
+export type Part = z.output<typeof PartSchema>;

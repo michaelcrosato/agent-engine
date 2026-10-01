@@ -1,4 +1,4 @@
-import type { InputMapData } from './InputMap.ts';
+import type { InputMap } from './InputMap.ts';
 import type { InputSample, InputSource } from './InputSource.ts';
 
 const PAD_BUTTONS = [
@@ -40,13 +40,13 @@ export class DomInput implements InputSource {
   private dx = 0;
   private dy = 0;
   private readonly el: HTMLElement;
-  private readonly getMap: () => InputMapData;
+  private readonly getMap: () => InputMap;
   private readonly step: number;
   private readonly off: (() => void)[] = [];
   /** When false, mouse movement is ignored unless the pointer is locked. */
   requireLock = true;
 
-  constructor(el: HTMLElement, getMap: () => InputMapData, step: number) {
+  constructor(el: HTMLElement, getMap: () => InputMap, step: number) {
     this.el = el;
     this.getMap = getMap;
     this.step = step;

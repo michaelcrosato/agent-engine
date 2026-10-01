@@ -15,7 +15,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check": "node tools/cli.ts check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "new": "node tools/cli.ts new",
+    "play": "node tools/cli.ts play",
+    "shot": "node tools/cli.ts shot",
+    "sfx": "node tools/cli.ts sfx",
+    "music": "node tools/cli.ts music",
+    "tex": "node tools/cli.ts tex",
+    "api": "node tools/cli.ts api",
+    "docs": "node tools/cli.ts docs",
+    "tool": "node tools/cli.ts",
+    "mcp": "node tools/mcp/startMcpServer.ts"
   },
   "dependencies": {
     "@dimforge/rapier3d-simd-compat": "0.21.0",

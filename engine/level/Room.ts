@@ -42,7 +42,7 @@ export const RoomSchema = z
   })
   .strict();
 
-export type RoomData = z.output<typeof RoomSchema>;
+export type Room = z.output<typeof RoomSchema>;
 
 /** Levels: data/rooms/<id>.json. A room is a grid map and/or placed prefabs plus a look. */
 export const RoomKind = defineContentKind({

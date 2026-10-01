@@ -13,7 +13,7 @@ export const TuningSchema = z
   })
   .strict();
 
-export type TuningData = z.output<typeof TuningSchema>;
+export type Tuning = z.output<typeof TuningSchema>;
 
 /**
  * Tuning presets: named sets of component overrides, e.g. "snappy-movement" or "hard-enemies".

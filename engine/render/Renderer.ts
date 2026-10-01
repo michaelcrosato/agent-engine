@@ -21,7 +21,7 @@ import type { Log } from '../core/Log.ts';
 import type { Entity } from '../core/World.ts';
 import type { PuppetInstance } from './buildPuppet.ts';
 import { createSky } from './createSky.ts';
-import type { LookData } from './Look.ts';
+import type { Look } from './Look.ts';
 import { MaterialLibrary } from './MaterialLibrary.ts';
 import { PostStackKind } from './PostStack.ts';
 import { type BuiltComposer, buildComposer } from './post/buildComposer.ts';
@@ -52,7 +52,7 @@ export class Renderer {
   readonly models = new Map<Entity, RenderedModel>();
   /** Entity → light object (managed by LightSystem). */
   readonly lights = new Map<Entity, Object3D>();
-  look: LookData | undefined;
+  look: Look | undefined;
   lookId = '';
   /** When set, the camera ignores CameraRigs and looks from `pos` at `target` (screenshots, editor). */
   cameraOverride: { pos: Vector3; target: Vector3 } | undefined;

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { defineContentKind } from '../../content/defineContentKind.ts';
-import { TEXTURE_OPS } from './textureOps.ts';
+import { textureOps } from './textureOps.ts';
 
-const o = TEXTURE_OPS;
+const o = textureOps;
 
 export const TextureLayerSchema = z.discriminatedUnion('op', [
   o.fill.schema,

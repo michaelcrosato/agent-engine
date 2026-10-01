@@ -1,6 +1,6 @@
 import { Euler, MathUtils, type Object3D } from 'three';
 import type { PuppetInstance } from '../render/buildPuppet.ts';
-import type { ClipData } from './Clip.ts';
+import type { Clip } from './Clip.ts';
 import { sampleClip } from './sampleClip.ts';
 
 type Offsets = { pos: number[]; rot: number[]; scale: number[] };
@@ -8,7 +8,7 @@ type Offsets = { pos: number[]; rot: number[]; scale: number[] };
 const AXIS: Record<string, number> = { x: 0, y: 1, z: 2 };
 
 /** Adds weighted clip samples into per-part offsets. */
-export function accumulate(acc: Map<string, Offsets>, clip: ClipData, time: number, weight: number): void {
+export function accumulate(acc: Map<string, Offsets>, clip: Clip, time: number, weight: number): void {
   if (weight <= 0) return;
   for (const s of sampleClip(clip, time)) {
     let o = acc.get(s.part);

@@ -1,5 +1,5 @@
 import { browserRoomIndex } from './browserContentFiles.ts';
-import { gameNames } from './gameModules.ts';
+import { gameNames } from './loadBrowserGame.ts';
 
 /** Start page: every game and room as links (`?game=<g>&room=<r>`). */
 export function showLauncher(root: HTMLElement): void {

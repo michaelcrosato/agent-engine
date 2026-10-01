@@ -1,0 +1,287 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "room (data/rooms)",
+  "description": "A playable space: grid text-map, placed prefabs, look, music, and tuning.",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "default": "",
+      "description": "What this room demonstrates or is for",
+      "type": "string"
+    },
+    "look": {
+      "default": "default",
+      "description": "Look id (lighting, sky, materials, post)",
+      "ref": "look",
+      "type": "string"
+    },
+    "music": {
+      "default": "",
+      "description": "Song id, or empty for silence",
+      "ref": "music",
+      "type": "string"
+    },
+    "tuning": {
+      "default": [],
+      "description": "Extra tuning presets for this room",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "grid": {
+      "description": "Text-map layout (walls, floors, glyph prefabs)",
+      "type": "object",
+      "properties": {
+        "cell": {
+          "default": 2,
+          "description": "Cell size in meters",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "wallHeight": {
+          "default": 4,
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "ceiling": {
+          "default": false,
+          "description": "Close the room with a ceiling at wallHeight",
+          "type": "boolean"
+        },
+        "legend": {
+          "default": {},
+          "description": "Glyph → tile. Extends the default legend (# wall, . floor, P spawn, 1-9 raised)",
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "floor": {
+                "default": 0,
+                "description": "Floor top height in meters; null = no floor (pit/void)",
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "wall": {
+                "default": false,
+                "description": "true = full-height wall; a number = wall of that height (cover, ledges)",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  }
+                ]
+              },
+              "prefab": {
+                "default": "",
+                "description": "Prefab placed at the cell center",
+                "ref": "prefab",
+                "type": "string"
+              },
+              "rot": {
+                "default": 0,
+                "description": "Yaw of the placed prefab in degrees",
+                "type": "number"
+              },
+              "with": {
+                "default": {},
+                "description": "Component overrides for the placed prefab",
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Z][A-Za-z0-9]*$"
+                },
+                "additionalProperties": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {}
+                }
+              },
+              "material": {
+                "default": "",
+                "description": "Floor material override (look material name)",
+                "type": "string"
+              },
+              "wallMaterial": {
+                "default": "",
+                "description": "Wall material override (look material name)",
+                "type": "string"
+              },
+              "doc": {
+                "default": "",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "rows": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Map rows, top row = -Z (north). Column → +X, row → +Z."
+        }
+      },
+      "required": [
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "entities": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "prefab": {
+            "type": "string",
+            "description": "Prefab id",
+            "ref": "prefab"
+          },
+          "name": {
+            "default": "",
+            "description": "Unique name for signals, tests, and the editor",
+            "type": "string"
+          },
+          "pos": {
+            "description": "World position [x, y, z]; or use \"cell\"",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "items": false,
+                "minItems": 3,
+                "maxItems": 3
+              }
+            ]
+          },
+          "cell": {
+            "description": "Grid cell [col, row]; places at the cell center on its floor",
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "rot": {
+            "default": 0,
+            "description": "Yaw degrees, or [x, y, z] Euler degrees",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "items": false,
+                "minItems": 3,
+                "maxItems": 3
+              }
+            ]
+          },
+          "scale": {
+            "default": 1,
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "items": false,
+                "minItems": 3,
+                "maxItems": 3
+              }
+            ]
+          },
+          "with": {
+            "default": {},
+            "description": "Component overrides: { \"Health\": { \"max\": 200 } }",
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^[A-Z][A-Za-z0-9]*$"
+            },
+            "additionalProperties": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            }
+          },
+          "tags": {
+            "default": [],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "prefab"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Editor schema hint (ignored by the engine)"
+    }
+  },
+  "additionalProperties": false
+}

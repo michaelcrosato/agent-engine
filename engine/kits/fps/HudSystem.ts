@@ -8,6 +8,7 @@ import { Damaged } from '../../mechanics/health/healthEvents.ts';
 import { Interactor } from '../../mechanics/interact/Interactor.ts';
 import { Inventory } from '../../mechanics/pickups/Inventory.ts';
 import { Scored } from '../../mechanics/targets/TargetSystem.ts';
+import { RendererKey } from '../../render/Renderer.ts';
 import { Arsenal } from './Arsenal.ts';
 import { FpsHud } from './FpsHud.ts';
 import { magOf } from './WeaponSystem.ts';
@@ -44,6 +45,7 @@ export const HudSystem = defineSystem({
       if (d.entity === p) st.hud.damageFlash(Math.min(0.8, d.amount / 40 + 0.15));
       else if (d.from === p && d.kind !== 'hazard') st.hud.hitMarker();
     }
+    st.hud.root.style.display = ctx.engine.tryService(RendererKey)?.cameraOverride ? 'none' : '';
     if (p === undefined) return;
     const h = w.get(p, Health);
     const a = w.get(p, Arsenal);

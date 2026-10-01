@@ -1,0 +1,1155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "texture (data/textures)",
+  "description": "Procedural texture recipe: ordered ops (bricks, noise, planks, ...) → albedo, normal, roughness.",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "default": "",
+      "type": "string"
+    },
+    "size": {
+      "default": 256,
+      "description": "Pixels per side (power of two). 32-64 for pixel-art looks",
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "seed": {
+      "default": 1,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "roughness": {
+      "default": 0.8,
+      "description": "Base roughness before layers",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "normal": {
+      "default": 2,
+      "description": "Normal-map strength from height (0 = none)",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 16
+    },
+    "layers": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "fill"
+              },
+              "color": {
+                "default": "#808080",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Sets every pixel to a color (and optionally a roughness). Usually the first layer."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "noise"
+              },
+              "color": {
+                "default": "#000000",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "amount": {
+                "default": 0.3,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend": {
+                "default": "mix",
+                "description": "How the color combines with what is below",
+                "type": "string",
+                "enum": [
+                  "mix",
+                  "multiply",
+                  "add",
+                  "screen",
+                  "overlay"
+                ]
+              },
+              "height": {
+                "default": 0,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "glow": {
+                "default": 0,
+                "description": "Emission where the pattern is (0..1)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "kind": {
+                "default": "fbm",
+                "type": "string",
+                "enum": [
+                  "fbm",
+                  "ridged",
+                  "value"
+                ]
+              },
+              "scale": {
+                "default": 8,
+                "description": "Noise cells per tile (integer, keeps it tileable)",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 128
+              },
+              "octaves": {
+                "default": 4,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 8
+              },
+              "threshold": {
+                "default": 0,
+                "description": "0 = smooth mask; >0 = blobs above this value",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "softness": {
+                "default": 0.08,
+                "type": "number",
+                "minimum": 0.001,
+                "maximum": 1
+              },
+              "invert": {
+                "default": false,
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Tileable noise painted as a mask: grain, stains, rock variation. threshold > 0 makes blobs."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "cells"
+              },
+              "color": {
+                "default": "#777777",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "amount": {
+                "default": 1,
+                "description": "Blend strength 0..1",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend": {
+                "default": "mix",
+                "description": "How the color combines with what is below",
+                "type": "string",
+                "enum": [
+                  "mix",
+                  "multiply",
+                  "add",
+                  "screen",
+                  "overlay"
+                ]
+              },
+              "height": {
+                "default": 0.2,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "glow": {
+                "default": 0,
+                "description": "Emission where the pattern is (0..1)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "scale": {
+                "default": 6,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 64
+              },
+              "jitter": {
+                "default": 0.9,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "variation": {
+                "default": 0.25,
+                "description": "Per-cell brightness variation",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "edge": {
+                "default": 0.08,
+                "description": "Edge (crack) width in cell units",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "edgeColor": {
+                "default": "#222222",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "edgeHeight": {
+                "default": -0.3,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Voronoi cells: flagstones, scales, cracked ground. Each cell gets a brightness variation."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "bricks"
+              },
+              "color": {
+                "default": "#8a4b38",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "amount": {
+                "default": 1,
+                "description": "Blend strength 0..1",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend": {
+                "default": "mix",
+                "description": "How the color combines with what is below",
+                "type": "string",
+                "enum": [
+                  "mix",
+                  "multiply",
+                  "add",
+                  "screen",
+                  "overlay"
+                ]
+              },
+              "height": {
+                "default": 0.3,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "glow": {
+                "default": 0,
+                "description": "Emission where the pattern is (0..1)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "rows": {
+                "default": 8,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 64
+              },
+              "cols": {
+                "default": 4,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 64
+              },
+              "offset": {
+                "default": 0.5,
+                "description": "Row shift (0.5 = running bond, 0 = grid)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "gap": {
+                "default": 0.12,
+                "description": "Mortar width as a fraction of row height",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 0.5
+              },
+              "bevel": {
+                "default": 0.12,
+                "description": "Edge rounding as a fraction of row height",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 0.5
+              },
+              "variation": {
+                "default": 0.15,
+                "description": "Per-brick brightness variation",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "mortar": {
+                "default": "#5a5550",
+                "description": "Gap color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "mortarRough": {
+                "default": 0.95,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Bricks in running bond (offset 0.5) with mortar gaps, bevels, and per-brick variation."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "tiles"
+              },
+              "color": {
+                "default": "#9aa0a6",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "amount": {
+                "default": 1,
+                "description": "Blend strength 0..1",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend": {
+                "default": "mix",
+                "description": "How the color combines with what is below",
+                "type": "string",
+                "enum": [
+                  "mix",
+                  "multiply",
+                  "add",
+                  "screen",
+                  "overlay"
+                ]
+              },
+              "height": {
+                "default": 0.3,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "glow": {
+                "default": 0,
+                "description": "Emission where the pattern is (0..1)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "rows": {
+                "default": 4,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 64
+              },
+              "cols": {
+                "default": 4,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 64
+              },
+              "offset": {
+                "default": 0,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "gap": {
+                "default": 0.06,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 0.5
+              },
+              "bevel": {
+                "default": 0.05,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 0.5
+              },
+              "variation": {
+                "default": 0.08,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "mortar": {
+                "default": "#3c3f44",
+                "description": "Gap color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "mortarRough": {
+                "default": 0.95,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Square grid tiles with grout: floors, panels, bathroom walls (bricks with offset 0)."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "planks"
+              },
+              "color": {
+                "default": "#8a5a32",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "amount": {
+                "default": 1,
+                "description": "Blend strength 0..1",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend": {
+                "default": "mix",
+                "description": "How the color combines with what is below",
+                "type": "string",
+                "enum": [
+                  "mix",
+                  "multiply",
+                  "add",
+                  "screen",
+                  "overlay"
+                ]
+              },
+              "height": {
+                "default": 0.15,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "glow": {
+                "default": 0,
+                "description": "Emission where the pattern is (0..1)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "count": {
+                "default": 6,
+                "description": "Boards per tile",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 64
+              },
+              "gap": {
+                "default": 0.08,
+                "description": "Seam width as a fraction of board width",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 0.5
+              },
+              "grain": {
+                "default": 0.5,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "variation": {
+                "default": 0.2,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "seamColor": {
+                "default": "#2a1a10",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Wooden boards with grain, staggered end seams, and per-board tone. Boards run along U."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "stripes"
+              },
+              "color": {
+                "default": "#e0b020",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "amount": {
+                "default": 1,
+                "description": "Blend strength 0..1",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend": {
+                "default": "mix",
+                "description": "How the color combines with what is below",
+                "type": "string",
+                "enum": [
+                  "mix",
+                  "multiply",
+                  "add",
+                  "screen",
+                  "overlay"
+                ]
+              },
+              "height": {
+                "default": 0,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "glow": {
+                "default": 0,
+                "description": "Emission where the pattern is (0..1)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "count": {
+                "default": 4,
+                "description": "Stripes per tile",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 128
+              },
+              "angle": {
+                "default": 45,
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "const": 0
+                  },
+                  {
+                    "type": "number",
+                    "const": 45
+                  },
+                  {
+                    "type": "number",
+                    "const": 90
+                  },
+                  {
+                    "type": "number",
+                    "const": 135
+                  }
+                ]
+              },
+              "width": {
+                "default": 0.5,
+                "description": "Stripe fraction of each period",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "softness": {
+                "default": 0.02,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 0.5
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Parallel stripes (hazard markings at angle 45). Tileable at angles 0, 45, 90, 135."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "checker"
+              },
+              "color": {
+                "default": "#202020",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "amount": {
+                "default": 1,
+                "description": "Blend strength 0..1",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend": {
+                "default": "mix",
+                "description": "How the color combines with what is below",
+                "type": "string",
+                "enum": [
+                  "mix",
+                  "multiply",
+                  "add",
+                  "screen",
+                  "overlay"
+                ]
+              },
+              "height": {
+                "default": 0,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "glow": {
+                "default": 0,
+                "description": "Emission where the pattern is (0..1)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "cells": {
+                "default": 8,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 128
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Checkerboard: debug floors, retro tiles, race flags."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "lines"
+              },
+              "color": {
+                "default": "#1a1c20",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "amount": {
+                "default": 1,
+                "description": "Blend strength 0..1",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend": {
+                "default": "mix",
+                "description": "How the color combines with what is below",
+                "type": "string",
+                "enum": [
+                  "mix",
+                  "multiply",
+                  "add",
+                  "screen",
+                  "overlay"
+                ]
+              },
+              "height": {
+                "default": -0.2,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "glow": {
+                "default": 0,
+                "description": "Emission where the pattern is (0..1)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "cols": {
+                "default": 4,
+                "description": "Vertical lines per tile (0 = none)",
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 128
+              },
+              "rows": {
+                "default": 4,
+                "description": "Horizontal lines per tile (0 = none)",
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 128
+              },
+              "width": {
+                "default": 0.01,
+                "description": "Line width in tile units",
+                "type": "number",
+                "minimum": 0.0005,
+                "maximum": 0.5
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Grid lines: panel seams, floor grids, or glowing neon lines (glow > 0)."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "rivets"
+              },
+              "color": {
+                "default": "#b0b4ba",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "amount": {
+                "default": 1,
+                "description": "Blend strength 0..1",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend": {
+                "default": "mix",
+                "description": "How the color combines with what is below",
+                "type": "string",
+                "enum": [
+                  "mix",
+                  "multiply",
+                  "add",
+                  "screen",
+                  "overlay"
+                ]
+              },
+              "height": {
+                "default": 0.5,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "glow": {
+                "default": 0,
+                "description": "Emission where the pattern is (0..1)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "cols": {
+                "default": 4,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 64
+              },
+              "rows": {
+                "default": 4,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 64
+              },
+              "inset": {
+                "default": 0.1,
+                "description": "Distance from cell corner (cell units)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 0.5
+              },
+              "radius": {
+                "default": 0.012,
+                "description": "Rivet radius in tile units",
+                "type": "number",
+                "minimum": 0.001,
+                "maximum": 0.2
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Round bolts near the corners of each panel cell (pair with tiles or lines)."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "scratches"
+              },
+              "color": {
+                "default": "#d0d4d8",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "amount": {
+                "default": 0.35,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend": {
+                "default": "mix",
+                "description": "How the color combines with what is below",
+                "type": "string",
+                "enum": [
+                  "mix",
+                  "multiply",
+                  "add",
+                  "screen",
+                  "overlay"
+                ]
+              },
+              "height": {
+                "default": -0.05,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "glow": {
+                "default": 0,
+                "description": "Emission where the pattern is (0..1)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "count": {
+                "default": 60,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2000
+              },
+              "length": {
+                "default": 0.12,
+                "description": "Average length in tile units",
+                "type": "number",
+                "minimum": 0.005,
+                "maximum": 1
+              },
+              "angle": {
+                "default": 0,
+                "description": "Main direction in degrees",
+                "type": "number"
+              },
+              "spread": {
+                "default": 180,
+                "description": "Random angle range in degrees",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 180
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Thin random scratches (wraps around tile edges). Light color on metal, dark on paint."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "spots"
+              },
+              "color": {
+                "default": "#6b3a1e",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "amount": {
+                "default": 1,
+                "description": "Blend strength 0..1",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend": {
+                "default": "mix",
+                "description": "How the color combines with what is below",
+                "type": "string",
+                "enum": [
+                  "mix",
+                  "multiply",
+                  "add",
+                  "screen",
+                  "overlay"
+                ]
+              },
+              "height": {
+                "default": 0,
+                "description": "Height added where the pattern is (negative = recessed)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "rough": {
+                "default": -1,
+                "description": "Roughness where the pattern is (-1 = unchanged)",
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "glow": {
+                "default": 0,
+                "description": "Emission where the pattern is (0..1)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "count": {
+                "default": 30,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5000
+              },
+              "radius": {
+                "default": 0.03,
+                "description": "Radius in tile units",
+                "type": "number",
+                "minimum": 0.001,
+                "maximum": 0.5
+              },
+              "variation": {
+                "default": 0.5,
+                "description": "Random radius variation",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "softness": {
+                "default": 0.5,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Random round spots: rust patches, holes, paint drops, stars. Wraps at tile edges."
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "gradient"
+              },
+              "from": {
+                "default": "#000000",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "to": {
+                "default": "#ffffff",
+                "description": "Hex color",
+                "widget": "color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "axis": {
+                "default": "v",
+                "type": "string",
+                "enum": [
+                  "u",
+                  "v"
+                ]
+              },
+              "amount": {
+                "default": 1,
+                "description": "Blend strength 0..1",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "additionalProperties": false,
+            "description": "Linear color ramp across the tile (not seamless: for screens, signs, skies)."
+          }
+        ]
+      },
+      "description": "Ops applied in order: { \"op\": \"bricks\", ... }"
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Editor schema hint (ignored by the engine)"
+    }
+  },
+  "required": [
+    "layers"
+  ],
+  "additionalProperties": false
+}

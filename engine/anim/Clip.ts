@@ -48,7 +48,7 @@ export const ClipSchema = z
   })
   .strict();
 
-export type ClipData = z.output<typeof ClipSchema>;
+export type Clip = z.output<typeof ClipSchema>;
 export type ClipTrack = z.output<typeof ClipTrackSchema>;
 
 /** Animation clips: data/clips/<id>.json. Additive keyframe or sine tracks on puppet parts. */

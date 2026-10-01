@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "effect (data/effects)",
+  "description": "Particle burst or tracer with optional flash light and sound.",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "default": "",
+      "type": "string"
+    },
+    "type": {
+      "default": "burst",
+      "description": "burst = particles; tracer = fading line",
+      "type": "string",
+      "enum": [
+        "burst",
+        "tracer"
+      ]
+    },
+    "count": {
+      "default": 12,
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 512
+    },
+    "lifetime": {
+      "default": [
+        0.2,
+        0.5
+      ],
+      "description": "[min, max] seconds",
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "speed": {
+      "default": [
+        2,
+        6
+      ],
+      "description": "[min, max] m/s",
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "spread": {
+      "default": 70,
+      "description": "Cone half-angle around the normal (180 = sphere)",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 180
+    },
+    "size": {
+      "default": [
+        0.04,
+        0.08
+      ],
+      "description": "[min, max] meters",
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "sizeEnd": {
+      "default": 0.2,
+      "description": "Size multiplier at end of life",
+      "type": "number",
+      "minimum": 0
+    },
+    "color": {
+      "default": "#ffd27a",
+      "type": "string",
+      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+    },
+    "colorEnd": {
+      "default": "#ff5a1f",
+      "type": "string",
+      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+    },
+    "gravity": {
+      "default": -9,
+      "type": "number"
+    },
+    "drag": {
+      "default": 1,
+      "type": "number",
+      "minimum": 0
+    },
+    "radius": {
+      "default": 0,
+      "description": "Spawn volume radius",
+      "type": "number",
+      "minimum": 0
+    },
+    "glow": {
+      "default": true,
+      "description": "Additive blending (fire, sparks); false for smoke/debris",
+      "type": "boolean"
+    },
+    "light": {
+      "description": "Brief flash light",
+      "type": "object",
+      "properties": {
+        "color": {
+          "default": "#ffaa55",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "intensity": {
+          "default": 40,
+          "type": "number",
+          "minimum": 0
+        },
+        "range": {
+          "default": 6,
+          "type": "number",
+          "minimum": 0
+        },
+        "seconds": {
+          "default": 0.08,
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "sound": {
+      "default": "",
+      "description": "Sound played at the effect",
+      "ref": "sound",
+      "type": "string"
+    },
+    "width": {
+      "default": 0.02,
+      "description": "tracer: line width hint",
+      "type": "number",
+      "minimum": 0
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Editor schema hint (ignored by the engine)"
+    }
+  },
+  "additionalProperties": false
+}

@@ -2,7 +2,7 @@ import { Color, type PointLight, Vector3 } from 'three';
 import { defineService } from '../core/defineService.ts';
 import { defineSystem } from '../core/defineSystem.ts';
 import { RendererKey } from '../render/Renderer.ts';
-import { type EffectData, EffectKind } from './Effect.ts';
+import { type Effect, EffectKind } from './Effect.ts';
 import { EffectSpawned } from './effectEvents.ts';
 import type { ParticlePool } from './ParticlePool.ts';
 
@@ -23,7 +23,7 @@ const tmp = new Vector3();
 
 function emit(
   fx: FxState,
-  d: EffectData,
+  d: Effect,
   pos: Vector3,
   normal: Vector3 | undefined,
   to: Vector3 | undefined,

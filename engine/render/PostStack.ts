@@ -55,7 +55,7 @@ export const PostStackSchema = z
   })
   .strict();
 
-export type PostStackData = z.output<typeof PostStackSchema>;
+export type PostStack = z.output<typeof PostStackSchema>;
 
 /** Post-processing stacks: data/post/<id>.json, referenced by looks. */
 export const PostStackKind = defineContentKind({

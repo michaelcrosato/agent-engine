@@ -1,5 +1,5 @@
 import { BackSide, Color, Mesh, ShaderMaterial, SphereGeometry } from 'three';
-import type { LookData } from './Look.ts';
+import type { Look } from './Look.ts';
 
 const vertexShader = /* glsl */ `
 varying vec3 vDir;
@@ -30,7 +30,7 @@ void main() {
 }`;
 
 /** A camera-centered gradient sky dome (top / horizon / bottom colors, optional stars). */
-export function createSky(sky: LookData['sky']): Mesh {
+export function createSky(sky: Look['sky']): Mesh {
   const lin = (hex: string) => new Color(hex);
   const mat = new ShaderMaterial({
     uniforms: {

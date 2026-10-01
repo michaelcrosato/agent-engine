@@ -6,8 +6,8 @@ import { Transform } from '../core/Transform.ts';
 import type { Entity, World } from '../core/World.ts';
 import { Body } from './Body.ts';
 import { CharacterBody } from './CharacterBody.ts';
-import { createBodyHandle, createCharacterHandle, type PhysicsHandle } from './createHandle.ts';
 import { type Layer, queryGroups } from './layers.ts';
+import { createBodyHandle, createCharacterHandle, type PhysicsHandle } from './PhysicsHandle.ts';
 
 export type RayHit = { entity: Entity; point: Vector3; normal: Vector3; distance: number };
 

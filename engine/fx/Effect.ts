@@ -50,7 +50,7 @@ export const EffectSchema = z
   })
   .strict();
 
-export type EffectData = z.output<typeof EffectSchema>;
+export type Effect = z.output<typeof EffectSchema>;
 
 /** Visual effects: data/effects/<id>.json (particle bursts, tracers, flash lights). */
 export const EffectKind = defineContentKind({

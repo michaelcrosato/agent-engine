@@ -14,7 +14,7 @@ import { stripes } from './ops/stripes.ts';
 import { tiles } from './ops/tiles.ts';
 
 /** Every texture op, by name. Add new ops here (npm run new -- texture-op <name>). */
-export const TEXTURE_OPS = {
+export const textureOps = {
   fill,
   noise,
   cells,
@@ -31,5 +31,5 @@ export const TEXTURE_OPS = {
 } as const;
 
 export function textureOp(name: string): TextureOp | undefined {
-  return (TEXTURE_OPS as unknown as Record<string, TextureOp>)[name];
+  return (textureOps as unknown as Record<string, TextureOp>)[name];
 }

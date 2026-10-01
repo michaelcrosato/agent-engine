@@ -13,7 +13,7 @@ export const PuppetSchema = z
   })
   .strict();
 
-export type PuppetData = z.output<typeof PuppetSchema>;
+export type Puppet = z.output<typeof PuppetSchema>;
 
 /** Procedural models: data/puppets/<id>.json, built from primitive parts at load time. */
 export const PuppetKind = defineContentKind({

@@ -1,12 +1,13 @@
 import { definePlugin } from '../core/definePlugin.ts';
 import { Counter } from './Counter.ts';
-import { LogicSystem, TriggerSystem } from './LogicSystems.ts';
+import { LogicSystem } from './LogicSystem.ts';
 import { Message } from './Message.ts';
 import { RoomExit } from './RoomExit.ts';
 import { Signal } from './Signal.ts';
 import { SignalQueue, SignalQueueKey } from './SignalQueue.ts';
 import { Timer } from './Timer.ts';
 import { Trigger } from './Trigger.ts';
+import { TriggerSystem } from './TriggerSystem.ts';
 
 /** Data-driven level scripting: signals between named entities, triggers, counters, timers, exits. */
 export const LogicPlugin = definePlugin({

@@ -3,7 +3,10 @@ import { z } from 'zod';
 /** One thing a trigger/counter/timer does: send a signal and/or show a message, optionally delayed. */
 export const SignalSpecSchema = z
   .object({
-    target: z.string().default('').meta({ description: 'Entity name or "#tag"; empty = no signal' }),
+    target: z
+      .string()
+      .default('')
+      .meta({ description: 'Entity name or "#tag"; empty = no signal', ref: 'entity' }),
     action: z
       .string()
       .default('toggle')

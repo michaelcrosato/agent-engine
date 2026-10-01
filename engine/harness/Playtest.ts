@@ -7,6 +7,7 @@ import { Transform } from '../core/Transform.ts';
 import type { Entity } from '../core/World.ts';
 import type { ScriptedInput } from '../input/ScriptedInput.ts';
 import { NavGrid } from '../level/NavGrid.ts';
+import { Signal } from '../logic/Signal.ts';
 import { wrap180, yawOf } from '../math/yaw.ts';
 import { CameraRig } from '../render/CameraRig.ts';
 import { type Snapshot, type SnapshotOpts, snapshot } from './snapshot.ts';
@@ -120,6 +121,21 @@ export class Playtest {
   events<T>(type: EventType<T> | string): T[] {
     const name = typeof type === 'string' ? type : type.name;
     return this.recorded.filter((r) => r.type === name).map((r) => r.payload as T);
+  }
+
+  /** How many times each event type fired since the playtest began. */
+  eventCounts(): Record<string, number> {
+    const out: Record<string, number> = {};
+    for (const r of this.recorded) out[r.type] = (out[r.type] ?? 0) + 1;
+    return out;
+  }
+
+  /** Sends a signal to an entity name or "#tag" (like a trigger would), then ticks once. */
+  signal(target: string, action: string, value = 0): this {
+    const w = this.engine.world;
+    const targets = target.startsWith('#') ? w.tagged(target.slice(1)) : [this.entity(target)];
+    for (const t of targets) this.engine.events.emit(Signal, { target: t, action, from: undefined, value });
+    return this.tick();
   }
 
   /** Sound ids played since start (optionally only `id`). */

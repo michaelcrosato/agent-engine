@@ -15,6 +15,8 @@ export type UrlParams = {
   at: [number, number, number] | undefined;
   /** "top" = overhead view of the whole room. */
   view: string;
+  /** Shot mode: JSON playtest steps run before capture (same vocabulary as `npm run play`). */
+  steps: string;
   debug: boolean;
 };
 
@@ -38,6 +40,7 @@ export function readUrlParams(search = location.search): UrlParams {
     cam: vec(q.get('cam')),
     at: vec(q.get('at')),
     view: q.get('view') ?? '',
+    steps: q.get('steps') ?? '',
     debug: q.get('debug') === '1',
   };
 }

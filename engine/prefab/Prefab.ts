@@ -19,7 +19,7 @@ export const PrefabSchema = z
   })
   .strict();
 
-export type PrefabData = z.output<typeof PrefabSchema>;
+export type Prefab = z.output<typeof PrefabSchema>;
 
 /** Entity templates: data/prefabs/<id>.json. */
 export const PrefabKind = defineContentKind({

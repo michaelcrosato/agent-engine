@@ -1,6 +1,6 @@
 import { bootGame } from './bootGame.ts';
-import { showLauncher } from './launcher.ts';
-import { readUrlParams } from './urlParams.ts';
+import { readUrlParams } from './readUrlParams.ts';
+import { showLauncher } from './showLauncher.ts';
 
 /** Browser entry (index.html): the launcher without ?game=, otherwise the game. */
 export async function main(): Promise<void> {

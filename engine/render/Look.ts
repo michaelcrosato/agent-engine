@@ -93,7 +93,7 @@ export const LookSchema = z
   })
   .strict();
 
-export type LookData = z.output<typeof LookSchema>;
+export type Look = z.output<typeof LookSchema>;
 
 /** Visual styles: data/looks/<id>.json. Sky, fog, lights, tone mapping, post stack, and named materials. */
 export const LookKind = defineContentKind({

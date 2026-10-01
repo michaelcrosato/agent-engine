@@ -1,4 +1,4 @@
-import type { ClipData, ClipTrack } from './Clip.ts';
+import type { Clip, ClipTrack } from './Clip.ts';
 import { EASINGS } from './easing.ts';
 
 /** Value of one track at time t (seconds, already wrapped for looping clips). */
@@ -22,7 +22,7 @@ export function sampleTrack(track: ClipTrack, t: number): number {
 }
 
 /** Clip-local time for an elapsed time (loops wrap; one-shots clamp). */
-export function clipTime(clip: ClipData, elapsed: number): number {
+export function clipTime(clip: Clip, elapsed: number): number {
   return clip.loop
     ? ((elapsed % clip.duration) + clip.duration) % clip.duration
     : Math.min(elapsed, clip.duration);
@@ -30,7 +30,7 @@ export function clipTime(clip: ClipData, elapsed: number): number {
 
 /** All track values of a clip at a time: `{ part, prop, value }[]`. Pure; usable in tests. */
 export function sampleClip(
-  clip: ClipData,
+  clip: Clip,
   elapsed: number,
 ): { part: string; prop: ClipTrack['prop']; value: number }[] {
   const t = clipTime(clip, elapsed);

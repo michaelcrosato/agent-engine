@@ -3,16 +3,18 @@ import { WebAudioOut } from '../audio/WebAudioOut.ts';
 import { gamePacks } from '../core/defineGame.ts';
 import { Engine } from '../core/Engine.ts';
 import { consoleSink } from '../core/Log.ts';
+import { Playtest } from '../harness/Playtest.ts';
+import { runSteps, StepsSchema } from '../harness/runSteps.ts';
 import { type Snapshot, snapshot } from '../harness/snapshot.ts';
 import { DomInput } from '../input/DomInput.ts';
 import { InputMapKind } from '../input/InputMap.ts';
 import { ScriptedInput } from '../input/ScriptedInput.ts';
 import { RendererKey } from '../render/Renderer.ts';
+import { applyContentChange } from './applyContentChange.ts';
 import { browserContentFiles } from './browserContentFiles.ts';
 import { ErrorPanel } from './ErrorPanel.ts';
-import { loadBrowserGame } from './gameModules.ts';
-import { applyContentChange } from './hotReload.ts';
-import type { UrlParams } from './urlParams.ts';
+import { loadBrowserGame } from './loadBrowserGame.ts';
+import type { UrlParams } from './readUrlParams.ts';
 
 /** What tools and Playwright see as `window.__engine`. */
 export type EngineHandle = {
@@ -47,6 +49,7 @@ export async function bootGame(params: UrlParams, root: HTMLElement): Promise<En
   root.append(canvas, overlay);
   const panel = new ErrorPanel(overlay);
   const game = await loadBrowserGame(params.game);
+  const scripted = params.shot ? new ScriptedInput() : undefined;
   const engine = await Engine.create({
     game,
     files: browserContentFiles(gamePacks(game)),
@@ -56,7 +59,7 @@ export async function bootGame(params: UrlParams, root: HTMLElement): Promise<En
     tuning: params.tuning,
     onSystemError: 'disable',
     logSink: consoleSink('info'),
-    ...(params.shot ? { input: new ScriptedInput() } : {}),
+    ...(scripted ? { input: scripted } : {}),
   });
   for (const e of engine.content.errors()) panel.show(e.message);
   if (!params.shot) {
@@ -87,7 +90,12 @@ export async function bootGame(params: UrlParams, root: HTMLElement): Promise<En
   const resize = () => r?.resize(root.clientWidth || innerWidth, root.clientHeight || innerHeight);
   addEventListener('resize', resize);
   resize();
-  if (params.shot) {
+  if (scripted) {
+    try {
+      if (params.steps) runSteps(new Playtest(engine, scripted), StepsSchema.parse(JSON.parse(params.steps)));
+    } catch (err) {
+      panel.show(err instanceof Error ? err.message : String(err));
+    }
     for (let i = 0; i < params.frames; i++) engine.tick();
     engine.renderOnly(engine.time.step);
   }
