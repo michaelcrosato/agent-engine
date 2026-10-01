@@ -17,7 +17,7 @@ npm run tool -- --help       # every tool; also served over MCP (.mcp.json → e
 ```
 
 Useful URL flags: `&edit=1` level editor, `&debug=1` debug overlay, `&look=neon`,
-`&tuning=hard`, `&spawn=<id>`, `&seed=7`. On the dev server, F2 opens the editor in any room.
+`&tuning=hard`, `&spawn=<id>`, `&seed=7`, `&touch=1` on-screen touch controls. On the dev server, F2 opens the editor in any room.
 
 ## Principles, in priority order
 
@@ -130,6 +130,7 @@ the game.
 | New model | `npm run new -- puppet drone` (+ `clip drone-idle`), place it in a room, `npm run shot` it |
 | Find why a test fails | `npm run play -- <game>/<room> --steps '[...]'` prints events and writes a capture to `out/captures/`; `npm run tool -- map <game>/<room>` shows cells and entities |
 | Check visuals | `npm run shot -- <game>/<room> --views player,top` or `--cam x,y,z --at x,y,z`, then look at the PNGs |
+| Try it on a phone / share a build | `npm run tool -- bundle fps-demo` → `out/bundle/fps-demo.html` (one file; touch controls on touch screens; `&touch=1` forces them on desktop) |
 | Look up an API | `npm run api -- <three|rapier|zod|vite|engine> <symbol>` |
 
 ## Conventions that trip people up

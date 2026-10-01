@@ -18,6 +18,8 @@ export type UrlParams = {
   /** Shot mode: JSON playtest steps run before capture (same vocabulary as `npm run play`). */
   steps: string;
   debug: boolean;
+  /** Show on-screen touch controls even with a mouse (they appear by default on touch screens). */
+  touch: boolean;
 };
 
 const vec = (s: string | null): [number, number, number] | undefined => {
@@ -42,5 +44,6 @@ export function readUrlParams(search = location.search): UrlParams {
     view: q.get('view') ?? '',
     steps: q.get('steps') ?? '',
     debug: q.get('debug') === '1',
+    touch: q.get('touch') === '1',
   };
 }

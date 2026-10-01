@@ -56,6 +56,8 @@ export class Renderer {
   lookId = '';
   /** When set, the camera ignores CameraRigs and looks from `pos` at `target` (screenshots, editor). */
   cameraOverride: { pos: Vector3; target: Vector3 } | undefined;
+  /** Cap on the device pixel ratio (phones report 3; rendering that much costs more than it shows). */
+  maxPixelRatio = 2;
   private sky: Mesh | undefined;
   private readonly sun = new DirectionalLight();
   private readonly hemi = new HemisphereLight();
@@ -137,7 +139,7 @@ export class Renderer {
   }
 
   resize(w: number, h: number): void {
-    const ratio = (globalThis.devicePixelRatio ?? 1) * this.renderScale;
+    const ratio = Math.min(globalThis.devicePixelRatio ?? 1, this.maxPixelRatio) * this.renderScale;
     this.three.setPixelRatio(ratio);
     this.three.setSize(w, h, false);
     this.camera.aspect = w / Math.max(1, h);

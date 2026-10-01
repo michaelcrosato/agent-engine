@@ -18,6 +18,7 @@ an MCP server (`.mcp.json`, tools named `engine_<name>` with the same arguments)
 | `shot` | Screenshot a room in headless Chromium (`--views player,top`, `--cam`/`--at`, `--look`, `--steps`) |
 | `sfx` / `music` / `tex` | Render sounds, songs, textures to files and describe them |
 | `schemas` | Regenerate JSON Schemas and reference docs (check does this too) |
+| `bundle` | Build a game into one self-contained HTML file (`out/bundle/<game>.html`): no server, works offline and on phones |
 
 Output is compact; files go to `out/` and are listed at the end of each result. Exit code is
 non-zero when a tool fails, and the failure is a teaching error.

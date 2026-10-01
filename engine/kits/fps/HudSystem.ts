@@ -1,6 +1,5 @@
 import { defineService } from '../../core/defineService.ts';
 import { defineSystem } from '../../core/defineSystem.ts';
-import { DomInput } from '../../input/DomInput.ts';
 import { Message } from '../../logic/Message.ts';
 import { hp } from '../../mechanics/health/applyDamage.ts';
 import { Health } from '../../mechanics/health/Health.ts';
@@ -70,7 +69,8 @@ export const HudSystem = defineSystem({
         prompt: w.get(p, Interactor)?.prompt ?? '',
         score: st.score,
         dead: !!h?.dead,
-        showPlay: ctx.engine.inputSource instanceof DomInput && !ctx.engine.inputSource.locked,
+        play: ctx.engine.inputSource.prompt?.() ?? '',
+        useLabel: ctx.engine.inputSource.actionLabel?.('use') ?? 'E',
       },
       now,
       ctx.time.frameDt,

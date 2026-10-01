@@ -5,8 +5,15 @@ export type InputSample = {
   look: { x: number; y: number };
 };
 
-/** Where input comes from: devices in the browser (DomInput) or a script in tests (ScriptedInput). */
+/**
+ * Where input comes from: devices in the browser (DomInput, TouchInput) or a script in tests
+ * (ScriptedInput).
+ */
 export type InputSource = {
   /** Called once per fixed tick by the engine. */
   sample(): InputSample;
+  /** What the player must do before input works ("Click to play ..."), or '' when ready. */
+  prompt?(): string;
+  /** How to trigger an action on this device, for on-screen hints: "E", "USE". */
+  actionLabel?(action: string): string;
 };

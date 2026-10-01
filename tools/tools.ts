@@ -1,4 +1,5 @@
 import { apiTool } from './commands/api.ts';
+import { bundleTool } from './commands/bundle.ts';
 import { checkTool } from './commands/check.ts';
 import { describeTool } from './commands/describe.ts';
 import { docsTool } from './commands/docs.ts';
@@ -30,4 +31,5 @@ export const TOOLS: readonly ToolDef[] = [
   musicTool,
   texTool,
   schemasTool,
+  bundleTool,
 ];

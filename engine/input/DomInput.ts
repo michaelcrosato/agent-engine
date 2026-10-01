@@ -84,6 +84,20 @@ export class DomInput implements InputSource {
     return document.pointerLockElement === this.el;
   }
 
+  prompt(): string {
+    return this.locked ? '' : 'Click to play — WASD move, mouse look, Space jump, E use';
+  }
+
+  /** First keyboard/mouse binding of an action, shortened: "KeyE" → "E", "Mouse0" → "LMB". */
+  actionLabel(action: string): string {
+    const b = this.getMap().actions[action]?.find((x) => !x.startsWith('Pad:'));
+    if (!b) return action;
+    return b
+      .replace(/^Key|^Digit/, '')
+      .replace('Mouse0', 'LMB')
+      .replace('Mouse2', 'RMB');
+  }
+
   lock(): void {
     if (!this.locked) void this.el.requestPointerLock?.();
   }

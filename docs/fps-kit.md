@@ -17,6 +17,12 @@ Default bindings live in `engine/data/input/default.json`: WASD, mouse look, Spa
 Shift sprint, Ctrl/C crouch, Mouse0 fire, E use, R reload, 1-9 and the wheel switch weapons,
 Backquote debug overlay. Gamepads use the standard mapping.
 
+Touch screens get on-screen controls (`engine/input/TouchInput.ts`, layout `FPS_TOUCH_BUTTONS`):
+a floating stick on the left (push to the rim to sprint), drag on the right to look, and
+FIRE (drag it to aim while shooting), JUMP, USE, RLD, SWAP, DUCK. They combine with the
+keyboard through `MultiInput`; `&touch=1` shows them on desktop. Input sources also supply the
+HUD's start prompt and key labels (`prompt()`, `actionLabel()`).
+
 ## Weapons
 
 Weapons are prefabs with a `Weapon` component (`engine/kits/fps/data/prefabs/weapons/`):

@@ -10,7 +10,10 @@ export type HudState = {
   prompt: string;
   score: number | undefined;
   dead: boolean;
-  showPlay: boolean;
+  /** What the player must do to start ("Click to play ..."), or ''. */
+  play: string;
+  /** Label of the use action on this device ("E", "USE"). */
+  useLabel: string;
 };
 
 const KEY_COLORS: Record<string, string> = {
@@ -43,7 +46,7 @@ export class FpsHud {
       '<div class="bl"><div class="big hp"></div><div class="bar"><i class="hpbar"></i></div>' +
       '<div class="bar armor"><i class="arbar"></i></div><div class="keys"></div></div>' +
       '<div class="br"><div class="wname"></div><div class="big ammo"></div></div>' +
-      '<div class="dead">YOU DIED</div><div class="play">Click to play — WASD move, mouse look, Space jump, E use</div>';
+      '<div class="dead">YOU DIED</div><div class="play"></div>';
     for (const c of [
       'flash',
       'cross',
@@ -92,10 +95,11 @@ export class FpsHud {
     e.keys!.innerHTML = s.keys
       .map((k) => `<span style="background:${KEY_COLORS[k] ?? '#ccc'}" title="${k} key"></span>`)
       .join('');
-    e.prompt!.innerHTML = s.prompt ? `<b>E</b>${s.prompt}` : '';
+    e.prompt!.innerHTML = s.prompt ? `<b>${s.useLabel}</b>${s.prompt}` : '';
     e.score!.textContent = s.score !== undefined ? `Score ${s.score}` : '';
     e.dead!.style.display = s.dead ? 'flex' : 'none';
-    e.play!.style.display = s.showPlay ? '' : 'none';
+    e.play!.style.display = s.play ? '' : 'none';
+    if (e.play!.textContent !== s.play) e.play!.textContent = s.play;
     this.flash = Math.max(0, this.flash - dt * 1.8);
     this.hit = Math.max(0, this.hit - dt * 6);
     e.flash!.style.opacity = String(this.flash);

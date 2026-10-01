@@ -9,7 +9,9 @@ import { runSteps, StepsSchema } from '../harness/runSteps.ts';
 import { type Snapshot, snapshot } from '../harness/snapshot.ts';
 import { DomInput } from '../input/DomInput.ts';
 import { InputMapKind } from '../input/InputMap.ts';
+import { MultiInput } from '../input/MultiInput.ts';
 import { ScriptedInput } from '../input/ScriptedInput.ts';
+import { TouchInput } from '../input/TouchInput.ts';
 import { RendererKey } from '../render/Renderer.ts';
 import { applyContentChange } from './applyContentChange.ts';
 import { browserContentFiles } from './browserContentFiles.ts';
@@ -103,13 +105,17 @@ export async function bootGame(params: UrlParams, root: HTMLElement): Promise<En
     ...(scripted ? { input: scripted } : {}),
   });
   for (const e of engine.content.errors()) panel.show(e.message);
+  const touchScreen = params.touch || matchMedia('(pointer: coarse)').matches;
   if (!params.shot) {
     const dom = new DomInput(canvas, () => engine.content.get(InputMapKind, game.input), engine.time.step);
-    engine.inputSource = dom;
+    const touch = touchScreen ? new TouchInput(overlay) : undefined;
+    engine.inputSource = touch ? new MultiInput([touch, dom]) : dom;
     canvas.addEventListener('click', () => {
-      if (!handle.editing) dom.lock();
-      if (engine.audio instanceof WebAudioOut) engine.audio.resume();
+      if (!handle.editing && !touch) dom.lock();
     });
+    // Browsers start audio muted until a user gesture; touch counts only on pointerup/touchend.
+    const unlock = () => engine.audio instanceof WebAudioOut && engine.audio.resume();
+    for (const type of ['pointerdown', 'pointerup', 'touchend', 'keydown']) addEventListener(type, unlock);
   }
   const handle: EngineHandle = {
     engine,
@@ -126,6 +132,7 @@ export async function bootGame(params: UrlParams, root: HTMLElement): Promise<En
     panel.show(err instanceof Error ? err.message : String(err));
   }
   const r = engine.tryService(RendererKey);
+  if (r && touchScreen) r.maxPixelRatio = 1.5;
   if (r && params.look) r.applyLook(params.look);
   if (r && params.view === 'top') r.cameraOverride = overheadCamera(engine);
   if (r && params.cam)
