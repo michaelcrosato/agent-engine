@@ -1,0 +1,12 @@
+{
+  "doc": "Player bullet tracer: short-lived dotted streak from muzzle to hit.",
+  "type": "tracer",
+  "count": 14,
+  "lifetime": [0.04, 0.08],
+  "speed": [0, 0],
+  "size": [0.02, 0.03],
+  "sizeEnd": 0.5,
+  "color": "#fff6d0",
+  "colorEnd": "#ffb040",
+  "gravity": 0
+}

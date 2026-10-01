@@ -1,0 +1,9 @@
+{
+  "doc": "Yellow keycard: opens door-yellow.",
+  "extends": "key-red",
+  "components": {
+    "Pickup": { "item": "yellow", "message": "Picked up the yellow key" },
+    "Model": { "tint": "#ffd84a" },
+    "Light": { "color": "#ffc83a" }
+  }
+}

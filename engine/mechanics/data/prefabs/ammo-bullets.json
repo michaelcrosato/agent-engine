@@ -1,0 +1,8 @@
+{
+  "doc": "Box of bullets (pistol, rifle).",
+  "extends": "pickup-base",
+  "components": {
+    "Pickup": { "kind": "ammo", "item": "bullets", "amount": 30, "message": "+{amount} bullets" },
+    "Model": { "puppet": "ammo-box" }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "doc": "Melee robot grunt (1.8 m): hunched torso, glowing eyes, claw arms. Roles: idle, walk, attack.",
+  "parts": [
+    {
+      "id": "legL",
+      "shape": "box",
+      "size": [0.2, 0.9, 0.22],
+      "pos": [-0.16, 0.9, 0],
+      "pivot": "top",
+      "material": "enemy-dark"
+    },
+    {
+      "id": "legR",
+      "shape": "box",
+      "size": [0.2, 0.9, 0.22],
+      "pos": [0.16, 0.9, 0],
+      "pivot": "top",
+      "material": "enemy-dark"
+    },
+    {
+      "id": "body",
+      "shape": "box",
+      "size": [0.62, 0.7, 0.38],
+      "pos": [0, 0.88, 0],
+      "rot": [8, 0, 0],
+      "material": "enemy"
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "shape": "sphere",
+      "size": [0.42, 0.36, 0.42],
+      "pos": [0, 0.7, -0.05],
+      "material": "enemy-dark"
+    },
+    {
+      "id": "eyeL",
+      "parent": "head",
+      "shape": "box",
+      "size": [0.09, 0.05, 0.04],
+      "pos": [-0.09, 0.18, -0.2],
+      "material": "enemy-eye",
+      "shadow": false
+    },
+    {
+      "id": "eyeR",
+      "parent": "head",
+      "shape": "box",
+      "size": [0.09, 0.05, 0.04],
+      "pos": [0.09, 0.18, -0.2],
+      "material": "enemy-eye",
+      "shadow": false
+    },
+    {
+      "id": "armL",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.16, 0.66, 0.16],
+      "pos": [-0.4, 0.66, 0],
+      "pivot": "top",
+      "material": "enemy"
+    },
+    {
+      "id": "armR",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.16, 0.66, 0.16],
+      "pos": [0.4, 0.66, 0],
+      "pivot": "top",
+      "material": "enemy"
+    },
+    {
+      "id": "clawL",
+      "parent": "armL",
+      "shape": "cone",
+      "size": [0.16, 0.25, 0.16],
+      "pos": [0, -0.66, 0],
+      "rot": [180, 0, 0],
+      "material": "steel"
+    },
+    {
+      "id": "clawR",
+      "parent": "armR",
+      "shape": "cone",
+      "size": [0.16, 0.25, 0.16],
+      "pos": [0, -0.66, 0],
+      "rot": [180, 0, 0],
+      "material": "steel"
+    }
+  ],
+  "clips": { "idle": "grunt-idle", "walk": "grunt-walk", "attack": "grunt-attack" }
+}

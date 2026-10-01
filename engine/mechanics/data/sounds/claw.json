@@ -1,0 +1,20 @@
+{
+  "doc": "Melee swipe: metallic whoosh + scrape.",
+  "gain": 0.55,
+  "pitchVariation": 0.15,
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.03, "decay": 0.12, "release": 0.05 },
+      "filter": { "type": "bandpass", "freq": 3000, "freqEnd": 800, "q": 1.5 }
+    },
+    {
+      "wave": "saw",
+      "freq": 900,
+      "freqEnd": 300,
+      "env": { "attack": 0.01, "decay": 0.1, "release": 0.03 },
+      "filter": { "freq": 2500 },
+      "gain": 0.25
+    }
+  ]
+}

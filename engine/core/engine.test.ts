@@ -33,7 +33,7 @@ const game = defineGame({
 });
 
 const files = [
-  ...readContentFiles(undefined),
+  ...readContentFiles(['engine']),
   {
     path: 'games/test-game/data/rooms/box.json',
     text: JSON.stringify({

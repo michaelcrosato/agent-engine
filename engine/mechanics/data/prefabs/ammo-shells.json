@@ -1,0 +1,8 @@
+{
+  "doc": "Box of shotgun shells.",
+  "extends": "pickup-base",
+  "components": {
+    "Pickup": { "kind": "ammo", "item": "shells", "amount": 10, "message": "+{amount} shells" },
+    "Model": { "puppet": "ammo-box", "tint": "#ff9a8a" }
+  }
+}

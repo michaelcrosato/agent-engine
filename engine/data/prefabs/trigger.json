@@ -1,0 +1,7 @@
+{
+  "doc": "Invisible 2 m trigger volume; set Trigger.onEnter in the room placement.",
+  "components": {
+    "Body": { "type": "static", "size": 2, "sensor": true, "layer": "trigger" },
+    "Trigger": { "filter": "player" }
+  }
+}

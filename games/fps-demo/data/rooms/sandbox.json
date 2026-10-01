@@ -1,0 +1,34 @@
+{
+  "doc": "Scratch room for quick experiments: a bit of everything.",
+  "look": "default",
+  "music": "calm",
+  "grid": {
+    "cell": 2,
+    "wallHeight": 5,
+    "legend": {
+      "C": { "prefab": "crate" },
+      "B": { "prefab": "barrel" },
+      "G": { "prefab": "grunt", "rot": 180 },
+      "H": { "prefab": "health-small" },
+      "A": { "prefab": "ammo-bullets" },
+      "S": { "prefab": "pickup-shotgun" }
+    },
+    "rows": [
+      "##############",
+      "#....G.......#",
+      "#..C.....B...#",
+      "#............#",
+      "#.123.....##.#",
+      "#.123..H..##.#",
+      "#.....__.....#",
+      "#..A..__..S..#",
+      "#......P.....#",
+      "##############"
+    ]
+  },
+  "entities": [
+    { "prefab": "lamp", "pos": [14, 5, 6] },
+    { "prefab": "lamp", "pos": [8, 5, 14] },
+    { "prefab": "crate", "pos": [6.2, 1, 4.6], "rot": 30 }
+  ]
+}

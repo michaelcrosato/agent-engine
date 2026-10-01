@@ -1,0 +1,12 @@
+{
+  "doc": "Music drum: closed hi-hat (unpitched hit).",
+  "gain": 0.3,
+  "bus": "music",
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.001, "decay": 0.03, "release": 0.01 },
+      "filter": { "type": "highpass", "freq": 7000 }
+    }
+  ]
+}

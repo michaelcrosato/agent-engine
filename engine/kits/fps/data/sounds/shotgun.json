@@ -1,0 +1,22 @@
+{
+  "doc": "Shotgun blast: big low boom and wide crack.",
+  "gain": 0.9,
+  "pitchVariation": 0.05,
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.001, "decay": 0.2, "release": 0.25, "curve": 2 },
+      "filter": { "type": "lowpass", "freq": 4500, "freqEnd": 400, "q": 0.7 },
+      "gain": 1.2
+    },
+    { "wave": "sine", "freq": 110, "freqEnd": 38, "env": { "attack": 0.001, "decay": 0.25, "release": 0.1 } },
+    {
+      "wave": "noise",
+      "delay": 0.32,
+      "env": { "attack": 0.001, "decay": 0.03, "release": 0.01 },
+      "filter": { "type": "bandpass", "freq": 1800, "q": 3 },
+      "gain": 0.4
+    }
+  ],
+  "fx": { "drive": 0.35, "reverb": 0.2, "room": 0.5 }
+}

@@ -17,6 +17,14 @@ export type GameDef = {
   readonly tuning: readonly string[];
 };
 
+/** Data packs a game loads, in precedence order: engine, plugin packs, then the game itself. */
+export function gamePacks(game: GameDef): string[] {
+  const packs = ['engine'];
+  for (const p of game.plugins) if (p.data && !packs.includes(p.data)) packs.push(p.data);
+  packs.push(`game:${game.name}`);
+  return packs;
+}
+
 export function defineGame(def: {
   name: string;
   doc: string;

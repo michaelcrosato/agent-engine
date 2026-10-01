@@ -1,0 +1,10 @@
+{
+  "doc": "Sliding door (2 m wide) that opens when the player approaches. Signals: open, close, toggle, lock, unlock.",
+  "tags": ["door"],
+  "components": {
+    "Body": { "type": "kinematic", "size": [2, 3.6, 0.3] },
+    "Model": { "puppet": "door" },
+    "Mover": { "points": [[0, 0, 0], [0, 3.4, 0]], "speed": 5, "wait": 0, "mode": "once", "active": false },
+    "Door": {}
+  }
+}

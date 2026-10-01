@@ -1,0 +1,8 @@
+{
+  "doc": "Rifle on the floor: grants the weapon (or 60 bullets if owned).",
+  "extends": "pickup-base",
+  "components": {
+    "Pickup": { "kind": "weapon", "item": "weapons/rifle", "message": "Assault rifle!" },
+    "Model": { "puppet": "vm-rifle" }
+  }
+}

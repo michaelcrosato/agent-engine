@@ -36,6 +36,11 @@ function shapeDesc(b: BodyData): RAPIER.ColliderDesc {
       return RAPIER.ColliderDesc.cylinder(s.y / 2, r);
     case 'cone':
       return RAPIER.ColliderDesc.cone(s.y / 2, r);
+    case 'wedge': {
+      const [x, y, z] = [s.x / 2, s.y / 2, s.z / 2];
+      const pts = new Float32Array([-x, -y, z, x, -y, z, x, -y, -z, -x, -y, -z, -x, y, -z, x, y, -z]);
+      return RAPIER.ColliderDesc.convexHull(pts) ?? RAPIER.ColliderDesc.cuboid(x, y, z);
+    }
     default:
       return RAPIER.ColliderDesc.cuboid(s.x / 2, s.y / 2, s.z / 2);
   }

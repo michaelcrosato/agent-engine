@@ -1,0 +1,16 @@
+{
+  "doc": "Instrument: FM bell (tuned).",
+  "gain": 0.3,
+  "bus": "music",
+  "layers": [
+    {
+      "wave": "fm",
+      "freq": 440,
+      "fmRatio": 3.5,
+      "fmIndex": 3,
+      "fmIndexEnd": 0.3,
+      "env": { "attack": 0.002, "decay": 1.2, "release": 0.6 }
+    }
+  ],
+  "fx": { "reverb": 0.3 }
+}

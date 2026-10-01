@@ -1,0 +1,9 @@
+{
+  "doc": "Gunner scanning idle: rifle sways, head turns.",
+  "duration": 4,
+  "tracks": [
+    { "part": "arms", "prop": "rot.y", "wave": { "amp": 8, "freq": 0.25 } },
+    { "part": "head", "prop": "rot.y", "wave": { "amp": 20, "freq": 0.25, "phase": 0.1 } },
+    { "part": "body", "prop": "pos.y", "wave": { "amp": 0.015, "freq": 0.5 } }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "doc": "First-person player: capsule body, camera, health with respawn, inventory, weapons, and use-interaction. Persists across rooms.",
+  "tags": ["player", "persist"],
+  "components": {
+    "CharacterBody": { "radius": 0.35, "height": 1.8, "layer": "player", "stepHeight": 0.5 },
+    "CameraRig": { "offset": [0, 1.6, 0], "fov": 80, "priority": 10 },
+    "FpsController": {},
+    "Health": { "max": 100, "hurtSound": "hurt", "destroyOnDeath": false },
+    "Respawn": { "delay": 2.5 },
+    "Inventory": { "ammo": { "bullets": 48 } },
+    "Arsenal": { "weapons": ["weapons/pistol"] },
+    "Interactor": {}
+  }
+}

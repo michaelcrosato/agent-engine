@@ -1,0 +1,9 @@
+{
+  "doc": "Gunner march: stiff legs, steady rifle.",
+  "duration": 0.9,
+  "tracks": [
+    { "part": "legL", "prop": "rot.x", "wave": { "amp": 26, "freq": 1.1111 } },
+    { "part": "legR", "prop": "rot.x", "wave": { "amp": 26, "freq": 1.1111, "phase": 0.5 } },
+    { "part": "body", "prop": "pos.y", "wave": { "amp": 0.03, "freq": 2.2222, "phase": 0.25 } }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "doc": "Subtle polish: soft bloom on emissives, light vignette, FXAA.",
+  "passes": [
+    { "type": "bloom", "strength": 0.45, "radius": 0.5, "threshold": 0.9 },
+    { "type": "vignette", "amount": 0.35, "softness": 0.55 },
+    { "type": "fxaa" }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "doc": "Rocket launcher: 100 splash damage in 3.5 m, rocket-jump capable, uses rockets.",
+  "components": {
+    "Weapon": {
+      "name": "Launcher",
+      "slot": 5,
+      "mode": "projectile",
+      "projectile": "rocket",
+      "rate": 1.1,
+      "ammo": "rockets",
+      "magazine": 0,
+      "startAmmo": 6,
+      "kick": 3,
+      "sound": "rocket",
+      "tracer": "",
+      "viewmodel": "vm-launcher"
+    }
+  }
+}

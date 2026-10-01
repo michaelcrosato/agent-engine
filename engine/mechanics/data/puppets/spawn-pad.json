@@ -1,0 +1,15 @@
+{
+  "doc": "Enemy teleporter pad.",
+  "parts": [
+    { "id": "pad", "shape": "cylinder", "size": [2, 0.1, 2], "material": "dark" },
+    {
+      "id": "ring",
+      "shape": "torus",
+      "size": [1.9, 0.08, 1.9],
+      "thickness": 0.1,
+      "pos": [0, 0.08, 0],
+      "material": "glow-red",
+      "shadow": false
+    }
+  ]
+}

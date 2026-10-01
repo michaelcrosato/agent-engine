@@ -1,0 +1,20 @@
+{
+  "doc": "Wooden crate side: vertical boards inside a frame.",
+  "seed": 9,
+  "roughness": 0.8,
+  "normal": 2,
+  "layers": [
+    { "op": "fill", "color": "#7d4f26" },
+    { "op": "planks", "count": 4, "color": "#9a6633", "gap": 0.06, "grain": 0.6 },
+    { "op": "lines", "cols": 1, "rows": 1, "width": 0.16, "color": "#5d3a1a", "height": 0.35, "amount": 1 },
+    {
+      "op": "rivets",
+      "cols": 1,
+      "rows": 1,
+      "inset": 0.04,
+      "radius": 0.018,
+      "color": "#3a3a3a",
+      "height": 0.5
+    }
+  ]
+}

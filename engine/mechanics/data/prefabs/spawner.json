@@ -1,0 +1,7 @@
+{
+  "doc": "Enemy teleporter: spawns Spawner.prefab on 'spawn' signals or every interval seconds.",
+  "components": {
+    "Model": { "puppet": "spawn-pad" },
+    "Spawner": { "prefab": "grunt", "effect": "spawn-in", "max": 4 }
+  }
+}

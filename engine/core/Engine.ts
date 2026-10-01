@@ -14,7 +14,7 @@ import { type SpawnOptions, spawnPrefab } from '../prefab/spawnPrefab.ts';
 import { TuningKind } from '../prefab/Tuning.ts';
 import type { Ctx } from './Ctx.ts';
 import type { ComponentType } from './defineComponent.ts';
-import type { GameDef } from './defineGame.ts';
+import { type GameDef, gamePacks } from './defineGame.ts';
 import type { ServiceKey } from './defineService.ts';
 import { type Phase, type SystemDef, TICK_PHASES } from './defineSystem.ts';
 import { EngineError, type ErrorWhere, toEngineError } from './EngineError.ts';
@@ -31,9 +31,12 @@ import { World } from './World.ts';
 
 export type EngineMode = 'headless' | 'browser';
 
+/** DOM handles for browser plugins (renderer canvas, HUD/debug overlay root). */
+export type BrowserHost = { canvas: HTMLCanvasElement; overlay: HTMLElement; muted?: boolean };
+
 export type EngineOptions = {
   game: GameDef;
-  /** Content files (engine + this game): from disk in Node, from the bundle in the browser. */
+  /** Content files of the game's data packs: from disk in Node, from the bundle in the browser. */
   files: readonly ContentFile[];
   mode?: EngineMode;
   seed?: number;
@@ -46,6 +49,8 @@ export type EngineOptions = {
   logSink?: (e: LogEntry) => void;
   /** Extra tuning presets on top of the game's and room's (e.g. from `?tuning=`). */
   tuning?: readonly string[];
+  /** Browser only: where to render and put overlays. */
+  host?: BrowserHost;
 };
 
 /** Content kinds every game has, regardless of plugins. */
@@ -59,6 +64,8 @@ const CORE_KINDS = [RoomKind, PrefabKind, TuningKind, InputMapKind];
 export class Engine {
   readonly mode: EngineMode;
   readonly game: GameDef;
+  /** DOM handles in the browser; undefined headless. */
+  readonly host: BrowserHost | undefined;
   readonly world = new World();
   readonly events = new EventBus();
   readonly time: Time;
@@ -90,6 +97,7 @@ export class Engine {
   private constructor(opts: EngineOptions) {
     this.mode = opts.mode ?? 'headless';
     this.game = opts.game;
+    this.host = opts.host;
     this.time = createTime(opts.step);
     this.rng = new Rng(opts.seed ?? 1);
     this.log = new Log(opts.logSink);
@@ -102,7 +110,7 @@ export class Engine {
     this.components.set(Transform.name, Transform);
     for (const p of plugins) for (const c of p.components) this.components.set(c.name, c);
     const kinds = [...CORE_KINDS, ...plugins.flatMap((p) => p.contentKinds)];
-    this.content = new ContentStore(kinds, opts.files, this.game.name);
+    this.content = new ContentStore(kinds, opts.files, gamePacks(this.game));
     this.phases = { input: [], update: [], physics: [], late: [], frame: [] };
     for (const p of plugins) for (const s of p.systems) this.phases[s.phase].push(s);
     for (const list of Object.values(this.phases)) list.sort((a, b) => a.order - b.order);

@@ -1,0 +1,8 @@
+{
+  "doc": "Big medkit: +50 health.",
+  "extends": "health-small",
+  "components": {
+    "Pickup": { "amount": 50 },
+    "Model": { "tint": "#ffd0d0" }
+  }
+}

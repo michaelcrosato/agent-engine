@@ -1,0 +1,7 @@
+{
+  "doc": "Floating 3 x 0.4 x 3 m platform with hazard trim.",
+  "parts": [
+    { "id": "deck", "shape": "box", "size": [3, 0.3, 3], "pos": [0, 0.1, 0], "material": "metal" },
+    { "id": "trim", "shape": "box", "size": [3.1, 0.1, 3.1], "material": "hazard" }
+  ]
+}

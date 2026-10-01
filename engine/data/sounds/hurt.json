@@ -1,0 +1,21 @@
+{
+  "doc": "Player takes damage: low grunt-like burst.",
+  "gain": 0.6,
+  "pitchVariation": 0.1,
+  "maxVoices": 2,
+  "layers": [
+    {
+      "wave": "saw",
+      "freq": 180,
+      "freqEnd": 110,
+      "env": { "attack": 0.005, "decay": 0.15, "release": 0.05 },
+      "filter": { "freq": 900, "q": 4 }
+    },
+    {
+      "wave": "noise",
+      "env": { "attack": 0.002, "decay": 0.08, "release": 0.03 },
+      "filter": { "type": "bandpass", "freq": 500 },
+      "gain": 0.5
+    }
+  ]
+}

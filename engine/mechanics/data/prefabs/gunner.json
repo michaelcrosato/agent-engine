@@ -1,0 +1,19 @@
+{
+  "doc": "Ranged robot: keeps line of sight and fires hitscan bolts (7 dmg). 50 hp.",
+  "extends": "enemy-base",
+  "components": {
+    "Model": { "puppet": "gunner" },
+    "Health": { "max": 50 },
+    "Brain": {
+      "style": "ranged",
+      "speed": 3,
+      "sight": 26,
+      "attackRange": 16,
+      "attackDamage": 7,
+      "attackRate": 1.3,
+      "aimError": 4,
+      "eye": 1.65,
+      "attackSound": "enemy-shot"
+    }
+  }
+}

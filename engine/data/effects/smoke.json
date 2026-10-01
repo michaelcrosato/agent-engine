@@ -1,0 +1,14 @@
+{
+  "doc": "Slow gray smoke puff (non-additive).",
+  "count": 14,
+  "lifetime": [0.8, 1.6],
+  "speed": [0.5, 1.5],
+  "spread": 40,
+  "size": [0.3, 0.6],
+  "sizeEnd": 2.5,
+  "color": "#6a6a6a",
+  "colorEnd": "#2a2a2a",
+  "gravity": 1.5,
+  "drag": 1.5,
+  "glow": false
+}

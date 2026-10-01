@@ -19,6 +19,8 @@ export type PluginDef = {
   readonly contentKinds: readonly ContentKind[];
   /** Plugin names that must appear earlier in the game's plugin list. */
   readonly requires: readonly string[];
+  /** Data pack this plugin brings ("mechanics" or "kit:<name>"); its data/ is loaded for the game. */
+  readonly data: string;
   /** Runs once when the engine is created (create services, subscribe to events). */
   readonly setup?: (engine: Engine) => void | Promise<void>;
   /** Runs after the world is cleared and before a room's entities spawn. */
@@ -37,10 +39,20 @@ export function definePlugin(def: {
   events?: readonly EventType[];
   contentKinds?: readonly ContentKind[];
   requires?: readonly string[];
+  data?: string;
   setup?: (engine: Engine) => void | Promise<void>;
   roomLoad?: (engine: Engine, room: RoomData) => void;
   roomReady?: (engine: Engine, room: RoomData) => void;
   roomUnload?: (engine: Engine) => void;
 }): PluginDef {
-  return { kind: 'plugin', components: [], systems: [], events: [], contentKinds: [], requires: [], ...def };
+  return {
+    kind: 'plugin',
+    components: [],
+    systems: [],
+    events: [],
+    contentKinds: [],
+    requires: [],
+    data: '',
+    ...def,
+  };
 }

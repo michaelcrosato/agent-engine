@@ -1,0 +1,20 @@
+{
+  "doc": "Wrench: melee, no ammo, 35 damage at 2 m.",
+  "components": {
+    "Weapon": {
+      "name": "Wrench",
+      "slot": 1,
+      "mode": "melee",
+      "damage": 35,
+      "range": 2.2,
+      "rate": 2,
+      "ammo": "",
+      "magazine": 0,
+      "kick": 0,
+      "impulse": 6,
+      "sound": "swing",
+      "tracer": "",
+      "viewmodel": "vm-wrench"
+    }
+  }
+}

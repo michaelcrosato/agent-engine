@@ -1,0 +1,21 @@
+{
+  "doc": "Mechanical button click with a confirm blip.",
+  "gain": 0.5,
+  "bus": "ui",
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.001, "decay": 0.015, "release": 0.01 },
+      "filter": { "type": "highpass", "freq": 2500 }
+    },
+    {
+      "wave": "square",
+      "freq": 660,
+      "duty": 0.3,
+      "delay": 0.03,
+      "env": { "attack": 0.002, "decay": 0.06, "release": 0.02 },
+      "filter": { "freq": 3000 },
+      "gain": 0.35
+    }
+  ]
+}

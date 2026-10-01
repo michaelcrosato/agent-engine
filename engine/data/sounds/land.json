@@ -1,0 +1,13 @@
+{
+  "doc": "Heavier thud when landing from a jump or fall.",
+  "gain": 0.55,
+  "pitchVariation": 0.08,
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.001, "decay": 0.09, "release": 0.05, "curve": 3 },
+      "filter": { "type": "lowpass", "freq": 900, "freqEnd": 200 }
+    },
+    { "wave": "sine", "freq": 90, "freqEnd": 40, "env": { "attack": 0.001, "decay": 0.12, "release": 0.04 } }
+  ]
+}

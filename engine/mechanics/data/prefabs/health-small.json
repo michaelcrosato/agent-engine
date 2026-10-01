@@ -1,0 +1,8 @@
+{
+  "doc": "Medkit: +25 health (not taken at full health).",
+  "extends": "pickup-base",
+  "components": {
+    "Pickup": { "kind": "health", "amount": 25, "message": "+{amount} health" },
+    "Model": { "puppet": "medkit" }
+  }
+}

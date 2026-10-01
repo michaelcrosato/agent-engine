@@ -1,0 +1,13 @@
+{
+  "doc": "Glowing plasma ball projectile.",
+  "parts": [
+    {
+      "id": "ball",
+      "shape": "sphere",
+      "size": 0.3,
+      "pivot": "center",
+      "material": "glow-red",
+      "shadow": false
+    }
+  ]
+}

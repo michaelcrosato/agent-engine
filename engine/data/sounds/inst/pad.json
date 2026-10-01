@@ -1,0 +1,25 @@
+{
+  "doc": "Instrument: wide detuned saw pad (tuned).",
+  "gain": 0.35,
+  "bus": "music",
+  "layers": [
+    {
+      "wave": "saw",
+      "freq": 440,
+      "detune": -8,
+      "env": { "attack": 0.4, "decay": 0.5, "sustain": 0.7, "release": 0.8 },
+      "filter": { "freq": 1400 },
+      "gain": 0.3,
+      "pan": -0.4
+    },
+    {
+      "wave": "saw",
+      "freq": 440,
+      "detune": 8,
+      "env": { "attack": 0.4, "decay": 0.5, "sustain": 0.7, "release": 0.8 },
+      "filter": { "freq": 1400 },
+      "gain": 0.3,
+      "pan": 0.4
+    }
+  ]
+}

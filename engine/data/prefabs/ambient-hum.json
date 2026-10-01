@@ -1,0 +1,4 @@
+{
+  "doc": "Invisible machine hum emitter (looping, positional).",
+  "components": { "AmbientSound": { "sound": "hum", "volume": 1 } }
+}

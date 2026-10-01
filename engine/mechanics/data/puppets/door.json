@@ -1,0 +1,14 @@
+{
+  "doc": "Sliding door slab 2 m wide, 3.6 m tall, with a light bar.",
+  "parts": [
+    { "id": "slab", "shape": "box", "size": [2, 3.6, 0.3], "material": "metal" },
+    {
+      "id": "bar",
+      "shape": "box",
+      "size": [1.6, 0.12, 0.34],
+      "pos": [0, 1.8, 0],
+      "material": "glow-blue",
+      "shadow": false
+    }
+  ]
+}

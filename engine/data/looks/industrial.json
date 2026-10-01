@@ -1,0 +1,14 @@
+{
+  "doc": "Indoor industrial: concrete and steel, cool ambient, warm practical lights, light haze.",
+  "extends": "default",
+  "sky": { "top": "#1c232c", "horizon": "#3a444e", "bottom": "#121418" },
+  "fog": { "color": "#2a3038", "near": 14, "far": 70 },
+  "ambient": { "sky": "#9ab0c8", "ground": "#3a342c", "intensity": 0.6 },
+  "sun": { "color": "#c8d8ff", "intensity": 0.9, "dir": [-0.2, -1, 0.35] },
+  "exposure": 1.1,
+  "materials": {
+    "floor": { "texture": "concrete", "tile": 4 },
+    "wall": { "texture": "metal-panel", "tile": 3, "metalness": 0.4, "roughness": 0.55 },
+    "ceiling": { "texture": "grate", "tile": 2 }
+  }
+}

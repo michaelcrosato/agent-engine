@@ -1,0 +1,10 @@
+{
+  "doc": "Moody film look: strong bloom, graded contrast, grain, chromatic fringe, heavy vignette.",
+  "passes": [
+    { "type": "bloom", "strength": 0.9, "radius": 0.6, "threshold": 0.75 },
+    { "type": "grade", "saturation": 0.85, "contrast": 1.15, "brightness": -0.02, "tint": "#fff2e0" },
+    { "type": "chromatic", "amount": 0.0025 },
+    { "type": "grain", "amount": 0.06 },
+    { "type": "vignette", "amount": 0.7, "softness": 0.45 }
+  ]
+}

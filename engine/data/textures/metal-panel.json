@@ -1,0 +1,39 @@
+{
+  "doc": "Riveted steel plates with scratches and grime.",
+  "seed": 11,
+  "roughness": 0.45,
+  "normal": 2.5,
+  "layers": [
+    { "op": "fill", "color": "#5b636e", "rough": 0.45 },
+    {
+      "op": "tiles",
+      "rows": 2,
+      "cols": 2,
+      "gap": 0.04,
+      "bevel": 0.03,
+      "color": "#6d7682",
+      "mortar": "#1e2228",
+      "variation": 0.08,
+      "height": 0.3
+    },
+    {
+      "op": "rivets",
+      "rows": 2,
+      "cols": 2,
+      "inset": 0.07,
+      "radius": 0.012,
+      "color": "#a9b0b8",
+      "height": 0.4
+    },
+    { "op": "scratches", "count": 140, "length": 0.1, "color": "#b9c0c8", "amount": 0.35 },
+    {
+      "op": "noise",
+      "scale": 3,
+      "octaves": 4,
+      "threshold": 0.62,
+      "color": "#2b241c",
+      "amount": 0.4,
+      "rough": 0.85
+    }
+  ]
+}

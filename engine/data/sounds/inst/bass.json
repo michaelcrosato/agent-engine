@@ -1,0 +1,13 @@
+{
+  "doc": "Instrument: filtered saw bass (tuned: 440 = played note).",
+  "gain": 0.55,
+  "bus": "music",
+  "layers": [
+    {
+      "wave": "saw",
+      "freq": 440,
+      "env": { "attack": 0.005, "decay": 0.2, "sustain": 0.6, "release": 0.08 },
+      "filter": { "freq": 700, "q": 2 }
+    }
+  ]
+}

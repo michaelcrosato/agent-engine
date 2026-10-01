@@ -1,0 +1,41 @@
+{
+  "doc": "Rocket projectile: 30 m/s, 60 direct + up to 100 splash in 3.5 m.",
+  "components": {
+    "Projectile": {
+      "speed": 30,
+      "damage": 60,
+      "splashRadius": 3.5,
+      "splashDamage": 100,
+      "impulse": 11,
+      "hitEffect": "explosion"
+    },
+    "Model": {
+      "parts": [
+        {
+          "shape": "cylinder",
+          "size": [0.12, 0.5, 0.12],
+          "rot": [90, 0, 0],
+          "pivot": "center",
+          "material": "steel"
+        },
+        {
+          "shape": "cone",
+          "size": [0.12, 0.18, 0.12],
+          "pos": [0, 0, -0.34],
+          "rot": [-90, 0, 0],
+          "pivot": "center",
+          "material": "red"
+        },
+        {
+          "shape": "sphere",
+          "size": 0.14,
+          "pos": [0, 0, 0.28],
+          "pivot": "center",
+          "material": "glow",
+          "shadow": false
+        }
+      ]
+    },
+    "Light": { "color": "#ffb060", "intensity": 15, "range": 6 }
+  }
+}

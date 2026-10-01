@@ -1,0 +1,15 @@
+{
+  "doc": "Water drop plink (use with AmbientSound interval > 0).",
+  "gain": 0.4,
+  "pitchVariation": 0.25,
+  "layers": [
+    {
+      "wave": "sine",
+      "freq": 1400,
+      "freqEnd": 2400,
+      "glide": 0.04,
+      "env": { "attack": 0.001, "decay": 0.12, "release": 0.05 }
+    }
+  ],
+  "fx": { "reverb": 0.5, "room": 0.9 }
+}

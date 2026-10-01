@@ -1,0 +1,12 @@
+{
+  "doc": "Short exhale whoosh when jumping.",
+  "gain": 0.3,
+  "pitchVariation": 0.08,
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.01, "decay": 0.12, "release": 0.05 },
+      "filter": { "type": "bandpass", "freq": 900, "freqEnd": 1600, "q": 1.2 }
+    }
+  ]
+}

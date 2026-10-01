@@ -1,0 +1,19 @@
+{
+  "doc": "Pistol: accurate semi-auto, 12-round magazine, uses bullets.",
+  "components": {
+    "Weapon": {
+      "name": "Pistol",
+      "slot": 2,
+      "damage": 18,
+      "spread": 0.6,
+      "rate": 4,
+      "ammo": "bullets",
+      "magazine": 12,
+      "reloadTime": 1.1,
+      "startAmmo": 24,
+      "kick": 1.3,
+      "sound": "pistol",
+      "viewmodel": "vm-pistol"
+    }
+  }
+}

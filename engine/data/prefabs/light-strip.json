@@ -1,0 +1,7 @@
+{
+  "doc": "Wall light strip; place against a wall (faces +Z).",
+  "components": {
+    "Model": { "puppet": "light-strip" },
+    "Light": { "intensity": 12, "range": 8, "offset": [0, 0, 0.3], "color": "#d8e8ff" }
+  }
+}

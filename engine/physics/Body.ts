@@ -13,7 +13,9 @@ export const Body = defineComponent({
   doc: 'Rigid body + collider (static, dynamic, or kinematic). Origin at shape bottom by default.',
   schema: {
     type: field.enum(['static', 'dynamic', 'kinematic'], 'static', { doc: 'kinematic follows Transform' }),
-    shape: field.enum(['box', 'sphere', 'capsule', 'cylinder', 'cone'], 'box'),
+    shape: field.enum(['box', 'sphere', 'capsule', 'cylinder', 'cone', 'wedge'], 'box', {
+      doc: 'wedge = ramp rising toward -Z (matches the wedge model part)',
+    }),
     size: field.vec3([1, 1, 1], {
       doc: 'Full size in meters. sphere: x = diameter. capsule/cylinder/cone: x = diameter, y = height',
       unit: 'm',

@@ -1,0 +1,7 @@
+{
+  "doc": "Walkable ramp 2 x 1 x 4 m, rising toward -Z (rotate with rot).",
+  "components": {
+    "Body": { "type": "static", "shape": "wedge", "size": [2, 1, 4] },
+    "Model": { "puppet": "ramp" }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "doc": "Rocket launcher on the floor: grants the weapon (or 6 rockets if owned).",
+  "extends": "pickup-base",
+  "components": {
+    "Pickup": { "kind": "weapon", "item": "weapons/launcher", "message": "Rocket launcher!" },
+    "Model": { "puppet": "vm-launcher" }
+  }
+}

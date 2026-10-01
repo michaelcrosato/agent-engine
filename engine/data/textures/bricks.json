@@ -1,0 +1,20 @@
+{
+  "doc": "Weathered red bricks with light efflorescence.",
+  "seed": 2,
+  "roughness": 0.9,
+  "normal": 2.5,
+  "layers": [
+    { "op": "fill", "color": "#6b6460" },
+    { "op": "bricks", "rows": 8, "cols": 4, "color": "#8a4b38", "mortar": "#5a5550" },
+    { "op": "noise", "scale": 16, "octaves": 3, "color": "#000000", "amount": 0.25, "height": 0.3 },
+    {
+      "op": "noise",
+      "kind": "ridged",
+      "scale": 8,
+      "octaves": 3,
+      "threshold": 0.72,
+      "color": "#d8d2c8",
+      "amount": 0.18
+    }
+  ]
+}

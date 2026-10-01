@@ -1,0 +1,20 @@
+{
+  "doc": "Eerie ambient loop in phrygian: slow bells and a drone, no drums.",
+  "bpm": 70,
+  "bars": 8,
+  "key": "E",
+  "scale": "phrygian",
+  "chords": ["i", "II", "i", "VII"],
+  "instruments": { "pad": "inst/pad", "bell": "inst/bell", "bass": "inst/bass" },
+  "tracks": [
+    { "instrument": "bass", "notes": "1 - - - - - - - - - - - - - - -", "octave": 1, "gain": 0.6 },
+    { "instrument": "pad", "chord": "x---------------", "octave": 3, "gain": 0.6 },
+    {
+      "instrument": "bell",
+      "generate": { "seed": 13, "density": 0.12, "range": 9, "length": 64 },
+      "octave": 4,
+      "gain": 0.6
+    }
+  ],
+  "reverb": 0.4
+}

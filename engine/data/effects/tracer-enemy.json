@@ -1,0 +1,11 @@
+{
+  "doc": "Enemy hitscan tracer (reddish so the player can read incoming fire).",
+  "type": "tracer",
+  "count": 18,
+  "lifetime": [0.06, 0.12],
+  "speed": [0, 0],
+  "size": [0.025, 0.035],
+  "color": "#ff8a7a",
+  "colorEnd": "#ff2a1a",
+  "gravity": 0
+}

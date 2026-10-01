@@ -1,0 +1,16 @@
+{
+  "doc": "Keycard on a glowing ring; tint via Model.tint per color.",
+  "parts": [
+    { "id": "card", "shape": "box", "size": [0.35, 0.5, 0.04], "pos": [0, 0.1, 0], "material": "white" },
+    { "id": "stripe", "shape": "box", "size": [0.36, 0.1, 0.05], "pos": [0, 0.45, 0], "material": "glow" },
+    {
+      "id": "ring",
+      "shape": "torus",
+      "size": [0.7, 0.05, 0.7],
+      "thickness": 0.04,
+      "pos": [0, 0.02, 0],
+      "material": "glow",
+      "shadow": false
+    }
+  ]
+}

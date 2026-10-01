@@ -1,0 +1,4 @@
+{
+  "doc": "1 m wooden crate.",
+  "parts": [{ "id": "box", "shape": "box", "size": [1, 1, 1], "material": "crate" }]
+}

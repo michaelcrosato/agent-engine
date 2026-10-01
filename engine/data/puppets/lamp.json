@@ -1,0 +1,15 @@
+{
+  "doc": "Ceiling lamp: dark housing with a glowing bulb (pair with a Light component).",
+  "parts": [
+    { "id": "cord", "shape": "cylinder", "size": [0.03, 0.6, 0.03], "pos": [0, -0.6, 0], "material": "dark" },
+    { "id": "shade", "shape": "cone", "size": [0.5, 0.3, 0.5], "pos": [0, -0.9, 0], "material": "metal" },
+    {
+      "id": "bulb",
+      "shape": "sphere",
+      "size": 0.16,
+      "pos": [0, -0.98, 0],
+      "material": "glow",
+      "shadow": false
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "doc": "Wall button: look at it and press use. Set Interactable.onUse in the room placement.",
+  "components": {
+    "Body": { "type": "static", "size": [0.5, 0.7, 0.14] },
+    "Model": { "puppet": "button" },
+    "Interactable": { "prompt": "Press" }
+  }
+}

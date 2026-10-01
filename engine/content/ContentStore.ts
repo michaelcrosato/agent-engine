@@ -13,7 +13,8 @@ export type ContentEntry = {
   kind: ContentKind;
   id: string;
   file: string;
-  origin: 'engine' | 'game';
+  /** Data pack the file came from: "engine", "mechanics", "kit:<name>", "game:<name>". */
+  pack: string;
   /** JSON as written (minus `$schema`), for the editor and tools. */
   raw: unknown;
   parsed: ParsedJson | undefined;
@@ -22,9 +23,10 @@ export type ContentEntry = {
 };
 
 /**
- * All data files visible to one game: shared `engine/data/**` plus `games/<game>/data/**`.
- * Game files shadow engine files with the same kind and id. Files are parsed and validated
- * on load; errors are collected (see `errors()`) so one bad file never blocks the rest.
+ * All data files visible to one game, from its data packs in precedence order
+ * (engine → mechanics → kits → game; later packs shadow earlier ones with the same kind and id).
+ * Files are parsed and validated on load; errors are collected (see `errors()`) so one bad
+ * file never blocks the rest.
  */
 export class ContentStore {
   private readonly kinds = new Map<string, ContentKind>();
@@ -32,27 +34,31 @@ export class ContentStore {
   private readonly items = new Map<string, Map<string, ContentEntry>>();
   private readonly shadowed: ContentEntry[] = [];
   private readonly stray: EngineError[] = [];
-  readonly game: string | undefined;
+  /** Packs in precedence order (last wins). */
+  readonly packs: readonly string[];
 
-  constructor(kinds: readonly ContentKind[], files: readonly ContentFile[], game: string | undefined) {
-    this.game = game;
+  constructor(kinds: readonly ContentKind[], files: readonly ContentFile[], packs: readonly string[]) {
+    this.packs = packs;
     for (const k of kinds) {
       this.kinds.set(k.name, k);
       this.byFolder.set(k.folder, k);
       this.items.set(k.name, new Map());
     }
-    const sorted = [...files].sort(
-      (a, b) => Number(a.path.startsWith('games/')) - Number(b.path.startsWith('games/')),
-    );
-    for (const f of sorted) this.upsert(f);
+    const rank = (f: ContentFile) => this.packs.indexOf(parseContentPath(f.path)?.pack ?? '');
+    for (const f of [...files].sort((a, b) => rank(a) - rank(b))) this.upsert(f);
+  }
+
+  /** The game pack ("game:<name>") if any: where new game content should be created. */
+  get gamePack(): string | undefined {
+    return this.packs.find((p) => p.startsWith('game:'));
   }
 
   /** Adds or replaces a file (hot reload). Returns the entry, or undefined if not content. */
   upsert(file: ContentFile): ContentEntry | undefined {
     const info = parseContentPath(file.path);
-    if (!info) return undefined;
-    if (info.origin === 'game' && info.game !== this.game) return undefined;
+    if (!info || !this.packs.includes(info.pack)) return undefined;
     const kind = this.byFolder.get(info.folder);
+    if (!kind && info.pack !== this.gamePack) return undefined;
     if (!kind) {
       this.stray.push(
         new EngineError({
@@ -69,7 +75,7 @@ export class ContentStore {
       kind,
       id: info.id,
       file: file.path,
-      origin: info.origin,
+      pack: info.pack,
       raw: undefined,
       parsed: undefined,
       value: undefined,
@@ -96,7 +102,7 @@ export class ContentStore {
     const map = this.items.get(kind.name)!;
     const prev = map.get(info.id);
     if (prev && prev.file !== entry.file) {
-      if (prev.origin === 'game' && entry.origin === 'engine') {
+      if (this.packs.indexOf(prev.pack) > this.packs.indexOf(entry.pack)) {
         this.shadowed.push(entry);
         return entry;
       }
@@ -144,7 +150,7 @@ export class ContentStore {
         what: `No ${kind.name} with id "${id}"`,
         ...(where ? { where } : {}),
         why: didYouMean(id, this.ids(kind)),
-        fix: `Create ${contentFilePath(this.game, kind.folder, id)} (npm run new -- ${kind.name} ${id}${this.game ? ` --game ${this.game}` : ''}).`,
+        fix: `Create ${contentFilePath(this.gamePack ?? 'engine', kind.folder, id)} (npm run new -- ${kind.name} ${id}${this.gamePack ? ` --game ${this.gamePack.slice(5)}` : ''}).`,
       });
     }
     if (e.errors.length) throw e.errors[0]!;

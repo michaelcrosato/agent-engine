@@ -1,0 +1,19 @@
+{
+  "doc": "Grunt double claw swipe: raise both arms, slash down, recover.",
+  "duration": 0.6,
+  "tracks": [
+    {
+      "part": "armL",
+      "prop": "rot.x",
+      "keys": [[0, 0], [0.18, -150], [0.32, 30], [0.6, 0]],
+      "ease": "smooth"
+    },
+    {
+      "part": "armR",
+      "prop": "rot.x",
+      "keys": [[0, 0], [0.22, -150], [0.36, 30], [0.6, 0]],
+      "ease": "smooth"
+    },
+    { "part": "body", "prop": "rot.x", "keys": [[0, 0], [0.18, -10], [0.32, 18], [0.6, 0]], "ease": "smooth" }
+  ]
+}
