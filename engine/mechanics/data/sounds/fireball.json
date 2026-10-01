@@ -1,0 +1,16 @@
+{
+  "doc": "Plasma ball launch: rising FM whoosh.",
+  "gain": 0.5,
+  "pitchVariation": 0.1,
+  "layers": [
+    {
+      "wave": "fm",
+      "freq": 200,
+      "freqEnd": 500,
+      "fmRatio": 2.01,
+      "fmIndex": 5,
+      "fmIndexEnd": 1,
+      "env": { "attack": 0.01, "decay": 0.3, "release": 0.1 }
+    }
+  ]
+}

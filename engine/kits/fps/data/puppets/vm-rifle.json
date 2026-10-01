@@ -1,0 +1,48 @@
+{
+  "doc": "Assault rifle viewmodel with magazine and glowing sight.",
+  "parts": [
+    {
+      "id": "body",
+      "shape": "box",
+      "size": [0.07, 0.1, 0.42],
+      "pos": [0, 0.02, -0.12],
+      "pivot": "center",
+      "material": "gun"
+    },
+    {
+      "id": "barrel",
+      "shape": "cylinder",
+      "size": [0.03, 0.25, 0.03],
+      "pos": [0, 0.03, -0.45],
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "material": "gun-light"
+    },
+    {
+      "id": "mag",
+      "shape": "box",
+      "size": [0.05, 0.16, 0.07],
+      "pos": [0, -0.08, -0.1],
+      "rot": [10, 0, 0],
+      "pivot": "center",
+      "material": "dark"
+    },
+    {
+      "id": "sight",
+      "shape": "box",
+      "size": [0.03, 0.04, 0.08],
+      "pos": [0, 0.09, -0.1],
+      "pivot": "center",
+      "material": "glow-blue",
+      "shadow": false
+    },
+    {
+      "id": "stock",
+      "shape": "box",
+      "size": [0.05, 0.09, 0.16],
+      "pos": [0, -0.01, 0.16],
+      "pivot": "center",
+      "material": "dark"
+    }
+  ]
+}

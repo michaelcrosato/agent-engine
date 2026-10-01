@@ -1,0 +1,15 @@
+{
+  "doc": "Room exit pad: step on it to load RoomExit.room at RoomExit.spawn.",
+  "components": {
+    "Body": {
+      "type": "static",
+      "shape": "cylinder",
+      "size": [1.6, 2, 1.6],
+      "sensor": true,
+      "layer": "trigger"
+    },
+    "Model": { "puppet": "exit-pad" },
+    "Light": { "intensity": 15, "range": 6, "offset": [0, 0.8, 0], "color": "#6ac8ff" },
+    "RoomExit": {}
+  }
+}

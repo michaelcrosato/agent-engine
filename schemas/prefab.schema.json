@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "prefab (data/prefabs)",
+  "description": "Entity template: components (by name) with field values, tags, and an optional parent.",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "default": "",
+      "description": "What this prefab is, one line",
+      "type": "string"
+    },
+    "extends": {
+      "default": "",
+      "description": "Parent prefab id; components merge field by field",
+      "ref": "prefab",
+      "type": "string"
+    },
+    "tags": {
+      "default": [],
+      "description": "Tags added to every instance",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "components": {
+      "type": "object",
+      "description": "Component name → fields",
+      "additionalProperties": false,
+      "properties": {
+        "AmbientSound": {
+          "$ref": "components.schema.json#/$defs/AmbientSound"
+        },
+        "Animator": {
+          "$ref": "components.schema.json#/$defs/Animator"
+        },
+        "Arsenal": {
+          "$ref": "components.schema.json#/$defs/Arsenal"
+        },
+        "Body": {
+          "$ref": "components.schema.json#/$defs/Body"
+        },
+        "Brain": {
+          "$ref": "components.schema.json#/$defs/Brain"
+        },
+        "CameraRig": {
+          "$ref": "components.schema.json#/$defs/CameraRig"
+        },
+        "CharacterBody": {
+          "$ref": "components.schema.json#/$defs/CharacterBody"
+        },
+        "Counter": {
+          "$ref": "components.schema.json#/$defs/Counter"
+        },
+        "Door": {
+          "$ref": "components.schema.json#/$defs/Door"
+        },
+        "Explosive": {
+          "$ref": "components.schema.json#/$defs/Explosive"
+        },
+        "FpsController": {
+          "$ref": "components.schema.json#/$defs/FpsController"
+        },
+        "Hazard": {
+          "$ref": "components.schema.json#/$defs/Hazard"
+        },
+        "Health": {
+          "$ref": "components.schema.json#/$defs/Health"
+        },
+        "Interactable": {
+          "$ref": "components.schema.json#/$defs/Interactable"
+        },
+        "Interactor": {
+          "$ref": "components.schema.json#/$defs/Interactor"
+        },
+        "Inventory": {
+          "$ref": "components.schema.json#/$defs/Inventory"
+        },
+        "Label": {
+          "$ref": "components.schema.json#/$defs/Label"
+        },
+        "Light": {
+          "$ref": "components.schema.json#/$defs/Light"
+        },
+        "Model": {
+          "$ref": "components.schema.json#/$defs/Model"
+        },
+        "Motion": {
+          "$ref": "components.schema.json#/$defs/Motion"
+        },
+        "Mover": {
+          "$ref": "components.schema.json#/$defs/Mover"
+        },
+        "Pickup": {
+          "$ref": "components.schema.json#/$defs/Pickup"
+        },
+        "Projectile": {
+          "$ref": "components.schema.json#/$defs/Projectile"
+        },
+        "Respawn": {
+          "$ref": "components.schema.json#/$defs/Respawn"
+        },
+        "RoomExit": {
+          "$ref": "components.schema.json#/$defs/RoomExit"
+        },
+        "Spawner": {
+          "$ref": "components.schema.json#/$defs/Spawner"
+        },
+        "SpawnPoint": {
+          "$ref": "components.schema.json#/$defs/SpawnPoint"
+        },
+        "Target": {
+          "$ref": "components.schema.json#/$defs/Target"
+        },
+        "Timer": {
+          "$ref": "components.schema.json#/$defs/Timer"
+        },
+        "Transform": {
+          "$ref": "components.schema.json#/$defs/Transform"
+        },
+        "Trigger": {
+          "$ref": "components.schema.json#/$defs/Trigger"
+        },
+        "Weapon": {
+          "$ref": "components.schema.json#/$defs/Weapon"
+        }
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Editor schema hint (ignored by the engine)"
+    }
+  },
+  "additionalProperties": false
+}

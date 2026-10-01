@@ -1,0 +1,27 @@
+{
+  "doc": "Pistol shot: noise crack + low thump + metallic snap.",
+  "gain": 0.75,
+  "pitchVariation": 0.06,
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.001, "decay": 0.09, "release": 0.12, "curve": 3 },
+      "filter": { "type": "lowpass", "freq": 6000, "freqEnd": 700, "q": 0.9 }
+    },
+    {
+      "wave": "sine",
+      "freq": 160,
+      "freqEnd": 50,
+      "env": { "attack": 0.001, "decay": 0.12, "release": 0.05 },
+      "gain": 0.9
+    },
+    {
+      "wave": "square",
+      "freq": 900,
+      "freqEnd": 200,
+      "env": { "attack": 0.0005, "decay": 0.03, "release": 0.01 },
+      "gain": 0.15
+    }
+  ],
+  "fx": { "drive": 0.25, "reverb": 0.15, "room": 0.4 }
+}

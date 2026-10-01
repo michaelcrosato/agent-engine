@@ -1,0 +1,8 @@
+{
+  "doc": "Gunner firing: rifle recoil kicks.",
+  "duration": 0.35,
+  "tracks": [
+    { "part": "arms", "prop": "pos.z", "keys": [[0, 0], [0.04, 0.08], [0.35, 0]], "ease": "out" },
+    { "part": "arms", "prop": "rot.x", "keys": [[0, 0], [0.04, 8], [0.35, 0]], "ease": "out" }
+  ]
+}

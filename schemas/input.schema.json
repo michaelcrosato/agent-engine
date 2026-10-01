@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "input (data/input)",
+  "description": "Input map: named actions bound to keys, mouse buttons, and gamepad controls.",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "default": "",
+      "type": "string"
+    },
+    "actions": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "description": "Action → list of bindings"
+    },
+    "mouse": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "sensitivity": {
+          "default": 0.12,
+          "description": "Degrees per pixel",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "invertY": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "gamepad": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "lookSpeed": {
+          "default": 180,
+          "description": "Degrees per second at full stick",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "deadzone": {
+          "default": 0.15,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.9
+        },
+        "invertY": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Editor schema hint (ignored by the engine)"
+    }
+  },
+  "required": [
+    "actions"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,183 @@
+{
+  "doc": "Shooting range: knock down targets for points (HUD score), try every weapon, and blow up the barrels at the back.",
+  "look": "industrial",
+  "music": "",
+  "grid": {
+    "cell": 2,
+    "wallHeight": 5,
+    "ceiling": true,
+    "legend": {
+      "B": {
+        "prefab": "barrel"
+      }
+    },
+    "rows": [
+      "##############",
+      "#...B.BB.B...#",
+      "#............#",
+      "#............#",
+      "#............#",
+      "#............#",
+      "#............#",
+      "#............#",
+      "#............#",
+      "#............#",
+      "#............#",
+      "#=====..=====#",
+      "#............#",
+      "#............#",
+      "#............#",
+      "#.....P......#",
+      "##############"
+    ]
+  },
+  "entities": [
+    {
+      "prefab": "target",
+      "name": "target-1",
+      "cell": [3, 8],
+      "rot": 180
+    },
+    {
+      "prefab": "target",
+      "name": "target-2",
+      "cell": [6, 8],
+      "rot": 180
+    },
+    {
+      "prefab": "target",
+      "name": "target-3",
+      "cell": [10, 8],
+      "rot": 180
+    },
+    {
+      "prefab": "target",
+      "name": "target-4",
+      "cell": [2, 5],
+      "rot": 180
+    },
+    {
+      "prefab": "target",
+      "name": "target-5",
+      "cell": [11, 5],
+      "rot": 180
+    },
+    {
+      "prefab": "target",
+      "name": "target-slider",
+      "cell": [7, 3],
+      "rot": 180,
+      "with": {
+        "Mover": {
+          "points": [[-8, 0, 0], [8, 0, 0]],
+          "speed": 3,
+          "wait": 0.3
+        },
+        "Body": {
+          "type": "kinematic"
+        },
+        "Target": {
+          "points": 50
+        }
+      }
+    },
+    {
+      "prefab": "pickup-shotgun",
+      "name": "pickup-shotgun",
+      "cell": [2, 12]
+    },
+    {
+      "prefab": "pickup-rifle",
+      "name": "pickup-rifle",
+      "cell": [4, 12]
+    },
+    {
+      "prefab": "pickup-launcher",
+      "name": "pickup-launcher",
+      "cell": [9, 12]
+    },
+    {
+      "prefab": "pickup-wrench",
+      "name": "pickup-wrench",
+      "cell": [11, 12]
+    },
+    {
+      "prefab": "ammo-bullets",
+      "name": "ammo-1",
+      "cell": [2, 14],
+      "with": {
+        "Pickup": {
+          "respawn": 10
+        }
+      }
+    },
+    {
+      "prefab": "ammo-shells",
+      "name": "ammo-2",
+      "cell": [4, 14],
+      "with": {
+        "Pickup": {
+          "respawn": 10
+        }
+      }
+    },
+    {
+      "prefab": "ammo-rockets",
+      "name": "ammo-3",
+      "cell": [9, 14],
+      "with": {
+        "Pickup": {
+          "respawn": 10
+        }
+      }
+    },
+    {
+      "prefab": "lamp",
+      "pos": [14, 5, 5]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [14, 5, 14]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [14, 5, 26]
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-range",
+      "pos": [14, 2.6, 21.2],
+      "with": {
+        "Label": {
+          "text": "SHOOTING RANGE\n10 pts per target, 50 for the slider",
+          "size": 0.3
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-weapons",
+      "pos": [14, 0.9, 25.5],
+      "with": {
+        "Label": {
+          "text": "Weapons: 1 wrench  2 pistol  3 shotgun  4 rifle  5 launcher",
+          "size": 0.22
+        }
+      }
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-hub",
+      "cell": [12, 15],
+      "with": {
+        "RoomExit": {
+          "room": "hub",
+          "spawn": "from-range"
+        },
+        "Label": {
+          "text": "Back to hub"
+        }
+      }
+    }
+  ]
+}

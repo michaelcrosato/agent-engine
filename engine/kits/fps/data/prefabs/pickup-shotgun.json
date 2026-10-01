@@ -1,0 +1,8 @@
+{
+  "doc": "Shotgun on the floor: grants the weapon (or 12 shells if owned).",
+  "extends": "pickup-base",
+  "components": {
+    "Pickup": { "kind": "weapon", "item": "weapons/shotgun", "message": "Shotgun!" },
+    "Model": { "puppet": "vm-shotgun" }
+  }
+}

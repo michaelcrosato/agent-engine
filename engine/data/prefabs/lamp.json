@@ -1,0 +1,7 @@
+{
+  "doc": "Hanging ceiling lamp; place its origin at the ceiling height.",
+  "components": {
+    "Model": { "puppet": "lamp" },
+    "Light": { "intensity": 40, "range": 14, "offset": [0, -1.05, 0], "color": "#ffe2b8" }
+  }
+}

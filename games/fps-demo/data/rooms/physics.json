@@ -1,0 +1,228 @@
+{
+  "doc": "Physics playground: stacked crates, chain-reacting barrels, pushable crates, rolling balls, and a kinematic pusher.",
+  "look": "industrial",
+  "music": "",
+  "grid": {
+    "cell": 2,
+    "wallHeight": 6,
+    "legend": {},
+    "rows": [
+      "################",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#......P.......#",
+      "################"
+    ]
+  },
+  "entities": [
+    {
+      "prefab": "crate",
+      "name": "pyr-1",
+      "pos": [5.0, 0, 5]
+    },
+    {
+      "prefab": "crate",
+      "name": "pyr-2",
+      "pos": [6.05, 0, 5]
+    },
+    {
+      "prefab": "crate",
+      "name": "pyr-3",
+      "pos": [7.1, 0, 5]
+    },
+    {
+      "prefab": "crate",
+      "name": "pyr-4",
+      "pos": [5.52, 1.0, 5]
+    },
+    {
+      "prefab": "crate",
+      "name": "pyr-5",
+      "pos": [6.58, 1.0, 5]
+    },
+    {
+      "prefab": "crate",
+      "name": "pyr-6",
+      "pos": [6.05, 2.0, 5]
+    },
+    {
+      "prefab": "barrel",
+      "name": "barrel-a",
+      "pos": [9.2, 0, 5.2]
+    },
+    {
+      "prefab": "barrel",
+      "name": "barrel-b",
+      "pos": [10.4, 0, 5.8]
+    },
+    {
+      "prefab": "barrel",
+      "name": "barrel-c",
+      "pos": [9.6, 0, 6.9]
+    },
+    {
+      "prefab": "crate",
+      "name": "wall-1",
+      "pos": [13.0, 0.0, 13]
+    },
+    {
+      "prefab": "crate",
+      "name": "wall-2",
+      "pos": [14.05, 0.0, 13]
+    },
+    {
+      "prefab": "crate",
+      "name": "wall-3",
+      "pos": [15.1, 0.0, 13]
+    },
+    {
+      "prefab": "crate",
+      "name": "wall-4",
+      "pos": [16.15, 0.0, 13]
+    },
+    {
+      "prefab": "crate",
+      "name": "wall-5",
+      "pos": [13.0, 1.0, 13]
+    },
+    {
+      "prefab": "crate",
+      "name": "wall-6",
+      "pos": [14.05, 1.0, 13]
+    },
+    {
+      "prefab": "crate",
+      "name": "wall-7",
+      "pos": [15.1, 1.0, 13]
+    },
+    {
+      "prefab": "crate",
+      "name": "wall-8",
+      "pos": [16.15, 1.0, 13]
+    },
+    {
+      "prefab": "ramp",
+      "name": "ramp",
+      "pos": [21, 0, 8]
+    },
+    {
+      "prefab": "ball",
+      "name": "ball-1",
+      "pos": [20.6, 1.4, 6.6]
+    },
+    {
+      "prefab": "ball",
+      "name": "ball-2",
+      "pos": [21.4, 1.4, 6.4]
+    },
+    {
+      "prefab": "ball",
+      "name": "ball-3",
+      "pos": [21, 2.3, 6.5]
+    },
+    {
+      "prefab": "pusher",
+      "name": "pusher",
+      "pos": [26, 0, 22]
+    },
+    {
+      "prefab": "crate",
+      "name": "swept-1",
+      "pos": [26, 0, 17]
+    },
+    {
+      "prefab": "crate",
+      "name": "swept-2",
+      "pos": [25.4, 0, 15]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [8, 6, 6]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [22, 6, 8]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [16, 6, 18]
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-1",
+      "pos": [6, 3.4, 5.6],
+      "with": {
+        "Label": {
+          "text": "Shoot a barrel",
+          "size": 0.3
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-2",
+      "pos": [14.6, 2.6, 13.6],
+      "with": {
+        "Label": {
+          "text": "Walk into crates to push them",
+          "size": 0.3
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-3",
+      "pos": [21, 3.2, 9],
+      "with": {
+        "Label": {
+          "text": "Balls roll downhill",
+          "size": 0.3
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-4",
+      "pos": [26, 2.2, 23],
+      "with": {
+        "Label": {
+          "text": "Kinematic pusher",
+          "size": 0.3
+        }
+      }
+    },
+    {
+      "prefab": "barrel",
+      "name": "barrel-d",
+      "pos": [17, 0, 20]
+    },
+    {
+      "prefab": "health-small",
+      "name": "medkit",
+      "cell": [3, 11]
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-hub",
+      "cell": [1, 12],
+      "with": {
+        "RoomExit": {
+          "room": "hub",
+          "spawn": "from-physics"
+        },
+        "Label": {
+          "text": "Back to hub"
+        }
+      }
+    }
+  ]
+}

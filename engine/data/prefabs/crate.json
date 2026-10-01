@@ -1,0 +1,8 @@
+{
+  "doc": "1 m wooden crate you can push and shoot around.",
+  "tags": ["prop"],
+  "components": {
+    "Body": { "type": "dynamic", "size": 1, "mass": 20, "layer": "prop", "friction": 0.7 },
+    "Model": { "puppet": "crate" }
+  }
+}

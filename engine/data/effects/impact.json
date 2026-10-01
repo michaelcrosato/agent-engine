@@ -1,0 +1,12 @@
+{
+  "doc": "Bullet impact: quick sparks off the surface plus dust.",
+  "count": 10,
+  "lifetime": [0.15, 0.4],
+  "speed": [2, 6],
+  "spread": 55,
+  "size": [0.025, 0.05],
+  "color": "#ffe2a0",
+  "colorEnd": "#ff6a1a",
+  "gravity": -12,
+  "sound": "impact"
+}

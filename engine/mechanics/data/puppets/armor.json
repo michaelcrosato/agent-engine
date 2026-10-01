@@ -1,0 +1,14 @@
+{
+  "doc": "Blue armor vest.",
+  "parts": [
+    { "id": "vest", "shape": "box", "size": [0.55, 0.6, 0.25], "material": "blue" },
+    {
+      "id": "plate",
+      "shape": "box",
+      "size": [0.4, 0.35, 0.05],
+      "pos": [0, 0.15, -0.14],
+      "material": "glow-blue",
+      "shadow": false
+    }
+  ]
+}

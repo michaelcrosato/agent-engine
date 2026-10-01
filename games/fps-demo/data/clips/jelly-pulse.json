@@ -1,0 +1,12 @@
+{
+  "doc": "Jellyfish swim: the bell squashes and stretches, the body bobs, tentacles sway.",
+  "duration": 2,
+  "tracks": [
+    { "part": "bell", "prop": "scale.y", "wave": { "amp": 0.2, "freq": 0.5, "offset": 1 } },
+    { "part": "bell", "prop": "scale.x", "wave": { "amp": 0.12, "freq": 0.5, "phase": 0.5, "offset": 1 } },
+    { "part": "bell", "prop": "scale.z", "wave": { "amp": 0.12, "freq": 0.5, "phase": 0.5, "offset": 1 } },
+    { "part": "bell", "prop": "pos.y", "wave": { "amp": 0.25, "freq": 0.5, "phase": 0.25 } },
+    { "part": "t1", "prop": "rot.z", "wave": { "amp": 12, "freq": 0.5 } },
+    { "part": "t2", "prop": "rot.x", "wave": { "amp": 12, "freq": 0.5, "phase": 0.3 } }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "doc": "Machine hum loop (use with AmbientSound interval 0).",
+  "gain": 0.25,
+  "layers": [
+    {
+      "wave": "saw",
+      "freq": 60,
+      "env": { "attack": 0.2, "decay": 0, "sustain": 1, "sustainTime": 3.6, "release": 0.2 },
+      "filter": { "freq": 220, "q": 2 }
+    },
+    {
+      "wave": "sine",
+      "freq": 120,
+      "tremoloRate": 0.5,
+      "tremoloDepth": 0.4,
+      "env": { "attack": 0.2, "sustain": 1, "sustainTime": 3.6, "release": 0.2 },
+      "gain": 0.4
+    }
+  ]
+}

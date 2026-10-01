@@ -1,0 +1,160 @@
+{
+  "doc": "Movement course: 0.5 m stairs, a gap, a 1 m ledge you must jump, an elevator, a ramp, and a goal on the upper deck.",
+  "look": "dusk",
+  "music": "calm",
+  "grid": {
+    "cell": 2,
+    "wallHeight": 7,
+    "legend": {},
+    "rows": [
+      "################",
+      "#666666.6688888#",
+      "#5.........8888#",
+      "#4.........8888#",
+      "#3.........8888#",
+      "#2.............#",
+      "#1...2.........#",
+      "#..............#",
+      "#P.............#",
+      "#..............#",
+      "#..............#",
+      "################"
+    ]
+  },
+  "entities": [
+    {
+      "prefab": "platform-moving",
+      "name": "elevator",
+      "cell": [12, 5]
+    },
+    {
+      "prefab": "ramp",
+      "name": "ramp",
+      "pos": [11, 0, 16]
+    },
+    {
+      "prefab": "crate-static",
+      "name": "box-1",
+      "cell": [8, 8]
+    },
+    {
+      "prefab": "crate-static",
+      "name": "box-2",
+      "pos": [17, 1, 17]
+    },
+    {
+      "prefab": "trigger",
+      "name": "goal",
+      "cell": [14, 1],
+      "with": {
+        "Trigger": {
+          "once": true,
+          "onEnter": [
+            {
+              "message": "Course complete!",
+              "sound": "pickup"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-hub",
+      "cell": [1, 10],
+      "with": {
+        "RoomExit": {
+          "room": "hub",
+          "spawn": "from-movement"
+        },
+        "Label": {
+          "text": "Back to hub",
+          "offset": [0, 2.6, 0]
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-stairs",
+      "pos": [3, 3.2, 13],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "Stairs: 0.5 m steps",
+          "size": 0.35
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-gap",
+      "pos": [15, 5.8, 3.2],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "Mind the gap",
+          "size": 0.35
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-ledge",
+      "pos": [19.5, 6.2, 3.2],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "1 m ledge: jump!",
+          "size": 0.35
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-elevator",
+      "pos": [25, 6.8, 11],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "Elevator",
+          "size": 0.35
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-ramp",
+      "pos": [11, 3.4, 18.2],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "Ramp",
+          "size": 0.35
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-goal",
+      "pos": [29, 6.6, 3.2],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "Goal",
+          "size": 0.35
+        }
+      }
+    },
+    {
+      "prefab": "light",
+      "name": "deck-light",
+      "pos": [26, 6.5, 6],
+      "with": {
+        "Light": {
+          "intensity": 40,
+          "range": 14
+        }
+      }
+    }
+  ]
+}

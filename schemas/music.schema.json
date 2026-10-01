@@ -1,0 +1,529 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "music (data/music)",
+  "description": "Looping song: tempo, key, chord progression, and step-sequenced tracks of synth instruments.",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "default": "",
+      "type": "string"
+    },
+    "bpm": {
+      "default": 110,
+      "type": "number",
+      "minimum": 30,
+      "maximum": 300
+    },
+    "bars": {
+      "default": 8,
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 128
+    },
+    "beatsPerBar": {
+      "default": 4,
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 16
+    },
+    "stepsPerBar": {
+      "default": 16,
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "swing": {
+      "default": 0,
+      "description": "Delay of off-beat steps (fraction of a step)",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 0.5
+    },
+    "key": {
+      "default": "A",
+      "type": "string",
+      "enum": [
+        "C",
+        "C#",
+        "Db",
+        "D",
+        "D#",
+        "Eb",
+        "E",
+        "F",
+        "F#",
+        "Gb",
+        "G",
+        "G#",
+        "Ab",
+        "A",
+        "A#",
+        "Bb",
+        "B"
+      ]
+    },
+    "scale": {
+      "default": "minor",
+      "type": "string",
+      "enum": [
+        "major",
+        "minor",
+        "dorian",
+        "phrygian",
+        "lydian",
+        "mixolydian",
+        "harmonicMinor",
+        "pentatonic",
+        "minorPentatonic",
+        "blues"
+      ]
+    },
+    "chords": {
+      "default": [
+        "i"
+      ],
+      "description": "Roman numerals per bar, cycled: [\"i\",\"VI\",\"III\",\"VII\"]",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "instruments": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "doc": {
+                "default": "",
+                "type": "string"
+              },
+              "gain": {
+                "default": 0.8,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 4
+              },
+              "layers": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "wave": {
+                      "default": "sine",
+                      "type": "string",
+                      "enum": [
+                        "sine",
+                        "square",
+                        "saw",
+                        "triangle",
+                        "noise",
+                        "pink",
+                        "brown",
+                        "fm",
+                        "pluck"
+                      ]
+                    },
+                    "freq": {
+                      "default": 440,
+                      "description": "Hz. In music instruments, 440 = the played note",
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 20000
+                    },
+                    "freqEnd": {
+                      "description": "Pitch glides (exponentially) to this",
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 20000
+                    },
+                    "glide": {
+                      "default": 0,
+                      "description": "Glide seconds (0 = whole layer)",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "duty": {
+                      "default": 0.5,
+                      "description": "square: pulse width",
+                      "type": "number",
+                      "minimum": 0.05,
+                      "maximum": 0.95
+                    },
+                    "fmRatio": {
+                      "default": 2,
+                      "description": "fm: modulator frequency ratio",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "fmIndex": {
+                      "default": 2,
+                      "description": "fm: modulation depth (brightness)",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "fmIndexEnd": {
+                      "description": "fm: depth at the end (bell → mellow)",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "vibratoRate": {
+                      "default": 0,
+                      "description": "Hz",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "vibratoDepth": {
+                      "default": 0,
+                      "description": "Semitones",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "tremoloRate": {
+                      "default": 0,
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "tremoloDepth": {
+                      "default": 0,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "detune": {
+                      "default": 0,
+                      "description": "Cents",
+                      "type": "number"
+                    },
+                    "env": {
+                      "default": {},
+                      "type": "object",
+                      "properties": {
+                        "attack": {
+                          "default": 0.005,
+                          "description": "Seconds to full volume",
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "hold": {
+                          "default": 0,
+                          "description": "Seconds at full volume",
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "decay": {
+                          "default": 0.1,
+                          "description": "Seconds from full to sustain level",
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "sustain": {
+                          "default": 0,
+                          "description": "Level held until note-off (0..1)",
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        "sustainTime": {
+                          "default": 0,
+                          "description": "Seconds held at sustain (one-shots); notes override",
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "release": {
+                          "default": 0.1,
+                          "description": "Seconds to silence after sustain",
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "curve": {
+                          "default": 2,
+                          "description": "1 = linear decay, higher = punchier",
+                          "type": "number",
+                          "minimum": 0.2,
+                          "maximum": 8
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "filter": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "default": "lowpass",
+                          "type": "string",
+                          "enum": [
+                            "lowpass",
+                            "highpass",
+                            "bandpass"
+                          ]
+                        },
+                        "freq": {
+                          "default": 2000,
+                          "description": "Cutoff in Hz",
+                          "type": "number",
+                          "minimum": 10,
+                          "maximum": 20000
+                        },
+                        "freqEnd": {
+                          "description": "Cutoff at the end (sweep)",
+                          "type": "number",
+                          "minimum": 10,
+                          "maximum": 20000
+                        },
+                        "q": {
+                          "default": 0.8,
+                          "description": "Resonance",
+                          "type": "number",
+                          "minimum": 0.1,
+                          "maximum": 30
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "gain": {
+                      "default": 1,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 4
+                    },
+                    "pan": {
+                      "default": 0,
+                      "type": "number",
+                      "minimum": -1,
+                      "maximum": 1
+                    },
+                    "delay": {
+                      "default": 0,
+                      "description": "Seconds before this layer starts",
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "fx": {
+                "default": {},
+                "type": "object",
+                "properties": {
+                  "drive": {
+                    "default": 0,
+                    "description": "Soft distortion",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "crush": {
+                    "default": 0,
+                    "description": "Bit/sample-rate reduction (lo-fi)",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "echoTime": {
+                    "default": 0,
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2
+                  },
+                  "echoFeedback": {
+                    "default": 0.3,
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 0.95
+                  },
+                  "echoMix": {
+                    "default": 0,
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "reverb": {
+                    "default": 0,
+                    "description": "Reverb mix",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "room": {
+                    "default": 0.5,
+                    "description": "Reverb size",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                },
+                "additionalProperties": false
+              },
+              "pitchVariation": {
+                "default": 0,
+                "description": "Random pitch ± fraction per play",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "gainVariation": {
+                "default": 0,
+                "description": "Random volume ± fraction per play",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "bus": {
+                "default": "sfx",
+                "type": "string",
+                "enum": [
+                  "sfx",
+                  "ui",
+                  "music",
+                  "voice"
+                ]
+              },
+              "maxVoices": {
+                "default": 6,
+                "description": "Oldest instance stops beyond this",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 32
+              }
+            },
+            "required": [
+              "layers"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "description": "Name → sound id or inline patch. Pitched instruments are tuned so freq 440 = the note."
+    },
+    "tracks": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "instrument": {
+            "type": "string",
+            "description": "Key in \"instruments\""
+          },
+          "gain": {
+            "default": 1,
+            "type": "number",
+            "minimum": 0,
+            "maximum": 4
+          },
+          "pan": {
+            "default": 0,
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "octave": {
+            "default": 3,
+            "description": "Octave of chord-relative notes",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 8
+          },
+          "pattern": {
+            "description": "Hits per step: \"x\" hit, \"X\" accent, \".\" rest. Cycles.",
+            "type": "string"
+          },
+          "notes": {
+            "description": "Space-separated steps. 1 3 5 7 = chord tones, 2 4 6 = scale steps, 8 = root up an octave; suffix ' = octave up, , = octave down; note names like C4 also work; \"-\" holds, \".\" rests. Cycles.",
+            "type": "string"
+          },
+          "chord": {
+            "description": "Like pattern, but each hit plays the whole bar chord",
+            "type": "string"
+          },
+          "generate": {
+            "description": "Procedural melody that follows the chords",
+            "type": "object",
+            "properties": {
+              "seed": {
+                "default": 1,
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "density": {
+                "default": 0.4,
+                "description": "Chance of a note per step",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "range": {
+                "default": 7,
+                "description": "Chord-relative steps above the root",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 15
+              },
+              "length": {
+                "default": 16,
+                "description": "Steps before the motif repeats",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 64
+              }
+            },
+            "additionalProperties": false
+          },
+          "gate": {
+            "default": 0.9,
+            "description": "Note length as a fraction of its steps",
+            "type": "number",
+            "minimum": 0.05,
+            "maximum": 4
+          },
+          "bars": {
+            "default": [],
+            "description": "Bars (0-based) this track plays; empty = all",
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "required": [
+          "instrument"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "gain": {
+      "default": 0.7,
+      "type": "number",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "reverb": {
+      "default": 0.15,
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Editor schema hint (ignored by the engine)"
+    }
+  },
+  "required": [
+    "instruments",
+    "tracks"
+  ],
+  "additionalProperties": false
+}

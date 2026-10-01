@@ -1,0 +1,186 @@
+{
+  "doc": "Doors & keys puzzle: a button opens the first door, the red key opens the next, a second button starts a lift up to the blue key, and the blue door leads out. Mind the lava.",
+  "look": "industrial",
+  "music": "eerie",
+  "grid": {
+    "cell": 2,
+    "wallHeight": 7,
+    "ceiling": true,
+    "legend": {
+      "~": {
+        "material": "lava",
+        "prefab": "hazard-zone"
+      }
+    },
+    "rows": [
+      "##################",
+      "#.....#.....#....#",
+      "#.....#.....#.888#",
+      "#................#",
+      "#.....#.....#..~~#",
+      "#..P..#.....#....#",
+      "##############.###",
+      "#############....#",
+      "#############....#",
+      "##################"
+    ]
+  },
+  "entities": [
+    {
+      "prefab": "door-locked",
+      "name": "door-1",
+      "cell": [6, 3],
+      "rot": 90
+    },
+    {
+      "prefab": "door-red",
+      "name": "door-red",
+      "cell": [12, 3],
+      "rot": 90
+    },
+    {
+      "prefab": "door-blue",
+      "name": "door-blue",
+      "cell": [14, 6]
+    },
+    {
+      "prefab": "button",
+      "name": "button-1",
+      "pos": [11.92, 1.1, 4.5],
+      "rot": 90,
+      "with": {
+        "Interactable": {
+          "prompt": "Open the door",
+          "once": true,
+          "onUse": [
+            {
+              "target": "door-1",
+              "action": "open",
+              "message": "Door unlocked"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "key-red",
+      "name": "key-red",
+      "cell": [9, 1]
+    },
+    {
+      "prefab": "platform-moving",
+      "name": "lift",
+      "cell": [13, 2],
+      "with": {
+        "Mover": {
+          "active": false
+        }
+      }
+    },
+    {
+      "prefab": "button",
+      "name": "button-2",
+      "pos": [26.08, 1.1, 9],
+      "rot": -90,
+      "with": {
+        "Interactable": {
+          "prompt": "Start the lift",
+          "once": true,
+          "onUse": [
+            {
+              "target": "lift",
+              "action": "start",
+              "message": "The lift is running"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "key-blue",
+      "name": "key-blue",
+      "cell": [15, 2]
+    },
+    {
+      "prefab": "trigger",
+      "name": "done",
+      "cell": [15, 7],
+      "with": {
+        "Trigger": {
+          "once": true,
+          "onEnter": [
+            {
+              "message": "Puzzle solved!",
+              "sound": "pickup"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-hub",
+      "cell": [15, 8],
+      "with": {
+        "RoomExit": {
+          "room": "hub",
+          "spawn": "from-keys"
+        },
+        "Label": {
+          "text": "Back to hub"
+        }
+      }
+    },
+    {
+      "prefab": "lamp",
+      "pos": [6, 7, 6]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [18, 7, 6]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [30, 7, 5]
+    },
+    {
+      "prefab": "lamp",
+      "pos": [30, 7, 16]
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-1",
+      "pos": [9, 2.6, 7],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "Look at the button, press E",
+          "size": 0.28
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-lava",
+      "pos": [30, 1.6, 9],
+      "with": {
+        "Label": {
+          "text": "LAVA",
+          "size": 0.3,
+          "color": "#ff8a5a"
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "sign-key",
+      "pos": [31, 7.0, 5.6],
+      "with": {
+        "Label": {
+          "text": "Blue key: take the lift",
+          "size": 0.28
+        }
+      }
+    }
+  ]
+}

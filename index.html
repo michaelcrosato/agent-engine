@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent Engine</title>
+    <link rel="icon" href="data:," />
+    <style>
+      html, body, #app { margin: 0; height: 100%; overflow: hidden; background: #0d0f12; color: #e8eaed;
+        font: 14px/1.4 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+      .engine-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+      .engine-overlay { position: absolute; inset: 0; pointer-events: none; }
+      .engine-overlay > * { pointer-events: auto; }
+      .engine-errors { position: absolute; top: 8px; left: 8px; right: 8px; display: flex; flex-direction: column; gap: 6px; z-index: 50; }
+      .engine-errors pre, .engine-fatal { margin: 0; padding: 8px 10px; background: rgba(60, 8, 8, 0.92); border-left: 4px solid #ff5c5c;
+        color: #ffd9d9; font: 12px/1.45 ui-monospace, Menlo, Consolas, monospace; white-space: pre-wrap; cursor: pointer; }
+      .engine-launcher { max-width: 720px; margin: 40px auto; padding: 0 20px; overflow: auto; height: calc(100% - 80px); }
+      .engine-launcher h1 { font-size: 26px; letter-spacing: 0.04em; }
+      .engine-launcher a { color: #8ab4ff; text-decoration: none; }
+      .engine-launcher a.edit { color: #888; font-size: 12px; }
+      .engine-launcher li { margin: 4px 0; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import { main } from '/engine/app/main.ts';
+      main();
+    </script>
+  </body>
+</html>

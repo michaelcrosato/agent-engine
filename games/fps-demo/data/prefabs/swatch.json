@@ -1,0 +1,8 @@
+{
+  "doc": "Material swatch cube for the looks gallery: override Model.parts[0].material and Label.text.",
+  "components": {
+    "Body": { "type": "static", "size": 1.6 },
+    "Model": { "parts": [{ "shape": "box", "size": 1.6, "material": "default" }] },
+    "Label": { "text": "default", "size": 0.26, "offset": [0, 2.1, 0] }
+  }
+}

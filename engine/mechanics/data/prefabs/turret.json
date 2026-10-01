@@ -1,0 +1,22 @@
+{
+  "doc": "Stationary turret: 360° awareness, quick weak shots (4 dmg). 80 hp.",
+  "tags": ["enemy"],
+  "components": {
+    "Body": { "type": "static", "shape": "cylinder", "size": [0.9, 1, 0.9] },
+    "Model": { "puppet": "turret" },
+    "Health": { "max": 80, "hurtSound": "robot-hurt", "deathEffect": "robot-death" },
+    "Brain": {
+      "style": "turret",
+      "sight": 22,
+      "fov": 360,
+      "attackRange": 22,
+      "attackDamage": 5,
+      "attackRate": 3.5,
+      "aimError": 5,
+      "eye": 0.75,
+      "turnRate": 120,
+      "attackSound": "turret-shot",
+      "alertSound": ""
+    }
+  }
+}

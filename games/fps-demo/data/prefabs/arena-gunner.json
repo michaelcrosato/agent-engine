@@ -1,0 +1,8 @@
+{
+  "doc": "Arena wave gunner: hunts the player and counts toward the 'kills' counter when it dies.",
+  "extends": "gunner",
+  "components": {
+    "Brain": { "aggressive": true },
+    "Health": { "onDeath": [{ "target": "kills", "action": "add" }] }
+  }
+}

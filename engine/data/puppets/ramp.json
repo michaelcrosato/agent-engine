@@ -1,0 +1,4 @@
+{
+  "doc": "Wedge ramp 2 x 1 x 4 m rising toward -Z.",
+  "parts": [{ "id": "ramp", "shape": "wedge", "size": [2, 1, 4], "material": "metal" }]
+}

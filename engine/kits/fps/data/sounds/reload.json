@@ -1,0 +1,23 @@
+{
+  "doc": "Reload: magazine out, in, and slide rack.",
+  "gain": 0.45,
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.001, "decay": 0.03, "release": 0.01 },
+      "filter": { "type": "bandpass", "freq": 2200, "q": 3 }
+    },
+    {
+      "wave": "noise",
+      "delay": 0.35,
+      "env": { "attack": 0.001, "decay": 0.04, "release": 0.01 },
+      "filter": { "type": "bandpass", "freq": 1600, "q": 3 }
+    },
+    {
+      "wave": "noise",
+      "delay": 0.7,
+      "env": { "attack": 0.001, "decay": 0.06, "release": 0.02 },
+      "filter": { "type": "bandpass", "freq": 2600, "q": 2 }
+    }
+  ]
+}

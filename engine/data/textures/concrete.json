@@ -1,0 +1,23 @@
+{
+  "doc": "Poured concrete with soft stains and hairline cracks.",
+  "seed": 3,
+  "roughness": 0.9,
+  "normal": 2,
+  "layers": [
+    { "op": "fill", "color": "#8c8e90" },
+    { "op": "noise", "scale": 4, "octaves": 5, "color": "#5f6163", "amount": 0.45 },
+    { "op": "noise", "scale": 32, "octaves": 2, "color": "#000000", "amount": 0.12, "height": 0.2 },
+    {
+      "op": "noise",
+      "kind": "ridged",
+      "scale": 3,
+      "octaves": 4,
+      "threshold": 0.82,
+      "softness": 0.03,
+      "color": "#3d3f41",
+      "amount": 0.6,
+      "height": -0.25
+    },
+    { "op": "spots", "count": 60, "radius": 0.006, "color": "#4a4c4e", "amount": 0.5, "height": -0.3 }
+  ]
+}

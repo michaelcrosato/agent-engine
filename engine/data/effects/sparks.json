@@ -1,0 +1,12 @@
+{
+  "doc": "Shower of electric sparks.",
+  "count": 30,
+  "lifetime": [0.3, 0.8],
+  "speed": [3, 8],
+  "spread": 80,
+  "size": [0.02, 0.04],
+  "color": "#ffffff",
+  "colorEnd": "#4ab8ff",
+  "gravity": -14,
+  "light": { "color": "#8ad0ff", "intensity": 30, "range": 5, "seconds": 0.1 }
+}

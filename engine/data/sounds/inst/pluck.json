@@ -1,0 +1,8 @@
+{
+  "doc": "Instrument: plucked string (Karplus-Strong, tuned).",
+  "gain": 0.5,
+  "bus": "music",
+  "layers": [
+    { "wave": "pluck", "freq": 440, "env": { "attack": 0.001, "decay": 0.6, "release": 0.2, "curve": 1 } }
+  ]
+}

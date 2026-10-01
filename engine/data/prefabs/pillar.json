@@ -1,0 +1,7 @@
+{
+  "doc": "4 m round pillar (static).",
+  "components": {
+    "Body": { "type": "static", "shape": "cylinder", "size": [1, 4, 1] },
+    "Model": { "puppet": "pillar" }
+  }
+}

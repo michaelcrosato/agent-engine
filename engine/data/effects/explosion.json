@@ -1,0 +1,16 @@
+{
+  "doc": "Fireball, embers, and a bright flash.",
+  "count": 90,
+  "lifetime": [0.3, 0.9],
+  "speed": [3, 11],
+  "spread": 180,
+  "size": [0.18, 0.45],
+  "sizeEnd": 0.1,
+  "color": "#fff0b0",
+  "colorEnd": "#ff3a00",
+  "gravity": 2,
+  "drag": 2.5,
+  "radius": 0.4,
+  "light": { "color": "#ffa040", "intensity": 220, "range": 14, "seconds": 0.35 },
+  "sound": "explosion"
+}

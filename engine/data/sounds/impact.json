@@ -1,0 +1,21 @@
+{
+  "doc": "Bullet hitting a hard surface: short tick with ricochet.",
+  "gain": 0.4,
+  "pitchVariation": 0.2,
+  "maxVoices": 8,
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.0005, "decay": 0.03, "release": 0.02, "curve": 3 },
+      "filter": { "type": "highpass", "freq": 1800 }
+    },
+    {
+      "wave": "sine",
+      "freq": 2400,
+      "freqEnd": 1500,
+      "delay": 0.01,
+      "env": { "attack": 0.001, "decay": 0.08, "release": 0.04 },
+      "gain": 0.15
+    }
+  ]
+}

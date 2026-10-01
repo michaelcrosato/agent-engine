@@ -1,0 +1,23 @@
+{
+  "doc": "Enemy notices you: rising growl.",
+  "gain": 0.55,
+  "pitchVariation": 0.12,
+  "maxVoices": 3,
+  "layers": [
+    {
+      "wave": "saw",
+      "freq": 120,
+      "freqEnd": 210,
+      "vibratoRate": 18,
+      "vibratoDepth": 0.6,
+      "env": { "attack": 0.03, "decay": 0.3, "release": 0.15 },
+      "filter": { "freq": 1200, "q": 3 }
+    },
+    {
+      "wave": "noise",
+      "env": { "attack": 0.03, "decay": 0.25, "release": 0.1 },
+      "filter": { "type": "bandpass", "freq": 700, "q": 2 },
+      "gain": 0.4
+    }
+  ]
+}

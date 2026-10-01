@@ -1,0 +1,4 @@
+{
+  "doc": "Invisible point light.",
+  "components": { "Light": { "intensity": 30, "range": 12 } }
+}

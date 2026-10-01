@@ -1,0 +1,36 @@
+{
+  "doc": "Round shooting target on a post (faces -Z).",
+  "parts": [
+    { "id": "post", "shape": "box", "size": [0.08, 1.1, 0.08], "material": "wood" },
+    {
+      "id": "board",
+      "shape": "cylinder",
+      "size": [0.9, 0.06, 0.9],
+      "pos": [0, 1.45, 0],
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "material": "white",
+      "segments": 24
+    },
+    {
+      "id": "ring",
+      "shape": "cylinder",
+      "size": [0.55, 0.07, 0.55],
+      "pos": [0, 1.45, -0.005],
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "material": "red",
+      "segments": 24
+    },
+    {
+      "id": "bull",
+      "shape": "cylinder",
+      "size": [0.2, 0.08, 0.2],
+      "pos": [0, 1.45, -0.01],
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "material": "yellow",
+      "segments": 16
+    }
+  ]
+}

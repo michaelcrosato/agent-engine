@@ -1,0 +1,11 @@
+{
+  "doc": "Dark glossy panels with glowing cyan seams (emissive).",
+  "seed": 12,
+  "roughness": 0.3,
+  "normal": 1,
+  "layers": [
+    { "op": "fill", "color": "#101018", "rough": 0.25 },
+    { "op": "noise", "scale": 6, "octaves": 3, "color": "#1e1e30", "amount": 0.5 },
+    { "op": "lines", "cols": 4, "rows": 4, "width": 0.012, "color": "#00e5ff", "glow": 1, "height": 0.1 }
+  ]
+}

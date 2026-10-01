@@ -1,0 +1,22 @@
+{
+  "doc": "Enemy energy rifle: buzzy zap.",
+  "gain": 0.55,
+  "pitchVariation": 0.08,
+  "layers": [
+    {
+      "wave": "square",
+      "freq": 1200,
+      "freqEnd": 300,
+      "duty": 0.3,
+      "env": { "attack": 0.001, "decay": 0.12, "release": 0.04 },
+      "filter": { "freq": 4000 }
+    },
+    {
+      "wave": "noise",
+      "env": { "attack": 0.001, "decay": 0.05, "release": 0.03 },
+      "filter": { "type": "highpass", "freq": 2000 },
+      "gain": 0.4
+    }
+  ],
+  "fx": { "reverb": 0.15 }
+}

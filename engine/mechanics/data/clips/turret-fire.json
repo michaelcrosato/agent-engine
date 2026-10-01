@@ -1,0 +1,8 @@
+{
+  "doc": "Turret attack: the barrels kick back in turn (one cycle per shot at 3.5 shots/s).",
+  "duration": 0.28,
+  "tracks": [
+    { "part": "barrelL", "prop": "pos.z", "keys": [[0, 0], [0.04, 0.12], [0.14, 0]], "ease": "out" },
+    { "part": "barrelR", "prop": "pos.z", "keys": [[0.14, 0], [0.18, 0.12], [0.28, 0]], "ease": "out" }
+  ]
+}

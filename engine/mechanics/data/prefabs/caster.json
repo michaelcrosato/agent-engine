@@ -1,0 +1,18 @@
+{
+  "doc": "Fireball caster: slow plasma projectiles you can dodge (15 dmg). 45 hp.",
+  "extends": "enemy-base",
+  "components": {
+    "Model": { "puppet": "grunt", "tint": "#b08aff" },
+    "Health": { "max": 45 },
+    "Brain": {
+      "style": "ranged",
+      "projectile": "fireball",
+      "speed": 2.6,
+      "sight": 24,
+      "attackRange": 18,
+      "attackRate": 0.7,
+      "aimError": 2,
+      "attackSound": "fireball"
+    }
+  }
+}

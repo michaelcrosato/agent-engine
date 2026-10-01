@@ -1,0 +1,14 @@
+{
+  "doc": "Round concrete pillar with metal base and cap (4 m).",
+  "parts": [
+    { "id": "base", "shape": "cylinder", "size": [1, 0.3, 1], "material": "metal" },
+    {
+      "id": "shaft",
+      "shape": "cylinder",
+      "size": [0.7, 3.4, 0.7],
+      "pos": [0, 0.3, 0],
+      "material": "concrete"
+    },
+    { "id": "cap", "shape": "cylinder", "size": [1, 0.3, 1], "pos": [0, 3.7, 0], "material": "metal" }
+  ]
+}

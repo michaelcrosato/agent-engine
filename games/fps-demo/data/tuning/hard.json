@@ -1,0 +1,10 @@
+{
+  "doc": "Tougher, faster robots that hit harder. Try it: ?tuning=hard",
+  "prefabs": {
+    "grunt": { "Health": { "max": 100 }, "Brain": { "speed": 5.5, "attackDamage": 18 } },
+    "gunner": { "Health": { "max": 80 }, "Brain": { "attackDamage": 12 } }
+  },
+  "tags": {
+    "enemy": { "Brain": { "aggressive": true } }
+  }
+}

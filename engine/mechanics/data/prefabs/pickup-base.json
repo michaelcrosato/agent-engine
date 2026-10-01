@@ -1,0 +1,15 @@
+{
+  "doc": "Base for pickups: spinning, bobbing, sensor sphere on the pickup layer. Extend it and add Pickup + Model.",
+  "tags": ["pickup"],
+  "components": {
+    "Body": {
+      "type": "static",
+      "shape": "sphere",
+      "size": 1.2,
+      "sensor": true,
+      "layer": "pickup",
+      "pivot": "bottom"
+    },
+    "Motion": { "spin": [0, 90, 0], "bob": 0.15, "bobRate": 0.6 }
+  }
+}

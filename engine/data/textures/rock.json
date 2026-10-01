@@ -1,0 +1,27 @@
+{
+  "doc": "Rough stone with cracks between irregular cells.",
+  "seed": 14,
+  "roughness": 0.95,
+  "normal": 3,
+  "layers": [
+    { "op": "fill", "color": "#5e5a55" },
+    {
+      "op": "cells",
+      "scale": 5,
+      "color": "#76716a",
+      "variation": 0.3,
+      "edge": 0.07,
+      "edgeColor": "#2b2926",
+      "height": 0.25
+    },
+    {
+      "op": "noise",
+      "kind": "ridged",
+      "scale": 6,
+      "octaves": 5,
+      "color": "#000000",
+      "amount": 0.2,
+      "height": 0.4
+    }
+  ]
+}

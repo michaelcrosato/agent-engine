@@ -1,0 +1,6 @@
+{
+  "doc": "Player spawn point. Put a P in a grid map, or place this prefab.",
+  "components": {
+    "SpawnPoint": {}
+  }
+}

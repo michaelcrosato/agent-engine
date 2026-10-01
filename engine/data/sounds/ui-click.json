@@ -1,0 +1,6 @@
+{
+  "doc": "Neutral UI tick.",
+  "gain": 0.35,
+  "bus": "ui",
+  "layers": [{ "wave": "sine", "freq": 1200, "env": { "attack": 0.001, "decay": 0.03, "release": 0.01 } }]
+}

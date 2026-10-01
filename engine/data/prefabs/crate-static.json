@@ -1,0 +1,5 @@
+{
+  "doc": "Immovable crate (cover, stepping stone).",
+  "extends": "crate",
+  "components": { "Body": { "type": "static", "layer": "world" } }
+}

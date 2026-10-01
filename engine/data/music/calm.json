@@ -1,0 +1,38 @@
+{
+  "doc": "Calm exploration loop: plucks over a soft pad, light percussion.",
+  "bpm": 92,
+  "bars": 8,
+  "key": "C",
+  "scale": "major",
+  "chords": ["I", "vi", "IV", "V"],
+  "instruments": {
+    "kick": "inst/kick",
+    "hat": "inst/hat",
+    "bass": "inst/bass",
+    "pad": "inst/pad",
+    "pluck": "inst/pluck",
+    "bell": "inst/bell"
+  },
+  "tracks": [
+    { "instrument": "kick", "pattern": "x.......x.......", "gain": 0.6, "bars": [2, 3, 4, 5, 6, 7] },
+    { "instrument": "hat", "pattern": "..x...x...x...x.", "gain": 0.6, "pan": 0.3 },
+    { "instrument": "bass", "notes": "1 - - - . . 5, - 1 - - - . . 3 -", "octave": 2, "gain": 0.8 },
+    { "instrument": "pad", "chord": "x---------------", "octave": 3, "gain": 0.7 },
+    {
+      "instrument": "pluck",
+      "notes": "1 . 3 . 5 . 3 . 8 . 5 . 3 . 5 .",
+      "octave": 4,
+      "gain": 0.6,
+      "pan": -0.25
+    },
+    {
+      "instrument": "bell",
+      "generate": { "seed": 7, "density": 0.18, "length": 32 },
+      "octave": 5,
+      "gain": 0.5,
+      "bars": [4, 5, 6, 7],
+      "pan": 0.3
+    }
+  ],
+  "reverb": 0.25
+}

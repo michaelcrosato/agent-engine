@@ -1,0 +1,5 @@
+{
+  "doc": "Door that only opens by signal (switches, triggers, counters): no proximity opening.",
+  "extends": "door",
+  "components": { "Door": { "auto": false }, "Model": { "tint": "#c0c0c0" } }
+}

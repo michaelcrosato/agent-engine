@@ -1,0 +1,15 @@
+{
+  "doc": "Turret burst blip.",
+  "gain": 0.45,
+  "pitchVariation": 0.05,
+  "layers": [
+    {
+      "wave": "square",
+      "freq": 1800,
+      "freqEnd": 600,
+      "duty": 0.5,
+      "env": { "attack": 0.001, "decay": 0.06, "release": 0.02 },
+      "filter": { "freq": 5000 }
+    }
+  ]
+}

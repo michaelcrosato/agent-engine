@@ -1,0 +1,9 @@
+{
+  "doc": "Red keycard: opens door-red.",
+  "extends": "pickup-base",
+  "components": {
+    "Pickup": { "kind": "key", "item": "red", "amount": 1, "message": "Picked up the red key" },
+    "Model": { "puppet": "key", "tint": "#ff5a4a" },
+    "Light": { "color": "#ff4a3a", "intensity": 6, "range": 4, "offset": [0, 0.5, 0] }
+  }
+}

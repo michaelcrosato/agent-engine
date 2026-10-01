@@ -1,0 +1,8 @@
+{
+  "doc": "Crate of rockets.",
+  "extends": "pickup-base",
+  "components": {
+    "Pickup": { "kind": "ammo", "item": "rockets", "amount": 5, "message": "+{amount} rockets" },
+    "Model": { "puppet": "ammo-box", "tint": "#9ab8ff" }
+  }
+}

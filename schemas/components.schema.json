@@ -1,0 +1,3023 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Components",
+  "$defs": {
+    "AmbientSound": {
+      "description": "Positional looping or periodic sound (hums, drips, machinery).",
+      "type": "object",
+      "properties": {
+        "sound": {
+          "default": "",
+          "ref": "sound",
+          "description": "Sound id",
+          "type": "string"
+        },
+        "volume": {
+          "default": 1,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "interval": {
+          "default": 0,
+          "description": "0 = loop forever; >0 = replay every interval",
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "jitter": {
+          "default": 0.3,
+          "description": "Random interval variation (fraction)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "on": {
+          "default": true,
+          "type": "boolean"
+        },
+        "voice": {
+          "default": 0,
+          "description": "State: playing loop voice id (0 = none)",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "next": {
+          "default": 0,
+          "description": "State: sim time of the next periodic play",
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Animator": {
+      "description": "Plays clips (by id or puppet role) on the Model puppet, with crossfades.",
+      "type": "object",
+      "properties": {
+        "play": {
+          "default": "idle",
+          "description": "Clip id or puppet clip role",
+          "type": "string"
+        },
+        "speed": {
+          "default": 1,
+          "description": "Playback rate",
+          "type": "number",
+          "minimum": 0
+        },
+        "fade": {
+          "default": 0.2,
+          "description": "Crossfade time when play changes",
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "time": {
+          "default": 0,
+          "description": "State: seconds into the current clip",
+          "type": "number"
+        },
+        "current": {
+          "default": "",
+          "description": "State: clip id now playing",
+          "type": "string"
+        },
+        "prev": {
+          "default": "",
+          "description": "State: clip id fading out",
+          "type": "string"
+        },
+        "prevTime": {
+          "default": 0,
+          "description": "State: seconds into the fading clip",
+          "type": "number"
+        },
+        "blend": {
+          "default": 1,
+          "description": "State: weight of the current clip (0..1)",
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Arsenal": {
+      "description": "Owned weapons, current selection, magazine counts, cooldown and reload state.",
+      "type": "object",
+      "properties": {
+        "weapons": {
+          "description": "Weapon prefab ids owned",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "current": {
+          "default": -1,
+          "description": "Index into weapons (-1 = none)",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "mags": {
+          "default": {},
+          "description": "State: rounds loaded per weapon",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "cooldown": {
+          "default": 0,
+          "description": "State: seconds until the next shot",
+          "type": "number"
+        },
+        "reloading": {
+          "default": 0,
+          "description": "State: seconds of reload left",
+          "type": "number"
+        },
+        "switching": {
+          "default": 0,
+          "description": "State: seconds of weapon raise left",
+          "type": "number"
+        },
+        "shots": {
+          "default": 0,
+          "description": "State: total shots fired",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Body": {
+      "description": "Rigid body + collider (static, dynamic, or kinematic). Origin at shape bottom by default.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "default": "static",
+          "description": "kinematic follows Transform",
+          "type": "string",
+          "enum": [
+            "static",
+            "dynamic",
+            "kinematic"
+          ]
+        },
+        "shape": {
+          "default": "box",
+          "description": "wedge = ramp rising toward -Z (matches the wedge model part)",
+          "type": "string",
+          "enum": [
+            "box",
+            "sphere",
+            "capsule",
+            "cylinder",
+            "cone",
+            "wedge"
+          ]
+        },
+        "size": {
+          "widget": "vec3",
+          "description": "Full size in meters. sphere: x = diameter. capsule/cylinder/cone: x = diameter, y = height",
+          "unit": "m",
+          "default": [
+            1,
+            1,
+            1
+          ],
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "offset": {
+          "widget": "vec3",
+          "description": "Extra local offset of the shape",
+          "unit": "m",
+          "default": [
+            0,
+            0,
+            0
+          ],
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "pivot": {
+          "default": "bottom",
+          "description": "Where the entity origin sits on the shape",
+          "type": "string",
+          "enum": [
+            "bottom",
+            "center"
+          ]
+        },
+        "layer": {
+          "default": "world",
+          "type": "string",
+          "enum": [
+            "world",
+            "prop",
+            "player",
+            "enemy",
+            "pickup",
+            "trigger",
+            "debris",
+            "projectile"
+          ]
+        },
+        "sensor": {
+          "default": false,
+          "description": "Overlap-only: emits TriggerEntered/TriggerExited, blocks nothing",
+          "type": "boolean"
+        },
+        "mass": {
+          "default": 0,
+          "description": "0 = density 1 (water) times volume",
+          "unit": "kg",
+          "type": "number",
+          "minimum": 0
+        },
+        "friction": {
+          "default": 0.6,
+          "type": "number",
+          "minimum": 0
+        },
+        "restitution": {
+          "default": 0.05,
+          "description": "Bounciness",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "linearDamping": {
+          "default": 0.05,
+          "type": "number",
+          "minimum": 0
+        },
+        "angularDamping": {
+          "default": 0.1,
+          "type": "number",
+          "minimum": 0
+        },
+        "gravityScale": {
+          "default": 1,
+          "type": "number"
+        },
+        "lockRotation": {
+          "default": false,
+          "description": "Prevent tipping over (dynamic only)",
+          "type": "boolean"
+        },
+        "ccd": {
+          "default": false,
+          "description": "Continuous collision for fast bodies",
+          "type": "boolean"
+        },
+        "events": {
+          "default": false,
+          "description": "Emit Contact events for this body",
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Brain": {
+      "description": "Enemy AI: idle → chase → attack (melee, ranged, turret) with sight checks and pathfinding.",
+      "type": "object",
+      "properties": {
+        "style": {
+          "default": "melee",
+          "type": "string",
+          "enum": [
+            "melee",
+            "ranged",
+            "turret"
+          ]
+        },
+        "sight": {
+          "default": 20,
+          "unit": "m",
+          "type": "number",
+          "minimum": 0
+        },
+        "fov": {
+          "default": 140,
+          "unit": "deg",
+          "type": "number",
+          "minimum": 1,
+          "maximum": 360
+        },
+        "hearing": {
+          "default": 6,
+          "description": "Notices the player this close, even behind it",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0
+        },
+        "speed": {
+          "default": 3.5,
+          "unit": "m/s",
+          "type": "number",
+          "minimum": 0
+        },
+        "turnRate": {
+          "default": 300,
+          "unit": "deg/s",
+          "type": "number",
+          "minimum": 1
+        },
+        "attackRange": {
+          "default": 1.8,
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.1
+        },
+        "attackDamage": {
+          "default": 10,
+          "type": "number",
+          "minimum": 0
+        },
+        "attackRate": {
+          "default": 1,
+          "unit": "1/s",
+          "type": "number",
+          "minimum": 0.05
+        },
+        "projectile": {
+          "default": "",
+          "ref": "prefab",
+          "description": "Ranged: projectile prefab (empty = hitscan)",
+          "type": "string"
+        },
+        "tracer": {
+          "default": "tracer-enemy",
+          "ref": "effect",
+          "description": "Ranged hitscan visual",
+          "type": "string"
+        },
+        "aimError": {
+          "default": 3,
+          "unit": "deg",
+          "type": "number",
+          "minimum": 0
+        },
+        "eye": {
+          "default": 1.5,
+          "description": "Eye height above origin",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0
+        },
+        "aggressive": {
+          "default": false,
+          "description": "Always knows where the player is (wave enemies)",
+          "type": "boolean"
+        },
+        "gravity": {
+          "default": 20,
+          "unit": "m/s²",
+          "type": "number"
+        },
+        "alertSound": {
+          "default": "alert",
+          "ref": "sound",
+          "type": "string"
+        },
+        "attackSound": {
+          "default": "",
+          "ref": "sound",
+          "type": "string"
+        },
+        "state": {
+          "default": "idle",
+          "description": "State",
+          "type": "string",
+          "enum": [
+            "idle",
+            "chase",
+            "attack"
+          ]
+        },
+        "target": {
+          "default": -1,
+          "description": "State: entity being hunted",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "lastSeen": {
+          "widget": "vec3",
+          "description": "State: where the target was last seen",
+          "default": 0,
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "lastSeenAt": {
+          "default": -999,
+          "description": "State",
+          "type": "number"
+        },
+        "cooldown": {
+          "default": 0,
+          "description": "State: seconds until the next attack",
+          "type": "number"
+        },
+        "path": {
+          "description": "State: waypoints",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3
+          }
+        },
+        "repathAt": {
+          "default": 0,
+          "description": "State",
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CameraRig": {
+      "description": "Render camera mount: first/third person, eye offset, pitch, FOV.",
+      "type": "object",
+      "properties": {
+        "mode": {
+          "default": "first",
+          "type": "string",
+          "enum": [
+            "first",
+            "third"
+          ]
+        },
+        "offset": {
+          "widget": "vec3",
+          "description": "Eye position relative to the entity origin",
+          "unit": "m",
+          "default": [
+            0,
+            1.6,
+            0
+          ],
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "pitch": {
+          "default": 0,
+          "description": "State: look up/down",
+          "unit": "deg",
+          "type": "number",
+          "minimum": -89,
+          "maximum": 89
+        },
+        "distance": {
+          "default": 4,
+          "description": "Third person: distance behind the eye",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0
+        },
+        "fov": {
+          "default": 75,
+          "unit": "deg",
+          "type": "number",
+          "minimum": 20,
+          "maximum": 120
+        },
+        "priority": {
+          "default": 0,
+          "description": "Highest priority rig drives the camera",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CharacterBody": {
+      "description": "Kinematic capsule character (walls, steps, slopes). Origin at feet.",
+      "type": "object",
+      "properties": {
+        "radius": {
+          "default": 0.35,
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.05
+        },
+        "height": {
+          "default": 1.8,
+          "description": "Total height including caps",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.2
+        },
+        "stepHeight": {
+          "default": 0.5,
+          "description": "Max step climbed automatically",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0
+        },
+        "maxSlope": {
+          "default": 50,
+          "unit": "deg",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 89
+        },
+        "snap": {
+          "default": 0.3,
+          "description": "Snap-to-ground distance when walking down",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0
+        },
+        "layer": {
+          "default": "player",
+          "type": "string",
+          "enum": [
+            "world",
+            "prop",
+            "player",
+            "enemy",
+            "pickup",
+            "trigger",
+            "debris",
+            "projectile"
+          ]
+        },
+        "pushProps": {
+          "default": true,
+          "description": "Shove dynamic bodies when walking into them",
+          "type": "boolean"
+        },
+        "velocity": {
+          "widget": "vec3",
+          "description": "State: velocity in m/s, owned by the driving system",
+          "unit": "m/s",
+          "default": 0,
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "grounded": {
+          "default": false,
+          "description": "Output: standing on ground after the last move",
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Counter": {
+      "description": "Counts signals; fires onReach at the goal (e.g. \"kill 3 enemies opens the door\").",
+      "type": "object",
+      "properties": {
+        "goal": {
+          "default": 3,
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "onReach": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "default": "",
+                "description": "Entity name or \"#tag\"; empty = no signal",
+                "ref": "entity",
+                "type": "string"
+              },
+              "action": {
+                "default": "toggle",
+                "description": "open, close, toggle, start, stop, on, off, spawn, add, ...",
+                "type": "string"
+              },
+              "value": {
+                "default": 0,
+                "type": "number"
+              },
+              "delay": {
+                "default": 0,
+                "description": "Seconds to wait before sending",
+                "type": "number",
+                "minimum": 0
+              },
+              "message": {
+                "default": "",
+                "description": "Text to show on the HUD",
+                "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "count": {
+          "default": 0,
+          "description": "State",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "done": {
+          "default": false,
+          "description": "State: onReach already ran",
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Door": {
+      "description": "Proximity/signal door with optional key; moves via its Mover.",
+      "type": "object",
+      "properties": {
+        "key": {
+          "default": "",
+          "description": "Inventory key needed (\"\" = unlocked)",
+          "type": "string"
+        },
+        "auto": {
+          "default": true,
+          "description": "Open when a player is within radius",
+          "type": "boolean"
+        },
+        "radius": {
+          "default": 3.5,
+          "unit": "m",
+          "type": "number",
+          "minimum": 0
+        },
+        "closeDelay": {
+          "default": 2,
+          "description": "Seconds after everyone leaves; 0 = stays open",
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "openSound": {
+          "default": "door-open",
+          "ref": "sound",
+          "type": "string"
+        },
+        "closeSound": {
+          "default": "door-close",
+          "ref": "sound",
+          "type": "string"
+        },
+        "lockedMessage": {
+          "default": "Locked. Needs the {key} key.",
+          "type": "string"
+        },
+        "open": {
+          "default": false,
+          "description": "State",
+          "type": "boolean"
+        },
+        "lastNear": {
+          "default": -999,
+          "description": "State: sim time a player was last near",
+          "type": "number"
+        },
+        "lastNag": {
+          "default": -999,
+          "description": "State: sim time of the last locked message",
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Explosive": {
+      "description": "Explodes on death: splash damage, knockback, effect.",
+      "type": "object",
+      "properties": {
+        "radius": {
+          "default": 4,
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.1
+        },
+        "damage": {
+          "default": 80,
+          "type": "number",
+          "minimum": 0
+        },
+        "impulse": {
+          "default": 10,
+          "type": "number",
+          "minimum": 0
+        },
+        "effect": {
+          "default": "explosion",
+          "ref": "effect",
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "FpsController": {
+      "description": "First-person walking, sprinting, crouching, jumping, looking; rides moving platforms.",
+      "type": "object",
+      "properties": {
+        "walkSpeed": {
+          "default": 6.5,
+          "unit": "m/s",
+          "type": "number",
+          "minimum": 0
+        },
+        "sprintSpeed": {
+          "default": 10,
+          "unit": "m/s",
+          "type": "number",
+          "minimum": 0
+        },
+        "crouchSpeed": {
+          "default": 3,
+          "unit": "m/s",
+          "type": "number",
+          "minimum": 0
+        },
+        "accel": {
+          "default": 60,
+          "description": "Ground acceleration toward the wished velocity",
+          "unit": "m/s²",
+          "type": "number",
+          "minimum": 0
+        },
+        "airAccel": {
+          "default": 14,
+          "unit": "m/s²",
+          "type": "number",
+          "minimum": 0
+        },
+        "jumpSpeed": {
+          "default": 7.2,
+          "unit": "m/s",
+          "type": "number",
+          "minimum": 0
+        },
+        "gravity": {
+          "default": 22,
+          "unit": "m/s²",
+          "type": "number",
+          "minimum": 0
+        },
+        "maxFall": {
+          "default": 45,
+          "unit": "m/s",
+          "type": "number",
+          "minimum": 0
+        },
+        "coyoteTime": {
+          "default": 0.12,
+          "description": "Jump still allowed this long after leaving ground",
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "jumpBuffer": {
+          "default": 0.12,
+          "description": "Jump pressed this early still counts on landing",
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "eyeHeight": {
+          "default": 1.6,
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.2
+        },
+        "crouchEye": {
+          "default": 0.95,
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.2
+        },
+        "stepDistance": {
+          "default": 2.3,
+          "description": "Meters per footstep sound",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.1
+        },
+        "fallDamage": {
+          "default": 0,
+          "description": "Damage per m/s of landing speed above 16 m/s",
+          "type": "number",
+          "minimum": 0
+        },
+        "footstepSound": {
+          "default": "step",
+          "ref": "sound",
+          "type": "string"
+        },
+        "jumpSound": {
+          "default": "jump",
+          "ref": "sound",
+          "type": "string"
+        },
+        "landSound": {
+          "default": "land",
+          "ref": "sound",
+          "type": "string"
+        },
+        "coyote": {
+          "default": 0,
+          "description": "State",
+          "type": "number"
+        },
+        "buffered": {
+          "default": 0,
+          "description": "State",
+          "type": "number"
+        },
+        "stepAcc": {
+          "default": 0,
+          "description": "State: meters since the last footstep",
+          "type": "number"
+        },
+        "wasGrounded": {
+          "default": true,
+          "description": "State",
+          "type": "boolean"
+        },
+        "lastFallSpeed": {
+          "default": 0,
+          "description": "State: vertical speed just before landing",
+          "type": "number"
+        },
+        "landKick": {
+          "default": 0,
+          "description": "Output: landing impact 0..1 (camera dip)",
+          "type": "number"
+        },
+        "bobPhase": {
+          "default": 0,
+          "description": "Output: head-bob phase (radians)",
+          "type": "number"
+        },
+        "crouching": {
+          "default": false,
+          "description": "State",
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Hazard": {
+      "description": "Damage over time to entities overlapping its sensor Body.",
+      "type": "object",
+      "properties": {
+        "dps": {
+          "default": 25,
+          "unit": "hp/s",
+          "type": "number",
+          "minimum": 0
+        },
+        "filter": {
+          "default": "any",
+          "description": "\"any\" or a tag the victim must have",
+          "type": "string"
+        },
+        "sound": {
+          "default": "",
+          "ref": "sound",
+          "description": "Played when something enters",
+          "type": "string"
+        },
+        "inside": {
+          "description": "State: entities currently inside",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Health": {
+      "description": "Hit points with armor, regeneration, and on-death behavior (destroy, spawn, signals).",
+      "type": "object",
+      "properties": {
+        "max": {
+          "default": 100,
+          "unit": "hp",
+          "type": "number",
+          "minimum": 1
+        },
+        "current": {
+          "default": -1,
+          "description": "Starts at max when -1",
+          "type": "number"
+        },
+        "armor": {
+          "default": 0,
+          "description": "Armor points; absorb `armorAbsorb` of each hit",
+          "type": "number",
+          "minimum": 0
+        },
+        "armorAbsorb": {
+          "default": 0.6,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "regen": {
+          "default": 0,
+          "unit": "hp/s",
+          "type": "number",
+          "minimum": 0
+        },
+        "regenDelay": {
+          "default": 3,
+          "description": "Seconds after a hit before regen starts",
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "invulnerable": {
+          "default": false,
+          "type": "boolean"
+        },
+        "destroyOnDeath": {
+          "default": true,
+          "type": "boolean"
+        },
+        "deathPrefab": {
+          "default": "",
+          "ref": "prefab",
+          "description": "Spawned where it dies (explosion, gibs)",
+          "type": "string"
+        },
+        "deathEffect": {
+          "default": "",
+          "ref": "effect",
+          "description": "Effect played where it dies",
+          "type": "string"
+        },
+        "hurtSound": {
+          "default": "",
+          "ref": "sound",
+          "description": "Played on each hit",
+          "type": "string"
+        },
+        "onDeath": {
+          "description": "Signals/messages when it dies",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "default": "",
+                "description": "Entity name or \"#tag\"; empty = no signal",
+                "ref": "entity",
+                "type": "string"
+              },
+              "action": {
+                "default": "toggle",
+                "description": "open, close, toggle, start, stop, on, off, spawn, add, ...",
+                "type": "string"
+              },
+              "value": {
+                "default": 0,
+                "type": "number"
+              },
+              "delay": {
+                "default": 0,
+                "description": "Seconds to wait before sending",
+                "type": "number",
+                "minimum": 0
+              },
+              "message": {
+                "default": "",
+                "description": "Text to show on the HUD",
+                "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "dead": {
+          "default": false,
+          "description": "State",
+          "type": "boolean"
+        },
+        "lastHit": {
+          "default": -999,
+          "description": "State: sim time of the last damage",
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Interactable": {
+      "description": "Look-and-use target: shows a prompt and runs onUse signals when used.",
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "default": "Use",
+          "type": "string"
+        },
+        "range": {
+          "default": 2.5,
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.5
+        },
+        "onUse": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "default": "",
+                "description": "Entity name or \"#tag\"; empty = no signal",
+                "ref": "entity",
+                "type": "string"
+              },
+              "action": {
+                "default": "toggle",
+                "description": "open, close, toggle, start, stop, on, off, spawn, add, ...",
+                "type": "string"
+              },
+              "value": {
+                "default": 0,
+                "type": "number"
+              },
+              "delay": {
+                "default": 0,
+                "description": "Seconds to wait before sending",
+                "type": "number",
+                "minimum": 0
+              },
+              "message": {
+                "default": "",
+                "description": "Text to show on the HUD",
+                "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "once": {
+          "default": false,
+          "type": "boolean"
+        },
+        "cooldown": {
+          "default": 0.5,
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "sound": {
+          "default": "button",
+          "ref": "sound",
+          "type": "string"
+        },
+        "uses": {
+          "default": 0,
+          "description": "State",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "lastUse": {
+          "default": -999,
+          "description": "State",
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Interactor": {
+      "description": "Looks for Interactables along the view ray; \"use\" action activates the focused one.",
+      "type": "object",
+      "properties": {
+        "action": {
+          "default": "use",
+          "description": "Input action that uses the focused Interactable",
+          "type": "string"
+        },
+        "reach": {
+          "default": 3,
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.5
+        },
+        "focus": {
+          "default": -1,
+          "description": "State: focused Interactable entity (-1 = none)",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "prompt": {
+          "default": "",
+          "description": "State: prompt text of the focus",
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Inventory": {
+      "description": "Keys, ammo (by type), and items carried by the player (or any picker).",
+      "type": "object",
+      "properties": {
+        "keys": {
+          "description": "Key names, e.g. \"red\"",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ammo": {
+          "default": {},
+          "description": "Ammo type → rounds in reserve",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "items": {
+          "default": {},
+          "description": "Item id → count",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Label": {
+      "description": "3D text sign: an unlit panel, readable from both sides, optionally facing the camera.",
+      "type": "object",
+      "properties": {
+        "text": {
+          "default": "Label",
+          "description": "Use \\n for multiple lines",
+          "type": "string"
+        },
+        "size": {
+          "default": 0.4,
+          "description": "Line height",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.05
+        },
+        "color": {
+          "default": "#ffffff",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "background": {
+          "default": "#141a22",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "opacity": {
+          "default": 0.8,
+          "description": "Background opacity (0 = text only)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "offset": {
+          "widget": "vec3",
+          "unit": "m",
+          "default": [
+            0,
+            2.6,
+            0
+          ],
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "billboard": {
+          "default": false,
+          "description": "Always face the camera",
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Light": {
+      "description": "Point or spot light at the entity (plus offset); optional flicker/pulse.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "default": "point",
+          "type": "string",
+          "enum": [
+            "point",
+            "spot"
+          ]
+        },
+        "color": {
+          "default": "#ffe6c4",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "intensity": {
+          "default": 30,
+          "description": "Candela-like; ~20-80 lights a room corner",
+          "type": "number",
+          "minimum": 0
+        },
+        "range": {
+          "default": 12,
+          "description": "Distance where light fades to zero (0 = infinite)",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0
+        },
+        "offset": {
+          "widget": "vec3",
+          "unit": "m",
+          "default": [
+            0,
+            0,
+            0
+          ],
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "shadows": {
+          "default": false,
+          "description": "Costly: use on a few key lights only",
+          "type": "boolean"
+        },
+        "angle": {
+          "default": 40,
+          "description": "Spot cone half-angle",
+          "unit": "deg",
+          "type": "number",
+          "minimum": 1,
+          "maximum": 89
+        },
+        "aim": {
+          "widget": "vec3",
+          "description": "Spot direction (world space)",
+          "default": [
+            0,
+            -1,
+            0
+          ],
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "flicker": {
+          "default": 0,
+          "description": "Random flicker amount",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "pulse": {
+          "default": 0,
+          "description": "Smooth pulsing rate",
+          "unit": "Hz",
+          "type": "number",
+          "minimum": 0
+        },
+        "on": {
+          "default": true,
+          "description": "Toggle with the \"toggle\"/\"on\"/\"off\" signals",
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Model": {
+      "description": "Visual model: a puppet (data/puppets) or inline primitive parts.",
+      "type": "object",
+      "properties": {
+        "puppet": {
+          "default": "",
+          "ref": "puppet",
+          "description": "Puppet id; empty to use inline parts",
+          "type": "string"
+        },
+        "parts": {
+          "description": "Inline parts (used when puppet is empty)",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "default": "",
+                "description": "Name for parenting and animation tracks",
+                "type": "string"
+              },
+              "parent": {
+                "default": "",
+                "description": "Parent part id; empty = model root",
+                "type": "string"
+              },
+              "shape": {
+                "default": "box",
+                "type": "string",
+                "enum": [
+                  "box",
+                  "sphere",
+                  "capsule",
+                  "cylinder",
+                  "cone",
+                  "torus",
+                  "plane",
+                  "wedge",
+                  "lathe",
+                  "extrude"
+                ]
+              },
+              "size": {
+                "default": [
+                  1,
+                  1,
+                  1
+                ],
+                "description": "Full size [x, y, z]. sphere: x = diameter; capsule/cylinder/cone: x = diameter, y = height",
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                ]
+              },
+              "pos": {
+                "default": 0,
+                "description": "Position of the pivot relative to the parent",
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                ]
+              },
+              "rot": {
+                "default": 0,
+                "description": "Yaw degrees or [x, y, z] Euler degrees (YXZ)",
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                ]
+              },
+              "scale": {
+                "default": 1,
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                ]
+              },
+              "pivot": {
+                "default": "bottom",
+                "description": "Origin on the shape",
+                "type": "string",
+                "enum": [
+                  "bottom",
+                  "center",
+                  "top"
+                ]
+              },
+              "material": {
+                "default": "default",
+                "description": "Material name from the active look",
+                "type": "string"
+              },
+              "color": {
+                "description": "Tint multiplied with the material color",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "segments": {
+                "default": 16,
+                "description": "Roundness of curved shapes",
+                "type": "integer",
+                "minimum": 3,
+                "maximum": 64
+              },
+              "profile": {
+                "default": [],
+                "description": "lathe: [radius, y] points, bottom to top",
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "points": {
+                "default": [],
+                "description": "extrude: [x, y] outline; size.z = depth",
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "thickness": {
+                "default": 0.25,
+                "description": "torus: tube diameter",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "uv": {
+                "default": "box",
+                "description": "world = textures tile per meter",
+                "type": "string",
+                "enum": [
+                  "box",
+                  "world"
+                ]
+              },
+              "hidden": {
+                "default": false,
+                "type": "boolean"
+              },
+              "shadow": {
+                "default": true,
+                "description": "Cast shadows",
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "tint": {
+          "default": "",
+          "description": "Hex color multiplied into every part, e.g. \"#ff8080\"",
+          "type": "string"
+        },
+        "visible": {
+          "default": true,
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Motion": {
+      "description": "Spins (deg/s per axis) and bobs (meters, Hz) an entity, e.g. pickups.",
+      "type": "object",
+      "properties": {
+        "spin": {
+          "widget": "vec3",
+          "description": "Rotation speed around x, y, z",
+          "unit": "deg/s",
+          "default": [
+            0,
+            0,
+            0
+          ],
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "bob": {
+          "default": 0,
+          "description": "Bob height (0 = none)",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0
+        },
+        "bobRate": {
+          "default": 0.5,
+          "unit": "Hz",
+          "type": "number",
+          "minimum": 0
+        },
+        "baseY": {
+          "default": 0,
+          "description": "State: resting height (captured on first tick)",
+          "type": "number"
+        },
+        "started": {
+          "default": false,
+          "description": "State: baseY captured",
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Mover": {
+      "description": "Waypoint motion (platforms, doors, elevators) controlled by signals; carries riders.",
+      "type": "object",
+      "properties": {
+        "points": {
+          "description": "Offsets from the spawn position, in meters",
+          "default": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ]
+          ],
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3
+          }
+        },
+        "speed": {
+          "default": 2,
+          "unit": "m/s",
+          "type": "number",
+          "minimum": 0.01
+        },
+        "wait": {
+          "default": 1,
+          "description": "Pause at each point",
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "mode": {
+          "default": "pingpong",
+          "type": "string",
+          "enum": [
+            "pingpong",
+            "loop",
+            "once"
+          ]
+        },
+        "ease": {
+          "default": "smooth",
+          "type": "string",
+          "enum": [
+            "linear",
+            "smooth",
+            "sine",
+            "in",
+            "out",
+            "step",
+            "back"
+          ]
+        },
+        "active": {
+          "default": true,
+          "description": "Moving now",
+          "type": "boolean"
+        },
+        "at": {
+          "default": 0,
+          "description": "State: index of the last point reached",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "to": {
+          "default": -1,
+          "description": "State: index being moved toward (-1 = not moving)",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "dir": {
+          "default": 1,
+          "description": "State: pingpong direction through points (+1 / -1)",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "goal": {
+          "default": -1,
+          "description": "State: stop on reaching this index (-1 = follow mode)",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "t": {
+          "default": 0,
+          "description": "State: progress along the current segment 0..1",
+          "type": "number"
+        },
+        "waitLeft": {
+          "default": 0,
+          "description": "State: seconds left to wait",
+          "type": "number"
+        },
+        "origin": {
+          "widget": "vec3",
+          "description": "State: spawn position (captured on first tick)",
+          "default": 0,
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "started": {
+          "default": false,
+          "description": "State: origin captured",
+          "type": "boolean"
+        },
+        "delta": {
+          "widget": "vec3",
+          "description": "Output: displacement during the last tick",
+          "default": 0,
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Pickup": {
+      "description": "Collectible (health, armor, ammo, weapon, key, item) with optional respawn.",
+      "type": "object",
+      "properties": {
+        "kind": {
+          "default": "health",
+          "type": "string",
+          "enum": [
+            "health",
+            "armor",
+            "ammo",
+            "weapon",
+            "key",
+            "item"
+          ]
+        },
+        "item": {
+          "default": "",
+          "description": "Ammo type, weapon prefab id, key name, or item id",
+          "type": "string"
+        },
+        "amount": {
+          "default": 25,
+          "type": "number",
+          "minimum": 0
+        },
+        "respawn": {
+          "default": 0,
+          "description": "0 = never comes back",
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "sound": {
+          "default": "pickup",
+          "ref": "sound",
+          "type": "string"
+        },
+        "message": {
+          "default": "",
+          "description": "HUD text; {amount} and {item} are replaced",
+          "type": "string"
+        },
+        "taken": {
+          "default": false,
+          "description": "State",
+          "type": "boolean"
+        },
+        "respawnAt": {
+          "default": 0,
+          "description": "State",
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Projectile": {
+      "description": "Ray-stepped projectile with direct damage, optional splash, gravity, and lifetime.",
+      "type": "object",
+      "properties": {
+        "speed": {
+          "default": 30,
+          "unit": "m/s",
+          "type": "number",
+          "minimum": 0
+        },
+        "gravity": {
+          "default": 0,
+          "description": "Downward acceleration (grenades ~ 12)",
+          "unit": "m/s²",
+          "type": "number"
+        },
+        "damage": {
+          "default": 25,
+          "type": "number",
+          "minimum": 0
+        },
+        "splashRadius": {
+          "default": 0,
+          "description": "0 = no splash",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0
+        },
+        "splashDamage": {
+          "default": 0,
+          "type": "number",
+          "minimum": 0
+        },
+        "impulse": {
+          "default": 6,
+          "description": "Knockback at the splash center",
+          "type": "number",
+          "minimum": 0
+        },
+        "lifetime": {
+          "default": 5,
+          "unit": "s",
+          "type": "number",
+          "minimum": 0.05
+        },
+        "bounces": {
+          "default": 0,
+          "description": "Bounce off surfaces this many times before exploding",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "hitEffect": {
+          "default": "",
+          "ref": "effect",
+          "description": "Effect at impact (or explosion)",
+          "type": "string"
+        },
+        "owner": {
+          "default": -1,
+          "description": "State: who fired it (not hit by its own shot)",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "age": {
+          "default": 0,
+          "description": "State: seconds alive",
+          "type": "number"
+        },
+        "velocity": {
+          "widget": "vec3",
+          "description": "State: current velocity",
+          "default": 0,
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "started": {
+          "default": false,
+          "description": "State: initial velocity set",
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Respawn": {
+      "description": "After death, restore health and reload the room (or just revive) after a delay.",
+      "type": "object",
+      "properties": {
+        "delay": {
+          "default": 2.5,
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "reloadRoom": {
+          "default": true,
+          "type": "boolean"
+        },
+        "diedAt": {
+          "default": -1,
+          "description": "State: sim time of death (-1 = alive)",
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RoomExit": {
+      "description": "Sensor that loads another room (and spawn point) when the player enters.",
+      "type": "object",
+      "properties": {
+        "room": {
+          "default": "",
+          "ref": "room",
+          "description": "Room id to load",
+          "type": "string"
+        },
+        "spawn": {
+          "default": "default",
+          "description": "SpawnPoint id in that room",
+          "type": "string"
+        },
+        "locked": {
+          "default": false,
+          "description": "\"unlock\"/\"lock\" signals change this",
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Spawner": {
+      "description": "Spawns prefabs (enemy waves, item drops) on signal or timer, with caps.",
+      "type": "object",
+      "properties": {
+        "prefab": {
+          "default": "",
+          "ref": "prefab",
+          "type": "string"
+        },
+        "count": {
+          "default": 1,
+          "description": "Spawned per trigger",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "interval": {
+          "default": 0,
+          "description": "0 = only on \"spawn\" signals",
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "active": {
+          "default": true,
+          "description": "Interval spawning on (\"start\"/\"stop\" signals)",
+          "type": "boolean"
+        },
+        "max": {
+          "default": 8,
+          "description": "Max alive from this spawner",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "total": {
+          "default": 0,
+          "description": "Lifetime cap (0 = unlimited)",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "radius": {
+          "default": 0,
+          "description": "Random horizontal offset",
+          "unit": "m",
+          "type": "number",
+          "minimum": 0
+        },
+        "effect": {
+          "default": "",
+          "ref": "effect",
+          "description": "Effect at each spawn",
+          "type": "string"
+        },
+        "spawned": {
+          "default": 0,
+          "description": "State: total spawned",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "alive": {
+          "description": "State: living spawned entities",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "next": {
+          "default": 0,
+          "description": "State: sim time of the next interval spawn",
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SpawnPoint": {
+      "description": "Player spawn location; loadRoom picks one by id (default \"default\").",
+      "type": "object",
+      "properties": {
+        "id": {
+          "default": "default",
+          "description": "Spawn id used by room exits: { \"room\": \"hub\", \"spawn\": \"from-arena\" }",
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Target": {
+      "description": "Knock-down target that scores points and resets (needs Health with destroyOnDeath false).",
+      "type": "object",
+      "properties": {
+        "points": {
+          "default": 10,
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "resetTime": {
+          "default": 2.5,
+          "description": "0 = stays down",
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "onHit": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "default": "",
+                "description": "Entity name or \"#tag\"; empty = no signal",
+                "ref": "entity",
+                "type": "string"
+              },
+              "action": {
+                "default": "toggle",
+                "description": "open, close, toggle, start, stop, on, off, spawn, add, ...",
+                "type": "string"
+              },
+              "value": {
+                "default": 0,
+                "type": "number"
+              },
+              "delay": {
+                "default": 0,
+                "description": "Seconds to wait before sending",
+                "type": "number",
+                "minimum": 0
+              },
+              "message": {
+                "default": "",
+                "description": "Text to show on the HUD",
+                "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "down": {
+          "default": false,
+          "description": "State",
+          "type": "boolean"
+        },
+        "downAt": {
+          "default": 0,
+          "description": "State",
+          "type": "number"
+        },
+        "hits": {
+          "default": 0,
+          "description": "State: times knocked down",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Timer": {
+      "description": "Delayed or repeating signals (wave spawns, timed doors, countdowns).",
+      "type": "object",
+      "properties": {
+        "seconds": {
+          "default": 1,
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "repeat": {
+          "default": false,
+          "type": "boolean"
+        },
+        "autostart": {
+          "default": false,
+          "type": "boolean"
+        },
+        "onFire": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "default": "",
+                "description": "Entity name or \"#tag\"; empty = no signal",
+                "ref": "entity",
+                "type": "string"
+              },
+              "action": {
+                "default": "toggle",
+                "description": "open, close, toggle, start, stop, on, off, spawn, add, ...",
+                "type": "string"
+              },
+              "value": {
+                "default": 0,
+                "type": "number"
+              },
+              "delay": {
+                "default": 0,
+                "description": "Seconds to wait before sending",
+                "type": "number",
+                "minimum": 0
+              },
+              "message": {
+                "default": "",
+                "description": "Text to show on the HUD",
+                "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "running": {
+          "default": false,
+          "description": "State",
+          "type": "boolean"
+        },
+        "left": {
+          "default": 0,
+          "description": "State: seconds until firing",
+          "type": "number"
+        },
+        "started": {
+          "default": false,
+          "description": "State: autostart handled",
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Transform": {
+      "description": "World-space position, rotation (quaternion), and scale.",
+      "type": "object",
+      "properties": {
+        "pos": {
+          "widget": "vec3",
+          "description": "Position in meters",
+          "unit": "m",
+          "default": [
+            0,
+            0,
+            0
+          ],
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "rot": {
+          "widget": "rot",
+          "unit": "deg",
+          "description": "Yaw degrees, or [x, y, z] Euler degrees (YXZ)",
+          "default": 0,
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "scale": {
+          "widget": "vec3",
+          "description": "Scale; a number scales uniformly",
+          "default": 1,
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Trigger": {
+      "description": "Sensor volume that sends signals/messages on enter and exit.",
+      "type": "object",
+      "properties": {
+        "filter": {
+          "default": "player",
+          "description": "\"player\", \"any\", or a tag the entering entity must have",
+          "type": "string"
+        },
+        "onEnter": {
+          "description": "Signals/messages when a matching entity enters",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "default": "",
+                "description": "Entity name or \"#tag\"; empty = no signal",
+                "ref": "entity",
+                "type": "string"
+              },
+              "action": {
+                "default": "toggle",
+                "description": "open, close, toggle, start, stop, on, off, spawn, add, ...",
+                "type": "string"
+              },
+              "value": {
+                "default": 0,
+                "type": "number"
+              },
+              "delay": {
+                "default": 0,
+                "description": "Seconds to wait before sending",
+                "type": "number",
+                "minimum": 0
+              },
+              "message": {
+                "default": "",
+                "description": "Text to show on the HUD",
+                "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "onExit": {
+          "description": "Signals/messages when it leaves",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "default": "",
+                "description": "Entity name or \"#tag\"; empty = no signal",
+                "ref": "entity",
+                "type": "string"
+              },
+              "action": {
+                "default": "toggle",
+                "description": "open, close, toggle, start, stop, on, off, spawn, add, ...",
+                "type": "string"
+              },
+              "value": {
+                "default": 0,
+                "type": "number"
+              },
+              "delay": {
+                "default": 0,
+                "description": "Seconds to wait before sending",
+                "type": "number",
+                "minimum": 0
+              },
+              "message": {
+                "default": "",
+                "description": "Text to show on the HUD",
+                "type": "string"
+              },
+              "sound": {
+                "default": "",
+                "description": "Sound to play at the sender",
+                "ref": "sound",
+                "type": "string"
+              },
+              "music": {
+                "default": "",
+                "description": "Switch the music to this song (\"none\" = silence)",
+                "ref": "music",
+                "type": "string"
+              },
+              "look": {
+                "default": "",
+                "description": "Switch the room look (visual style)",
+                "ref": "look",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "once": {
+          "default": false,
+          "description": "Only fire the first time",
+          "type": "boolean"
+        },
+        "fired": {
+          "default": 0,
+          "description": "State: times onEnter ran",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "inside": {
+          "default": 0,
+          "description": "State: matching entities inside now",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Weapon": {
+      "description": "Weapon stats: hitscan/projectile/melee, damage, spread, rate, ammo, magazine, effects.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "default": "Weapon",
+          "type": "string"
+        },
+        "slot": {
+          "default": 1,
+          "description": "Number key that selects it",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9
+        },
+        "mode": {
+          "default": "hitscan",
+          "type": "string",
+          "enum": [
+            "hitscan",
+            "projectile",
+            "melee"
+          ]
+        },
+        "damage": {
+          "default": 20,
+          "description": "Per pellet (hitscan/melee)",
+          "type": "number",
+          "minimum": 0
+        },
+        "pellets": {
+          "default": 1,
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        },
+        "spread": {
+          "default": 1,
+          "description": "Random cone half-angle",
+          "unit": "deg",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 45
+        },
+        "range": {
+          "default": 120,
+          "unit": "m",
+          "type": "number",
+          "minimum": 0.5
+        },
+        "rate": {
+          "default": 3,
+          "unit": "shots/s",
+          "type": "number",
+          "minimum": 0.1
+        },
+        "automatic": {
+          "default": false,
+          "description": "Keeps firing while held",
+          "type": "boolean"
+        },
+        "ammo": {
+          "default": "bullets",
+          "description": "Inventory ammo type (\"\" = unlimited)",
+          "type": "string"
+        },
+        "ammoPerShot": {
+          "default": 1,
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "magazine": {
+          "default": 12,
+          "description": "0 = fires straight from reserve (no reloads)",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "reloadTime": {
+          "default": 1.2,
+          "unit": "s",
+          "type": "number",
+          "minimum": 0
+        },
+        "startAmmo": {
+          "default": 36,
+          "description": "Reserve ammo granted when first picked up",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "projectile": {
+          "default": "",
+          "ref": "prefab",
+          "description": "Projectile mode: prefab spawned per shot",
+          "type": "string"
+        },
+        "impulse": {
+          "default": 4,
+          "description": "Push on physics props per hit",
+          "type": "number",
+          "minimum": 0
+        },
+        "kick": {
+          "default": 1.2,
+          "description": "Aim kick upward per shot",
+          "unit": "deg",
+          "type": "number",
+          "minimum": 0
+        },
+        "sound": {
+          "default": "pistol",
+          "ref": "sound",
+          "type": "string"
+        },
+        "emptySound": {
+          "default": "empty",
+          "ref": "sound",
+          "type": "string"
+        },
+        "reloadSound": {
+          "default": "reload",
+          "ref": "sound",
+          "type": "string"
+        },
+        "muzzleEffect": {
+          "default": "muzzle",
+          "ref": "effect",
+          "type": "string"
+        },
+        "impactEffect": {
+          "default": "impact",
+          "ref": "effect",
+          "type": "string"
+        },
+        "tracer": {
+          "default": "tracer",
+          "ref": "effect",
+          "type": "string"
+        },
+        "viewmodel": {
+          "default": "",
+          "ref": "puppet",
+          "description": "First-person model",
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

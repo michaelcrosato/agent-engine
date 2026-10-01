@@ -1,0 +1,31 @@
+{
+  "doc": "Rocket launcher viewmodel: fat tube with a red tip.",
+  "parts": [
+    {
+      "id": "tube",
+      "shape": "cylinder",
+      "size": [0.14, 0.7, 0.14],
+      "pos": [0, 0.04, -0.2],
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "material": "metal"
+    },
+    {
+      "id": "tip",
+      "shape": "cylinder",
+      "size": [0.16, 0.06, 0.16],
+      "pos": [0, 0.04, -0.55],
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "material": "red"
+    },
+    {
+      "id": "grip",
+      "shape": "box",
+      "size": [0.05, 0.14, 0.07],
+      "pos": [0, -0.08, -0.05],
+      "pivot": "center",
+      "material": "dark"
+    }
+  ]
+}

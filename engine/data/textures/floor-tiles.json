@@ -1,0 +1,22 @@
+{
+  "doc": "Large gray floor tiles with dark grout and scuffs.",
+  "seed": 8,
+  "roughness": 0.65,
+  "normal": 2,
+  "layers": [
+    { "op": "fill", "color": "#9aa0a6" },
+    {
+      "op": "tiles",
+      "rows": 2,
+      "cols": 2,
+      "gap": 0.03,
+      "bevel": 0.02,
+      "color": "#a3a9af",
+      "mortar": "#3f4448",
+      "variation": 0.06,
+      "height": 0.25
+    },
+    { "op": "noise", "scale": 8, "octaves": 4, "color": "#000000", "amount": 0.1 },
+    { "op": "scratches", "count": 80, "length": 0.08, "color": "#c8cdd2", "amount": 0.25 }
+  ]
+}

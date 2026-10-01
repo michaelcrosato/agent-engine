@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "post (data/post)",
+  "description": "Post-processing stack: ordered passes (bloom, vignette, grade, grain, pixelate, ...).",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "default": "",
+      "type": "string"
+    },
+    "passes": {
+      "default": [],
+      "description": "Applied in order after the scene renders",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "bloom"
+              },
+              "strength": {
+                "default": 0.6,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "radius": {
+                "default": 0.4,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "threshold": {
+                "default": 0.85,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 2
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "vignette"
+              },
+              "amount": {
+                "default": 0.5,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "softness": {
+                "default": 0.5,
+                "type": "number",
+                "minimum": 0.01,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "grade"
+              },
+              "saturation": {
+                "default": 1,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 3
+              },
+              "contrast": {
+                "default": 1,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 3
+              },
+              "brightness": {
+                "default": 0,
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "tint": {
+                "default": "#ffffff",
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "grain"
+              },
+              "amount": {
+                "default": 0.05,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "chromatic"
+              },
+              "amount": {
+                "default": 0.002,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 0.05
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "pixelate"
+              },
+              "size": {
+                "default": 3,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 32
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "scanlines"
+              },
+              "amount": {
+                "default": 0.15,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "count": {
+                "default": 480,
+                "type": "number",
+                "minimum": 50,
+                "maximum": 2000
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "posterize"
+              },
+              "levels": {
+                "default": 8,
+                "type": "integer",
+                "minimum": 2,
+                "maximum": 64
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "fxaa"
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Editor schema hint (ignored by the engine)"
+    }
+  },
+  "additionalProperties": false
+}

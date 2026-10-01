@@ -1,0 +1,18 @@
+{
+  "doc": "Low-res 90s shooter: pixelated textures at half resolution, flat shading, CRT post.",
+  "extends": "default",
+  "sky": { "top": "#3a1a0a", "horizon": "#b85a2a", "bottom": "#1a0a05" },
+  "fog": { "color": "#4a2a18", "near": 8, "far": 60 },
+  "ambient": { "sky": "#ffc89a", "ground": "#3a2010", "intensity": 1 },
+  "sun": { "color": "#ffb070", "intensity": 1.8, "shadows": false },
+  "renderScale": 0.5,
+  "post": "retro",
+  "materials": {
+    "floor": { "texture": "floor-tiles", "tile": 4, "pixelated": true },
+    "wall": { "texture": "bricks", "tile": 3, "pixelated": true },
+    "ceiling": { "texture": "concrete", "tile": 4, "pixelated": true },
+    "metal": { "texture": "metal-panel", "tile": 2, "pixelated": true, "metalness": 0.3 },
+    "crate": { "texture": "crate", "tile": 1, "pixelated": true },
+    "enemy": { "color": "#7a8a3a", "flat": true }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "doc": "Grunt stomping walk cycle: legs and arms swing opposite, body bobs twice per cycle.",
+  "duration": 0.8,
+  "tracks": [
+    { "part": "legL", "prop": "rot.x", "wave": { "amp": 32, "freq": 1.25 } },
+    { "part": "legR", "prop": "rot.x", "wave": { "amp": 32, "freq": 1.25, "phase": 0.5 } },
+    { "part": "armL", "prop": "rot.x", "wave": { "amp": 28, "freq": 1.25, "phase": 0.5 } },
+    { "part": "armR", "prop": "rot.x", "wave": { "amp": 28, "freq": 1.25 } },
+    { "part": "body", "prop": "pos.y", "wave": { "amp": 0.04, "freq": 2.5, "phase": 0.25 } }
+  ]
+}

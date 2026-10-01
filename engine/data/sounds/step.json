@@ -1,0 +1,21 @@
+{
+  "doc": "Soft footstep thud on hard floor.",
+  "gain": 0.35,
+  "pitchVariation": 0.12,
+  "gainVariation": 0.2,
+  "maxVoices": 3,
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.001, "decay": 0.05, "release": 0.03, "curve": 3 },
+      "filter": { "type": "lowpass", "freq": 1400, "freqEnd": 300 }
+    },
+    {
+      "wave": "sine",
+      "freq": 110,
+      "freqEnd": 60,
+      "env": { "attack": 0.001, "decay": 0.06, "release": 0.02 },
+      "gain": 0.7
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "doc": "Synthwave: black glossy surfaces, glowing grid seams, magenta fog, heavy bloom.",
+  "extends": "default",
+  "sky": { "top": "#0a0018", "horizon": "#ff2a8a", "bottom": "#05000a", "stars": 0.6 },
+  "fog": { "color": "#2a0830", "near": 10, "far": 80 },
+  "ambient": { "sky": "#8a4aff", "ground": "#1a0820", "intensity": 0.5 },
+  "sun": { "color": "#ff8ad8", "intensity": 0.6, "dir": [0.2, -1, -0.6] },
+  "post": "neon",
+  "materials": {
+    "floor": { "texture": "neon-grid", "tile": 4, "roughness": 0.25 },
+    "wall": { "texture": "neon-grid", "tile": 4, "color": "#8a8aa8" },
+    "ceiling": { "color": "#08080e" },
+    "metal": { "color": "#1a1a26", "metalness": 0.9, "roughness": 0.2 },
+    "accent": { "type": "glow", "color": "#ff2a8a", "emissiveIntensity": 2 }
+  }
+}

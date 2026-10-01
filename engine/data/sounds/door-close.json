@@ -1,0 +1,26 @@
+{
+  "doc": "Door sliding shut with a closing clunk.",
+  "gain": 0.5,
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.02, "decay": 0.35, "release": 0.2 },
+      "filter": { "type": "bandpass", "freq": 1400, "freqEnd": 500, "q": 0.9 }
+    },
+    {
+      "wave": "sine",
+      "freq": 80,
+      "freqEnd": 45,
+      "delay": 0.38,
+      "env": { "attack": 0.001, "decay": 0.18, "release": 0.05 }
+    },
+    {
+      "wave": "noise",
+      "delay": 0.38,
+      "env": { "attack": 0.001, "decay": 0.05, "release": 0.02 },
+      "filter": { "freq": 2000 },
+      "gain": 0.6
+    }
+  ],
+  "fx": { "reverb": 0.2, "room": 0.5 }
+}

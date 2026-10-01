@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "look (data/looks)",
+  "description": "Scene style: sky, fog, lighting, exposure, post-processing, and the named material palette.",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "default": "",
+      "type": "string"
+    },
+    "extends": {
+      "default": "",
+      "description": "Parent look id; fields and materials merge",
+      "ref": "look",
+      "type": "string"
+    },
+    "sky": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "top": {
+          "default": "#5f86b8",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "horizon": {
+          "default": "#b9c9d8",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "bottom": {
+          "default": "#3b3f45",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "stars": {
+          "default": 0,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "fog": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "color": {
+          "default": "#9fb0c0",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "near": {
+          "default": 20,
+          "type": "number",
+          "minimum": 0
+        },
+        "far": {
+          "default": 120,
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "ambient": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "sky": {
+          "default": "#c8d8ff",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "ground": {
+          "default": "#3a3530",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "intensity": {
+          "default": 1,
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "sun": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "color": {
+          "default": "#fff2dd",
+          "widget": "color",
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "intensity": {
+          "default": 2.5,
+          "type": "number",
+          "minimum": 0
+        },
+        "dir": {
+          "default": [
+            -0.4,
+            -1,
+            -0.3
+          ],
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "items": false,
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "shadows": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "exposure": {
+      "default": 1,
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "toneMapping": {
+      "default": "agx",
+      "type": "string",
+      "enum": [
+        "aces",
+        "agx",
+        "neutral",
+        "none"
+      ]
+    },
+    "renderScale": {
+      "default": 1,
+      "description": "<1 renders at lower resolution (retro)",
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 2
+    },
+    "post": {
+      "default": "",
+      "description": "Post-processing stack id (data/post), \"\" for none",
+      "ref": "post",
+      "type": "string"
+    },
+    "materials": {
+      "default": {},
+      "description": "Material name → material. Parts refer to names: wall, floor, metal, glow, ...",
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "default": "standard",
+            "type": "string",
+            "enum": [
+              "standard",
+              "unlit",
+              "glow",
+              "glass",
+              "toon"
+            ]
+          },
+          "color": {
+            "default": "#ffffff",
+            "widget": "color",
+            "type": "string",
+            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+          },
+          "texture": {
+            "default": "",
+            "description": "Texture recipe id (data/textures)",
+            "ref": "texture",
+            "type": "string"
+          },
+          "tile": {
+            "default": 2,
+            "description": "Meters covered by one texture tile (world UVs)",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "roughness": {
+            "default": 0.8,
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "metalness": {
+            "default": 0,
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "emissive": {
+            "default": "#000000",
+            "widget": "color",
+            "type": "string",
+            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+          },
+          "emissiveIntensity": {
+            "default": 1,
+            "type": "number",
+            "minimum": 0
+          },
+          "opacity": {
+            "default": 1,
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "flat": {
+            "default": false,
+            "description": "Faceted (flat) shading",
+            "type": "boolean"
+          },
+          "pixelated": {
+            "default": false,
+            "description": "Nearest-neighbor texture filtering (pixel art)",
+            "type": "boolean"
+          },
+          "doubleSided": {
+            "default": false,
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Editor schema hint (ignored by the engine)"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+  "doc": "Pneumatic door hiss sliding open.",
+  "gain": 0.5,
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.02, "decay": 0.5, "sustain": 0.2, "release": 0.3 },
+      "filter": { "type": "bandpass", "freq": 2500, "freqEnd": 700, "q": 0.9 }
+    },
+    {
+      "wave": "saw",
+      "freq": 70,
+      "freqEnd": 95,
+      "env": { "attack": 0.05, "decay": 0.6, "release": 0.2 },
+      "filter": { "freq": 300 },
+      "gain": 0.5
+    }
+  ],
+  "fx": { "reverb": 0.2, "room": 0.5 }
+}

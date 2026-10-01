@@ -1,0 +1,12 @@
+{
+  "doc": "Melee swing whoosh.",
+  "gain": 0.4,
+  "pitchVariation": 0.12,
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.03, "decay": 0.12, "release": 0.05 },
+      "filter": { "type": "bandpass", "freq": 700, "freqEnd": 2000, "q": 1.4 }
+    }
+  ]
+}

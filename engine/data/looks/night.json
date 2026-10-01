@@ -1,0 +1,10 @@
+{
+  "doc": "Night: dark blue sky with stars, dim moonlight; rely on placed Light entities.",
+  "extends": "default",
+  "sky": { "top": "#05070f", "horizon": "#1a2238", "bottom": "#05060a", "stars": 1 },
+  "fog": { "color": "#0e1424", "near": 12, "far": 70 },
+  "ambient": { "sky": "#5a6a9a", "ground": "#14100c", "intensity": 0.35 },
+  "sun": { "color": "#a8b8ff", "intensity": 0.5, "dir": [0.3, -1, 0.5] },
+  "exposure": 1.2,
+  "post": "cinematic"
+}

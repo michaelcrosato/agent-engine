@@ -1,0 +1,15 @@
+{
+  "doc": "Glowing floor pad marking a room exit.",
+  "parts": [
+    {
+      "id": "ring",
+      "shape": "torus",
+      "size": [1.8, 0.1, 1.8],
+      "thickness": 0.12,
+      "pos": [0, 0.05, 0],
+      "material": "glow-blue",
+      "shadow": false
+    },
+    { "id": "disc", "shape": "cylinder", "size": [1.6, 0.04, 1.6], "material": "dark" }
+  ]
+}

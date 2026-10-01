@@ -1,0 +1,23 @@
+{
+  "doc": "Robot enemy hit: crunchy metal clank.",
+  "gain": 0.45,
+  "pitchVariation": 0.2,
+  "maxVoices": 4,
+  "layers": [
+    {
+      "wave": "fm",
+      "freq": 300,
+      "fmRatio": 1.41,
+      "fmIndex": 8,
+      "fmIndexEnd": 1,
+      "env": { "attack": 0.001, "decay": 0.12, "release": 0.05 }
+    },
+    {
+      "wave": "noise",
+      "env": { "attack": 0.001, "decay": 0.04, "release": 0.02 },
+      "filter": { "type": "highpass", "freq": 2500 },
+      "gain": 0.4
+    }
+  ],
+  "fx": { "crush": 0.2 }
+}

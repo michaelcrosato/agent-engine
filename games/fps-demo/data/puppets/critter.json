@@ -1,0 +1,104 @@
+{
+  "doc": "Four-legged spider bot made only from primitives: body, eye, and two-segment legs (hip and knee joints). Each leg splays toward its corner: roll lifts the thigh, yaw aims it.",
+  "parts": [
+    {
+      "id": "body",
+      "shape": "sphere",
+      "size": [0.9, 0.5, 1.1],
+      "pos": [0, 0.75, 0],
+      "pivot": "center",
+      "material": "steel"
+    },
+    {
+      "id": "eye",
+      "parent": "body",
+      "shape": "sphere",
+      "size": 0.22,
+      "pos": [0, 0.08, -0.5],
+      "pivot": "center",
+      "material": "glow-green",
+      "shadow": false
+    },
+    {
+      "id": "hipFL",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.08, 0.6, 0.08],
+      "pos": [-0.35, 0, -0.35],
+      "rot": [0, -45, -135],
+      "pivot": "top",
+      "material": "dark"
+    },
+    {
+      "id": "kneeFL",
+      "parent": "hipFL",
+      "shape": "box",
+      "size": [0.06, 1.2, 0.06],
+      "pos": [0, -0.6, 0],
+      "rot": [0, 0, 123],
+      "pivot": "top",
+      "material": "steel"
+    },
+    {
+      "id": "hipFR",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.08, 0.6, 0.08],
+      "pos": [0.35, 0, -0.35],
+      "rot": [0, 45, 135],
+      "pivot": "top",
+      "material": "dark"
+    },
+    {
+      "id": "kneeFR",
+      "parent": "hipFR",
+      "shape": "box",
+      "size": [0.06, 1.2, 0.06],
+      "pos": [0, -0.6, 0],
+      "rot": [0, 0, -123],
+      "pivot": "top",
+      "material": "steel"
+    },
+    {
+      "id": "hipBL",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.08, 0.6, 0.08],
+      "pos": [-0.35, 0, 0.35],
+      "rot": [0, 45, -135],
+      "pivot": "top",
+      "material": "dark"
+    },
+    {
+      "id": "kneeBL",
+      "parent": "hipBL",
+      "shape": "box",
+      "size": [0.06, 1.2, 0.06],
+      "pos": [0, -0.6, 0],
+      "rot": [0, 0, 123],
+      "pivot": "top",
+      "material": "steel"
+    },
+    {
+      "id": "hipBR",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.08, 0.6, 0.08],
+      "pos": [0.35, 0, 0.35],
+      "rot": [0, -45, 135],
+      "pivot": "top",
+      "material": "dark"
+    },
+    {
+      "id": "kneeBR",
+      "parent": "hipBR",
+      "shape": "box",
+      "size": [0.06, 1.2, 0.06],
+      "pos": [0, -0.6, 0],
+      "rot": [0, 0, -123],
+      "pivot": "top",
+      "material": "steel"
+    }
+  ],
+  "clips": { "idle": "critter-idle", "walk": "critter-walk", "attack": "critter-walk" }
+}

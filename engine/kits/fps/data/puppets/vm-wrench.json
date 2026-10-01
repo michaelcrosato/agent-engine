@@ -1,0 +1,24 @@
+{
+  "doc": "Wrench viewmodel.",
+  "parts": [
+    {
+      "id": "handle",
+      "shape": "box",
+      "size": [0.04, 0.04, 0.4],
+      "pos": [0, 0, -0.15],
+      "rot": [20, 0, 0],
+      "pivot": "center",
+      "material": "steel"
+    },
+    {
+      "id": "head",
+      "shape": "torus",
+      "size": [0.14, 0.04, 0.14],
+      "thickness": 0.04,
+      "pos": [0, 0.07, -0.34],
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "material": "steel"
+    }
+  ]
+}

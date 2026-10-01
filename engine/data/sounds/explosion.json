@@ -1,0 +1,21 @@
+{
+  "doc": "Big explosion: crack, rumble, debris tail.",
+  "gain": 1,
+  "pitchVariation": 0.1,
+  "layers": [
+    {
+      "wave": "brown",
+      "env": { "attack": 0.002, "decay": 0.6, "release": 0.8, "curve": 2 },
+      "gain": 1.4,
+      "filter": { "freq": 1800, "freqEnd": 120, "q": 0.7 }
+    },
+    {
+      "wave": "noise",
+      "env": { "attack": 0.001, "decay": 0.15, "release": 0.2, "curve": 3 },
+      "gain": 0.6,
+      "filter": { "freq": 5000, "freqEnd": 400 }
+    },
+    { "wave": "sine", "freq": 70, "freqEnd": 30, "env": { "decay": 0.5, "release": 0.3 } }
+  ],
+  "fx": { "drive": 0.4, "reverb": 0.3, "room": 0.8 }
+}

@@ -1,0 +1,10 @@
+{
+  "doc": "Grunt breathing idle: slight body bob, swaying arms, head scanning.",
+  "duration": 4,
+  "tracks": [
+    { "part": "body", "prop": "pos.y", "wave": { "amp": 0.02, "freq": 0.75 } },
+    { "part": "armL", "prop": "rot.x", "wave": { "amp": 5, "freq": 0.75 } },
+    { "part": "armR", "prop": "rot.x", "wave": { "amp": 5, "freq": 0.75, "phase": 0.5 } },
+    { "part": "head", "prop": "rot.y", "wave": { "amp": 18, "freq": 0.25 } }
+  ]
+}

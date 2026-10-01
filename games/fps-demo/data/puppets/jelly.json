@@ -1,0 +1,65 @@
+{
+  "doc": "Floating jellyfish: a lathe bell with drifting tentacles; the clip pulses its scale.",
+  "parts": [
+    {
+      "id": "bell",
+      "shape": "lathe",
+      "size": [1.2, 0.7, 1.2],
+      "pos": [0, 1.6, 0],
+      "profile": [[0.05, 0.7], [0.45, 0.6], [0.6, 0.2], [0.55, 0]],
+      "material": "glass",
+      "segments": 20
+    },
+    {
+      "id": "core",
+      "parent": "bell",
+      "shape": "sphere",
+      "size": 0.35,
+      "pos": [0, 0.3, 0],
+      "pivot": "center",
+      "material": "glow-blue",
+      "shadow": false
+    },
+    {
+      "id": "t1",
+      "parent": "bell",
+      "shape": "cylinder",
+      "size": [0.04, 1.1, 0.04],
+      "pos": [0.3, 0, 0],
+      "pivot": "top",
+      "material": "glow-blue",
+      "shadow": false
+    },
+    {
+      "id": "t2",
+      "parent": "bell",
+      "shape": "cylinder",
+      "size": [0.04, 1.3, 0.04],
+      "pos": [-0.3, 0, 0.1],
+      "pivot": "top",
+      "material": "glow-blue",
+      "shadow": false
+    },
+    {
+      "id": "t3",
+      "parent": "bell",
+      "shape": "cylinder",
+      "size": [0.04, 1.0, 0.04],
+      "pos": [0, 0, -0.3],
+      "pivot": "top",
+      "material": "glow-blue",
+      "shadow": false
+    },
+    {
+      "id": "t4",
+      "parent": "bell",
+      "shape": "cylinder",
+      "size": [0.04, 1.2, 0.04],
+      "pos": [0.1, 0, 0.3],
+      "pivot": "top",
+      "material": "glow-blue",
+      "shadow": false
+    }
+  ],
+  "clips": { "idle": "jelly-pulse", "walk": "jelly-pulse", "attack": "jelly-pulse" }
+}

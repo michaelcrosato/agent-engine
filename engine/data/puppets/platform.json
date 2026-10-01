@@ -1,0 +1,7 @@
+{
+  "doc": "Floating 2 x 0.4 x 2 m platform (one grid cell) with hazard trim.",
+  "parts": [
+    { "id": "deck", "shape": "box", "size": [1.96, 0.3, 1.96], "pos": [0, 0.1, 0], "material": "metal" },
+    { "id": "trim", "shape": "box", "size": [2, 0.1, 2], "material": "hazard" }
+  ]
+}

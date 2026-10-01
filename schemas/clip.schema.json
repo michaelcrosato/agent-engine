@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "clip (data/clips)",
+  "description": "Animation clip: keyframe or procedural sine tracks that offset puppet parts.",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "default": "",
+      "type": "string"
+    },
+    "duration": {
+      "default": 1,
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "loop": {
+      "default": true,
+      "type": "boolean"
+    },
+    "tracks": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "part": {
+            "type": "string",
+            "description": "Puppet part id"
+          },
+          "prop": {
+            "type": "string",
+            "enum": [
+              "pos.x",
+              "pos.y",
+              "pos.z",
+              "rot.x",
+              "rot.y",
+              "rot.z",
+              "scale",
+              "scale.x",
+              "scale.y",
+              "scale.z"
+            ],
+            "description": "pos.* in meters, rot.* in degrees (added to the rest pose); scale multiplies"
+          },
+          "keys": {
+            "default": [],
+            "description": "[time, value] pairs, time in seconds",
+            "type": "array",
+            "items": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2
+            }
+          },
+          "ease": {
+            "default": "sine",
+            "type": "string",
+            "enum": [
+              "linear",
+              "smooth",
+              "sine",
+              "in",
+              "out",
+              "step",
+              "back"
+            ]
+          },
+          "wave": {
+            "description": "Procedural sine instead of keys: offset + amp * sin(2π(freq t + phase))",
+            "type": "object",
+            "properties": {
+              "amp": {
+                "default": 10,
+                "type": "number"
+              },
+              "freq": {
+                "default": 1,
+                "description": "Cycles per second",
+                "type": "number"
+              },
+              "phase": {
+                "default": 0,
+                "description": "Cycle offset 0..1",
+                "type": "number"
+              },
+              "offset": {
+                "default": 0,
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "part",
+          "prop"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Editor schema hint (ignored by the engine)"
+    }
+  },
+  "required": [
+    "tracks"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,29 @@
+{
+  "doc": "Glowing molten rock: dark crust over bright cracks (emissive).",
+  "seed": 21,
+  "roughness": 0.9,
+  "normal": 2,
+  "layers": [
+    { "op": "fill", "color": "#ff5a00" },
+    {
+      "op": "noise",
+      "kind": "ridged",
+      "scale": 4,
+      "octaves": 4,
+      "color": "#ffd23a",
+      "amount": 0.8,
+      "glow": 1
+    },
+    {
+      "op": "cells",
+      "scale": 6,
+      "color": "#2a1208",
+      "variation": 0.2,
+      "edge": 0.18,
+      "edgeColor": "#ff7a00",
+      "edgeHeight": -0.4,
+      "amount": 1,
+      "glow": 0
+    }
+  ]
+}

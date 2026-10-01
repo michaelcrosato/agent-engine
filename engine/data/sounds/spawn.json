@@ -1,0 +1,16 @@
+{
+  "doc": "Teleport-in shimmer for spawned enemies.",
+  "gain": 0.45,
+  "layers": [
+    {
+      "wave": "fm",
+      "freq": 330,
+      "freqEnd": 990,
+      "fmRatio": 1.5,
+      "fmIndex": 4,
+      "fmIndexEnd": 0.5,
+      "env": { "attack": 0.01, "decay": 0.4, "release": 0.2 }
+    }
+  ],
+  "fx": { "reverb": 0.35, "room": 0.7 }
+}

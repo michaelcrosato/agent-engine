@@ -1,0 +1,8 @@
+{
+  "doc": "Enemy plasma projectile (15 dmg, 14 m/s).",
+  "components": {
+    "Projectile": { "speed": 14, "damage": 15, "lifetime": 4, "hitEffect": "fireball-hit" },
+    "Model": { "puppet": "fireball" },
+    "Light": { "color": "#ff4a3a", "intensity": 10, "range": 5 }
+  }
+}

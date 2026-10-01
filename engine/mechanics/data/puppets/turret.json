@@ -1,0 +1,52 @@
+{
+  "doc": "Turret: base, head and twin barrels. Roles: idle sweeps the head, attack kicks the barrels.",
+  "parts": [
+    {
+      "id": "base",
+      "shape": "cylinder",
+      "size": [0.9, 0.5, 0.9],
+      "material": "metal"
+    },
+    {
+      "id": "head",
+      "shape": "sphere",
+      "size": [0.7, 0.6, 0.7],
+      "pos": [0, 0.45, 0],
+      "material": "gun"
+    },
+    {
+      "id": "eye",
+      "parent": "head",
+      "shape": "sphere",
+      "size": 0.18,
+      "pos": [0, 0.22, -0.28],
+      "material": "glow-red",
+      "shadow": false
+    },
+    {
+      "id": "barrelL",
+      "parent": "head",
+      "shape": "cylinder",
+      "size": [0.08, 0.6, 0.08],
+      "pos": [-0.12, 0.25, -0.35],
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "material": "steel"
+    },
+    {
+      "id": "barrelR",
+      "parent": "head",
+      "shape": "cylinder",
+      "size": [0.08, 0.6, 0.08],
+      "pos": [0.12, 0.25, -0.35],
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "material": "steel"
+    }
+  ],
+  "clips": {
+    "idle": "turret-scan",
+    "walk": "turret-scan",
+    "attack": "turret-fire"
+  }
+}

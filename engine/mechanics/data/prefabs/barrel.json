@@ -1,0 +1,10 @@
+{
+  "doc": "Explosive barrel: shoot it (30 hp) to blast everything within 4.5 m. Chains with other barrels.",
+  "tags": ["prop", "explosive"],
+  "components": {
+    "Body": { "type": "dynamic", "shape": "cylinder", "size": [0.8, 1.2, 0.8], "mass": 40, "layer": "prop" },
+    "Model": { "puppet": "barrel" },
+    "Health": { "max": 30 },
+    "Explosive": { "radius": 4.5, "damage": 90, "impulse": 12, "effect": "explosion" }
+  }
+}

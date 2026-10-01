@@ -1,0 +1,5 @@
+{
+  "doc": "Door that needs the blue key.",
+  "extends": "door",
+  "components": { "Door": { "key": "blue" }, "Model": { "tint": "#8aaaff" } }
+}

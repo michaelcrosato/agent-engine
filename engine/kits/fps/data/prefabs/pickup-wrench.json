@@ -1,0 +1,8 @@
+{
+  "doc": "Wrench on the floor: grants the melee weapon.",
+  "extends": "pickup-base",
+  "components": {
+    "Pickup": { "kind": "weapon", "item": "weapons/wrench", "message": "Wrench (slot 1)" },
+    "Model": { "puppet": "vm-wrench" }
+  }
+}

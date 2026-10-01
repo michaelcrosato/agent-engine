@@ -1,0 +1,12 @@
+{
+  "doc": "Dry fire click.",
+  "gain": 0.4,
+  "bus": "ui",
+  "layers": [
+    {
+      "wave": "noise",
+      "env": { "attack": 0.001, "decay": 0.012, "release": 0.005 },
+      "filter": { "type": "bandpass", "freq": 3500, "q": 4 }
+    }
+  ]
+}

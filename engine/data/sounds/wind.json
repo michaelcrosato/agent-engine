@@ -1,0 +1,13 @@
+{
+  "doc": "Gusty wind loop.",
+  "gain": 0.35,
+  "layers": [
+    {
+      "wave": "pink",
+      "tremoloRate": 0.3,
+      "tremoloDepth": 0.6,
+      "env": { "attack": 0.5, "sustain": 1, "sustainTime": 5, "release": 0.5 },
+      "filter": { "type": "bandpass", "freq": 500, "freqEnd": 900, "q": 0.8 }
+    }
+  ]
+}

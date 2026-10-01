@@ -1,0 +1,48 @@
+{
+  "name": "agent-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A 3D game engine built for AI coding agents: data-first, headless-testable, procedural assets.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "imports": {
+    "#engine/*": "./engine/*",
+    "#games/*": "./games/*",
+    "#tools/*": "./tools/*"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "node tools/cli.ts check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "new": "node tools/cli.ts new",
+    "play": "node tools/cli.ts play",
+    "shot": "node tools/cli.ts shot",
+    "sfx": "node tools/cli.ts sfx",
+    "music": "node tools/cli.ts music",
+    "tex": "node tools/cli.ts tex",
+    "api": "node tools/cli.ts api",
+    "docs": "node tools/cli.ts docs",
+    "tool": "node tools/cli.ts",
+    "mcp": "node tools/mcp/startMcpServer.ts"
+  },
+  "dependencies": {
+    "@dimforge/rapier3d-simd-compat": "0.21.0",
+    "three": "0.186.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@modelcontextprotocol/sdk": "1.31.0",
+    "@types/node": "22.20.4",
+    "@types/three": "0.186.0",
+    "playwright": "1.63.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.1",
+    "vitest": "5.0.3"
+  }
+}

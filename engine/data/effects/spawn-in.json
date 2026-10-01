@@ -1,0 +1,14 @@
+{
+  "doc": "Teleport-in shimmer column.",
+  "count": 40,
+  "lifetime": [0.4, 0.9],
+  "speed": [0.5, 2.5],
+  "spread": 25,
+  "size": [0.05, 0.1],
+  "color": "#b0f0ff",
+  "colorEnd": "#4a6aff",
+  "gravity": 3,
+  "radius": 0.5,
+  "light": { "color": "#7ab8ff", "intensity": 40, "range": 6, "seconds": 0.3 },
+  "sound": "spawn"
+}

@@ -1,0 +1,10 @@
+{
+  "doc": "Shooting-range target: one hit knocks it down (+10 points), pops up after 2.5 s.",
+  "tags": ["target"],
+  "components": {
+    "Body": { "type": "static", "size": [0.9, 1.9, 0.15] },
+    "Model": { "puppet": "target" },
+    "Health": { "max": 1, "destroyOnDeath": false },
+    "Target": { "points": 10 }
+  }
+}

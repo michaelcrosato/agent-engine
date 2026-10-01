@@ -1,0 +1,11 @@
+{
+  "doc": "Critter scuttle: diagonal leg pairs swing in opposition (FL+BR vs FR+BL).",
+  "duration": 0.6,
+  "tracks": [
+    { "part": "hipFL", "prop": "rot.x", "wave": { "amp": 25, "freq": 1.6667 } },
+    { "part": "hipBR", "prop": "rot.x", "wave": { "amp": 25, "freq": 1.6667 } },
+    { "part": "hipFR", "prop": "rot.x", "wave": { "amp": 25, "freq": 1.6667, "phase": 0.5 } },
+    { "part": "hipBL", "prop": "rot.x", "wave": { "amp": 25, "freq": 1.6667, "phase": 0.5 } },
+    { "part": "body", "prop": "pos.y", "wave": { "amp": 0.05, "freq": 3.3333 } }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "doc": "No post-processing (fastest; raw render).",
+  "passes": []
+}

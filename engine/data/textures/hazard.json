@@ -1,0 +1,12 @@
+{
+  "doc": "Yellow/black hazard stripes, worn.",
+  "seed": 6,
+  "roughness": 0.6,
+  "normal": 1,
+  "layers": [
+    { "op": "fill", "color": "#1c1c1c" },
+    { "op": "stripes", "count": 4, "angle": 45, "color": "#e0b020", "width": 0.5 },
+    { "op": "noise", "scale": 32, "octaves": 2, "color": "#000000", "amount": 0.2 },
+    { "op": "scratches", "count": 60, "color": "#6a6a6a", "amount": 0.4 }
+  ]
+}

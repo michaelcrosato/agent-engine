@@ -1,0 +1,76 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "**/data/clips/**/*.json"
+      ],
+      "url": "./schemas/clip.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/data/effects/**/*.json"
+      ],
+      "url": "./schemas/effect.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/data/input/**/*.json"
+      ],
+      "url": "./schemas/input.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/data/looks/**/*.json"
+      ],
+      "url": "./schemas/look.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/data/music/**/*.json"
+      ],
+      "url": "./schemas/music.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/data/post/**/*.json"
+      ],
+      "url": "./schemas/post.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/data/prefabs/**/*.json"
+      ],
+      "url": "./schemas/prefab.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/data/puppets/**/*.json"
+      ],
+      "url": "./schemas/puppet.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/data/rooms/**/*.json"
+      ],
+      "url": "./schemas/room.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/data/sounds/**/*.json"
+      ],
+      "url": "./schemas/sound.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/data/textures/**/*.json"
+      ],
+      "url": "./schemas/texture.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/data/tuning/**/*.json"
+      ],
+      "url": "./schemas/tuning.schema.json"
+    }
+  ]
+}

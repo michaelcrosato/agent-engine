@@ -1,0 +1,5 @@
+{
+  "doc": "Turret idle: the head sweeps left and right.",
+  "duration": 4,
+  "tracks": [{ "part": "head", "prop": "rot.y", "wave": { "amp": 60, "freq": 0.25 } }]
+}

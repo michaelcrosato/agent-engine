@@ -1,0 +1,305 @@
+{
+  "doc": "Start room: a plaza with one glowing exit pad per showcase room. Returning players appear next to the pad they used.",
+  "look": "default",
+  "music": "calm",
+  "grid": {
+    "cell": 2,
+    "wallHeight": 5,
+    "legend": {},
+    "rows": [
+      "###################",
+      "#.................#",
+      "#.................#",
+      "#...=.........=...#",
+      "#.................#",
+      "#.......111.......#",
+      "#.......121.......#",
+      "#.......111.......#",
+      "#.................#",
+      "#...=.........=...#",
+      "#.................#",
+      "#........P........#",
+      "###################"
+    ]
+  },
+  "entities": [
+    {
+      "prefab": "exit",
+      "name": "exit-movement",
+      "cell": [3, 1],
+      "rot": 0,
+      "with": {
+        "RoomExit": {
+          "room": "movement",
+          "spawn": "from-hub"
+        },
+        "Label": {
+          "text": "Movement",
+          "offset": [0, 2.8, 0]
+        }
+      }
+    },
+    {
+      "prefab": "spawn",
+      "name": "spawn-from-movement",
+      "cell": [3, 2],
+      "rot": 180,
+      "with": {
+        "SpawnPoint": {
+          "id": "from-movement"
+        }
+      }
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-range",
+      "cell": [7, 1],
+      "rot": 0,
+      "with": {
+        "RoomExit": {
+          "room": "range",
+          "spawn": "from-hub"
+        },
+        "Label": {
+          "text": "Shooting Range",
+          "offset": [0, 2.8, 0]
+        }
+      }
+    },
+    {
+      "prefab": "spawn",
+      "name": "spawn-from-range",
+      "cell": [7, 2],
+      "rot": 180,
+      "with": {
+        "SpawnPoint": {
+          "id": "from-range"
+        }
+      }
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-physics",
+      "cell": [11, 1],
+      "rot": 0,
+      "with": {
+        "RoomExit": {
+          "room": "physics",
+          "spawn": "from-hub"
+        },
+        "Label": {
+          "text": "Physics",
+          "offset": [0, 2.8, 0]
+        }
+      }
+    },
+    {
+      "prefab": "spawn",
+      "name": "spawn-from-physics",
+      "cell": [11, 2],
+      "rot": 180,
+      "with": {
+        "SpawnPoint": {
+          "id": "from-physics"
+        }
+      }
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-arena",
+      "cell": [15, 1],
+      "rot": 0,
+      "with": {
+        "RoomExit": {
+          "room": "arena",
+          "spawn": "from-hub"
+        },
+        "Label": {
+          "text": "Arena",
+          "offset": [0, 2.8, 0]
+        }
+      }
+    },
+    {
+      "prefab": "spawn",
+      "name": "spawn-from-arena",
+      "cell": [15, 2],
+      "rot": 180,
+      "with": {
+        "SpawnPoint": {
+          "id": "from-arena"
+        }
+      }
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-keys",
+      "cell": [1, 4],
+      "rot": 90,
+      "with": {
+        "RoomExit": {
+          "room": "keys",
+          "spawn": "from-hub"
+        },
+        "Label": {
+          "text": "Doors & Keys",
+          "offset": [0, 2.8, 0]
+        }
+      }
+    },
+    {
+      "prefab": "spawn",
+      "name": "spawn-from-keys",
+      "cell": [2, 4],
+      "rot": -90,
+      "with": {
+        "SpawnPoint": {
+          "id": "from-keys"
+        }
+      }
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-audio",
+      "cell": [1, 8],
+      "rot": 90,
+      "with": {
+        "RoomExit": {
+          "room": "audio",
+          "spawn": "from-hub"
+        },
+        "Label": {
+          "text": "Audio",
+          "offset": [0, 2.8, 0]
+        }
+      }
+    },
+    {
+      "prefab": "spawn",
+      "name": "spawn-from-audio",
+      "cell": [2, 8],
+      "rot": -90,
+      "with": {
+        "SpawnPoint": {
+          "id": "from-audio"
+        }
+      }
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-looks",
+      "cell": [17, 4],
+      "rot": -90,
+      "with": {
+        "RoomExit": {
+          "room": "looks",
+          "spawn": "from-hub"
+        },
+        "Label": {
+          "text": "Looks",
+          "offset": [0, 2.8, 0]
+        }
+      }
+    },
+    {
+      "prefab": "spawn",
+      "name": "spawn-from-looks",
+      "cell": [16, 4],
+      "rot": 90,
+      "with": {
+        "SpawnPoint": {
+          "id": "from-looks"
+        }
+      }
+    },
+    {
+      "prefab": "exit",
+      "name": "exit-puppets",
+      "cell": [17, 8],
+      "rot": -90,
+      "with": {
+        "RoomExit": {
+          "room": "puppets",
+          "spawn": "from-hub"
+        },
+        "Label": {
+          "text": "Puppets",
+          "offset": [0, 2.8, 0]
+        }
+      }
+    },
+    {
+      "prefab": "spawn",
+      "name": "spawn-from-puppets",
+      "cell": [16, 8],
+      "rot": 90,
+      "with": {
+        "SpawnPoint": {
+          "id": "from-puppets"
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "title",
+      "pos": [19, 4.2, 13],
+      "with": {
+        "Label": {
+          "text": "AGENT ENGINE\nStage 2 showcase",
+          "size": 0.7,
+          "background": "#0d1218",
+          "opacity": 0.85
+        }
+      }
+    },
+    {
+      "prefab": "sign",
+      "name": "hint",
+      "pos": [19, 1.6, 20.5],
+      "rot": 0,
+      "with": {
+        "Label": {
+          "text": "Walk onto a glowing pad to visit a room",
+          "size": 0.3
+        }
+      }
+    },
+    {
+      "prefab": "health-small",
+      "name": "hub-health",
+      "cell": [8, 6]
+    },
+    {
+      "prefab": "ammo-bullets",
+      "name": "hub-ammo",
+      "cell": [10, 6]
+    },
+    {
+      "prefab": "light",
+      "name": "center-light",
+      "pos": [19, 5, 13],
+      "with": {
+        "Light": {
+          "intensity": 60,
+          "range": 18,
+          "color": "#cfe0ff"
+        }
+      }
+    },
+    {
+      "prefab": "trigger",
+      "name": "welcome",
+      "cell": [9, 11],
+      "with": {
+        "Trigger": {
+          "once": true,
+          "onEnter": [
+            {
+              "message": "Welcome! Each glowing pad leads to a showcase room."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

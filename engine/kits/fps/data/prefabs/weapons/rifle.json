@@ -1,0 +1,20 @@
+{
+  "doc": "Assault rifle: full-auto 10 rounds/s, 30-round magazine, uses bullets.",
+  "components": {
+    "Weapon": {
+      "name": "Rifle",
+      "slot": 4,
+      "damage": 11,
+      "spread": 1.8,
+      "rate": 10,
+      "automatic": true,
+      "ammo": "bullets",
+      "magazine": 30,
+      "reloadTime": 1.6,
+      "startAmmo": 60,
+      "kick": 0.7,
+      "sound": "rifle",
+      "viewmodel": "vm-rifle"
+    }
+  }
+}

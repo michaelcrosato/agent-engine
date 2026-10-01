@@ -1,0 +1,8 @@
+{
+  "doc": "Armor vest: +50 armor (absorbs 60% of damage).",
+  "extends": "pickup-base",
+  "components": {
+    "Pickup": { "kind": "armor", "amount": 50, "message": "+{amount} armor" },
+    "Model": { "puppet": "armor" }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "doc": "Golden hour outdoors: warm low sun, long shadows, hazy orange horizon.",
+  "extends": "default",
+  "sky": { "top": "#2a3a6a", "horizon": "#ffb070", "bottom": "#3a3028" },
+  "fog": { "color": "#d8a070", "near": 25, "far": 120 },
+  "ambient": { "sky": "#ffd0a0", "ground": "#4a3020", "intensity": 0.8 },
+  "sun": { "color": "#ffb060", "intensity": 3.2, "dir": [-0.8, -0.45, -0.2] },
+  "post": "cinematic",
+  "materials": {
+    "floor": { "texture": "dirt", "tile": 4 },
+    "wall": { "texture": "rock", "tile": 4 }
+  }
+}

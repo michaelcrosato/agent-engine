@@ -1,0 +1,10 @@
+{
+  "doc": "Base for walking enemies: capsule character, health, AI brain, animator. Extend and set Model + Brain.",
+  "tags": ["enemy"],
+  "components": {
+    "CharacterBody": { "radius": 0.4, "height": 1.8, "layer": "enemy", "pushProps": true },
+    "Health": { "max": 60, "hurtSound": "robot-hurt", "deathEffect": "robot-death" },
+    "Animator": { "play": "idle" },
+    "Brain": {}
+  }
+}

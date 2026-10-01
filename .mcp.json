@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "engine": {
+      "command": "node",
+      "args": ["tools/mcp/startMcpServer.ts"]
+    }
+  }
+}
