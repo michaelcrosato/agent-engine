@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import type { Plugin } from 'vite';
@@ -6,6 +7,24 @@ import { parseContentPath } from '../../engine/content/contentPath.ts';
 /** Repo-relative content path check for the editor's save endpoint. */
 function safeContentPath(path: string): boolean {
   return !path.includes('..') && !!parseContentPath(path);
+}
+
+/** Formats JSON the way `npm run check` expects (Biome), so editor saves never fail lint. */
+function formatJson(root: string, path: string, text: string): string {
+  try {
+    return execFileSync(
+      join(root, 'node_modules', '.bin', 'biome'),
+      ['format', `--stdin-file-path=${path}`],
+      {
+        cwd: root,
+        input: text,
+        encoding: 'utf8',
+        stdio: ['pipe', 'pipe', 'ignore'],
+      },
+    );
+  } catch {
+    return text;
+  }
 }
 
 /**
@@ -42,8 +61,9 @@ export function engineVitePlugin(root: string): Plugin {
               );
             JSON.parse(text);
             const abs = join(root, path);
+            const out = formatJson(root, path, text);
             mkdirSync(dirname(abs), { recursive: true });
-            writeFileSync(abs, text.endsWith('\n') ? text : `${text}\n`);
+            writeFileSync(abs, out.endsWith('\n') ? out : `${out}\n`);
             res.setHeader('content-type', 'application/json');
             res.end(JSON.stringify({ ok: true, path }));
           } catch (err) {

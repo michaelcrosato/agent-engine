@@ -73,6 +73,7 @@ export class Renderer {
       preserveDrawingBuffer: true,
     });
     this.three.shadowMap.enabled = true;
+    this.three.info.autoReset = false; // count whole frames (all post passes), reset in render()
     this.three.shadowMap.type = PCFShadowMap;
     this.textures = new TextureCache(content);
     this.materials = new MaterialLibrary(this.textures, log);
@@ -149,6 +150,7 @@ export class Renderer {
   }
 
   render(dt: number): void {
+    this.three.info.reset();
     this.time += dt;
     if (this.sky) this.sky.position.copy(this.camera.position);
     if (this.post) {

@@ -80,6 +80,8 @@ export class Engine {
   readonly systemErrors: EngineError[] = [];
   roomId = '';
   room: Room | undefined;
+  /** Set to a Map to record each system's run time (ms, smoothed) by name; the debug overlay does. */
+  profile: Map<string, number> | undefined;
   /** The current room's built grid map, if it has one (cells, blocks, glyph placements). */
   grid: BuiltGrid | undefined;
   activeTuning: string[] = [];
@@ -224,10 +226,16 @@ export class Engine {
   }
 
   private runPhase(phase: Phase): void {
+    const prof = this.profile;
     for (const s of this.phases[phase]) {
       if (this.disabled.has(s)) continue;
       try {
+        const t0 = prof ? performance.now() : 0;
         s.run(this.ctxFor(s));
+        if (prof) {
+          const ms = performance.now() - t0;
+          prof.set(s.name, (prof.get(s.name) ?? ms) * 0.9 + ms * 0.1);
+        }
       } catch (err) {
         const e = toEngineError(err, {
           code: 'SYSTEM_FAILED',

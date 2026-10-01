@@ -28,6 +28,8 @@ export type GridPlacement = {
   rot: number;
   with: TileData['with'];
   path: string;
+  col: number;
+  row: number;
 };
 
 export type BuiltGrid = {
@@ -141,6 +143,8 @@ export function buildGrid(grid: Grid, file?: string): BuiltGrid {
         rot: c.tile.rot,
         with: c.tile.with,
         path: `$.grid.rows[${c.row}]`,
+        col: c.col,
+        row: c.row,
       });
     }
   }

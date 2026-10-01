@@ -17,7 +17,7 @@ export type LoadRoomOptions = {
 function spawnBlocks(engine: Engine, grid: BuiltGrid): void {
   const w = engine.world;
   grid.blocks.forEach((b, i) => {
-    const e = w.spawn({ name: `grid:${b.kind}:${i}`, tags: ['level', b.kind] });
+    const e = w.spawn({ name: `grid:${b.kind}:${i}`, tags: ['level', b.kind], source: 'grid' });
     w.add(e, Transform, { pos: b.pos });
     w.add(e, Body, { type: 'static', shape: 'box', size: b.size, layer: 'world' });
     w.add(e, Model, { parts: [{ shape: 'box', size: b.size, material: b.material, uv: 'world' }] });
@@ -81,6 +81,7 @@ export function loadRoom(engine: Engine, id: string, opts: LoadRoomOptions = {})
         rot: pl.rot,
         with: pl.with,
         where: { file, path: pl.path },
+        source: `grid[${pl.col},${pl.row}]`,
       });
     }
   }
@@ -107,6 +108,7 @@ export function loadRoom(engine: Engine, id: string, opts: LoadRoomOptions = {})
       with: pl.with,
       tags: pl.tags,
       where,
+      source: `entities[${i}]`,
     });
   });
   const player = placePlayer(engine, opts.spawn);

@@ -23,6 +23,8 @@ export type SpawnOptions = {
   tags?: readonly string[];
   /** Where the spawn request came from, for error messages (room file + JSON path). */
   where?: ErrorWhere;
+  /** Room-file origin recorded on the entity for the editor: `entities[3]`, `grid[col,row]`. */
+  source?: string;
 };
 
 function tuningFor(engine: Engine, lineage: readonly string[], tags: readonly string[]): Json {
@@ -46,7 +48,12 @@ export function spawnPrefab(engine: Engine, prefab: string, opts: SpawnOptions =
   const tuning = tuningFor(engine, resolved.lineage, tags);
   const comps = deepMerge(resolved.components, tuning, opts.with) as Json;
   const world = engine.world;
-  const e = world.spawn({ tags, prefab, ...(opts.name ? { name: opts.name } : {}) });
+  const e = world.spawn({
+    tags,
+    prefab,
+    ...(opts.name ? { name: opts.name } : {}),
+    ...(opts.source ? { source: opts.source } : {}),
+  });
   try {
     for (const [name, json] of Object.entries(comps)) {
       const fromOverride = !!opts.with?.[name];

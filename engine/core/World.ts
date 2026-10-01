@@ -5,7 +5,13 @@ import { didYouMean } from './suggest.ts';
 /** Entities are plain numeric ids. Ids are never reused within a World. */
 export type Entity = number;
 
-export type SpawnOpts = { name?: string; tags?: readonly string[]; prefab?: string };
+export type SpawnOpts = {
+  name?: string;
+  tags?: readonly string[];
+  prefab?: string;
+  /** Where it was defined in its room file: `entities[3]`, `grid[col,row]` (glyph), `grid` (geometry). */
+  source?: string;
+};
 
 /**
  * Entity + component storage. Components are plain data keyed by component type.
@@ -21,6 +27,7 @@ export class World {
   private readonly names = new Map<Entity, string>();
   private readonly tags = new Map<Entity, Set<string>>();
   private readonly prefabs = new Map<Entity, string>();
+  private readonly sources = new Map<Entity, string>();
 
   spawn(opts: SpawnOpts = {}): Entity {
     const e = this.next++;
@@ -28,6 +35,7 @@ export class World {
     if (opts.name) this.setName(e, opts.name);
     if (opts.tags?.length) this.tag(e, ...opts.tags);
     if (opts.prefab) this.prefabs.set(e, opts.prefab);
+    if (opts.source) this.sources.set(e, opts.source);
     return e;
   }
 
@@ -90,6 +98,7 @@ export class World {
       this.names.delete(e);
       this.tags.delete(e);
       this.prefabs.delete(e);
+      this.sources.delete(e);
       this.alive.delete(e);
     }
     this.doomed.clear();
@@ -195,6 +204,11 @@ export class World {
 
   prefabOf(e: Entity): string | undefined {
     return this.prefabs.get(e);
+  }
+
+  /** Where the entity was defined in its room file (see SpawnOpts.source); undefined for runtime spawns. */
+  sourceOf(e: Entity): string | undefined {
+    return this.sources.get(e);
   }
 
   /** Human/agent-readable entity label for errors and logs: `grunt#12 "boss"`. */

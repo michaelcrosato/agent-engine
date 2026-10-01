@@ -76,6 +76,7 @@ export const LabelSystem = defineSystem({
       let b = map.get(e);
       if (!b) {
         b = { mesh: makeMesh(l), key: JSON.stringify([l.text, l.size, l.color, l.background, l.opacity]) };
+        b.mesh.userData.entity = e;
         r.scene.add(b.mesh);
         map.set(e, b);
       }
