@@ -20,7 +20,7 @@ export type BotActions = { forward: string; jump: string };
 /**
  * Drives a game headlessly through real input actions and inspects the result.
  *
- *   const t = await playtest('fps-demo', 'range');
+ *   const t = await playtest('agent-engine', 'range');
  *   t.lookAt('target-1'); t.press('fire'); t.wait(0.2);
  *   expect(t.get('target-1', Target).hit).toBe(true);
  */

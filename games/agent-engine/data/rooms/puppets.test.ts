@@ -7,7 +7,7 @@ const EXHIBITS = ['show-grunt', 'show-gunner', 'show-turret', 'show-critter', 's
 
 describe('puppet gallery', () => {
   test('a console button switches every exhibit to that animation role', async () => {
-    const t = await playtest('fps-demo', 'puppets');
+    const t = await playtest('agent-engine', 'puppets');
     expect(t.walkTo(new Vector3(17, 0, 19.4))).toBe(true);
     t.lookAt('anim-walk', 0.35);
     t.press('use');
@@ -16,7 +16,7 @@ describe('puppet gallery', () => {
   });
 
   test('every exhibit is tagged "display" so one signal reaches all of them', async () => {
-    const t = await playtest('fps-demo', 'puppets');
+    const t = await playtest('agent-engine', 'puppets');
     const tagged = t.engine.world.tagged('display').map((e) => t.engine.world.nameOf(e));
     expect(tagged.sort()).toEqual([...EXHIBITS].sort());
   });

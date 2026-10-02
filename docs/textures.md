@@ -41,4 +41,4 @@ npm run tex -- bricks     # out/textures/bricks.png: albedo, normal, roughness, 
 npm run tex -- all
 ```
 
-Look at the 2×2 tiling image for seams, then at the room: `npm run shot -- fps-demo/looks`.
+Look at the 2×2 tiling image for seams, then at the room: `npm run shot -- agent-engine/looks`.

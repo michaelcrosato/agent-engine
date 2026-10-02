@@ -30,6 +30,6 @@ export function splitTarget(target: string, game?: string): { game: string; rest
     code: 'TOOL_GAME_AMBIGUOUS',
     what: `Which game? "${target}" has no game prefix`,
     why: `Games: ${games.join(', ')}`,
-    fix: `Write it as <game>/<id>, e.g. ${games[0] ?? 'fps-demo'}/${target}, or pass --game.`,
+    fix: `Write it as <game>/<id>, e.g. ${games[0] ?? 'agent-engine'}/${target}, or pass --game.`,
   });
 }

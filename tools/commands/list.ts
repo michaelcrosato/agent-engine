@@ -9,9 +9,9 @@ export const listTool = defineTool({
   name: 'list',
   summary: 'List games, kinds, components, systems, plugins, events, or content ids of a kind.',
   usage:
-    'npm run tool -- list <what> [--game fps-demo]\n' +
+    'npm run tool -- list <what> [--game agent-engine]\n' +
     '  what: games | kinds | components | systems | plugins | events | <kind> (sound, prefab, room, ...)\n' +
-    '  e.g. npm run tool -- list components    npm run tool -- list sound --game fps-demo',
+    '  e.g. npm run tool -- list components    npm run tool -- list sound --game agent-engine',
   args: z.object({
     what: z
       .string()

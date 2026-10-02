@@ -14,7 +14,7 @@ export const sfxTool = defineTool({
   name: 'sfx',
   summary: 'Synthesize sound patches to WAV + spectrogram PNG and describe them in numbers and words.',
   usage:
-    'npm run sfx -- <sound id | all> [--game fps-demo] [--pitch 1]\n' +
+    'npm run sfx -- <sound id | all> [--game agent-engine] [--pitch 1]\n' +
     '  e.g. npm run sfx -- explosion    npm run sfx -- all   (one line per sound)',
   args: z.object({
     id: z.string().meta({ description: 'Sound id, or "all"' }),

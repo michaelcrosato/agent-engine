@@ -27,7 +27,7 @@ Models are built from primitive **parts** at load time; nothing is imported from
   one model re-skins with the look. `color` tints it.
 - `clips` maps roles to clip ids. AI uses the roles `idle`, `walk`, `attack`.
 - Puppets in the engine and kits: `grunt`, `gunner`, `turret`, `crate`, `lamp`, `door`, the
-  viewmodels `vm-*`, ... Browse them in the fps-demo **puppets** room.
+  viewmodels `vm-*`, ... Browse them in the agent-engine **puppets** room.
 
 ## Clips (`data/clips/<id>.json`)
 

@@ -42,7 +42,7 @@ to every prefab that extends it; overrides by tag apply to entities with that ta
 }
 ```
 
-Try one live with `?tuning=hard`, or compare in a test (`games/fps-demo/data/rooms/arena.test.ts`).
+Try one live with `?tuning=hard`, or compare in a test (`games/agent-engine/data/rooms/arena.test.ts`).
 
 ## Spawning from code
 

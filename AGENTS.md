@@ -11,7 +11,7 @@ Read this file once. Everything else lives in small docs: `npm run docs`.
 ```sh
 npm install                  # Node >= 22.18 runs the .ts files directly
 npm run check                # the one check: types, lint, rules, content, schemas, all tests
-npm run dev                  # http://localhost:5173 : launcher, then ?game=fps-demo&room=arena
+npm run dev                  # http://localhost:5173 : launcher, then ?game=agent-engine&room=arena
 npm run docs                 # docs index;  npm run docs -- rooms   npm run docs -- "signal"
 npm run tool -- --help       # every tool; also served over MCP (.mcp.json → engine_<name>)
 ```
@@ -122,7 +122,7 @@ the game.
 
 | Task | Do this |
 | --- | --- |
-| New room | `npm run new -- room vault --from arena`, edit the JSON (or `&edit=1`), see it with `npm run shot -- fps-demo/vault --views player,top`, write its test, `npm run check` |
+| New room | `npm run new -- room vault --from arena`, edit the JSON (or `&edit=1`), see it with `npm run shot -- agent-engine/vault --views player,top`, write its test, `npm run check` |
 | New mechanic | `npm run new -- mechanic jetpack`, register the plugin in `game.ts`, put its data in the game, test it with `playtest(game, room, { plugins: [...] })` |
 | Tune feel | Make a tuning preset (`npm run new -- tuning floaty`), try it with `&tuning=floaty` or `playtest(..., { tuning: ['floaty'] })` |
 | New sound / song | `npm run new -- sound zap`, then `npm run sfx -- zap` (WAV + spectrogram + numbers). Songs: `npm run music -- <id>` |

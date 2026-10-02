@@ -16,7 +16,7 @@ export const playTool = defineTool({
     'npm run play -- <game>/<room> [--seconds 3] [--steps \'[{"walkTo":"exit"}]\'] [--script file.json] [--capture end]\n' +
     '  steps: wait, hold+seconds, press, look:[dx,dy], lookAt, walkTo(+timeout), untilEvent, signal:[target,action],\n' +
     '         teleport, set:[entity,Component,field,value], capture\n' +
-    '  e.g. npm run play -- fps-demo/range --steps \'[{"lookAt":"target-1"},{"press":"fire"},{"wait":0.5}]\'',
+    '  e.g. npm run play -- agent-engine/range --steps \'[{"lookAt":"target-1"},{"press":"fire"},{"wait":0.5}]\'',
   args: z.object({
     target: z.string().meta({ description: 'game/room' }),
     seconds: z.number().min(0).default(0).meta({ description: 'Extra seconds to simulate after the steps' }),

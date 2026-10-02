@@ -20,7 +20,7 @@ export function formatWhere(where: ErrorWhere | undefined): string {
  * Multi-line, agent-readable error text:
  *
  *   ✖ CONTENT_REF_MISSING: Prefab "grunt" not found
- *     at games/fps-demo/content/rooms/arena.json:12:5 $.entities[3].prefab
+ *     at games/agent-engine/content/rooms/arena.json:12:5 $.entities[3].prefab
  *     why: ...
  *     fix: ...
  */

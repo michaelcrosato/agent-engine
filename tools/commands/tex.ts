@@ -33,7 +33,7 @@ function sheet(maps: ReturnType<typeof renderTexture>): { w: number; h: number; 
 export const texTool = defineTool({
   name: 'tex',
   summary: 'Render texture recipes to PNG: albedo, normal, roughness, emissive, and a 2×2 tiling check.',
-  usage: 'npm run tex -- <texture id | all> [--game fps-demo]\n  e.g. npm run tex -- bricks',
+  usage: 'npm run tex -- <texture id | all> [--game agent-engine]\n  e.g. npm run tex -- bricks',
   args: z.object({ id: z.string(), game: z.string().optional() }),
   positional: ['id'],
   async run(a) {

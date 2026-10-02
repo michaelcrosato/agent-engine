@@ -12,7 +12,7 @@ import { playtest } from '#engine/testing.ts';
 
 describe('doors & keys', () => {
   test('the button opens the first door', async () => {
-    const t = await playtest('fps-demo', 'keys');
+    const t = await playtest('agent-engine', 'keys');
     expect(t.walkTo(new Vector3(10.6, 0, 4.5))).toBe(true);
     t.lookAt('button-1', 0.35);
     t.press('use');
@@ -56,8 +56,8 @@ Tips:
 The same vocabulary as JSON, for exploring without writing a test:
 
 ```sh
-npm run play -- fps-demo/range --steps '[{"lookAt":"target-1"},{"press":"fire"},{"wait":0.5}]'
-npm run play -- fps-demo/keys --steps '[{"walkTo":"key-red"},{"capture":"got-key"}]'
+npm run play -- agent-engine/range --steps '[{"lookAt":"target-1"},{"press":"fire"},{"wait":0.5}]'
+npm run play -- agent-engine/keys --steps '[{"walkTo":"key-red"},{"capture":"got-key"}]'
 ```
 
 Steps: `wait`, `hold` + `seconds`, `press`, `look: [dx, dy]`, `lookAt`, `walkTo` (+ `timeout`),

@@ -11,7 +11,7 @@ export const describeTool = defineTool({
   name: 'describe',
   summary: 'Show the fields of a component or content kind, or a resolved prefab.',
   usage:
-    'npm run tool -- describe <Component | kind | prefab:<id>> [--game fps-demo]\n' +
+    'npm run tool -- describe <Component | kind | prefab:<id>> [--game agent-engine]\n' +
     '  e.g. describe Health    describe sound    describe prefab:grunt',
   args: z.object({
     thing: z.string().meta({ description: 'Component name, kind name, or prefab:<id>' }),
