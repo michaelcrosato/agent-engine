@@ -8,7 +8,7 @@ const messages = (t: Awaited<ReturnType<typeof playtest>>) =>
 
 describe('doors & keys', () => {
   test('the red door refuses a player without the red key', async () => {
-    const t = await playtest('fps-demo', 'keys');
+    const t = await playtest('agent-engine', 'keys');
     t.engine.physics.teleport(t.player, new Vector3(22.5, 0.05, 7));
     t.wait(0.5);
     expect(messages(t)).toContain('Locked. Needs the red key.');
@@ -16,7 +16,7 @@ describe('doors & keys', () => {
   });
 
   test('the whole puzzle: button, red key, lift button, blue key, blue door, exit', async () => {
-    const t = await playtest('fps-demo', 'keys');
+    const t = await playtest('agent-engine', 'keys');
     expect(t.walkTo(new Vector3(10.6, 0, 4.5))).toBe(true);
     t.lookAt('button-1', 0.35);
     t.press('use');

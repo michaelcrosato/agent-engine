@@ -11,7 +11,7 @@ The kit's `player` prefab (`engine/kits/fps/data/prefabs/player.json`) is a caps
 jump, gravity, coyote time, jump buffer, footsteps, fall damage), `Health` + `Respawn`,
 `Inventory`, `Arsenal` (owned weapons), and `Interactor` (use with E). It is tagged `player`
 and `persist` (it survives room changes). Override it per game with `games/<g>/data/prefabs/player.json`,
-or tune it with a preset (`games/fps-demo/data/tuning/floaty.json`).
+or tune it with a preset (`games/agent-engine/data/tuning/floaty.json`).
 
 Default bindings live in `engine/data/input/default.json`: WASD, mouse look, Space jump,
 Shift sprint, Ctrl/C crouch, Mouse0 fire, E use, R reload, 1-9 and the wheel switch weapons,

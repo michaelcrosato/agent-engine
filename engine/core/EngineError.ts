@@ -2,7 +2,7 @@ import { formatError } from './formatError.ts';
 
 /** Where a failure happened. Fill whatever is known; formatting skips empty fields. */
 export type ErrorWhere = {
-  /** Repo-relative file, e.g. `games/fps-demo/content/rooms/arena.json`. */
+  /** Repo-relative file, e.g. `games/agent-engine/content/rooms/arena.json`. */
   file?: string;
   /** JSON path inside the file, e.g. `$.entities[3].prefab`. */
   path?: string;

@@ -18,7 +18,7 @@ function nearestEnemy(t: NodePlaytest): number | undefined {
 
 describe('arena', () => {
   test('stepping in starts the waves; destroying 10 robots clears the arena and spawns a reward', async () => {
-    const t = await playtest('fps-demo', 'arena');
+    const t = await playtest('agent-engine', 'arena');
     t.get('player', Health).invulnerable = true;
     t.get('player', Inventory).ammo.bullets = 999;
     t.get('player', Arsenal).weapons.push('weapons/rifle');
@@ -46,15 +46,15 @@ describe('arena', () => {
   });
 
   test('the "hard" tuning preset toughens wave robots through their parent prefab', async () => {
-    const normal = await playtest('fps-demo', 'arena');
-    const hard = await playtest('fps-demo', 'arena', { tuning: ['hard'] });
+    const normal = await playtest('agent-engine', 'arena');
+    const hard = await playtest('agent-engine', 'arena', { tuning: ['hard'] });
     const maxHp = (t: NodePlaytest) => t.get(t.engine.spawn('arena-grunt', { pos: [5, 0, 5] }), Health).max;
     expect(maxHp(normal)).toBe(60);
     expect(maxHp(hard)).toBe(100);
   });
 
   test('robots hunt down and hurt a player who does not fight back', async () => {
-    const t = await playtest('fps-demo', 'arena');
+    const t = await playtest('agent-engine', 'arena');
     expect(t.walkTo('arena-start')).toBe(true);
     expect(
       t.until(() => t.events<{ entity: number }>('Damaged').some((d) => d.entity === t.player), 20),

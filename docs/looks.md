@@ -27,7 +27,7 @@ every model and grid surface uses. Rooms pick one with `"look"`; signals switch 
   render magenta and log once.
 - Common names: `floor`, `wall`, `ceiling`, `concrete`, `metal`, `steel`, `wood`, `crate`,
   `bricks`, `rock`, `dirt`, `grate`, `hazard`, `lava`, `glass`, `glow`, `glow-red|green|blue`,
-  `accent`, `enemy`, `gun`, `dark`, `white`, `water`. The fps-demo looks room shows swatches.
+  `accent`, `enemy`, `gun`, `dark`, `white`, `water`. The agent-engine looks room shows swatches.
 - Engine looks: `default`, `night`, `neon`, `retro`, `dusk`, `industrial`.
 - Exact fields: `npm run tool -- describe look`.
 
@@ -49,8 +49,8 @@ Pass types: `bloom`, `vignette`, `grade`, `grain`, `chromatic`, `pixelate`, `sca
 ## Seeing the result
 
 ```sh
-npm run shot -- fps-demo/looks --look night --views player
-npm run shot -- fps-demo/arena --cam 10,6,30 --at 20,0,10
+npm run shot -- agent-engine/looks --look night --views player
+npm run shot -- agent-engine/arena --cam 10,6,30 --at 20,0,10
 ```
 
 Edits to looks, post stacks, and textures hot-reload in the browser without rebuilding the room.

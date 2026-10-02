@@ -10,7 +10,7 @@ import { openGame, splitTarget } from '../lib/openGame.ts';
 export const mapTool = defineTool({
   name: 'map',
   summary: 'Print a room as an ASCII map with rulers, glyph meanings, and every entity with its cell.',
-  usage: 'npm run tool -- map <game>/<room>\n  e.g. npm run tool -- map fps-demo/hub',
+  usage: 'npm run tool -- map <game>/<room>\n  e.g. npm run tool -- map agent-engine/hub',
   args: z.object({ target: z.string().meta({ description: 'game/room' }) }),
   positional: ['target'],
   async run(a) {

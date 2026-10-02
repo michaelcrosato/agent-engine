@@ -10,7 +10,7 @@ export const shotTool = defineTool({
   usage:
     "npm run shot -- <game>/<room> [--views player,top] [--frames 30] [--steps '[...]'] [--look neon]\n" +
     '       [--cam x,y,z --at x,y,z] [--size 1280x720] [--url http://localhost:5173]\n' +
-    '  e.g. npm run shot -- fps-demo/arena --views player,top',
+    '  e.g. npm run shot -- agent-engine/arena --views player,top',
   args: z.object({
     target: z.string().meta({ description: 'game/room' }),
     views: z

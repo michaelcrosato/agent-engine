@@ -31,7 +31,7 @@ export function packDir(pack: string): string {
   return `games/${pack.slice(5)}/data`;
 }
 
-/** Repo-relative path for a content id in a pack: `games/fps-demo/data/sounds/pistol.json`. */
+/** Repo-relative path for a content id in a pack: `games/agent-engine/data/sounds/pistol.json`. */
 export function contentFilePath(pack: string, folder: string, id: string): string {
   return `${packDir(pack)}/${folder}/${id}.json`;
 }

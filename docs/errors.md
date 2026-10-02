@@ -5,7 +5,7 @@ how to fix it:
 
 ```
 ✖ CLIP_PART_MISSING: Clip "critter-walk" animates "hipBX", but puppet "critter" has no such part
-  at games/fps-demo/data/puppets/critter.json $.clips.walk
+  at games/agent-engine/data/puppets/critter.json $.clips.walk
   why: Did you mean "hipBL" or "hipBR" or "hipFL"?
   fix: Point the clip track "part" at a puppet part id, or give that part an "id" in the puppet.
 ```

@@ -5,7 +5,7 @@ import { playtest } from '#engine/testing.ts';
 
 describe('shooting range', () => {
   test('a pistol shot knocks a target down for 10 points and it pops back up', async () => {
-    const t = await playtest('fps-demo', 'range');
+    const t = await playtest('agent-engine', 'range');
     t.lookAt('target-1', 1.45);
     t.press('fire');
     t.wait(0.1);
@@ -18,7 +18,7 @@ describe('shooting range', () => {
   });
 
   test('the rifle fires automatically while held, empties its magazine, and reloads from reserve', async () => {
-    const t = await playtest('fps-demo', 'range');
+    const t = await playtest('agent-engine', 'range');
     expect(t.walkTo('pickup-rifle')).toBe(true);
     t.wait(0.4);
     const a = t.get('player', Arsenal);
@@ -33,7 +33,7 @@ describe('shooting range', () => {
   });
 
   test('a rocket into the barrels sets off a chain of explosions', async () => {
-    const t = await playtest('fps-demo', 'range');
+    const t = await playtest('agent-engine', 'range');
     expect(t.walkTo('pickup-launcher')).toBe(true);
     t.wait(0.4);
     t.lookAt('barrel@6,1', 0.6);

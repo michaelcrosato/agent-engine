@@ -10,7 +10,7 @@ export const validateTool = defineTool({
   name: 'validate',
   summary:
     'Validate all data of one or all games: schemas, references, prefabs, and every room built headlessly.',
-  usage: 'npm run tool -- validate [game]\n  e.g. npm run tool -- validate fps-demo',
+  usage: 'npm run tool -- validate [game]\n  e.g. npm run tool -- validate agent-engine',
   args: z.object({ game: z.string().optional().meta({ description: 'Only this game (default: all)' }) }),
   positional: ['game'],
   async run(a) {

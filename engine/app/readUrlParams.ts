@@ -1,4 +1,4 @@
-/** Options read from the page URL: `?game=fps-demo&room=arena&edit=1&shot=1&frames=60&view=top`. */
+/** Options read from the page URL: `?game=agent-engine&room=arena&edit=1&shot=1&frames=60&view=top`. */
 export type UrlParams = {
   game: string;
   room: string;

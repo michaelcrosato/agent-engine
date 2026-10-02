@@ -6,12 +6,14 @@ trees of primitive parts, textures are paint-op recipes, sounds are synth patche
 chord-aware step sequencer, and animations are keyframe or sine clips, all as JSON data.
 
 ```sh
+git clone https://github.com/michaelcrosato/agent-engine.git
+cd agent-engine
 npm install        # Node >= 22.18
 npm run dev        # http://localhost:5173: pick a room; add &edit=1 for the level editor
 npm run check      # types, lint, architecture rules, data validation, every room as a headless test
 ```
 
-The demo game, `games/fps-demo`, is a hub with eight showcase rooms: movement, shooting range,
+The Agent Engine game, `games/agent-engine`, is a hub with eight showcase rooms: movement, shooting range,
 physics, arena waves, doors and keys, audio, looks, and puppets. Each room has a headless test
 that plays it.
 

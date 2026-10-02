@@ -4,13 +4,13 @@ import { playtest } from '#engine/testing.ts';
 
 describe('movement course', () => {
   test('the stairs climb 0.5 m per cell up to the 3 m walkway', async () => {
-    const t = await playtest('fps-demo', 'movement');
+    const t = await playtest('agent-engine', 'movement');
     expect(t.walkTo(new Vector3(3, 3, 3))).toBe(true);
     expect(t.pos('player').y).toBeCloseTo(3, 0);
   });
 
   test('a running jump clears the gap, a second jump climbs the 1 m ledge, the goal says so', async () => {
-    const t = await playtest('fps-demo', 'movement');
+    const t = await playtest('agent-engine', 'movement');
     t.engine.physics.teleport(t.player, new Vector3(11, 3.05, 3));
     t.tick();
     t.lookAt(new Vector3(40, 4.6, 3));
@@ -27,7 +27,7 @@ describe('movement course', () => {
   });
 
   test('the elevator carries a standing player up to the deck', async () => {
-    const t = await playtest('fps-demo', 'movement');
+    const t = await playtest('agent-engine', 'movement');
     t.engine.physics.teleport(t.player, new Vector3(25, 0.5, 11));
     expect(t.until(() => t.pos('player').y > 3.9, 8)).toBe(true);
     t.lookAt(new Vector3(25, 5.6, 0));
@@ -38,7 +38,7 @@ describe('movement course', () => {
 
   test('the "floaty" tuning preset roughly doubles jump height', async () => {
     const peak = async (tuning: string[]) => {
-      const t = await playtest('fps-demo', 'movement', { tuning });
+      const t = await playtest('agent-engine', 'movement', { tuning });
       t.engine.physics.teleport(t.player, new Vector3(5, 0.05, 19));
       t.wait(0.3);
       const ground = t.pos('player').y;
@@ -54,7 +54,7 @@ describe('movement course', () => {
   });
 
   test('the ramp leads onto the 1 m block', async () => {
-    const t = await playtest('fps-demo', 'movement');
+    const t = await playtest('agent-engine', 'movement');
     t.engine.physics.teleport(t.player, new Vector3(11, 0.05, 19.5));
     t.tick();
     t.lookAt(new Vector3(11, 2.6, 0));

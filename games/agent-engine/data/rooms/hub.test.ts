@@ -5,13 +5,13 @@ import { playtest } from '#engine/testing.ts';
 
 describe('hub', () => {
   test('a bot walks from the spawn onto the Movement pad and arrives in that room', async () => {
-    const t = await playtest('fps-demo', 'hub');
+    const t = await playtest('agent-engine', 'hub');
     expect(t.walkTo('exit-movement')).toBe(true);
     expect(t.engine.roomId).toBe('movement');
   });
 
   test('every pad leads to its room, whose exit returns the player beside the same pad', async () => {
-    const t = await playtest('fps-demo', 'hub');
+    const t = await playtest('agent-engine', 'hub');
     const world = () => t.engine.world;
     const standOn = (target: string | Entity) =>
       t.engine.physics.teleport(t.player, t.pos(target).add(new Vector3(0, 0.1, 0)));

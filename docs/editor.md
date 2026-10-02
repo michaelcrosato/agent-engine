@@ -4,7 +4,7 @@ All three run on the dev server: `npm run dev`, then open a room.
 
 ## Level editor
 
-Open with `?game=fps-demo&room=arena&edit=1`, or press **F2** in any room. The game pauses and
+Open with `?game=agent-engine&room=arena&edit=1`, or press **F2** in any room. The game pauses and
 a free camera takes over. The editor edits the room file itself (`games/<g>/data/rooms/<id>.json`):
 every change is re-validated and the room is rebuilt, so what you see is what the file says.
 

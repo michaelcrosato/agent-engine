@@ -14,7 +14,7 @@ import { outPath } from '../lib/outPath.ts';
 export const musicTool = defineTool({
   name: 'music',
   summary: 'Render a song to a seamless stereo WAV loop + spectrogram, with timing and loudness stats.',
-  usage: 'npm run music -- <song id> [--game fps-demo]\n  e.g. npm run music -- tense',
+  usage: 'npm run music -- <song id> [--game agent-engine]\n  e.g. npm run music -- tense',
   args: z.object({ id: z.string(), game: z.string().optional() }),
   positional: ['id'],
   async run(a) {
