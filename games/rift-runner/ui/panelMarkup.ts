@@ -4,6 +4,7 @@ import { rarityColors, sellValue } from '../progression/rollLoot.ts';
 import { SkillCatalog } from '../progression/SkillCatalog.ts';
 import { RunKey } from '../RunState.ts';
 import { escapeHtml as esc, uiFormat } from './uiFormat.ts';
+import { visualFilterMarkup } from './visualFilterMarkup.ts';
 
 const button = (text: string, action: string, id = '', disabled = false, primary = false) =>
   `<button class="${primary ? 'rift-primary' : 'rift-quiet'}" data-action="${action}" data-id="${esc(id)}" ${disabled ? 'disabled' : ''}>${text}</button>`;
@@ -90,7 +91,7 @@ export function panelMarkup(engine: Engine): string {
     body += '</div>';
   }
   if (s.panel === 'settings')
-    body = `<p>All six combat sliders apply to the current expedition immediately. Health changes preserve the percentage remaining.</p>
+    body = `${visualFilterMarkup(p.visualFilter)}<h3>Combat tuning</h3><p>All six combat sliders apply to the current expedition immediately. Health changes preserve the percentage remaining.</p>
     <div class="rift-setting-buttons">${button('Standard', 'preset', 'standard')}${button('Relentless', 'preset', 'relentless')}${button('Explore', 'preset', 'explore')}</div>
     <div class="rift-settings"><section><h3>The runner</h3>${slider('Player damage', 'playerDamage', p.difficulty.playerDamage, 0.1, 5)}${slider('Player health', 'playerHealth', p.difficulty.playerHealth, 0.1, 5)}${slider('Player speed', 'playerSpeed', p.difficulty.playerSpeed, 0.25, 3, 0.05)}</section>
     <section><h3>The opposition</h3>${slider('Enemy damage', 'enemyDamage', p.difficulty.enemyDamage, 0.1, 5)}${slider('Enemy health', 'enemyHealth', p.difficulty.enemyHealth, 0.1, 5)}${slider('Enemy speed', 'enemySpeed', p.difficulty.enemySpeed, 0.25, 3, 0.05)}</section></div>
@@ -108,5 +109,5 @@ export function panelMarkup(engine: Engine): string {
           : `<h3>A build is never set in stone.</h3><p>Refund every spent point and try another path. Free, as often as you like.</p>${button('Refund all skill points', 'respec', '', false, true)}${button('Open skill constellation', 'panel', 'skills')}`;
     body = `<div class="rift-service"><div class="rift-service-mark">${s.panel === 'forge' ? '⌁' : s.panel === 'vendor' ? '◇' : '✧'}</div><section>${service}<p>${button('Restore health · free', 'heal')}${button('View equipment', 'panel', 'inventory')}</p></section></div>`;
   }
-  return `<div class="rift-backdrop"><section class="rift-panel ${s.panel === 'menu' ? 'rift-menu' : ''}" role="dialog" aria-modal="true" aria-label="${title}">${head}${body}</section></div>`;
+  return `<div class="rift-backdrop ${s.panel === 'settings' ? 'rift-preview-backdrop' : ''}"><section class="rift-panel ${s.panel === 'menu' ? 'rift-menu' : ''} ${s.panel === 'settings' ? 'rift-settings-panel' : ''}" role="dialog" aria-modal="true" aria-label="${title}">${head}${body}</section></div>`;
 }

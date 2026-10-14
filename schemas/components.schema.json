@@ -2033,6 +2033,15 @@
           "default": true,
           "type": "boolean"
         },
+        "filterGroup": {
+          "default": "subject",
+          "description": "Visual filter category: environment for terrain/buildings, subject for characters/objects",
+          "type": "string",
+          "enum": [
+            "environment",
+            "subject"
+          ]
+        },
         "$schema": {
           "type": "string",
           "description": "Editor schema hint (ignored by the engine)"

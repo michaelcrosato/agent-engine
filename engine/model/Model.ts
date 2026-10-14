@@ -14,5 +14,8 @@ export const Model = defineComponent({
     parts: field.list(PartSchema, [], { doc: 'Inline parts (used when puppet is empty)' }),
     tint: field.string('', { doc: 'Hex color multiplied into every part, e.g. "#ff8080"' }),
     visible: field.bool(true),
+    filterGroup: field.enum(['environment', 'subject'], 'subject', {
+      doc: 'Visual filter category: environment for terrain/buildings, subject for characters/objects',
+    }),
   },
 });

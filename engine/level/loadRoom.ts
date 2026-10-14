@@ -20,7 +20,10 @@ function spawnBlocks(engine: Engine, grid: BuiltGrid): void {
     const e = w.spawn({ name: `grid:${b.kind}:${i}`, tags: ['level', b.kind], source: 'grid' });
     w.add(e, Transform, { pos: b.pos });
     w.add(e, Body, { type: 'static', shape: 'box', size: b.size, layer: 'world' });
-    w.add(e, Model, { parts: [{ shape: 'box', size: b.size, material: b.material, uv: 'world' }] });
+    w.add(e, Model, {
+      filterGroup: 'environment',
+      parts: [{ shape: 'box', size: b.size, material: b.material, uv: 'world' }],
+    });
   });
 }
 

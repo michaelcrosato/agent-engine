@@ -18,6 +18,8 @@ first/third-person cameras, four weapon families, elemental reactions, a 24-node
 repeatable mastery. Lastlight is its animated town hub: forge equipment, trade salvage, respec, then
 push through eight mechanic-led expeditions into endless seeded combinations of arenas, enemies,
 boss patterns, affixes and palettes. Six live difficulty sliders make combat easy to tune and test.
+Cel shading is the default look. Settings offers cel, graphic-novel, vivid and original rendering,
+applied to the whole scene, only the environment, or only characters and objects.
 
 - [Play guide and controls](docs/rift-runner.md)
 - [How to extend the procedural vocabulary](docs/endless-content.md)

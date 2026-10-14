@@ -1,16 +1,20 @@
 import {
   Color,
+  DataTexture,
   DoubleSide,
   FrontSide,
   type Material,
   MeshBasicMaterial,
   MeshStandardMaterial,
   MeshToonMaterial,
+  NearestFilter,
+  RedFormat,
 } from 'three';
 import type { Log } from '../core/Log.ts';
 import { didYouMean } from '../core/suggest.ts';
 import { type MaterialData, MaterialSchema } from './Look.ts';
 import type { TextureCache } from './TextureCache.ts';
+import { type FilterGroup, usesCelLighting, type VisualFilter } from './VisualFilter.ts';
 
 const MISSING = MaterialSchema.parse({ type: 'unlit', color: '#ff00ff' });
 const FALLBACK = MaterialSchema.parse({ color: '#9a9a9a' });
@@ -24,6 +28,8 @@ export class MaterialLibrary {
   private readonly cache = new Map<string, Material>();
   private readonly textures: TextureCache;
   private readonly log: Log;
+  private filter: VisualFilter = { style: 'none', scope: 'scene' };
+  private gradient: DataTexture | undefined;
 
   constructor(textures: TextureCache, log: Log) {
     this.textures = textures;
@@ -33,16 +39,28 @@ export class MaterialLibrary {
   /** Replaces the material palette (look change); cached materials are disposed. */
   setPalette(defs: Record<string, MaterialData>): void {
     this.defs = defs;
+    this.clear();
+  }
+
+  setVisualFilter(filter: VisualFilter): void {
+    this.filter = { ...filter };
+    this.clear();
+  }
+
+  private clear(): void {
     for (const m of this.cache.values()) m.dispose();
     this.cache.clear();
+    this.gradient?.dispose();
+    this.gradient = undefined;
   }
 
   names(): string[] {
     return Object.keys(this.defs);
   }
 
-  get(name: string, tint?: string): Material {
-    const key = `${name}|${tint ?? ''}`;
+  get(name: string, tint?: string, group: FilterGroup = 'subject'): Material {
+    const cel = usesCelLighting(this.filter, group);
+    const key = `${name}|${tint ?? ''}|${cel}`;
     let m = this.cache.get(key);
     if (m) return m;
     let def = this.defs[name];
@@ -56,13 +74,13 @@ export class MaterialLibrary {
         );
       }
     }
-    m = this.create(def);
+    m = this.create(def, cel);
     if (tint && 'color' in m) (m as MeshStandardMaterial).color.multiply(new Color(tint));
     this.cache.set(key, m);
     return m;
   }
 
-  private create(d: MaterialData): Material {
+  private create(d: MaterialData, cel: boolean): Material {
     const tex = d.texture ? this.textures.get(d.texture, d.pixelated) : undefined;
     const side = d.doubleSided ? DoubleSide : FrontSide;
     const transparent = d.opacity < 1;
@@ -76,10 +94,21 @@ export class MaterialLibrary {
         depthWrite: !transparent,
       });
     }
-    if (d.type === 'toon') {
+    if (d.type === 'toon' || (cel && d.type === 'standard' && !transparent)) {
+      if (cel && !this.gradient) {
+        this.gradient = new DataTexture(new Uint8Array([0, 70, 155, 255]), 4, 1, RedFormat);
+        this.gradient.minFilter = NearestFilter;
+        this.gradient.magFilter = NearestFilter;
+        this.gradient.generateMipmaps = false;
+        this.gradient.needsUpdate = true;
+      }
       return new MeshToonMaterial({
         color: d.color,
         map: tex?.map ?? null,
+        gradientMap: cel ? this.gradient! : null,
+        emissive: tex?.emissiveMap ? '#ffffff' : d.emissive,
+        emissiveMap: tex?.emissiveMap ?? null,
+        emissiveIntensity: d.emissiveIntensity,
         side,
         transparent,
         opacity: d.opacity,

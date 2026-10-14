@@ -22,6 +22,9 @@ combat game, persistent builds, systemic elements, advanced traversal or an endl
 - **Experience arithmetic:** closed-form level costs and logarithmic reward resolution.
 - **SaveStore:** injected storage, versioned schemas, last-valid backups and graceful storage failure.
 - **Runtime palettes:** recolor a procedural room without changing the authored look assets.
+- **Selective visual filters:** per-model environment/subject categories, banded toon lighting,
+  depth/normal ink edges, graphic-novel halftone and vivid color. Runtime preferences survive
+  room palettes; Rift Runner defaults to cel shading and migrates existing saves without losing progress.
 - **Stable HUD updates:** reconcile trusted markup while retaining interactive DOM elements and focus.
 - **Kit composition:** `fpsKit({ hud: false })` allows a game's own interface while reusing FPS behavior.
 - **Renderer fixes:** live tint changes now rebuild affected models; replaced sky and label materials
@@ -56,7 +59,7 @@ silhouettes, camera clearance and HUD overlap. Production builds are checked sep
 
 ## Verified on 2026-10-14
 
-- `npm run check`: 61/61 tests; types, lint, architecture and 423 content files across 12 rooms pass.
+- `npm run check`: 65/65 tests; types, lint, architecture and 423 content files across 12 rooms pass.
 - `npm run build`: succeeds. The bundled engine dependency chunk still produces Vite's size
   warning (about 4.7 MB minified / 1.7 MB gzip).
 - Chromium tests against both the dev server and production preview: movement, skill purchase,
@@ -64,6 +67,12 @@ silhouettes, camera clearance and HUD overlap. Production builds are checked sep
   without browser or engine errors. Actual slider edits and a skill purchase survive reload.
 - Eight town/expedition round trips (16 room transitions) retain the same GPU texture, geometry
   and shader-program counts at each return to town. This complements the geometry lifecycle test.
+- Visual-filter checks cover shared-palette isolation, lighting-ramp disposal, save migration,
+  all four styles and three scopes, first-person weapons, keyboard controls and 700×560 settings.
+  Pixel comparisons with shared bloom disabled isolate the selection mask: over 99.8% of
+  unselected interior pixels stay within four display-channel values of the original.
+  Sixty filter switches and ten room transitions retain 38 textures, 228 geometries and 22
+  programs on every return to cel-shaded town. Production browser checks report no errors.
 - Boss telegraphs, HUD, 1440×900 and 960×640 layouts, keyboard focus and the original gallery were
   inspected in the browser. Browser tests use software rendering; hardware frame-rate benchmarking
   is separate from these correctness checks.
