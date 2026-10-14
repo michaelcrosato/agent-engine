@@ -17,6 +17,7 @@ import {
 } from 'three';
 import type { ContentStore } from '../content/ContentStore.ts';
 import { defineService } from '../core/defineService.ts';
+import { EngineError } from '../core/EngineError.ts';
 import type { Log } from '../core/Log.ts';
 import type { Entity } from '../core/World.ts';
 import type { PuppetInstance } from './buildPuppet.ts';
@@ -54,6 +55,8 @@ export class Renderer {
   readonly lights = new Map<Entity, Object3D>();
   look: Look | undefined;
   lookId = '';
+  /** Changes whenever material definitions are replaced, including variants of the same look. */
+  paletteVersion = 0;
   /** When set, the camera ignores CameraRigs and looks from `pos` at `target` (screenshots, editor). */
   cameraOverride: { pos: Vector3; target: Vector3 } | undefined;
   private sky: Mesh | undefined;
@@ -92,6 +95,8 @@ export class Renderer {
     if (this.sky) {
       this.scene.remove(this.sky);
       this.sky.geometry.dispose();
+      const materials = Array.isArray(this.sky.material) ? this.sky.material : [this.sky.material];
+      for (const material of materials) material.dispose();
     }
     this.sky = createSky(look.sky);
     this.scene.add(this.sky);
@@ -108,9 +113,29 @@ export class Renderer {
     this.renderScale = look.renderScale;
     this.three.domElement.style.imageRendering = look.renderScale < 1 ? 'pixelated' : '';
     this.materials.setPalette(look.materials);
+    this.paletteVersion++;
     for (const m of this.models.values()) m.source = {};
     this.rebuildPost();
     this.resize(this.three.domElement.clientWidth || 1280, this.three.domElement.clientHeight || 720);
+  }
+
+  /** Runtime palette variants for procedural worlds, without mutating source look assets. */
+  recolor(colors: Record<string, string>): void {
+    if (!this.look) return;
+    const palette = structuredClone(this.look.materials);
+    for (const [name, color] of Object.entries(colors)) {
+      if (!palette[name] || !/^#[0-9a-f]{6}$/i.test(color))
+        throw new EngineError({
+          code: 'PALETTE_COLOR_INVALID',
+          what: `Cannot recolor material "${name}" to "${color}"`,
+          fix: 'Use an existing material name and a six-digit hex color.',
+        });
+      palette[name]!.color = color;
+      if (palette[name]!.emissive !== '#000000') palette[name]!.emissive = color;
+    }
+    this.materials.setPalette(palette);
+    this.paletteVersion++;
+    for (const model of this.models.values()) model.source = {};
   }
 
   /** Aims the sun's shadow frustum to cover a box (call when a room loads). */
@@ -129,6 +154,8 @@ export class Renderer {
   }
 
   private rebuildPost(): void {
+    // EffectComposer releases its buffers, but individual passes own additional GPU resources.
+    for (const pass of this.post?.composer.passes ?? []) pass.dispose();
     this.post?.composer.dispose();
     const id = this.look?.post ?? '';
     const passes =

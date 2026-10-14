@@ -1,0 +1,227 @@
+{
+  "lessons": [
+    {
+      "id": "launch",
+      "name": "Slipstream Steps",
+      "hint": "Launch pads turn jumps into shortcuts. Cross the arena on foot, or take the high line."
+    },
+    {
+      "id": "barrel",
+      "name": "Chain Reaction",
+      "hint": "Shoot unstable reactors to ignite nearby enemies. Keep your distance from the blast."
+    },
+    {
+      "id": "conduit",
+      "name": "Conductive Basin",
+      "hint": "Water makes enemies conductive. Shock weapons turn clustered targets into a circuit."
+    },
+    {
+      "id": "chill",
+      "name": "Frostwake",
+      "hint": "Frost fields slow both sides. Burn a chilled target to trigger thermal fracture."
+    },
+    {
+      "id": "overdrive",
+      "name": "Overdrive Circuit",
+      "hint": "Touch an amber pylon for a temporary damage boost. Keep moving to collect the next one."
+    },
+    {
+      "id": "vortex",
+      "name": "Gravity Well",
+      "hint": "Gravity wells draw enemies together. An ideal setup for a nova or chained lightning."
+    },
+    {
+      "id": "echo",
+      "name": "Echo Forge",
+      "hint": "Echo pads rapidly recharge your abilities. Fight from the pad to build a spell loop."
+    },
+    {
+      "id": "rift",
+      "name": "Phase Lanes",
+      "hint": "Mint gates blink you across the arena. Route between gates to clear waves faster."
+    }
+  ],
+  "biomes": [
+    {
+      "id": "cinder",
+      "name": "Cinder Expanse",
+      "look": "cinder",
+      "color": "#ffb189",
+      "material": "ground"
+    },
+    {
+      "id": "verdigris",
+      "name": "Verdigris Reach",
+      "look": "verdigris",
+      "color": "#80edce",
+      "material": "ground"
+    },
+    {
+      "id": "amethyst",
+      "name": "Amethyst Scar",
+      "look": "amethyst",
+      "color": "#caa6ff",
+      "material": "ground"
+    },
+    {
+      "id": "salt",
+      "name": "Salt Cathedral",
+      "look": "salt",
+      "color": "#addaff",
+      "material": "ground"
+    }
+  ],
+  "chassis": [
+    {
+      "id": "stalker",
+      "name": "Glassmaw",
+      "prefab": "rift-stalker",
+      "health": 60,
+      "speed": 5.2,
+      "behavior": "stalker"
+    },
+    {
+      "id": "gunner",
+      "name": "Ironbound",
+      "prefab": "rift-gunner",
+      "health": 100,
+      "speed": 3.1,
+      "behavior": "gunner"
+    },
+    {
+      "id": "wisp",
+      "name": "Rift Wisp",
+      "prefab": "rift-wisp",
+      "health": 65,
+      "speed": 4,
+      "behavior": "orbiter"
+    }
+  ],
+  "affixes": [
+    {
+      "id": "ferocity",
+      "name": "Ferocity",
+      "stat": "damage",
+      "min": 0.08,
+      "max": 0.22
+    },
+    {
+      "id": "vitality",
+      "name": "Vitality",
+      "stat": "health",
+      "min": 0.1,
+      "max": 0.28
+    },
+    {
+      "id": "velocity",
+      "name": "Velocity",
+      "stat": "speed",
+      "min": 0.04,
+      "max": 0.13
+    },
+    {
+      "id": "precision",
+      "name": "Precision",
+      "stat": "critical",
+      "min": 0.04,
+      "max": 0.1
+    },
+    {
+      "id": "siphon",
+      "name": "Siphon",
+      "stat": "leech",
+      "min": 0.01,
+      "max": 0.04
+    },
+    {
+      "id": "arc",
+      "name": "Arc relay",
+      "stat": "chains",
+      "min": 1,
+      "max": 2.01
+    },
+    {
+      "id": "eruption",
+      "name": "Eruption",
+      "stat": "detonate",
+      "min": 0.12,
+      "max": 0.25
+    },
+    {
+      "id": "focus",
+      "name": "Focus",
+      "stat": "cooldown",
+      "min": 0.08,
+      "max": 0.2
+    },
+    {
+      "id": "gravity",
+      "name": "Gravitic",
+      "stat": "magnet",
+      "min": 0.7,
+      "max": 2
+    },
+    {
+      "id": "plating",
+      "name": "Plating",
+      "stat": "armor",
+      "min": 0.08,
+      "max": 0.2
+    },
+    {
+      "id": "radius",
+      "name": "Resonance",
+      "stat": "area",
+      "min": 0.1,
+      "max": 0.22
+    },
+    {
+      "id": "mending",
+      "name": "Mending",
+      "stat": "regen",
+      "min": 0.003,
+      "max": 0.008
+    }
+  ],
+  "layouts": [
+    {
+      "id": "crossroads",
+      "terraces": [[-10, -6], [10, -6], [-10, 9], [10, 9]]
+    },
+    {
+      "id": "courtyard",
+      "terraces": [[-13, -12], [13, -12], [-14, 9], [14, 9]]
+    },
+    {
+      "id": "causeway",
+      "terraces": [[-12, -11], [12, -1], [-12, 10], [12, 12]]
+    },
+    {
+      "id": "crown",
+      "terraces": [[-14, 0], [14, 0], [-8, -13], [8, -13]]
+    }
+  ],
+  "bosses": [
+    {
+      "id": "warden",
+      "name": "Warden",
+      "prefab": "rift-warden",
+      "health": 650,
+      "patterns": ["shot", "strike", "nova"]
+    },
+    {
+      "id": "artillerist",
+      "name": "Artillerist",
+      "prefab": "rift-warden",
+      "health": 600,
+      "patterns": ["shot", "shot", "nova"]
+    },
+    {
+      "id": "reaver",
+      "name": "Reaver",
+      "prefab": "rift-warden",
+      "health": 750,
+      "patterns": ["strike", "nova", "strike", "shot"]
+    }
+  ]
+}

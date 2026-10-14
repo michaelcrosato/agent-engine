@@ -1,0 +1,14 @@
+{
+  "name": "Deep reserves",
+  "branch": "Vanguard",
+  "description": "20% maximum health per rank.",
+  "requires": "siphon",
+  "tier": 4,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "health",
+      "value": 0.2
+    }
+  ]
+}

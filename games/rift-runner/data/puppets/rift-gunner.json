@@ -1,0 +1,108 @@
+{
+  "doc": "Ranged robot (1.9 m) holding a rifle forward. Roles: idle, walk, attack.",
+  "parts": [
+    {
+      "id": "legL",
+      "shape": "box",
+      "size": [0.18, 0.95, 0.2],
+      "pos": [-0.14, 0.95, 0],
+      "pivot": "top",
+      "material": "enemy-dark"
+    },
+    {
+      "id": "legR",
+      "shape": "box",
+      "size": [0.18, 0.95, 0.2],
+      "pos": [0.14, 0.95, 0],
+      "pivot": "top",
+      "material": "enemy-dark"
+    },
+    {
+      "id": "body",
+      "shape": "box",
+      "size": [0.5, 0.7, 0.3],
+      "pos": [0, 0.93, 0],
+      "material": "steel"
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.3, 0.28, 0.3],
+      "pos": [0, 0.72, 0],
+      "material": "enemy-dark"
+    },
+    {
+      "id": "visor",
+      "parent": "head",
+      "shape": "box",
+      "size": [0.26, 0.07, 0.04],
+      "pos": [0, 0.15, -0.15],
+      "material": "glow-red",
+      "shadow": false
+    },
+    {
+      "id": "arms",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.6, 0.12, 0.12],
+      "pos": [0, 0.5, -0.1],
+      "pivot": "center",
+      "material": "steel"
+    },
+    {
+      "id": "gun",
+      "parent": "arms",
+      "shape": "box",
+      "size": [0.1, 0.12, 0.7],
+      "pos": [0.18, 0, -0.35],
+      "pivot": "center",
+      "material": "gun"
+    },
+    {
+      "id": "pauldronL",
+      "shape": "box",
+      "size": [0.45, 0.33, 0.55],
+      "pos": [-0.4, 0.46, 0],
+      "material": "enemy",
+      "parent": "body"
+    },
+    {
+      "id": "pauldronR",
+      "shape": "box",
+      "size": [0.45, 0.33, 0.55],
+      "pos": [0.4, 0.46, 0],
+      "material": "enemy",
+      "parent": "body"
+    },
+    {
+      "id": "reactor",
+      "shape": "sphere",
+      "size": 0.28,
+      "pos": [0, 0.3, -0.22],
+      "material": "amber",
+      "parent": "body"
+    },
+    {
+      "id": "backpack",
+      "shape": "box",
+      "size": [0.56, 0.6, 0.25],
+      "pos": [0, 0.04, 0.29],
+      "material": "dark",
+      "parent": "body"
+    },
+    {
+      "id": "crest",
+      "shape": "box",
+      "size": [0.12, 0.45, 0.3],
+      "pos": [0, 0.21, 0.02],
+      "material": "enemy",
+      "parent": "head"
+    }
+  ],
+  "clips": {
+    "idle": "gunner-idle",
+    "walk": "gunner-walk",
+    "attack": "gunner-attack"
+  }
+}

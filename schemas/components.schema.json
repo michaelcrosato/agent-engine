@@ -109,6 +109,62 @@
       },
       "additionalProperties": false
     },
+    "AreaPulse": {
+      "description": "Delayed, telegraphed area damage for spells, bosses and environmental reactions.",
+      "type": "object",
+      "properties": {
+        "radius": {
+          "default": 4,
+          "type": "number",
+          "minimum": 0.1
+        },
+        "delay": {
+          "default": 0.8,
+          "type": "number",
+          "minimum": 0
+        },
+        "damage": {
+          "default": 40,
+          "type": "number",
+          "minimum": 0
+        },
+        "owner": {
+          "default": -1,
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "targetTag": {
+          "default": "enemy",
+          "type": "string"
+        },
+        "element": {
+          "default": "kinetic",
+          "type": "string",
+          "enum": [
+            "kinetic",
+            "fire",
+            "frost",
+            "shock"
+          ]
+        },
+        "effect": {
+          "default": "explosion",
+          "ref": "effect",
+          "type": "string"
+        },
+        "age": {
+          "default": 0,
+          "description": "State",
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
     "Arsenal": {
       "description": "Owned weapons, current selection, magazine counts, cooldown and reload state.",
       "type": "object",
@@ -714,6 +770,71 @@
       },
       "additionalProperties": false
     },
+    "CombatStats": {
+      "description": "Composable damage, movement, elemental and on-hit modifiers for any combatant.",
+      "type": "object",
+      "properties": {
+        "damage": {
+          "default": 1,
+          "type": "number",
+          "minimum": 0
+        },
+        "incoming": {
+          "default": 1,
+          "type": "number",
+          "minimum": 0
+        },
+        "movement": {
+          "default": 1,
+          "type": "number",
+          "minimum": 0
+        },
+        "critical": {
+          "default": 0,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "criticalDamage": {
+          "default": 1.8,
+          "type": "number",
+          "minimum": 1
+        },
+        "element": {
+          "default": "kinetic",
+          "type": "string",
+          "enum": [
+            "kinetic",
+            "fire",
+            "frost",
+            "shock"
+          ]
+        },
+        "leech": {
+          "default": 0,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "chains": {
+          "default": 0,
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 8
+        },
+        "detonate": {
+          "default": 0,
+          "description": "On-kill explosion as a fraction of target maximum health",
+          "type": "number",
+          "minimum": 0
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
     "Counter": {
       "description": "Counts signals; fires onReach at the goal (e.g. \"kill 3 enemies opens the door\").",
       "type": "object",
@@ -851,6 +972,59 @@
         "lastNag": {
           "default": -999,
           "description": "State: sim time of the last locked message",
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ElementState": {
+      "description": "Timed elemental state shared by weapons, enemies, abilities and environmental fields.",
+      "type": "object",
+      "properties": {
+        "burn": {
+          "default": 0,
+          "description": "State: burning seconds remaining",
+          "type": "number",
+          "minimum": 0
+        },
+        "chill": {
+          "default": 0,
+          "description": "State: chilled seconds remaining",
+          "type": "number",
+          "minimum": 0
+        },
+        "wet": {
+          "default": 0,
+          "description": "State: conductive seconds remaining",
+          "type": "number",
+          "minimum": 0
+        },
+        "charged": {
+          "default": 0,
+          "description": "State: empowered seconds remaining",
+          "type": "number",
+          "minimum": 0
+        },
+        "source": {
+          "default": -1,
+          "description": "State: burn owner",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "power": {
+          "default": 0,
+          "description": "State: burn damage per second, already scaled",
+          "type": "number",
+          "minimum": 0
+        },
+        "pulse": {
+          "default": 0,
+          "description": "State: burn tick accumulator",
           "type": "number"
         },
         "$schema": {
@@ -2308,6 +2482,166 @@
       },
       "additionalProperties": false
     },
+    "RiftEnemy": {
+      "description": "A monster sentence: chassis + behavior + element + affix + optional boss patterns.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "default": "Rift creature",
+          "type": "string"
+        },
+        "behavior": {
+          "default": "stalker",
+          "type": "string",
+          "enum": [
+            "stalker",
+            "gunner",
+            "charger",
+            "orbiter"
+          ]
+        },
+        "modifier": {
+          "default": "none",
+          "type": "string",
+          "enum": [
+            "none",
+            "swift",
+            "armored",
+            "volatile",
+            "vampiric"
+          ]
+        },
+        "speed": {
+          "default": 4,
+          "type": "number",
+          "minimum": 0
+        },
+        "damage": {
+          "default": 15,
+          "type": "number",
+          "minimum": 0
+        },
+        "baseHealth": {
+          "default": 80,
+          "type": "number",
+          "minimum": 1
+        },
+        "boss": {
+          "default": false,
+          "type": "boolean"
+        },
+        "patterns": {
+          "default": [
+            "shot",
+            "strike",
+            "nova"
+          ],
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "shot",
+              "strike",
+              "nova"
+            ]
+          }
+        },
+        "cooldown": {
+          "default": 1,
+          "description": "State",
+          "type": "number"
+        },
+        "windup": {
+          "default": 0,
+          "description": "State",
+          "type": "number"
+        },
+        "aim": {
+          "widget": "vec3",
+          "description": "State: committed attack target",
+          "default": 0,
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "phase": {
+          "default": 0,
+          "description": "State: attack pattern index",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "attack": {
+          "default": "",
+          "description": "State: committed pattern",
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RiftField": {
+      "description": "Optional arena tools; a single vocabulary shared with elemental combat.",
+      "type": "object",
+      "properties": {
+        "kind": {
+          "default": "launch",
+          "type": "string",
+          "enum": [
+            "launch",
+            "barrel",
+            "conduit",
+            "chill",
+            "overdrive",
+            "vortex",
+            "echo",
+            "rift"
+          ]
+        },
+        "radius": {
+          "default": 2.5,
+          "type": "number",
+          "minimum": 0
+        },
+        "cooldown": {
+          "default": 0,
+          "description": "State",
+          "type": "number"
+        },
+        "spent": {
+          "default": false,
+          "description": "State",
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
     "RoomExit": {
       "description": "Sensor that loads another room (and spawn point) when the player enters.",
       "type": "object",
@@ -2690,6 +3024,102 @@
           "widget": "vec3",
           "description": "Scale; a number scales uniformly",
           "default": 1,
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "$schema": {
+          "type": "string",
+          "description": "Editor schema hint (ignored by the engine)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Traversal": {
+      "description": "Optional air jump, directional dash, momentum slide and low-ledge mantle for the FPS controller.",
+      "type": "object",
+      "properties": {
+        "dashCooldown": {
+          "default": 2.2,
+          "type": "number",
+          "minimum": 0.1
+        },
+        "dashSpeed": {
+          "default": 24,
+          "type": "number",
+          "minimum": 0
+        },
+        "airJumps": {
+          "default": 1,
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "standingHeight": {
+          "default": 1.8,
+          "type": "number",
+          "minimum": 1
+        },
+        "crouchingHeight": {
+          "default": 1.05,
+          "type": "number",
+          "minimum": 0.8
+        },
+        "cooldown": {
+          "default": 0,
+          "description": "State: dash cooldown remaining",
+          "type": "number"
+        },
+        "dashing": {
+          "default": 0,
+          "description": "State: dash seconds remaining",
+          "type": "number"
+        },
+        "sliding": {
+          "default": 0,
+          "description": "State: slide seconds remaining",
+          "type": "number"
+        },
+        "jumpsUsed": {
+          "default": 0,
+          "description": "State: jumps used since leaving ground",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "actionTime": {
+          "default": 0,
+          "description": "State: seconds left in an ability animation",
+          "type": "number"
+        },
+        "actionClip": {
+          "default": "cast",
+          "description": "Animation role used while actionTime is positive",
+          "type": "string"
+        },
+        "direction": {
+          "widget": "vec3",
+          "description": "State: dash/slide direction",
+          "default": 0,
           "anyOf": [
             {
               "type": "number"

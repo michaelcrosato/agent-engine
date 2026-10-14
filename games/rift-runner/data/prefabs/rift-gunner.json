@@ -1,0 +1,14 @@
+{
+  "components": {
+    "Model": {
+      "puppet": "rift-gunner"
+    },
+    "Animator": {},
+    "CharacterBody": {
+      "height": 2,
+      "radius": 0.48,
+      "layer": "enemy",
+      "stepHeight": 0.55
+    }
+  }
+}

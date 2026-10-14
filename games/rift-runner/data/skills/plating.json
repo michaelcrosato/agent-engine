@@ -1,0 +1,14 @@
+{
+  "name": "Reactive plating",
+  "branch": "Vanguard",
+  "description": "10% damage resistance per rank.",
+  "requires": "hull",
+  "tier": 1,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "armor",
+      "value": 0.1
+    }
+  ]
+}

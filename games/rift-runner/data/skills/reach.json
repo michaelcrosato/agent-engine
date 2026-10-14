@@ -1,0 +1,14 @@
+{
+  "name": "Salvage orbit",
+  "branch": "Tempest",
+  "description": "1 loot pickup radius per rank.",
+  "requires": "ferocity",
+  "tier": 4,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "magnet",
+      "value": 1
+    }
+  ]
+}

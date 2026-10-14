@@ -1,0 +1,45 @@
+{
+  "doc": "Default bindings. Keyboard+mouse: WASD move, mouse look, Space jump, Shift sprint, Ctrl/C crouch, Mouse0 fire, E use, R reload, 1-9 or wheel switch weapons. Gamepad: standard mapping.",
+  "actions": {
+    "moveForward": ["KeyW", "ArrowUp", "Pad:LeftY-"],
+    "moveBack": ["KeyS", "ArrowDown", "Pad:LeftY+"],
+    "moveLeft": ["KeyA", "ArrowLeft", "Pad:LeftX-"],
+    "moveRight": ["KeyD", "ArrowRight", "Pad:LeftX+"],
+    "jump": ["Space", "Pad:A"],
+    "sprint": ["ShiftLeft", "ShiftRight", "Pad:LS"],
+    "crouch": ["ControlLeft", "KeyC", "Pad:B"],
+    "fire": ["Mouse0", "Pad:RT"],
+    "altFire": ["Mouse2", "Pad:LT"],
+    "use": ["KeyE", "Pad:X"],
+    "reload": ["KeyR"],
+    "nextWeapon": [],
+    "prevWeapon": [],
+    "weapon1": ["Digit1"],
+    "weapon2": ["Digit2"],
+    "weapon3": ["Digit3"],
+    "weapon4": ["Digit4"],
+    "weapon5": ["Digit5"],
+    "weapon6": ["Digit6"],
+    "weapon7": ["Digit7"],
+    "weapon8": ["Digit8"],
+    "weapon9": ["Digit9"],
+    "pause": ["Escape", "Pad:Start"],
+    "debug": ["Backquote"],
+    "dash": ["KeyQ", "Pad:LB"],
+    "nova": ["KeyF", "Pad:RB"],
+    "grenade": ["KeyG", "Pad:Y"],
+    "camera": ["KeyV"],
+    "skills": ["KeyK"],
+    "inventory": ["KeyI", "Tab"],
+    "map": ["KeyM"]
+  },
+  "mouse": {
+    "sensitivity": 0.12,
+    "invertY": false
+  },
+  "gamepad": {
+    "lookSpeed": 200,
+    "deadzone": 0.15,
+    "invertY": false
+  }
+}

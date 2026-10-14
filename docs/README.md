@@ -4,6 +4,14 @@ Start with [AGENTS.md](../AGENTS.md) (principles, conventions, architecture map,
 Each doc below is short and covers one topic. Print one with `npm run docs -- <name>`, or
 search them all with `npm run docs -- "<words>"`.
 
+## Rift Runner
+
+| Doc | What it covers |
+| --- | --- |
+| [Play guide](rift-runner.md) | Controls, town services, progression, difficulty and saves |
+| [Endless content](endless-content.md) | Modular vocabulary, encounter generation and systemic interactions |
+| [Engine review](engine-review.md) | Baseline audit, engine additions, validation and scope |
+
 ## Building games
 
 | Doc | What it covers |

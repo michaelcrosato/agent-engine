@@ -1,0 +1,36 @@
+{
+  "duration": 1,
+  "loop": true,
+  "tracks": [
+    {
+      "part": "legL",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 3,
+        "freq": 1,
+        "phase": 0,
+        "offset": -32
+      }
+    },
+    {
+      "part": "legR",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 3,
+        "freq": 1,
+        "phase": 0,
+        "offset": 22
+      }
+    },
+    {
+      "part": "scarf",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 10,
+        "freq": 2,
+        "phase": 0,
+        "offset": 25
+      }
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "extends": "default",
+  "sky": {
+    "top": "#12344f",
+    "horizon": "#7faaa9",
+    "bottom": "#6a7b72",
+    "stars": 0.2
+  },
+  "fog": {
+    "color": "#7eaba9",
+    "near": 50,
+    "far": 160
+  },
+  "ambient": {
+    "sky": "#b6def0",
+    "ground": "#ad9376",
+    "intensity": 1.7
+  },
+  "sun": {
+    "color": "#ffe1b1",
+    "intensity": 2.6,
+    "dir": [-0.55, -1, -0.6],
+    "shadows": true
+  },
+  "exposure": 1,
+  "toneMapping": "aces",
+  "post": "rift",
+  "materials": {
+    "armor": {
+      "color": "#246e74",
+      "metalness": 0.42,
+      "roughness": 0.48
+    },
+    "cream": {
+      "color": "#eed7ac",
+      "roughness": 0.65
+    },
+    "brass": {
+      "color": "#bc8550",
+      "metalness": 0.7,
+      "roughness": 0.38
+    },
+    "rust": {
+      "color": "#c56c51"
+    },
+    "teal": {
+      "color": "#337d78"
+    },
+    "sand": {
+      "color": "#fff0d4",
+      "texture": "rift-sand",
+      "tile": 8
+    },
+    "paving": {
+      "color": "#c6c1a8",
+      "texture": "floor-tiles",
+      "tile": 5
+    },
+    "stone": {
+      "color": "#a3b2b1",
+      "texture": "rift-stone",
+      "tile": 4
+    },
+    "ground": {
+      "color": "#e0e5df",
+      "texture": "rift-stone",
+      "tile": 9
+    },
+    "plaster": {
+      "color": "#c4a486",
+      "texture": "plaster-panels",
+      "tile": 4
+    },
+    "distant": {
+      "color": "#749696",
+      "flat": true
+    },
+    "leaves": {
+      "color": "#bd6d65",
+      "flat": true
+    },
+    "moon": {
+      "type": "unlit",
+      "color": "#dfcab2"
+    },
+    "cyan": {
+      "type": "standard",
+      "color": "#60bdb2",
+      "emissive": "#75e3cc",
+      "emissiveIntensity": 0.85,
+      "roughness": 0.4
+    },
+    "amber": {
+      "type": "standard",
+      "color": "#deae74",
+      "emissive": "#ffc176",
+      "emissiveIntensity": 0.8,
+      "roughness": 0.4
+    },
+    "portal": {
+      "type": "glass",
+      "color": "#77ebd1",
+      "opacity": 0.22
+    },
+    "danger": {
+      "type": "unlit",
+      "color": "#ff745e",
+      "opacity": 0.6,
+      "doubleSided": true
+    },
+    "pad": {
+      "type": "unlit",
+      "color": "#63decf",
+      "opacity": 0.22,
+      "doubleSided": true
+    },
+    "white-glow": {
+      "type": "glow",
+      "color": "#ffffff",
+      "emissiveIntensity": 1.1
+    },
+    "enemy": {
+      "color": "#bc796d",
+      "metalness": 0.25,
+      "roughness": 0.55
+    },
+    "enemy-dark": {
+      "color": "#313640"
+    },
+    "dark": {
+      "color": "#263e43",
+      "roughness": 0.62
+    }
+  }
+}

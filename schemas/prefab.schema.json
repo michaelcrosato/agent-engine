@@ -34,6 +34,9 @@
         "Animator": {
           "$ref": "components.schema.json#/$defs/Animator"
         },
+        "AreaPulse": {
+          "$ref": "components.schema.json#/$defs/AreaPulse"
+        },
         "Arsenal": {
           "$ref": "components.schema.json#/$defs/Arsenal"
         },
@@ -49,11 +52,17 @@
         "CharacterBody": {
           "$ref": "components.schema.json#/$defs/CharacterBody"
         },
+        "CombatStats": {
+          "$ref": "components.schema.json#/$defs/CombatStats"
+        },
         "Counter": {
           "$ref": "components.schema.json#/$defs/Counter"
         },
         "Door": {
           "$ref": "components.schema.json#/$defs/Door"
+        },
+        "ElementState": {
+          "$ref": "components.schema.json#/$defs/ElementState"
         },
         "Explosive": {
           "$ref": "components.schema.json#/$defs/Explosive"
@@ -100,6 +109,12 @@
         "Respawn": {
           "$ref": "components.schema.json#/$defs/Respawn"
         },
+        "RiftEnemy": {
+          "$ref": "components.schema.json#/$defs/RiftEnemy"
+        },
+        "RiftField": {
+          "$ref": "components.schema.json#/$defs/RiftField"
+        },
         "RoomExit": {
           "$ref": "components.schema.json#/$defs/RoomExit"
         },
@@ -117,6 +132,9 @@
         },
         "Transform": {
           "$ref": "components.schema.json#/$defs/Transform"
+        },
+        "Traversal": {
+          "$ref": "components.schema.json#/$defs/Traversal"
         },
         "Trigger": {
           "$ref": "components.schema.json#/$defs/Trigger"

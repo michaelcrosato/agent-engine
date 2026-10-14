@@ -1,0 +1,66 @@
+{
+  "duration": 3,
+  "loop": true,
+  "tracks": [
+    {
+      "part": "body",
+      "prop": "pos.y",
+      "wave": {
+        "amp": 0.16,
+        "freq": 0.75,
+        "phase": 0,
+        "offset": 0
+      }
+    },
+    {
+      "part": "ring",
+      "prop": "rot.z",
+      "wave": {
+        "amp": 35,
+        "freq": 0.3,
+        "phase": 0,
+        "offset": 0
+      }
+    },
+    {
+      "part": "tendril0",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 20,
+        "freq": 0.7,
+        "phase": 0.0,
+        "offset": 0
+      }
+    },
+    {
+      "part": "tendril1",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 20,
+        "freq": 0.7,
+        "phase": 0.25,
+        "offset": 0
+      }
+    },
+    {
+      "part": "tendril2",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 20,
+        "freq": 0.7,
+        "phase": 0.5,
+        "offset": 0
+      }
+    },
+    {
+      "part": "tendril3",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 20,
+        "freq": 0.7,
+        "phase": 0.75,
+        "offset": 0
+      }
+    }
+  ]
+}

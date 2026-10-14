@@ -1,0 +1,16 @@
+{
+  "duration": 0.2,
+  "loop": false,
+  "tracks": [
+    {
+      "part": "body",
+      "prop": "rot.x",
+      "keys": [[0, 0], [0.07, -22], [0.2, 0]]
+    },
+    {
+      "part": "scarf",
+      "prop": "rot.x",
+      "keys": [[0, 0], [0.05, 70], [0.2, 20]]
+    }
+  ]
+}

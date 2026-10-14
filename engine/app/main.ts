@@ -2,10 +2,13 @@ import { bootGame } from './bootGame.ts';
 import { readUrlParams } from './readUrlParams.ts';
 import { showLauncher } from './showLauncher.ts';
 
-/** Browser entry (index.html): the launcher without ?game=, otherwise the game. */
+/** Browser entry: explicit game, root data-game default, or the room launcher. */
 export async function main(): Promise<void> {
   const root = document.getElementById('app')!;
   const params = readUrlParams();
+  if (!params.game && !new URLSearchParams(location.search).has('launcher')) {
+    params.game = root.dataset.game ?? '';
+  }
   if (!params.game) {
     showLauncher(root);
     return;

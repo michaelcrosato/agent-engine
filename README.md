@@ -9,13 +9,23 @@ chord-aware step sequencer, and animations are keyframe or sine clips, all as JS
 git clone https://github.com/michaelcrosato/agent-engine.git
 cd agent-engine
 npm install        # Node >= 22.18
-npm run dev        # http://localhost:5173: pick a room; add &edit=1 for the level editor
+npm run dev        # http://localhost:5173: play Rift Runner
 npm run check      # types, lint, architecture rules, data validation, every room as a headless test
 ```
 
-The Agent Engine game, `games/agent-engine`, is a hub with eight showcase rooms: movement, shooting range,
-physics, arena waves, doors and keys, audio, looks, and puppets. Each room has a headless test
-that plays it.
+The signature game, **Rift Runner**, is a single-player loot shooter with dash, slide, double jump,
+first/third-person cameras, four weapon families, elemental reactions, a 24-node skill tree and
+repeatable mastery. Lastlight is its animated town hub: forge equipment, trade salvage, respec, then
+push through eight mechanic-led expeditions into endless seeded combinations of arenas, enemies,
+boss patterns, affixes and palettes. Six live difficulty sliders make combat easy to tune and test.
+
+- [Play guide and controls](docs/rift-runner.md)
+- [How to extend the procedural vocabulary](docs/endless-content.md)
+- [Engine review and delivered capabilities](docs/engine-review.md)
+
+The original engine gallery remains available at `http://localhost:5173/?launcher=1`.
+Its eight showcase rooms cover movement, shooting, physics, arena waves, doors, audio, looks and
+puppets. Add `&edit=1` to a room URL for the level editor. Every room has a headless playtest.
 
 - **Agents (and people) start with [AGENTS.md](AGENTS.md).**
 - Topic docs: [docs/README.md](docs/README.md), or `npm run docs`.

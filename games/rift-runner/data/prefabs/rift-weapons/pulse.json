@@ -1,0 +1,23 @@
+{
+  "components": {
+    "Weapon": {
+      "name": "Pulse",
+      "slot": 1,
+      "damage": 12,
+      "rate": 5,
+      "automatic": true,
+      "pellets": 3,
+      "spread": 2.1,
+      "ammo": "bullets",
+      "magazine": 24,
+      "reloadTime": 1.15,
+      "kick": 0.12,
+      "range": 110,
+      "sound": "rifle",
+      "viewmodel": "vm-launcher",
+      "tracer": "rift-tracer",
+      "impactEffect": "rift-impact",
+      "muzzleEffect": "rift-muzzle"
+    }
+  }
+}

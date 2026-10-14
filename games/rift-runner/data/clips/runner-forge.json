@@ -1,0 +1,36 @@
+{
+  "duration": 2,
+  "loop": true,
+  "tracks": [
+    {
+      "part": "arms",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 26,
+        "freq": 1.2,
+        "phase": 0,
+        "offset": 20
+      }
+    },
+    {
+      "part": "body",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 4,
+        "freq": 1.2,
+        "phase": 0,
+        "offset": -9
+      }
+    },
+    {
+      "part": "head",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 3,
+        "freq": 0.6,
+        "phase": 0,
+        "offset": -20
+      }
+    }
+  ]
+}

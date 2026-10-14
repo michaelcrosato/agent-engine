@@ -1,0 +1,36 @@
+{
+  "duration": 5,
+  "loop": true,
+  "tracks": [
+    {
+      "part": "portal",
+      "prop": "scale",
+      "wave": {
+        "amp": 0.035,
+        "freq": 0.45,
+        "phase": 0,
+        "offset": 1
+      }
+    },
+    {
+      "part": "rim",
+      "prop": "rot.z",
+      "wave": {
+        "amp": 12,
+        "freq": 0.2,
+        "phase": 0,
+        "offset": 0
+      }
+    },
+    {
+      "part": "portal",
+      "prop": "rot.z",
+      "wave": {
+        "amp": 20,
+        "freq": 0.17,
+        "phase": 0,
+        "offset": 0
+      }
+    }
+  ]
+}

@@ -9,6 +9,8 @@ import type { Entity } from '../../core/World.ts';
 import type { NavGrid } from '../../level/NavGrid.ts';
 import { turnToward, yawOf, yawQuat, yawToward } from '../../math/yaw.ts';
 import { CharacterBody } from '../../physics/CharacterBody.ts';
+import { CombatStats } from '../combat/CombatStats.ts';
+import { ElementState } from '../combat/ElementState.ts';
 import { Health } from '../health/Health.ts';
 import { attack } from './attack.ts';
 import { Brain } from './Brain.ts';
@@ -99,7 +101,11 @@ export const AiSystem = defineSystem({
         if (moveTo && Math.hypot(moveTo.x - t.pos.x, moveTo.z - t.pos.z) > 0.2) {
           const d = new Vector3(moveTo.x - t.pos.x, 0, moveTo.z - t.pos.z)
             .normalize()
-            .multiplyScalar(b.speed);
+            .multiplyScalar(
+              b.speed *
+                (w.get(e, CombatStats)?.movement ?? 1) *
+                ((w.get(e, ElementState)?.chill ?? 0) > 0 ? 0.5 : 1),
+            );
           v.x = d.x;
           v.z = d.z;
         } else {

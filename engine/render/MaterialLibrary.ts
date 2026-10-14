@@ -73,6 +73,7 @@ export class MaterialLibrary {
         side,
         transparent,
         opacity: d.opacity,
+        depthWrite: !transparent,
       });
     }
     if (d.type === 'toon') {
@@ -82,6 +83,7 @@ export class MaterialLibrary {
         side,
         transparent,
         opacity: d.opacity,
+        depthWrite: !transparent,
       });
     }
     const glow = d.type === 'glow';

@@ -3,6 +3,8 @@ import { Mover } from '../../anim/Mover.ts';
 import { defineSystem } from '../../core/defineSystem.ts';
 import { Transform } from '../../core/Transform.ts';
 import { yawOf, yawQuat } from '../../math/yaw.ts';
+import { CombatStats } from '../../mechanics/combat/CombatStats.ts';
+import { ElementState } from '../../mechanics/combat/ElementState.ts';
 import { applyDamage } from '../../mechanics/health/applyDamage.ts';
 import { Health } from '../../mechanics/health/Health.ts';
 import { CharacterBody } from '../../physics/CharacterBody.ts';
@@ -43,7 +45,10 @@ export const FpsControllerSystem = defineSystem({
         .addScaledVector(fwd, input.axis('moveBack', 'moveForward'))
         .addScaledVector(right, input.axis('moveLeft', 'moveRight'));
       if (wish.lengthSq() > 1) wish.normalize();
-      const speed = c.crouching ? c.crouchSpeed : input.down('sprint') ? c.sprintSpeed : c.walkSpeed;
+      const moveScale =
+        (w.get(e, CombatStats)?.movement ?? 1) * ((w.get(e, ElementState)?.chill ?? 0) > 0 ? 0.6 : 1);
+      const speed =
+        (c.crouching ? c.crouchSpeed : input.down('sprint') ? c.sprintSpeed : c.walkSpeed) * moveScale;
       const v = cb.velocity;
       const a = (cb.grounded ? c.accel : c.airAccel) * dt;
       v.x = approach(v.x, wish.x * speed, a);

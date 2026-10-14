@@ -1,0 +1,10 @@
+{
+  "count": 28,
+  "color": "#c6a5ff",
+  "colorEnd": "#698394",
+  "speed": [1, 3],
+  "lifetime": [0.15, 0.55],
+  "size": [0.025, 0.085],
+  "spread": 170,
+  "gravity": -5
+}

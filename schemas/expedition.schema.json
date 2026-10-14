@@ -1,0 +1,341 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "expedition (data/expeditions)",
+  "description": "The expedition vocabulary: lessons, biomes, chassis, behaviors and loot affixes.",
+  "type": "object",
+  "properties": {
+    "lessons": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "hint": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "hint"
+        ]
+      }
+    },
+    "layouts": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excludes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "terraces": {
+            "minItems": 1,
+            "maxItems": 8,
+            "type": "array",
+            "items": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number",
+                  "minimum": -19,
+                  "maximum": 19
+                },
+                {
+                  "type": "number",
+                  "minimum": -19,
+                  "maximum": 19
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
+        "required": [
+          "id",
+          "terraces"
+        ]
+      }
+    },
+    "bosses": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excludes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "prefab": {
+            "type": "string",
+            "ref": "prefab"
+          },
+          "health": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "patterns": {
+            "minItems": 1,
+            "maxItems": 8,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "shot",
+                "strike",
+                "nova"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "prefab",
+          "health",
+          "patterns"
+        ]
+      }
+    },
+    "biomes": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excludes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "look": {
+            "type": "string",
+            "ref": "look"
+          },
+          "color": {
+            "type": "string"
+          },
+          "material": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "look",
+          "color",
+          "material"
+        ]
+      }
+    },
+    "chassis": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excludes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "prefab": {
+            "type": "string",
+            "ref": "prefab"
+          },
+          "health": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "speed": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "behavior": {
+            "type": "string",
+            "enum": [
+              "stalker",
+              "gunner",
+              "charger",
+              "orbiter"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "prefab",
+          "health",
+          "speed",
+          "behavior"
+        ]
+      }
+    },
+    "affixes": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "stat": {
+            "type": "string",
+            "enum": [
+              "damage",
+              "health",
+              "speed",
+              "critical",
+              "leech",
+              "chains",
+              "detonate",
+              "cooldown",
+              "magnet",
+              "armor",
+              "area",
+              "regen"
+            ]
+          },
+          "min": {
+            "type": "number",
+            "minimum": 0
+          },
+          "max": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "stat",
+          "min",
+          "max"
+        ]
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Editor schema hint (ignored by the engine)"
+    }
+  },
+  "required": [
+    "lessons",
+    "layouts",
+    "bosses",
+    "biomes",
+    "chassis",
+    "affixes"
+  ],
+  "additionalProperties": false
+}

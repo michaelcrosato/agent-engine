@@ -1,0 +1,14 @@
+{
+  "name": "Wide resonance",
+  "branch": "Catalyst",
+  "description": "12% ability radius per rank.",
+  "requires": "power",
+  "tier": 1,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "area",
+      "value": 0.12
+    }
+  ]
+}

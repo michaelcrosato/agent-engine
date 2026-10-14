@@ -9,6 +9,7 @@ export { Animator } from './anim/Animator.ts';
 export { Motion } from './anim/Motion.ts';
 export { Mover } from './anim/Mover.ts';
 export { AmbientSound } from './audio/AmbientSound.ts';
+export { WebAudioOut } from './audio/WebAudioOut.ts';
 export { type ContentKind, defineContentKind } from './content/defineContentKind.ts';
 // Runtime types
 export type { Ctx } from './core/Ctx.ts';
@@ -26,11 +27,15 @@ export { defineService, type ServiceKey } from './core/defineService.ts';
 export { defineSystem, type Phase, type SystemDef } from './core/defineSystem.ts';
 export { Engine } from './core/Engine.ts';
 export { EngineError } from './core/EngineError.ts';
-export { Rng } from './core/Rng.ts';
+export { hashString, Rng } from './core/Rng.ts';
 export { Transform } from './core/Transform.ts';
 export type { Entity, World } from './core/World.ts';
 export { EffectSpawned } from './fx/effectEvents.ts';
 export { spawnEffect } from './fx/spawnEffect.ts';
+export { ContentGrammar, type GrammarSlot, type GrammarToken } from './gen/ContentGrammar.ts';
+export { DomInput } from './input/DomInput.ts';
+export { ActionPlugin } from './kits/action/ActionPlugin.ts';
+export { Traversal } from './kits/action/Traversal.ts';
 export { Arsenal } from './kits/fps/Arsenal.ts';
 export { FpsController } from './kits/fps/FpsController.ts';
 export { fpsKit } from './kits/fps/fpsKit.ts';
@@ -51,6 +56,11 @@ export { Timer } from './logic/Timer.ts';
 export { Trigger } from './logic/Trigger.ts';
 export { turnToward, wrap180, yawOf, yawQuat, yawToward } from './math/yaw.ts';
 export { Brain } from './mechanics/ai/Brain.ts';
+export { AreaPulse } from './mechanics/combat/AreaPulse.ts';
+export { CombatPlugin } from './mechanics/combat/CombatPlugin.ts';
+export { CombatStats } from './mechanics/combat/CombatStats.ts';
+export { ElementState } from './mechanics/combat/ElementState.ts';
+export { elementalHit } from './mechanics/combat/elementalHit.ts';
 export { Door } from './mechanics/doors/Door.ts';
 export { Hazard } from './mechanics/hazards/Hazard.ts';
 export { applyDamage, heal, hp } from './mechanics/health/applyDamage.ts';
@@ -64,6 +74,11 @@ export { mechanicPlugins } from './mechanics/mechanicPlugins.ts';
 export { Inventory } from './mechanics/pickups/Inventory.ts';
 export { Pickup } from './mechanics/pickups/Pickup.ts';
 export { PickedUp } from './mechanics/pickups/pickupEvents.ts';
+export {
+  experienceCost,
+  experienceCurve,
+  levelsFromExperience,
+} from './mechanics/progression/experienceCurve.ts';
 export { Explosive } from './mechanics/projectiles/Explosive.ts';
 export { Exploded, explode } from './mechanics/projectiles/explode.ts';
 export { Projectile } from './mechanics/projectiles/Projectile.ts';
@@ -72,6 +87,7 @@ export { Spawned } from './mechanics/spawners/SpawnerSystem.ts';
 export { Target } from './mechanics/targets/Target.ts';
 export { Scored } from './mechanics/targets/TargetSystem.ts';
 export { Model } from './model/Model.ts';
+export { type SaveStorage, SaveStore } from './persistence/SaveStore.ts';
 // Common components
 export { Body } from './physics/Body.ts';
 export { CharacterBody } from './physics/CharacterBody.ts';
@@ -80,7 +96,9 @@ export { Contact, TriggerEntered, TriggerExited } from './physics/physicsEvents.
 export { CameraRig } from './render/CameraRig.ts';
 export { Label } from './render/Label.ts';
 export { Light } from './render/Light.ts';
+export { RendererKey } from './render/Renderer.ts';
 export { viewRay } from './render/viewRay.ts';
 export { field } from './schema/field.ts';
 // Plugin bundles
 export { standardPlugins } from './standardPlugins.ts';
+export { patchMarkup } from './ui/patchMarkup.ts';

@@ -5,9 +5,11 @@ import { Health } from '../../mechanics/health/Health.ts';
 import { PuppetKind } from '../../model/Puppet.ts';
 import { CharacterBody } from '../../physics/CharacterBody.ts';
 import { buildPuppet, disposePuppet, type PuppetInstance } from '../../render/buildPuppet.ts';
+import { CameraRig } from '../../render/CameraRig.ts';
 import { RendererKey } from '../../render/Renderer.ts';
 import { Arsenal } from './Arsenal.ts';
 import { FpsController } from './FpsController.ts';
+import { Weapon } from './Weapon.ts';
 import { weaponData } from './weaponData.ts';
 import { WeaponFired } from './weaponEvents.ts';
 
@@ -49,8 +51,8 @@ export const ViewmodelSystem = defineSystem({
     const p = w.query(Arsenal, FpsController)[0];
     const a = p !== undefined ? w.get(p, Arsenal) : undefined;
     const id = a?.weapons[a.current] ?? '';
-    const puppet = id ? weaponData(ctx.content, id).viewmodel : '';
-    const key = `${id}|${r.lookId}`;
+    const puppet = p !== undefined && id ? (w.get(p, Weapon) ?? weaponData(ctx.content, id)).viewmodel : '';
+    const key = `${id}|${puppet}|${r.paletteVersion}`;
     if (key !== vm.weapon) {
       vm.weapon = key;
       if (vm.inst) {
@@ -68,7 +70,8 @@ export const ViewmodelSystem = defineSystem({
       }
     }
     if (!vm.inst || p === undefined || !a) return;
-    vm.group.visible = !w.get(p, Health)?.dead && r.cameraOverride === undefined;
+    vm.group.visible =
+      !w.get(p, Health)?.dead && r.cameraOverride === undefined && w.get(p, CameraRig)?.mode !== 'third';
     const dt = ctx.time.frameDt;
     if (fired.some((f) => f.shooter === p)) vm.kick = 1;
     vm.kick = Math.max(0, vm.kick - dt * 7);

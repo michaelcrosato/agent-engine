@@ -1,0 +1,14 @@
+{
+  "name": "Long stride",
+  "branch": "Tempest",
+  "description": "5% movement speed per rank.",
+  "requires": "",
+  "tier": 0,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "speed",
+      "value": 0.05
+    }
+  ]
+}

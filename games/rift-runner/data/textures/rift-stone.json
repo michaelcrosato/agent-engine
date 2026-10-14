@@ -1,0 +1,29 @@
+{
+  "doc": "Soft weathered limestone. Fine relief leaves enemies and pickups readable.",
+  "size": 256,
+  "seed": 8,
+  "roughness": 0.88,
+  "normal": 0.6,
+  "layers": [
+    {
+      "op": "fill",
+      "color": "#b9c0b4"
+    },
+    {
+      "op": "noise",
+      "scale": 6,
+      "octaves": 4,
+      "color": "#828d83",
+      "amount": 0.2,
+      "height": 0.12
+    },
+    {
+      "op": "spots",
+      "count": 100,
+      "radius": 0.004,
+      "color": "#666d62",
+      "amount": 0.3,
+      "height": -0.15
+    }
+  ]
+}

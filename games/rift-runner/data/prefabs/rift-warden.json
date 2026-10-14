@@ -1,0 +1,14 @@
+{
+  "components": {
+    "Model": {
+      "puppet": "rift-warden"
+    },
+    "Animator": {},
+    "CharacterBody": {
+      "height": 3.6,
+      "radius": 0.9,
+      "layer": "enemy",
+      "stepHeight": 0.55
+    }
+  }
+}

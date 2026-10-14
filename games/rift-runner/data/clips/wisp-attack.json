@@ -1,0 +1,26 @@
+{
+  "duration": 1,
+  "loop": true,
+  "tracks": [
+    {
+      "part": "body",
+      "prop": "scale",
+      "wave": {
+        "amp": 0.15,
+        "freq": 3,
+        "phase": 0,
+        "offset": 1
+      }
+    },
+    {
+      "part": "ring",
+      "prop": "rot.z",
+      "wave": {
+        "amp": 80,
+        "freq": 2,
+        "phase": 0,
+        "offset": 0
+      }
+    }
+  ]
+}

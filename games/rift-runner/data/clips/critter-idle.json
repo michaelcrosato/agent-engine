@@ -1,0 +1,22 @@
+{
+  "doc": "Critter idle: body breathes, eye scans.",
+  "duration": 3,
+  "tracks": [
+    {
+      "part": "body",
+      "prop": "pos.y",
+      "wave": {
+        "amp": 0.03,
+        "freq": 0.67
+      }
+    },
+    {
+      "part": "body",
+      "prop": "rot.y",
+      "wave": {
+        "amp": 15,
+        "freq": 0.33
+      }
+    }
+  ]
+}

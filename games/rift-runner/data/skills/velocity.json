@@ -1,0 +1,14 @@
+{
+  "name": "Slipstream",
+  "branch": "Tempest",
+  "description": "8% movement speed per rank.",
+  "requires": "reach",
+  "tier": 5,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "speed",
+      "value": 0.08
+    }
+  ]
+}

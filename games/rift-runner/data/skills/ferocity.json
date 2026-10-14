@@ -1,0 +1,14 @@
+{
+  "name": "Momentum",
+  "branch": "Tempest",
+  "description": "8% damage per rank.",
+  "requires": "precision",
+  "tier": 3,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "damage",
+      "value": 0.08
+    }
+  ]
+}

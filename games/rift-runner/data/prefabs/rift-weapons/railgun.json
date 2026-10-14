@@ -1,0 +1,23 @@
+{
+  "components": {
+    "Weapon": {
+      "name": "Railgun",
+      "slot": 1,
+      "damage": 105,
+      "rate": 1.3,
+      "automatic": true,
+      "pellets": 1,
+      "spread": 0,
+      "ammo": "bullets",
+      "magazine": 8,
+      "reloadTime": 1.15,
+      "kick": 0.12,
+      "range": 110,
+      "sound": "pistol",
+      "viewmodel": "vm-pistol",
+      "tracer": "rift-tracer",
+      "impactEffect": "rift-impact",
+      "muzzleEffect": "rift-muzzle"
+    }
+  }
+}

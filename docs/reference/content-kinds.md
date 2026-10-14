@@ -166,3 +166,30 @@ light     object — Brief flash light
 sound     sound id = "" — Sound played at the effect
 width     number = 0.02 [0..] — tracer: line width hint
 ```
+
+## expedition — data/expeditions/<id>.json
+
+The expedition vocabulary: lessons, biomes, chassis, behaviors and loot affixes.
+
+```
+lessons  object[]
+layouts  object[]
+bosses   object[]
+biomes   object[]
+chassis  object[]
+affixes  object[]
+```
+
+## skill — data/skills/<id>.json
+
+Passive skill nodes with prerequisite links and named combat-stat contributions.
+
+```
+name         string
+branch       "Vanguard"|"Tempest"|"Catalyst"
+description  string
+requires     skill id = ""
+tier         integer [0..10]
+maxRank      integer = 3 [1..5]
+bonuses      object[]
+```
