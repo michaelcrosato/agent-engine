@@ -8,6 +8,10 @@ import { FpsPlugin } from './FpsPlugin.ts';
  * Use it as the whole list or spread it and append game plugins:
  * `plugins: [...fpsKit(), MyMechanicPlugin]`.
  */
-export function fpsKit(): PluginDef[] {
-  return [...standardPlugins(), ...mechanicPlugins(), FpsPlugin];
+export function fpsKit(options: { hud?: boolean } = {}): PluginDef[] {
+  const fps =
+    options.hud === false
+      ? { ...FpsPlugin, systems: FpsPlugin.systems.filter((s) => s.name !== 'HudSystem') }
+      : FpsPlugin;
+  return [...standardPlugins(), ...mechanicPlugins(), fps];
 }

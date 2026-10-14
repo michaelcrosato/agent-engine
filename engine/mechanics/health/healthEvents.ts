@@ -10,12 +10,17 @@ export const Damaged = defineEvent<{
   from: Entity | undefined;
   kind: DamageKind;
   point: Vector3 | undefined;
+  secondary?: boolean;
+  critical?: boolean;
+  element?: string;
 }>('Damaged', 'An entity with Health lost hit points.');
 
-export const Died = defineEvent<{ entity: Entity; from: Entity | undefined; kind: DamageKind }>(
-  'Died',
-  'An entity with Health reached 0 hit points.',
-);
+export const Died = defineEvent<{
+  entity: Entity;
+  from: Entity | undefined;
+  kind: DamageKind;
+  secondary?: boolean;
+}>('Died', 'An entity with Health reached 0 hit points.');
 
 export const Healed = defineEvent<{ entity: Entity; amount: number }>(
   'Healed',

@@ -1,0 +1,14 @@
+{
+  "name": "Singularity",
+  "branch": "Catalyst",
+  "description": "20% enemy health as on-kill blast damage per rank.",
+  "requires": "relay",
+  "tier": 7,
+  "maxRank": 1,
+  "bonuses": [
+    {
+      "stat": "detonate",
+      "value": 0.2
+    }
+  ]
+}

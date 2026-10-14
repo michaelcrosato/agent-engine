@@ -1,0 +1,28 @@
+{
+  "components": {
+    "Model": {
+      "parts": [
+        {
+          "id": "core",
+          "shape": "sphere",
+          "size": 0.2,
+          "pos": [0, 0, 0],
+          "material": "amber"
+        },
+        {
+          "id": "tail",
+          "shape": "box",
+          "size": [0.06, 0.06, 0.6],
+          "pos": [0, 0, 0.2],
+          "material": "cyan"
+        }
+      ]
+    },
+    "Projectile": {
+      "speed": 19,
+      "damage": 16,
+      "lifetime": 5,
+      "hitEffect": "rift-impact"
+    }
+  }
+}

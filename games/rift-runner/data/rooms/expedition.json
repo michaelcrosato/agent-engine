@@ -1,0 +1,12 @@
+{
+  "doc": "Seeded modular combat arena; a bounded population and one authored lesson at a time, followed by endless combinations.",
+  "look": "verdigris",
+  "music": "drive",
+  "entities": [
+    {
+      "prefab": "spawn",
+      "pos": [0, 0.2, 20],
+      "rot": 0
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "type": "tracer",
+  "color": "#92ffeb",
+  "colorEnd": "#cdefff",
+  "lifetime": [0.06, 0.1],
+  "width": 0.025
+}

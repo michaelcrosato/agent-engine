@@ -1,0 +1,14 @@
+{
+  "name": "Forked current",
+  "branch": "Catalyst",
+  "description": "1 extra shock target per rank.",
+  "requires": "nova",
+  "tier": 6,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "chains",
+      "value": 1
+    }
+  ]
+}

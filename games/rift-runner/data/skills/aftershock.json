@@ -1,0 +1,14 @@
+{
+  "name": "Aftershock",
+  "branch": "Catalyst",
+  "description": "10% enemy health as on-kill blast damage per rank.",
+  "requires": "arc",
+  "tier": 3,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "detonate",
+      "value": 0.1
+    }
+  ]
+}

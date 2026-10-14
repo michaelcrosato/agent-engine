@@ -1,0 +1,14 @@
+{
+  "name": "Deadeye",
+  "branch": "Tempest",
+  "description": "4% critical chance per rank.",
+  "requires": "focus",
+  "tier": 2,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "critical",
+      "value": 0.04
+    }
+  ]
+}

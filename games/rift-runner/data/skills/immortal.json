@@ -1,0 +1,14 @@
+{
+  "name": "Unbroken",
+  "branch": "Vanguard",
+  "description": "3% damage returned as health per rank.",
+  "requires": "ironheart",
+  "tier": 7,
+  "maxRank": 1,
+  "bonuses": [
+    {
+      "stat": "leech",
+      "value": 0.03
+    }
+  ]
+}

@@ -1,0 +1,482 @@
+{
+  "doc": "The original player rig gains an exterior: articulated salvage armor, amber visor, reactor pack, scarf and the existing rifle silhouette. Existing gunner clips remain compatible.",
+  "parts": [
+    {
+      "id": "body",
+      "shape": "extrude",
+      "size": [0.57, 0.65, 0.34],
+      "pos": [0, 0.91, 0],
+      "material": "armor",
+      "points": [
+        [-0.35, 0],
+        [0.35, 0],
+        [0.5, 0.15],
+        [0.5, 0.75],
+        [0.32, 1],
+        [-0.32, 1],
+        [-0.5, 0.75],
+        [-0.5, 0.15]
+      ]
+    },
+    {
+      "id": "chest",
+      "shape": "extrude",
+      "size": [0.5, 0.34, 0.13],
+      "pos": [0, 0.19, -0.21],
+      "material": "teal",
+      "parent": "body",
+      "rot": [-8, 0, 0],
+      "points": [
+        [-0.35, 0],
+        [0.35, 0],
+        [0.5, 0.15],
+        [0.5, 0.75],
+        [0.32, 1],
+        [-0.32, 1],
+        [-0.5, 0.75],
+        [-0.5, 0.15]
+      ]
+    },
+    {
+      "id": "core",
+      "shape": "sphere",
+      "size": 0.14,
+      "pos": [0, 0.35, -0.29],
+      "material": "cyan",
+      "parent": "body"
+    },
+    {
+      "id": "belt",
+      "shape": "box",
+      "size": [0.61, 0.12, 0.39],
+      "pos": [0, 0.01, 0],
+      "material": "dark",
+      "parent": "body"
+    },
+    {
+      "id": "buckle",
+      "shape": "box",
+      "size": [0.16, 0.1, 0.07],
+      "pos": [0, 0.04, -0.24],
+      "material": "brass",
+      "parent": "body"
+    },
+    {
+      "id": "head",
+      "shape": "sphere",
+      "size": [0.4, 0.38, 0.38],
+      "pos": [0, 0.68, 0],
+      "material": "cream",
+      "parent": "body",
+      "segments": 16,
+      "points": [
+        [-0.35, 0],
+        [0.35, 0],
+        [0.5, 0.15],
+        [0.5, 0.75],
+        [0.32, 1],
+        [-0.32, 1],
+        [-0.5, 0.75],
+        [-0.5, 0.15]
+      ]
+    },
+    {
+      "id": "visor",
+      "shape": "box",
+      "size": [0.32, 0.085, 0.045],
+      "pos": [0, 0.14, -0.195],
+      "material": "cyan",
+      "parent": "head"
+    },
+    {
+      "id": "crown",
+      "shape": "extrude",
+      "size": [0.4, 0.07, 0.39],
+      "pos": [0, 0.33, 0],
+      "material": "armor",
+      "parent": "head",
+      "points": [
+        [-0.35, 0],
+        [0.35, 0],
+        [0.5, 0.15],
+        [0.5, 0.75],
+        [0.32, 1],
+        [-0.32, 1],
+        [-0.5, 0.75],
+        [-0.5, 0.15]
+      ]
+    },
+    {
+      "id": "jaw",
+      "shape": "box",
+      "size": [0.25, 0.09, 0.2],
+      "pos": [0, 0.01, -0.13],
+      "material": "dark",
+      "parent": "head"
+    },
+    {
+      "id": "antenna",
+      "shape": "box",
+      "size": [0.03, 0.32, 0.03],
+      "pos": [0.21, 0.23, 0.07],
+      "material": "brass",
+      "parent": "head"
+    },
+    {
+      "id": "antenna-light",
+      "shape": "sphere",
+      "size": 0.06,
+      "pos": [0.21, 0.52, 0.07],
+      "material": "cyan",
+      "parent": "head"
+    },
+    {
+      "id": "collar",
+      "shape": "box",
+      "size": [0.59, 0.12, 0.39],
+      "pos": [0, 0.57, 0],
+      "material": "rust",
+      "parent": "body"
+    },
+    {
+      "id": "scarf",
+      "shape": "box",
+      "size": [0.18, 0.64, 0.04],
+      "pos": [-0.22, 0.6, 0.26],
+      "material": "cream",
+      "parent": "body",
+      "pivot": "top",
+      "rot": [-12, 0, -10]
+    },
+    {
+      "id": "pack",
+      "shape": "extrude",
+      "size": [0.45, 0.52, 0.18],
+      "pos": [0, 0.14, 0.25],
+      "material": "dark",
+      "parent": "body",
+      "points": [
+        [-0.35, 0],
+        [0.35, 0],
+        [0.5, 0.15],
+        [0.5, 0.75],
+        [0.32, 1],
+        [-0.32, 1],
+        [-0.5, 0.75],
+        [-0.5, 0.15]
+      ]
+    },
+    {
+      "id": "pack-cellL",
+      "shape": "cylinder",
+      "size": [0.055, 0.29, 0.055],
+      "pos": [-0.14, 0.26, 0.38],
+      "material": "cyan",
+      "parent": "body"
+    },
+    {
+      "id": "pack-cellR",
+      "shape": "cylinder",
+      "size": [0.055, 0.29, 0.055],
+      "pos": [0.14, 0.26, 0.38],
+      "material": "cyan",
+      "parent": "body"
+    },
+    {
+      "id": "arms",
+      "shape": "box",
+      "size": [0.66, 0.12, 0.14],
+      "pos": [0, 0.43, -0.13],
+      "material": "dark",
+      "parent": "body",
+      "pivot": "center",
+      "hidden": true
+    },
+    {
+      "id": "gun",
+      "shape": "box",
+      "size": [0.55, 0.08, 0.36],
+      "pos": [0.1, -0.12, -0.32],
+      "material": "dark",
+      "parent": "arms",
+      "pivot": "center"
+    },
+    {
+      "id": "gun-slide",
+      "shape": "box",
+      "size": [0.15, 0.06, 0.4],
+      "pos": [0, 0.1, -0.05],
+      "material": "cream",
+      "parent": "gun",
+      "pivot": "center",
+      "hidden": true
+    },
+    {
+      "id": "gun-barrel",
+      "shape": "cylinder",
+      "size": [0.07, 0.3, 0.07],
+      "pos": [0, 0.01, -0.36],
+      "material": "brass",
+      "parent": "gun",
+      "pivot": "center",
+      "rot": [90, 0, 0],
+      "hidden": true
+    },
+    {
+      "id": "gun-mag",
+      "shape": "box",
+      "size": [0.1, 0.24, 0.13],
+      "pos": [0, -0.2, 0.04],
+      "material": "dark",
+      "parent": "gun",
+      "pivot": "center",
+      "hidden": true
+    },
+    {
+      "id": "gun-glow",
+      "shape": "box",
+      "size": [0.015, 0.04, 0.34],
+      "pos": [-0.08, 0.04, -0.08],
+      "material": "cyan",
+      "parent": "gun",
+      "pivot": "center",
+      "hidden": true
+    },
+    {
+      "id": "legL",
+      "shape": "capsule",
+      "size": [0.17, 0.49, 0.2],
+      "pos": [-0.17, 0.92, 0],
+      "material": "dark",
+      "pivot": "top",
+      "segments": 12
+    },
+    {
+      "id": "kneeL",
+      "shape": "sphere",
+      "size": [0.23, 0.16, 0.28],
+      "pos": [0, -0.37, -0.03],
+      "material": "cream",
+      "parent": "legL",
+      "pivot": "top",
+      "segments": 12
+    },
+    {
+      "id": "shinL",
+      "shape": "capsule",
+      "size": [0.19, 0.43, 0.22],
+      "pos": [0, -0.45, 0],
+      "material": "armor",
+      "parent": "legL",
+      "pivot": "top",
+      "segments": 12
+    },
+    {
+      "id": "bootL",
+      "shape": "extrude",
+      "size": [0.24, 0.17, 0.4],
+      "pos": [0, -0.86, -0.08],
+      "material": "dark",
+      "parent": "legL",
+      "points": [[-0.5, 0], [0.5, 0], [0.5, 0.7], [0.25, 1], [-0.25, 1], [-0.5, 0.7]]
+    },
+    {
+      "id": "shoulderL",
+      "shape": "sphere",
+      "size": [0.29, 0.25, 0.41],
+      "pos": [-0.4, 0.43, 0],
+      "material": "cream",
+      "parent": "body",
+      "rot": [0, 0, -12],
+      "segments": 12
+    },
+    {
+      "id": "forearmL",
+      "shape": "capsule",
+      "size": [0.19, 0.38, 0.23],
+      "pos": [-0.32, -0.03, -0.23],
+      "material": "armor",
+      "parent": "arms",
+      "pivot": "center",
+      "rot": [75, 0, 0],
+      "segments": 12
+    },
+    {
+      "id": "handL",
+      "shape": "box",
+      "size": [0.14, 0.14, 0.14],
+      "pos": [-0.3, -0.04, -0.44],
+      "material": "dark",
+      "parent": "arms",
+      "pivot": "center"
+    },
+    {
+      "id": "legR",
+      "shape": "capsule",
+      "size": [0.17, 0.49, 0.2],
+      "pos": [0.17, 0.92, 0],
+      "material": "dark",
+      "pivot": "top",
+      "segments": 12
+    },
+    {
+      "id": "kneeR",
+      "shape": "sphere",
+      "size": [0.23, 0.16, 0.28],
+      "pos": [0, -0.37, -0.03],
+      "material": "cream",
+      "parent": "legR",
+      "pivot": "top",
+      "segments": 12
+    },
+    {
+      "id": "shinR",
+      "shape": "capsule",
+      "size": [0.19, 0.43, 0.22],
+      "pos": [0, -0.45, 0],
+      "material": "armor",
+      "parent": "legR",
+      "pivot": "top",
+      "segments": 12
+    },
+    {
+      "id": "bootR",
+      "shape": "extrude",
+      "size": [0.24, 0.17, 0.4],
+      "pos": [0, -0.86, -0.08],
+      "material": "dark",
+      "parent": "legR",
+      "points": [[-0.5, 0], [0.5, 0], [0.5, 0.7], [0.25, 1], [-0.25, 1], [-0.5, 0.7]]
+    },
+    {
+      "id": "shoulderR",
+      "shape": "sphere",
+      "size": [0.29, 0.25, 0.41],
+      "pos": [0.4, 0.43, 0],
+      "material": "cream",
+      "parent": "body",
+      "rot": [0, 0, 12],
+      "segments": 12
+    },
+    {
+      "id": "forearmR",
+      "shape": "capsule",
+      "size": [0.19, 0.38, 0.23],
+      "pos": [0.32, -0.03, -0.23],
+      "material": "armor",
+      "parent": "arms",
+      "pivot": "center",
+      "rot": [75, 0, 0],
+      "segments": 12
+    },
+    {
+      "id": "handR",
+      "shape": "box",
+      "size": [0.14, 0.14, 0.14],
+      "pos": [0.3, -0.04, -0.44],
+      "material": "dark",
+      "parent": "arms",
+      "pivot": "center"
+    },
+    {
+      "id": "earL",
+      "parent": "head",
+      "shape": "cylinder",
+      "size": [0.13, 0.07, 0.13],
+      "pos": [-0.235, 0.19, 0],
+      "rot": [0, 0, 90],
+      "material": "brass",
+      "pivot": "center"
+    },
+    {
+      "id": "earR",
+      "parent": "head",
+      "shape": "cylinder",
+      "size": [0.13, 0.07, 0.13],
+      "pos": [0.235, 0.19, 0],
+      "rot": [0, 0, 90],
+      "material": "brass",
+      "pivot": "center"
+    },
+    {
+      "id": "breather",
+      "parent": "head",
+      "shape": "box",
+      "size": [0.14, 0.07, 0.04],
+      "pos": [0, 0.065, -0.22],
+      "material": "brass"
+    },
+    {
+      "id": "chest-stripe",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.04, 0.29, 0.025],
+      "pos": [-0.18, 0.21, -0.292],
+      "material": "rust",
+      "rot": [0, 0, -12]
+    },
+    {
+      "id": "pouchL",
+      "parent": "body",
+      "shape": "capsule",
+      "size": [0.13, 0.24, 0.13],
+      "pos": [-0.28, 0.07, -0.16],
+      "material": "brass",
+      "segments": 8
+    },
+    {
+      "id": "pouchR",
+      "parent": "body",
+      "shape": "capsule",
+      "size": [0.13, 0.24, 0.13],
+      "pos": [0.28, 0.07, -0.16],
+      "material": "brass",
+      "segments": 8
+    },
+    {
+      "id": "pack-plate",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.21, 0.23, 0.04],
+      "pos": [0, 0.25, 0.37],
+      "material": "cream"
+    },
+    {
+      "id": "pack-mark",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.08, 0.09, 0.012],
+      "pos": [0, 0.33, 0.405],
+      "material": "rust"
+    },
+    {
+      "id": "slate",
+      "parent": "gun",
+      "shape": "box",
+      "size": [0.46, 0.018, 0.29],
+      "pos": [0, 0.05, 0],
+      "material": "cyan"
+    },
+    {
+      "id": "apron",
+      "parent": "body",
+      "shape": "box",
+      "size": [0.46, 0.6, 0.07],
+      "pos": [0, -0.38, -0.23],
+      "material": "teal",
+      "rot": [-6, 0, 0]
+    }
+  ],
+  "clips": {
+    "idle": "runner-idle",
+    "walk": "gunner-walk",
+    "attack": "gunner-attack",
+    "run": "runner-run",
+    "slide": "runner-slide",
+    "dash": "runner-dash",
+    "jump": "runner-jump",
+    "reload": "runner-reload",
+    "cast": "runner-cast",
+    "death": "runner-death"
+  }
+}

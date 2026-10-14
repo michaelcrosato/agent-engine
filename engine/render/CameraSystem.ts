@@ -49,6 +49,16 @@ export const CameraSystem = defineSystem({
     const view = rot.clone().multiply(pitchQ);
     const cam = r.camera;
     if (rig.mode === 'third') {
+      const anchor = pos.clone().add(new Vector3(0, rig.offset.y, 0));
+      const shoulder = eye.clone().sub(anchor);
+      const sideHit =
+        shoulder.lengthSq() > 0.0001 &&
+        ctx.physics.raycast(anchor, shoulder, shoulder.length(), {
+          exclude: best,
+          layers: ['world', 'prop'],
+        });
+      if (sideHit)
+        eye.copy(anchor).addScaledVector(shoulder.normalize(), Math.max(0, sideHit.distance - 0.2));
       back.set(0, 0, 1).applyQuaternion(view);
       const hit = ctx.physics.raycast(eye, back, rig.distance, { exclude: best });
       cam.position.copy(eye).addScaledVector(back, hit ? Math.max(0.2, hit.distance - 0.2) : rig.distance);

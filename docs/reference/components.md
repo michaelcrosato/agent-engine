@@ -31,6 +31,21 @@ prevTime  number = 0 — State: seconds into the fading clip
 blend     number = 1 — State: weight of the current clip (0..1)
 ```
 
+## AreaPulse
+
+Delayed, telegraphed area damage for spells, bosses and environmental reactions.
+
+```
+radius     number = 4 [0.1..]
+delay      number = 0.8 [0..]
+damage     number = 40 [0..]
+owner      integer = -1
+targetTag  string = "enemy"
+element    "kinetic"|"fire"|"frost"|"shock" = "kinetic"
+effect     effect id = "explosion"
+age        number = 0 — State
+```
+
 ## Arsenal
 
 Owned weapons, current selection, magazine counts, cooldown and reload state.
@@ -128,6 +143,22 @@ velocity    n | [x,y,z] = 0 m/s — State: velocity in m/s, owned by the driving
 grounded    boolean = false — Output: standing on ground after the last move
 ```
 
+## CombatStats
+
+Composable damage, movement, elemental and on-hit modifiers for any combatant.
+
+```
+damage          number = 1 [0..]
+incoming        number = 1 [0..]
+movement        number = 1 [0..]
+critical        number = 0 [0..1]
+criticalDamage  number = 1.8 [1..]
+element         "kinetic"|"fire"|"frost"|"shock" = "kinetic"
+leech           number = 0 [0..1]
+chains          integer = 0 [0..8]
+detonate        number = 0 [0..] — On-kill explosion as a fraction of target maximum health
+```
+
 ## Counter
 
 Counts signals; fires onReach at the goal (e.g. "kill 3 enemies opens the door").
@@ -154,6 +185,20 @@ lockedMessage  string = "Locked. Needs the {key} key."
 open           boolean = false — State
 lastNear       number = -999 — State: sim time a player was last near
 lastNag        number = -999 — State: sim time of the last locked message
+```
+
+## ElementState
+
+Timed elemental state shared by weapons, enemies, abilities and environmental fields.
+
+```
+burn     number = 0 [0..] — State: burning seconds remaining
+chill    number = 0 [0..] — State: chilled seconds remaining
+wet      number = 0 [0..] — State: conductive seconds remaining
+charged  number = 0 [0..] — State: empowered seconds remaining
+source   integer = -1 — State: burn owner
+power    number = 0 [0..] — State: burn damage per second, already scaled
+pulse    number = 0 — State: burn tick accumulator
 ```
 
 ## Explosive
@@ -389,6 +434,37 @@ reloadRoom  boolean = true
 diedAt      number = -1 — State: sim time of death (-1 = alive)
 ```
 
+## RiftEnemy
+
+A monster sentence: chassis + behavior + element + affix + optional boss patterns.
+
+```
+title       string = "Rift creature"
+behavior    "stalker"|"gunner"|"charger"|"orbiter" = "stalker"
+modifier    "none"|"swift"|"armored"|"volatile"|"vampiric" = "none"
+speed       number = 4 [0..]
+damage      number = 15 [0..]
+baseHealth  number = 80 [1..]
+boss        boolean = false
+patterns    "shot"|"strike"|"nova"[] = ["shot","strike","nova"]
+cooldown    number = 1 — State
+windup      number = 0 — State
+aim         n | [x,y,z] = 0 — State: committed attack target
+phase       integer = 0 — State: attack pattern index
+attack      string = "" — State: committed pattern
+```
+
+## RiftField
+
+Optional arena tools; a single vocabulary shared with elemental combat.
+
+```
+kind      "launch"|"barrel"|"conduit"|"chill"|"overdrive"|"vortex"|"echo"|"rift" = "launch"
+radius    number = 2.5 [0..]
+cooldown  number = 0 — State
+spent     boolean = false — State
+```
+
 ## RoomExit
 
 Sensor that loads another room (and spawn point) when the player enters.
@@ -460,6 +536,25 @@ World-space position, rotation (quaternion), and scale.
 pos    n | [x,y,z] = [0,0,0] m — Position in meters
 rot    deg | [x,y,z] = 0 deg — Yaw degrees, or [x, y, z] Euler degrees (YXZ)
 scale  n | [x,y,z] = 1 — Scale; a number scales uniformly
+```
+
+## Traversal
+
+Optional air jump, directional dash, momentum slide and low-ledge mantle for the FPS controller.
+
+```
+dashCooldown     number = 2.2 [0.1..]
+dashSpeed        number = 24 [0..]
+airJumps         integer = 1 [0..5]
+standingHeight   number = 1.8 [1..]
+crouchingHeight  number = 1.05 [0.8..]
+cooldown         number = 0 — State: dash cooldown remaining
+dashing          number = 0 — State: dash seconds remaining
+sliding          number = 0 — State: slide seconds remaining
+jumpsUsed        integer = 0 — State: jumps used since leaving ground
+actionTime       number = 0 — State: seconds left in an ability animation
+actionClip       string = "cast" — Animation role used while actionTime is positive
+direction        n | [x,y,z] = 0 — State: dash/slide direction
 ```
 
 ## Trigger

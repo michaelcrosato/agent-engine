@@ -69,6 +69,7 @@ export const LabelSystem = defineSystem({
       r.scene.remove(b.mesh);
       b.mesh.geometry.dispose();
       (b.mesh.material as MeshBasicMaterial).map?.dispose();
+      (b.mesh.material as MeshBasicMaterial).dispose();
       map.delete(e);
     }
     for (const e of w.query(Label, Transform)) {

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "skill (data/skills)",
+  "description": "Passive skill nodes with prerequisite links and named combat-stat contributions.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string",
+      "enum": [
+        "Vanguard",
+        "Tempest",
+        "Catalyst"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "requires": {
+      "default": "",
+      "ref": "skill",
+      "type": "string"
+    },
+    "tier": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "maxRank": {
+      "default": 3,
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "bonuses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stat": {
+            "type": "string",
+            "enum": [
+              "damage",
+              "health",
+              "speed",
+              "critical",
+              "leech",
+              "chains",
+              "detonate",
+              "cooldown",
+              "magnet",
+              "armor",
+              "area",
+              "regen"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "stat",
+          "value"
+        ]
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Editor schema hint (ignored by the engine)"
+    }
+  },
+  "required": [
+    "name",
+    "branch",
+    "description",
+    "tier",
+    "bonuses"
+  ],
+  "additionalProperties": false
+}

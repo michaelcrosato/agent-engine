@@ -1,0 +1,14 @@
+{
+  "name": "Overclock",
+  "branch": "Tempest",
+  "description": "16% cooldown recovery per rank.",
+  "requires": "velocity",
+  "tier": 6,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "cooldown",
+      "value": 0.16
+    }
+  ]
+}

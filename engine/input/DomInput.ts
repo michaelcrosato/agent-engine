@@ -45,6 +45,8 @@ export class DomInput implements InputSource {
   private readonly off: (() => void)[] = [];
   /** When false, mouse movement is ignored unless the pointer is locked. */
   requireLock = true;
+  /** Optional per-player override; never mutates the shared input-map asset. */
+  sensitivity: number | undefined;
 
   constructor(el: HTMLElement, getMap: () => InputMap, step: number) {
     this.el = el;
@@ -110,7 +112,7 @@ export class DomInput implements InputSource {
       }
       if (v > 0) actions.set(action, v);
     }
-    const sens = map.mouse.sensitivity;
+    const sens = this.sensitivity ?? map.mouse.sensitivity;
     let x = this.dx * sens;
     let y = -this.dy * sens * (map.mouse.invertY ? -1 : 1);
     if (pad) {

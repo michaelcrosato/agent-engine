@@ -1,0 +1,14 @@
+{
+  "name": "Stormchaser",
+  "branch": "Tempest",
+  "description": "8% critical chance per rank.",
+  "requires": "recharge",
+  "tier": 7,
+  "maxRank": 1,
+  "bonuses": [
+    {
+      "stat": "critical",
+      "value": 0.08
+    }
+  ]
+}

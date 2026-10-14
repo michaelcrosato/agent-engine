@@ -1,0 +1,14 @@
+{
+  "name": "Quick capacitor",
+  "branch": "Tempest",
+  "description": "10% cooldown recovery per rank.",
+  "requires": "stride",
+  "tier": 1,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "cooldown",
+      "value": 0.1
+    }
+  ]
+}

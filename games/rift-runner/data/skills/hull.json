@@ -1,0 +1,14 @@
+{
+  "name": "Reinforced hull",
+  "branch": "Vanguard",
+  "description": "12% maximum health per rank.",
+  "requires": "",
+  "tier": 0,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "health",
+      "value": 0.12
+    }
+  ]
+}

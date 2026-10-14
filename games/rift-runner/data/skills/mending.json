@@ -1,0 +1,14 @@
+{
+  "name": "Field repair",
+  "branch": "Vanguard",
+  "description": "0.5% health regenerated per second per rank.",
+  "requires": "plating",
+  "tier": 2,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "regen",
+      "value": 0.005
+    }
+  ]
+}

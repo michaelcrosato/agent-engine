@@ -1,0 +1,14 @@
+{
+  "name": "Last word",
+  "branch": "Vanguard",
+  "description": "12% enemy health as on-kill blast damage per rank.",
+  "requires": "bulwark",
+  "tier": 5,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "detonate",
+      "value": 0.12
+    }
+  ]
+}

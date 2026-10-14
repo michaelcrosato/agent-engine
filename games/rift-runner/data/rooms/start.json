@@ -1,0 +1,12 @@
+{
+  "doc": "Lastlight: the safe salvage hub, animated vendors, forge, archive and expedition gate.",
+  "look": "haven",
+  "music": "calm",
+  "entities": [
+    {
+      "prefab": "spawn",
+      "pos": [0, 0.2, 16],
+      "rot": 0
+    }
+  ]
+}

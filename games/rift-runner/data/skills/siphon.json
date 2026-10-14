@@ -1,0 +1,14 @@
+{
+  "name": "Blood circuit",
+  "branch": "Vanguard",
+  "description": "2% damage returned as health per rank.",
+  "requires": "mending",
+  "tier": 3,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "leech",
+      "value": 0.015
+    }
+  ]
+}

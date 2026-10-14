@@ -1,0 +1,14 @@
+{
+  "name": "Ironheart",
+  "branch": "Vanguard",
+  "description": "18% damage resistance per rank.",
+  "requires": "eruption",
+  "tier": 6,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "armor",
+      "value": 0.18
+    }
+  ]
+}

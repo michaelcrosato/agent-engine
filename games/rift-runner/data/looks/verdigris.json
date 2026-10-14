@@ -1,0 +1,22 @@
+{
+  "extends": "haven",
+  "sky": {
+    "top": "#223e5c",
+    "horizon": "#8db2b2",
+    "bottom": "#4f6b65",
+    "stars": 0.25
+  },
+  "fog": {
+    "color": "#8db2b2",
+    "near": 45,
+    "far": 150
+  },
+  "materials": {
+    "ground": {
+      "color": "#b6d8cd"
+    },
+    "distant": {
+      "color": "#4f7880"
+    }
+  }
+}

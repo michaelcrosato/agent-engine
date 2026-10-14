@@ -1,0 +1,132 @@
+{
+  "parts": [
+    {
+      "id": "plinth",
+      "shape": "box",
+      "size": [7, 0.35, 4],
+      "pos": [0, 0, 0],
+      "material": "stone"
+    },
+    {
+      "id": "frame",
+      "shape": "torus",
+      "size": [5.4, 5.4, 0.6],
+      "pos": [0, 3.05, 0],
+      "material": "brass",
+      "thickness": 0.35,
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "segments": 48
+    },
+    {
+      "id": "rim",
+      "shape": "torus",
+      "size": [4.65, 4.65, 0.5],
+      "pos": [0, 3.05, 0],
+      "material": "cyan",
+      "thickness": 0.09,
+      "rot": [90, 0, 0],
+      "pivot": "center",
+      "segments": 48
+    },
+    {
+      "id": "portal",
+      "shape": "sphere",
+      "size": [4.45, 4.45, 0.06],
+      "pos": [0, 3.05, 0],
+      "material": "portal",
+      "segments": 32,
+      "pivot": "center",
+      "shadow": false
+    },
+    {
+      "id": "footL",
+      "shape": "box",
+      "size": [0.5, 3, 0.65],
+      "pos": [-2.7, 0.3, 0],
+      "material": "dark"
+    },
+    {
+      "id": "footR",
+      "shape": "box",
+      "size": [0.5, 3, 0.65],
+      "pos": [2.7, 0.3, 0],
+      "material": "dark"
+    },
+    {
+      "id": "brace0",
+      "shape": "box",
+      "size": [0.35, 0.5, 0.65],
+      "pos": [0.0, 5.75, 0],
+      "rot": [0, 0, 0],
+      "pivot": "center",
+      "material": "dark"
+    },
+    {
+      "id": "brace1",
+      "shape": "box",
+      "size": [0.35, 0.5, 0.65],
+      "pos": [1.9091883092036783, 4.959188309203679, 0],
+      "rot": [0, 0, -45],
+      "pivot": "center",
+      "material": "dark"
+    },
+    {
+      "id": "brace2",
+      "shape": "box",
+      "size": [0.35, 0.5, 0.65],
+      "pos": [2.7, 3.05, 0],
+      "rot": [0, 0, -90],
+      "pivot": "center",
+      "material": "dark"
+    },
+    {
+      "id": "brace3",
+      "shape": "box",
+      "size": [0.35, 0.5, 0.65],
+      "pos": [1.9091883092036785, 1.1408116907963215, 0],
+      "rot": [0, 0, -135],
+      "pivot": "center",
+      "material": "dark"
+    },
+    {
+      "id": "brace4",
+      "shape": "box",
+      "size": [0.35, 0.5, 0.65],
+      "pos": [3.3065463576978537e-16, 0.34999999999999964, 0],
+      "rot": [0, 0, -180],
+      "pivot": "center",
+      "material": "dark"
+    },
+    {
+      "id": "brace5",
+      "shape": "box",
+      "size": [0.35, 0.5, 0.65],
+      "pos": [-1.9091883092036783, 1.140811690796321, 0],
+      "rot": [0, 0, -225],
+      "pivot": "center",
+      "material": "dark"
+    },
+    {
+      "id": "brace6",
+      "shape": "box",
+      "size": [0.35, 0.5, 0.65],
+      "pos": [-2.7, 3.0499999999999994, 0],
+      "rot": [0, 0, -270],
+      "pivot": "center",
+      "material": "dark"
+    },
+    {
+      "id": "brace7",
+      "shape": "box",
+      "size": [0.35, 0.5, 0.65],
+      "pos": [-1.9091883092036788, 4.959188309203678, 0],
+      "rot": [0, 0, -315],
+      "pivot": "center",
+      "material": "dark"
+    }
+  ],
+  "clips": {
+    "idle": "gate-idle"
+  }
+}

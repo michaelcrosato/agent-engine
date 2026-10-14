@@ -8,7 +8,7 @@ import type { Entity } from '../core/World.ts';
 import type { ScriptedInput } from '../input/ScriptedInput.ts';
 import { NavGrid } from '../level/NavGrid.ts';
 import { Signal } from '../logic/Signal.ts';
-import { wrap180, yawOf } from '../math/yaw.ts';
+import { wrap180, yawOf, yawQuat } from '../math/yaw.ts';
 import { CameraRig } from '../render/CameraRig.ts';
 import { type Snapshot, type SnapshotOpts, snapshot } from './snapshot.ts';
 
@@ -167,10 +167,16 @@ export class Playtest {
     const w = this.engine.world;
     const t = w.need(p, Transform, 'playtest.lookAt');
     const rig = w.get(p, CameraRig);
-    const eye = t.pos.clone().add(rig?.offset ?? new Vector3(0, 1.6, 0));
     const goal = target instanceof Vector3 ? target.clone() : this.pos(target).add(new Vector3(0, height, 0));
-    const d = goal.sub(eye);
-    const yaw = (Math.atan2(-d.x, -d.z) * 180) / Math.PI;
+    const offset = rig?.offset ?? new Vector3(0, 1.6, 0);
+    let yaw = yawOf(t.rot);
+    let d = goal.clone().sub(t.pos);
+    // A shoulder camera's eye rotates with yaw. Solve that offset before applying look input.
+    for (let i = 0; i < 5; i++) {
+      const eye = offset.clone().applyQuaternion(yawQuat(yaw)).add(t.pos);
+      d = goal.clone().sub(eye);
+      yaw = (Math.atan2(-d.x, -d.z) * 180) / Math.PI;
+    }
     const pitch = (Math.atan2(d.y, Math.hypot(d.x, d.z)) * 180) / Math.PI;
     return this.look(-wrap180(yaw - yawOf(t.rot)), pitch - (rig?.pitch ?? 0));
   }

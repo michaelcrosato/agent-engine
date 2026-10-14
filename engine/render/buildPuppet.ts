@@ -17,12 +17,18 @@ export type PuppetInstance = {
   >;
 };
 
-const geometryCache = new Map<string, { geometry: BufferGeometry; scale: [number, number, number] }>();
+type SharedGeometry = { geometry: BufferGeometry; scale: [number, number, number]; users: number };
+const geometryCache = new Map<string, SharedGeometry>();
 
 function cachedGeometry(p: Part) {
   const key = JSON.stringify([p.shape, p.size, p.segments, p.profile, p.points, p.thickness]);
   let g = geometryCache.get(key);
-  if (!g) geometryCache.set(key, (g = partGeometry(p)));
+  if (!g) {
+    g = { ...partGeometry(p), users: 0 };
+    g.geometry.userData.sharedKey = key;
+    geometryCache.set(key, g);
+  }
+  g.users++;
   return g;
 }
 
@@ -96,9 +102,20 @@ export function buildPuppet(rawParts: readonly unknown[], opts: BuildOpts): Pupp
   return { root, joints, rest };
 }
 
-/** Frees per-instance geometry (world-UV boxes); shared geometry stays cached. */
+/** Release geometry when its last live instance leaves. Procedural variants cannot grow the cache forever. */
 export function disposePuppet(inst: PuppetInstance): void {
+  if (inst.root.userData.disposed) return;
+  inst.root.userData.disposed = true;
   inst.root.traverse((o) => {
-    if (o instanceof Mesh && o.userData.ownsGeometry) o.geometry.dispose();
+    if (!(o instanceof Mesh)) return;
+    if (o.userData.ownsGeometry) o.geometry.dispose();
+    else {
+      const key = o.geometry.userData.sharedKey as string;
+      const shared = geometryCache.get(key);
+      if (shared && --shared.users === 0) {
+        shared.geometry.dispose();
+        geometryCache.delete(key);
+      }
+    }
   });
 }

@@ -22,7 +22,7 @@ export const RenderSyncSystem = defineSystem({
     const w = ctx.world;
     for (const [e, m] of r.models) {
       const model = w.get(e, Model);
-      if (w.isAlive(e) && model && m.source === model) continue;
+      if (w.isAlive(e) && model && m.source === model && m.tint === model.tint) continue;
       r.scene.remove(m.inst.root);
       disposePuppet(m.inst);
       r.models.delete(e);

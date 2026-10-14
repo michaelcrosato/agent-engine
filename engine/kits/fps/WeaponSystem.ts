@@ -6,6 +6,7 @@ import { Health } from '../../mechanics/health/Health.ts';
 import { Inventory } from '../../mechanics/pickups/Inventory.ts';
 import { Arsenal } from './Arsenal.ts';
 import { fireWeapon } from './fireWeapon.ts';
+import { Weapon } from './Weapon.ts';
 import { type WeaponData, weaponData } from './weaponData.ts';
 import { Reloaded, WeaponChanged } from './weaponEvents.ts';
 
@@ -72,7 +73,7 @@ export const WeaponSystem = defineSystem({
       }
       const id = a.weapons[a.current];
       if (!id) continue;
-      const wd = weaponData(ctx.content, id);
+      const wd = w.get(e, Weapon) ?? weaponData(ctx.content, id);
       if (a.reloading > 0) {
         a.reloading -= dt;
         if (a.reloading <= 0) finishReload(ctx, e, a, id, wd);

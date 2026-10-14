@@ -1,0 +1,32 @@
+{
+  "components": {
+    "Body": {
+      "size": [1.4, 1.4, 1.4]
+    },
+    "Model": {
+      "parts": [
+        {
+          "id": "crate",
+          "shape": "box",
+          "size": [1.4, 1.4, 1.4],
+          "pos": [0, 0, 0],
+          "material": "dark"
+        },
+        {
+          "id": "plate",
+          "shape": "box",
+          "size": [1.25, 1.18, 1.46],
+          "pos": [0, 0.1, 0],
+          "material": "teal"
+        },
+        {
+          "id": "strap",
+          "shape": "box",
+          "size": [0.16, 1.42, 1.48],
+          "pos": [0, 0, 0],
+          "material": "brass"
+        }
+      ]
+    }
+  }
+}

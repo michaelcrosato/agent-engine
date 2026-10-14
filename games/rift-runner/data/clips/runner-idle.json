@@ -1,0 +1,46 @@
+{
+  "duration": 1,
+  "loop": true,
+  "tracks": [
+    {
+      "part": "body",
+      "prop": "pos.y",
+      "wave": {
+        "amp": 0.018,
+        "freq": 0.5,
+        "phase": 0,
+        "offset": 0
+      }
+    },
+    {
+      "part": "head",
+      "prop": "rot.y",
+      "wave": {
+        "amp": 5,
+        "freq": 0.18,
+        "phase": 0,
+        "offset": 0
+      }
+    },
+    {
+      "part": "scarf",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 8,
+        "freq": 0.7,
+        "phase": 0,
+        "offset": 0
+      }
+    },
+    {
+      "part": "arms",
+      "prop": "rot.x",
+      "wave": {
+        "amp": 2,
+        "freq": 0.5,
+        "phase": 0,
+        "offset": 0
+      }
+    }
+  ]
+}

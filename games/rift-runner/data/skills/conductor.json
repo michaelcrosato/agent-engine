@@ -1,0 +1,14 @@
+{
+  "name": "Live wire",
+  "branch": "Catalyst",
+  "description": "12% damage per rank.",
+  "requires": "aftershock",
+  "tier": 4,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "damage",
+      "value": 0.12
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Amplifier",
+  "branch": "Catalyst",
+  "description": "8% damage per rank.",
+  "requires": "",
+  "tier": 0,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "damage",
+      "value": 0.08
+    }
+  ]
+}

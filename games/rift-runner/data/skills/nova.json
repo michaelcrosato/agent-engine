@@ -1,0 +1,14 @@
+{
+  "name": "Event horizon",
+  "branch": "Catalyst",
+  "description": "20% ability radius per rank.",
+  "requires": "conductor",
+  "tier": 5,
+  "maxRank": 3,
+  "bonuses": [
+    {
+      "stat": "area",
+      "value": 0.2
+    }
+  ]
+}

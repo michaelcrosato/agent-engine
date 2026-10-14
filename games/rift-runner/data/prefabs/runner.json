@@ -1,0 +1,37 @@
+{
+  "extends": "player",
+  "doc": "The existing FPS player, extended for the signature game. Same controls and first-person weapon models; new animated exterior.",
+  "components": {
+    "CameraRig": {
+      "mode": "third",
+      "distance": 4.2,
+      "offset": [0.65, 1.65, 0]
+    },
+    "Model": {
+      "puppet": "runner"
+    },
+    "Animator": {},
+    "CombatStats": {},
+    "ElementState": {},
+    "Traversal": {},
+    "Health": {
+      "max": 140,
+      "regen": 1.5,
+      "regenDelay": 5
+    },
+    "FpsController": {
+      "walkSpeed": 7.5,
+      "sprintSpeed": 12,
+      "airAccel": 25,
+      "jumpSpeed": 8.5
+    },
+    "Arsenal": {
+      "weapons": ["rift-weapons/carbine"]
+    },
+    "Inventory": {
+      "ammo": {
+        "bullets": 9999
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "components": {
+    "Weapon": {
+      "name": "Carbine",
+      "slot": 1,
+      "damage": 19,
+      "rate": 8,
+      "automatic": true,
+      "pellets": 1,
+      "spread": 1.05,
+      "ammo": "bullets",
+      "magazine": 30,
+      "reloadTime": 1.15,
+      "kick": 0.12,
+      "range": 110,
+      "sound": "rifle",
+      "viewmodel": "vm-rifle",
+      "tracer": "rift-tracer",
+      "impactEffect": "rift-impact",
+      "muzzleEffect": "rift-muzzle"
+    }
+  }
+}

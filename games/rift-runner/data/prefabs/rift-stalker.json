@@ -1,0 +1,14 @@
+{
+  "components": {
+    "Model": {
+      "puppet": "rift-stalker"
+    },
+    "Animator": {},
+    "CharacterBody": {
+      "height": 1.3,
+      "radius": 0.65,
+      "layer": "enemy",
+      "stepHeight": 0.55
+    }
+  }
+}

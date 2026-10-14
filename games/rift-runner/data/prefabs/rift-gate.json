@@ -1,0 +1,14 @@
+{
+  "components": {
+    "Model": {
+      "puppet": "rift-gate"
+    },
+    "Animator": {},
+    "Light": {
+      "color": "#72ffe3",
+      "intensity": 18,
+      "range": 13,
+      "offset": [0, 3, 0]
+    }
+  }
+}

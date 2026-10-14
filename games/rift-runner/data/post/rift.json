@@ -1,0 +1,23 @@
+{
+  "passes": [
+    {
+      "type": "bloom",
+      "strength": 0.3,
+      "radius": 0.4,
+      "threshold": 1.1
+    },
+    {
+      "type": "vignette",
+      "amount": 0.25,
+      "softness": 0.6
+    },
+    {
+      "type": "grade",
+      "saturation": 1.1,
+      "contrast": 1.03
+    },
+    {
+      "type": "fxaa"
+    }
+  ]
+}

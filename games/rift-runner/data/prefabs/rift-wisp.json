@@ -1,0 +1,13 @@
+{
+  "components": {
+    "Model": {
+      "puppet": "rift-wisp"
+    },
+    "Animator": {},
+    "CharacterBody": {
+      "height": 2.2,
+      "radius": 0.48,
+      "layer": "enemy"
+    }
+  }
+}
