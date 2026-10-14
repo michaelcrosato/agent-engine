@@ -1,4 +1,4 @@
-import { type Engine, Light, Motion, Rng } from '#engine/api.ts';
+import { type Engine, Light, Model, Motion, Rng } from '#engine/api.ts';
 import { block, type PartInput, scenery } from './buildScenery.ts';
 
 /** Hand-composed landmarks, with deterministic smaller props and plant clusters. */
@@ -111,4 +111,6 @@ export function dressTown(engine: Engine): void {
       { size: [0.2, 0.5, 0.7], pos: [1.25, 0, 0], material: 'dark' },
     ],
   );
+  for (const name of ['forge-anvil', 'forge-reactor', 'rest-bench'])
+    engine.world.get(engine.world.named(name)!, Model)!.filterGroup = 'subject';
 }

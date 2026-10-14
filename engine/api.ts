@@ -97,6 +97,7 @@ export { CameraRig } from './render/CameraRig.ts';
 export { Label } from './render/Label.ts';
 export { Light } from './render/Light.ts';
 export { RendererKey } from './render/Renderer.ts';
+export { type FilterGroup, type VisualFilter, VisualFilterSchema } from './render/VisualFilter.ts';
 export { viewRay } from './render/viewRay.ts';
 export { field } from './schema/field.ts';
 // Plugin bundles

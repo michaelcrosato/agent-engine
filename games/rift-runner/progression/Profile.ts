@@ -1,4 +1,4 @@
-import { experienceCost, experienceCurve, levelsFromExperience, z } from '#engine/api.ts';
+import { experienceCost, experienceCurve, levelsFromExperience, VisualFilterSchema, z } from '#engine/api.ts';
 
 export const statNames = [
   'damage',
@@ -74,6 +74,7 @@ export const ProfileSchema = z.object({
   volume: z.number().min(0).max(1).default(0.45),
   sensitivity: z.number().min(0.04).max(0.4).default(0.12),
   thirdPerson: z.boolean().default(true),
+  visualFilter: VisualFilterSchema.prefault({ style: 'cel', scope: 'scene' }),
 });
 export type Profile = z.infer<typeof ProfileSchema>;
 

@@ -50,6 +50,19 @@ All six damage/health/speed sliders affect player and enemies independently. Hea
 preserve the fraction remaining. Existing enemies update immediately. Standard is challenging;
 Explore and Relentless are shortcuts to combinations of the same visible sliders.
 
+## Visual filters
+
+Cel shading is the default: banded lighting, ink silhouettes and geometric edge lines.
+Open **Settings → Art direction** to preview Cel shaded, Graphic novel (warm print and
+halftone), Vivid (richer color), or Original (filter off). Apply any filter to the entire
+scene, only the environment, or only characters and objects. Restore cel shaded default
+returns to Cel shaded / Entire scene.
+
+Environment includes terrain, buildings, sky and vegetation. Characters and objects includes
+the runner, first-person weapon, NPCs, monsters, gear, crates, lamps and interactive props.
+Menus and combat HUD stay crisp. Settings update immediately while paused, persist across
+room/palette changes and reloads, and also work with existing saves.
+
 ## Persistence
 
 Versioned localStorage saves use `agent-engine:rift-runner:v1`, with a last-valid backup.

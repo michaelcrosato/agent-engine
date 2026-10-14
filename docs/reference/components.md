@@ -349,10 +349,11 @@ on         boolean = true — Toggle with the "toggle"/"on"/"off" signals
 Visual model: a puppet (data/puppets) or inline primitive parts.
 
 ```
-puppet   puppet id = "" — Puppet id; empty to use inline parts
-parts    object[] = [] — Inline parts (used when puppet is empty)
-tint     string = "" — Hex color multiplied into every part, e.g. "#ff8080"
-visible  boolean = true
+puppet       puppet id = "" — Puppet id; empty to use inline parts
+parts        object[] = [] — Inline parts (used when puppet is empty)
+tint         string = "" — Hex color multiplied into every part, e.g. "#ff8080"
+visible      boolean = true
+filterGroup  "environment"|"subject" = "subject" — Visual filter category: environment for terrain/buildings, subject for characters/objects
 ```
 
 ## Motion

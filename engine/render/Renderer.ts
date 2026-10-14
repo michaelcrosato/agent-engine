@@ -28,6 +28,7 @@ import { PostStackKind } from './PostStack.ts';
 import { type BuiltComposer, buildComposer } from './post/buildComposer.ts';
 import { resolveLook } from './resolveLook.ts';
 import { TextureCache } from './TextureCache.ts';
+import { type FilterGroup, type VisualFilter, VisualFilterSchema } from './VisualFilter.ts';
 
 const TONE = {
   aces: ACESFilmicToneMapping,
@@ -37,7 +38,7 @@ const TONE = {
 };
 
 /** A rendered entity: its built model and the component data it was built from. */
-export type RenderedModel = { inst: PuppetInstance; source: object; tint: string };
+export type RenderedModel = { inst: PuppetInstance; source: object; tint: string; filterGroup: FilterGroup };
 
 /**
  * The Three.js side of the engine (browser only), available to frame systems as
@@ -66,6 +67,11 @@ export class Renderer {
   private readonly content: ContentStore;
   private renderScale = 1;
   private time = 0;
+  private filter: VisualFilter = VisualFilterSchema.parse({});
+
+  get visualFilter(): Readonly<VisualFilter> {
+    return { ...this.filter };
+  }
 
   constructor(canvas: HTMLCanvasElement, content: ContentStore, log: Log) {
     this.content = content;
@@ -138,6 +144,25 @@ export class Renderer {
     for (const model of this.models.values()) model.source = {};
   }
 
+  /** Runtime preference survives room look/palette changes; classification lives on Model. */
+  setVisualFilter(value: VisualFilter): void {
+    const parsed = VisualFilterSchema.safeParse(value);
+    if (!parsed.success)
+      throw new EngineError({
+        code: 'VISUAL_FILTER_INVALID',
+        what: 'Unknown visual filter style or scope',
+        fix: 'Use style none/cel/graphic/vivid and scope scene/environment/subjects.',
+      });
+    const filter = parsed.data;
+    if (filter.style === this.filter.style && filter.scope === this.filter.scope) return;
+    this.filter = filter;
+    this.materials.setVisualFilter(filter);
+    this.paletteVersion++;
+    for (const model of this.models.values()) model.source = {};
+    this.rebuildPost();
+    this.resize(this.three.domElement.clientWidth || 1280, this.three.domElement.clientHeight || 720);
+  }
+
   /** Aims the sun's shadow frustum to cover a box (call when a room loads). */
   fitShadows(center: Vector3, radius: number): void {
     const dir = new Vector3(...(this.look?.sun.dir ?? [-0.4, -1, -0.3])).normalize();
@@ -160,7 +185,7 @@ export class Renderer {
     const id = this.look?.post ?? '';
     const passes =
       id && this.content.has(PostStackKind, id) ? this.content.get(PostStackKind, id).passes : [];
-    this.post = buildComposer(this.three, this.scene, this.camera, passes);
+    this.post = buildComposer(this.three, this.scene, this.camera, passes, this.filter);
   }
 
   resize(w: number, h: number): void {

@@ -46,6 +46,36 @@ Ordered passes applied after the scene renders:
 Pass types: `bloom`, `vignette`, `grade`, `grain`, `chromatic`, `pixelate`, `scanlines`,
 `posterize`, `fxaa`. Stacks: `default`, `none`, `cinematic`, `retro`, `neon`.
 
+## Selective visual filters
+
+Games can set a persistent runtime treatment independently of the current room look:
+
+```ts
+engine.tryService(RendererKey)?.setVisualFilter({ style: 'cel', scope: 'scene' });
+```
+
+Styles are `none` (authored lighting), `cel` (four-band toon light and ink edges), `graphic`
+(toon light, stronger ink and warm halftone print), and `vivid` (saturation and warm highlights).
+Scopes are `scene`, `environment`, and `subjects`. `VisualFilterSchema` and `VisualFilter`
+are public exports. The engine defaults to `none`; Rift Runner saves `cel` / `scene` as its default.
+
+`Model.filterGroup` is `subject` by default. Mark terrain, buildings and vegetation
+`environment`; grid floor/wall/ceiling models do this automatically. Rift Runner's scenery
+helper marks architecture and landscape, while actors, weapons, loot and interactive props
+are subjects. The first-person weapon participates too. Classification updates at runtime.
+
+Selected opaque lit materials use a shared nearest-filtered lighting ramp. Unlit emission,
+glass and transparent combat effects retain their authored material behavior. A full-resolution
+normal/depth capture provides visible-surface categories and ink contours before display passes
+and antialiasing; no hidden-character outlines show through walls. Transparent effects and world
+labels are excluded from that capture to avoid hard rectangular edges, so their post color treatment
+follows the opaque surface behind them. The sky belongs to the environment. DOM HUD is unaffected.
+Room bloom remains shared: a filtered object's glow can still spill onto nearby scenery.
+
+Changing rooms or recoloring a procedural biome retains the filter preference. Changing filters
+releases the old composer, surface/depth buffers, materials and lighting ramp. `none` skips the
+extra capture and composite; active filters add one geometry pass and one fullscreen pass.
+
 ## Seeing the result
 
 ```sh

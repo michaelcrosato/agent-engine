@@ -4,6 +4,7 @@ import { type Part, PartSchema } from '../model/Part.ts';
 import { partGeometry, v3 } from './geometry/partGeometry.ts';
 import { worldBoxGeometry } from './geometry/worldBoxGeometry.ts';
 import type { MaterialLibrary } from './MaterialLibrary.ts';
+import type { FilterGroup } from './VisualFilter.ts';
 
 /** A built model: the root to add to the scene, and named joints for animation. */
 export type PuppetInstance = {
@@ -34,6 +35,7 @@ function cachedGeometry(p: Part) {
 
 export type BuildOpts = {
   materials: MaterialLibrary;
+  filterGroup?: FilterGroup;
   tint?: string;
   /** World position of the model origin (for parts with uv: "world"). */
   origin?: { x: number; y: number; z: number };
@@ -62,7 +64,7 @@ export function buildPuppet(rawParts: readonly unknown[], opts: BuildOpts): Pupp
     if (!p.hidden) {
       const [, sy] = v3(p.size);
       const lift = p.pivot === 'bottom' ? sy / 2 : p.pivot === 'top' ? -sy / 2 : 0;
-      const material = opts.materials.get(p.material, p.color ?? opts.tint);
+      const material = opts.materials.get(p.material, p.color ?? opts.tint, opts.filterGroup);
       let mesh: Mesh;
       if (p.uv === 'world' && p.shape === 'box' && opts.origin) {
         const [sx, , sz] = v3(p.size);
@@ -80,6 +82,7 @@ export function buildPuppet(rawParts: readonly unknown[], opts: BuildOpts): Pupp
         mesh.scale.set(...g.scale);
       }
       mesh.position.y = lift;
+      mesh.userData.filterGroup = opts.filterGroup ?? 'subject';
       mesh.castShadow = p.shadow;
       mesh.receiveShadow = true;
       joint.add(mesh);

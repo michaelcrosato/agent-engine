@@ -1,4 +1,4 @@
-import { Animator, type Engine, Light, Motion, Transform } from '#engine/api.ts';
+import { Animator, type Engine, Light, Model, Motion, Transform } from '#engine/api.ts';
 import { block, buildScenery, type PartInput, scenery, sign } from './buildScenery.ts';
 import { dressTown } from './dressTown.ts';
 
@@ -73,6 +73,7 @@ export function buildTown(engine: Engine): void {
       ],
     );
     engine.world.add(e, Light, { color: '#ffc690', intensity: 9, range: 8, offset: [0, 3.4, 0] });
+    engine.world.get(e, Model)!.filterGroup = 'subject';
   }
   for (let i = 0; i < 8; i++) {
     const x = i % 2 ? 20 : -21;

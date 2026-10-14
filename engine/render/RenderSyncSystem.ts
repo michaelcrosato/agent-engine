@@ -22,7 +22,14 @@ export const RenderSyncSystem = defineSystem({
     const w = ctx.world;
     for (const [e, m] of r.models) {
       const model = w.get(e, Model);
-      if (w.isAlive(e) && model && m.source === model && m.tint === model.tint) continue;
+      if (
+        w.isAlive(e) &&
+        model &&
+        m.source === model &&
+        m.tint === model.tint &&
+        m.filterGroup === model.filterGroup
+      )
+        continue;
       r.scene.remove(m.inst.root);
       disposePuppet(m.inst);
       r.models.delete(e);
@@ -36,6 +43,7 @@ export const RenderSyncSystem = defineSystem({
         const look = r.look;
         const inst = buildPuppet(parts, {
           materials: r.materials,
+          filterGroup: model.filterGroup,
           ...(model.tint ? { tint: model.tint } : {}),
           origin: t.pos,
           tileOf: (name) => look?.materials[name]?.tile ?? 2,
@@ -43,7 +51,7 @@ export const RenderSyncSystem = defineSystem({
         });
         inst.root.userData.entity = e;
         r.scene.add(inst.root);
-        m = { inst, source: model, tint: model.tint };
+        m = { inst, source: model, tint: model.tint, filterGroup: model.filterGroup };
         r.models.set(e, m);
       }
       const root = m.inst.root;

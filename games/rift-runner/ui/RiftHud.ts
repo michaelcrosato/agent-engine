@@ -1,4 +1,11 @@
-import { DomInput, type Engine, patchMarkup, WebAudioOut } from '#engine/api.ts';
+import {
+  DomInput,
+  type Engine,
+  patchMarkup,
+  RendererKey,
+  VisualFilterSchema,
+  WebAudioOut,
+} from '#engine/api.ts';
 import { applyBuild } from '../progression/applyBuild.ts';
 import { applyDifficulty } from '../progression/applyDifficulty.ts';
 import { type Difficulty, DifficultySchema } from '../progression/Profile.ts';
@@ -133,6 +140,20 @@ export class RiftHud {
       s.profile.thirdPerson = !s.profile.thirdPerson;
       applyBuild(e);
       s.store.save(s.profile);
+    } else if (action === 'filter-style' || action === 'filter-scope' || action === 'filter-default') {
+      const values =
+        action === 'filter-default'
+          ? { style: 'cel', scope: 'scene' }
+          : { ...s.profile.visualFilter, [action === 'filter-style' ? 'style' : 'scope']: id };
+      const parsed = VisualFilterSchema.safeParse(values);
+      if (parsed.success) {
+        s.profile.visualFilter = parsed.data;
+        e.tryService(RendererKey)?.setVisualFilter(parsed.data);
+        s.store.save(s.profile);
+        // Keep keyboard focus, scroll, and the live preview stable while switching options.
+        patchMarkup(this.modal, panelMarkup(e));
+      }
+      return;
     } else if (action === 'preset') {
       const values: Partial<Difficulty> =
         id === 'relentless'

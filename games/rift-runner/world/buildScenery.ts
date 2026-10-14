@@ -15,7 +15,7 @@ export function scenery(
   const w = engine.world;
   const e = w.spawn({ name, tags: ['scenery'] });
   w.add(e, Transform, { pos, rot: yaw });
-  w.add(e, Model, { parts });
+  w.add(e, Model, { parts, filterGroup: 'environment' });
   if (solid) w.add(e, Body, { type: 'static', size: solid, layer: 'world' });
   return e;
 }

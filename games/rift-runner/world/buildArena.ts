@@ -83,6 +83,7 @@ function fieldProp(engine: Engine, kind: string, pos: Point, index: number): voi
       segments: 24,
     });
   const e = scenery(engine, `field-${kind}-${index}`, pos, parts);
+  engine.world.get(e, Model)!.filterGroup = 'subject';
   engine.world.add(e, RiftField, { kind: kind as 'launch', radius: kind === 'vortex' ? 7 : 2.5 });
   if (kind === 'barrel') {
     engine.world.add(e, Health, { max: 24, destroyOnDeath: false });

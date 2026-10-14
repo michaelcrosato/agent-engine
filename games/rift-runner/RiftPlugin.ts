@@ -121,6 +121,7 @@ export const RiftPlugin = definePlugin({
     applyBuild(engine, true);
     const r = engine.tryService(RendererKey);
     if (r) {
+      r.setVisualFilter(s.profile.visualFilter);
       r.applyLook(town ? 'haven' : s.plan.biome.look);
       if (!town && s.plan.depth > s.catalog.lessons.length) {
         const ground = new Color(s.plan.color).lerp(new Color('#bbc5bd'), 0.8);
